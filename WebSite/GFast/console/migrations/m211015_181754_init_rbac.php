@@ -32,6 +32,11 @@ class m211015_181754_init_rbac extends Migration
         $crudCategorias->description = 'CRUD Categorias';
         $auth->add($crudCategorias);
 
+
+        $crudSubCategorias = $auth->createPermission('crudSubCategorias');
+        $crudSubCategorias->description = 'CRUD SubCategorias';
+        $auth->add($crudSubCategorias);
+
         $crudGuitarras = $auth->createPermission('crudtabelaGuitarras');
         $crudGuitarras->description = 'CRUD Tabela Guitarras';
         $auth->add($crudGuitarras);
@@ -40,9 +45,6 @@ class m211015_181754_init_rbac extends Migration
         $crudCategorias->description = 'CRUD Categorias';
         $auth->add($crudCategorias);
 
-        $crudConcerto = $auth->createPermission('crudConcerto');
-        $crudConcerto->description = 'CRUD Concerto';
-        $auth->add($crudConcerto);
 
         $crudConcertos = $auth->createPermission('crudConcertos');
         $crudConcertos->description = 'CRUD Concertos';
@@ -60,89 +62,106 @@ class m211015_181754_init_rbac extends Migration
         $crudMarcas->description = 'CRUD Marcas';
         $auth->add($crudMarcas);
 
+        $alterarEncomenda = $auth->createPermission('alterarEncomenda');
+        $alterarEncomenda->description = 'Alterar Próprias Encomendas';
+        $auth->add($alterarEncomenda);
+
         //lOGOUT
         $logout = $auth->createPermission('logout');
         $logout->description = 'Logout';
         $auth->add($logout);
 
 
-        //FRONTEND
-        $editarPerfil = $auth->createPermission('editarPerfil');
-        $editarPerfil->description = 'Editar Perfil';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($editarPerfil);
+        //FRONTEND Rules
+        $editarOwnPerfil = $auth->createPermission('editarOwnPerfil');
+        $editarOwnPerfil->description = 'Editar Próprio Perfil';
+        $editarOwnPerfil->ruleName = $rule->name;
+        $auth->add($editarOwnPerfil);
 
-        $verPerfil = $auth->createPermission('verPerfil');
-        $verPerfil->description = 'Ver Perfil';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($verPerfil);
+        $verOwnPerfil = $auth->createPermission('verOwnPerfil');
+        $verOwnPerfil->description = 'Ver Perfil';
+        $verOwnPerfil->ruleName = $rule->name;
+        $auth->add($verOwnPerfil);
 
-        $verEncomendas = $auth->createPermission('verEncomenda');
-        $verEncomendas->description = 'Ver Encomendas';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($verEncomendas);
+        $verOwnEncomendas = $auth->createPermission('verOwnEncomenda');
+        $verOwnEncomendas->description = 'Ver Próprias Encomendas';
+        $verOwnEncomendas->ruleName = $rule->name;
+        $auth->add($verOwnEncomendas);
 
 
-        $verPontos = $auth->createPermission('verPontos');
-        $verPontos->description = 'Ver Pontos';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($verPontos);
+        $verOwnPontos = $auth->createPermission('verOwnPontos');
+        $verOwnPontos->description = 'Ver Próprios Pontos';
+        $verOwnPontos->ruleName = $rule->name;
+        $auth->add($verOwnPontos);
 
-        $alterarEcomenda = $auth->createPermission('alterarEcomenda');
-        $alterarEcomenda->description = 'Alterar Encomenda';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($alterarEcomenda);
+        $verOwnSaldo = $auth->createPermission('verOwnSaldo');
+        $verOwnSaldo->description = 'Ver Próprio Saldo';
+        $verOwnSaldo->ruleName = $rule->name;
+        $auth->add($verOwnSaldo);
 
-        $fazerEncomenda = $auth->createPermission('fazerEncomenda');
-        $fazerEncomenda->description = 'Fazer Encomenda';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($fazerEncomenda);
 
-        $adicionarSaldo = $auth->createPermission('adicionarSaldo');
-        $adicionarSaldo->description = 'Adicionar Saldo';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($adicionarSaldo);
+        $fazerOwnEncomenda = $auth->createPermission('fazerOwnEncomenda');
+        $fazerOwnEncomenda->description = 'Fazer Próprias Encomendas';
+        $fazerOwnEncomenda->ruleName = $rule->name;
+        $auth->add($fazerOwnEncomenda);
 
-        $adicionarCarrinho = $auth->createPermission('adicionarCarrinho');
-        $adicionarCarrinho->description = 'Adicionar Carrinho';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($adicionarCarrinho);
+        $adicionarOwnSaldo = $auth->createPermission('adicionarOwnSaldo');
+        $adicionarOwnSaldo->description = 'Adicionar Saldo';
+        $adicionarOwnSaldo->ruleName = $rule->name;
+        $auth->add($adicionarOwnSaldo);
 
-        $verCarrinho = $auth->createPermission('verCarrinho');
-        $verCarrinho->description = 'Ver Carrinho';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($verCarrinho);
+        $adicionarOwnCarrinho = $auth->createPermission('adicionarOwnCarrinho');
+        $adicionarOwnCarrinho->description = 'Adicionar ao Próprio Carrinho';
+        $adicionarOwnCarrinho->ruleName = $rule->name;
+        $auth->add($adicionarOwnCarrinho);
 
-        $eliminarCarrinho = $auth->createPermission('eliminarCarrinho');
-        $eliminarCarrinho->description = 'Eliminar Carrinho';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($eliminarCarrinho);
+        $verOwnCarrinho = $auth->createPermission('verOwnCarrinho');
+        $verOwnCarrinho->description = 'Ver Proprio Carrinho';
+        $verOwnCarrinho->ruleName = $rule->name;
+        $auth->add($verOwnCarrinho);
 
-        $crudAvaliacao = $auth->createPermission('crudAvaliacao');
-        $crudAvaliacao->description = 'CRUD Avaliação';
-        $editarPerfil->ruleName = $rule->name;
-        $auth->add($crudAvaliacao);
+        $eliminarOwnCarrinho = $auth->createPermission('eliminarOwnCarrinho');
+        $eliminarOwnCarrinho->description = 'Eliminar Próprio Carrinho';
+        $eliminarOwnCarrinho->ruleName = $rule->name;
+        $auth->add($eliminarOwnCarrinho);
+
+        $crudOwnAvaliacao = $auth->createPermission('crudOwnAvaliacao');
+        $crudOwnAvaliacao->description = 'CRUD à Propria Avaliação';
+        $crudOwnAvaliacao->ruleName = $rule->name;
+        $auth->add($crudOwnAvaliacao);
 
         //Cliente
         $cliente = $auth->createRole('cliente');
         $auth->add($cliente);
-        //$auth->addChild($author, $createPost);
+        $auth->addChild($cliente, $verOwnEncomendas);
+        $auth->addChild($cliente, $logout);
+        $auth->addChild($cliente, $verOwnPontos);
+        $auth->addChild($cliente, $editarOwnPerfil);
+        $auth->addChild($cliente, $verOwnSaldo);
+        $auth->addChild($cliente, $fazerOwnEncomenda);
+        $auth->addChild($cliente, $adicionarOwnSaldo);
+        $auth->addChild($cliente, $adicionarOwnCarrinho);
+        $auth->addChild($cliente, $verOwnCarrinho);
+        $auth->addChild($cliente, $eliminarOwnCarrinho);
+        $auth->addChild($cliente, $crudOwnAvaliacao);
 
         //Funcionário
         $funcionario = $auth->createRole('funcionario');
         $auth->add($funcionario);
-        //$auth->addChild($author, $createPost);
-
-        //Funcionário
-        $funcionario = $auth->createRole('funcionario');
-        $auth->add($funcionario);
-        //$auth->addChild($author, $createPost);
-
+        $auth->addChild($funcionario, $cliente);
+        $auth->addChild($funcionario, $alterarEncomenda);
 
         //Gestor
         $gestor = $auth->createRole('admin');
         $auth->add($gestor);
-        //$auth->addChild($admin, $updatePost);
+        $auth->addChild($gestor, $funcionario);
+        $auth->addChild($gestor, $cliente);
+        $auth->addChild($gestor, $crudCategorias);
+        $auth->addChild($gestor, $crudSubCategorias);
+        $auth->addChild($gestor, $crudConcertos);
+        $auth->addChild($gestor, $crudGuitarras);
+        $auth->addChild($gestor, $crudPontos);
+        $auth->addChild($gestor, $crudMarcas);
 
 
 
@@ -152,6 +171,8 @@ class m211015_181754_init_rbac extends Migration
         $auth->addChild($admin, $funcionario);
         $auth->addChild($admin, $gestor);
         $auth->addChild($admin, $cliente);
+        $auth->addChild($admin, $crudLojas);
+
 
 
 
