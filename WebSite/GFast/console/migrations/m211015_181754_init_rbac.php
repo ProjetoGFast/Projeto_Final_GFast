@@ -63,8 +63,14 @@ class m211015_181754_init_rbac extends Migration
         $auth->add($crudMarcas);
 
         $alterarEncomenda = $auth->createPermission('alterarEncomenda');
-        $alterarEncomenda->description = 'Alterar Próprias Encomendas';
+        $alterarEncomenda->description = 'Alterar Encomendas';
         $auth->add($alterarEncomenda);
+
+
+        $crudEncomendas = $auth->createPermission('crudEncomendas');
+        $crudEncomendas->description = 'crud Encomendas';
+        $crudEncomendas->ruleName = $rule->name;
+        $auth->add($crudEncomendas);
 
         //lOGOUT
         $logout = $auth->createPermission('logout');
@@ -149,8 +155,7 @@ class m211015_181754_init_rbac extends Migration
         $funcionario = $auth->createRole('funcionario');
         $auth->add($funcionario);
         $auth->addChild($funcionario, $cliente);
-        $auth->addChild($funcionario, $alterarEncomenda);
-
+        $auth->addChild($funcionario, $crudEncomendas);
         //Gestor
         $gestor = $auth->createRole('admin');
         $auth->add($gestor);
@@ -175,15 +180,6 @@ class m211015_181754_init_rbac extends Migration
 
 
 
-
-
-
-
-
-        // Assign roles to users. 1 and 2 are IDs returned by IdentityInterface::getId()
-        // usually implemented in your User model.
-       // $auth->assign($author, 2);
-        $auth->assign($admin, 1);
 
     }
 
