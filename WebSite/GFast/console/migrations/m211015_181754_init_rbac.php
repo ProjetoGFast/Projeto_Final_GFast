@@ -41,10 +41,6 @@ class m211015_181754_init_rbac extends Migration
         $crudGuitarras->description = 'CRUD Tabela Guitarras';
         $auth->add($crudGuitarras);
 
-        $crudCategorias = $auth->createPermission('crudCategorias');
-        $crudCategorias->description = 'CRUD Categorias';
-        $auth->add($crudCategorias);
-
 
         $crudConcertos = $auth->createPermission('crudConcertos');
         $crudConcertos->description = 'CRUD Concertos';
@@ -156,8 +152,9 @@ class m211015_181754_init_rbac extends Migration
         $auth->add($funcionario);
         $auth->addChild($funcionario, $cliente);
         $auth->addChild($funcionario, $crudEncomendas);
+
         //Gestor
-        $gestor = $auth->createRole('admin');
+        $gestor = $auth->createRole('gestor');
         $auth->add($gestor);
         $auth->addChild($gestor, $funcionario);
         $auth->addChild($gestor, $cliente);
