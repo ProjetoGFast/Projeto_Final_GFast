@@ -35,8 +35,16 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'Início', 'url' => ['/site/index']],
+        [
+            'label' => 'Guitarras',
+            'items' => [
+                ['label' => 'Tipos.....', 'url' => '#'],
+                ['label' => 'Tiposs....', 'url' => '#'],
+            ],
+        ],
+        ['label' => 'Marcas', 'url' => ['/site/about']],
+        ['label' => 'Concertos', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
