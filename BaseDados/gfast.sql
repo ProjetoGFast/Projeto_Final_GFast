@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 22-Out-2021 às 21:03
--- Versão do servidor: 5.7.31
--- versão do PHP: 7.3.21
+-- Generation Time: Oct 27, 2021 at 09:21 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `gfast`
+-- Database: `gfast`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_assignment`
+-- Table structure for table `auth_assignment`
 --
 
 DROP TABLE IF EXISTS `auth_assignment`;
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `auth_assignment`
+-- Dumping data for table `auth_assignment`
 --
 
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_item`
+-- Table structure for table `auth_item`
 --
 
 DROP TABLE IF EXISTS `auth_item`;
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `auth_item`
+-- Dumping data for table `auth_item`
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
@@ -100,7 +100,7 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_item_child`
+-- Table structure for table `auth_item_child`
 --
 
 DROP TABLE IF EXISTS `auth_item_child`;
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `auth_item_child`
+-- Dumping data for table `auth_item_child`
 --
 
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
@@ -145,7 +145,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `auth_rule`
+-- Table structure for table `auth_rule`
 --
 
 DROP TABLE IF EXISTS `auth_rule`;
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `auth_rule`
+-- Dumping data for table `auth_rule`
 --
 
 INSERT INTO `auth_rule` (`name`, `data`, `created_at`, `updated_at`) VALUES
@@ -167,7 +167,188 @@ INSERT INTO `auth_rule` (`name`, `data`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `migration`
+-- Table structure for table `avaliacoes`
+--
+
+DROP TABLE IF EXISTS `avaliacoes`;
+CREATE TABLE IF NOT EXISTS `avaliacoes` (
+  `ava_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ava_avaliacao` varchar(45) NOT NULL,
+  `ava_idguitarra` int(11) NOT NULL,
+  `ava_iduser` int(11) NOT NULL,
+  PRIMARY KEY (`ava_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bilhetes`
+--
+
+DROP TABLE IF EXISTS `bilhetes`;
+CREATE TABLE IF NOT EXISTS `bilhetes` (
+  `bil_id` int(11) NOT NULL AUTO_INCREMENT,
+  `bil_nome` varchar(20) NOT NULL,
+  `bil_iduser` int(11) NOT NULL,
+  `bil_idconcerto` int(11) NOT NULL,
+  `bil_precopontos` int(11) NOT NULL,
+  PRIMARY KEY (`bil_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carrinho`
+--
+
+DROP TABLE IF EXISTS `carrinho`;
+CREATE TABLE IF NOT EXISTS `carrinho` (
+  `car_id` int(11) NOT NULL AUTO_INCREMENT,
+  `car_idguitarras` int(11) NOT NULL,
+  `car_iduser` int(11) NOT NULL,
+  `car_idsaldo` int(11) NOT NULL,
+  PRIMARY KEY (`car_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categoria_guitarra`
+--
+
+DROP TABLE IF EXISTS `categoria_guitarra`;
+CREATE TABLE IF NOT EXISTS `categoria_guitarra` (
+  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cat_nome` varchar(20) NOT NULL,
+  `cat_inativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`cat_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `concertos`
+--
+
+DROP TABLE IF EXISTS `concertos`;
+CREATE TABLE IF NOT EXISTS `concertos` (
+  `con_id` int(11) NOT NULL AUTO_INCREMENT,
+  `con_nome` varchar(20) NOT NULL,
+  `con_data` date NOT NULL,
+  `con_descricao` varchar(255) NOT NULL,
+  `con_idtipoconcerto` int(11) NOT NULL,
+  `con_idpontos` int(11) NOT NULL,
+  `con_inativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`con_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `encomendas`
+--
+
+DROP TABLE IF EXISTS `encomendas`;
+CREATE TABLE IF NOT EXISTS `encomendas` (
+  `enc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `enc_nome` varchar(20) NOT NULL,
+  `enc_morada` varchar(40) NOT NULL,
+  `enc_estado` tinyint(4) NOT NULL,
+  `enc_iduser` int(11) NOT NULL,
+  `enc_idvenda` int(11) NOT NULL,
+  PRIMARY KEY (`enc_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enderecos`
+--
+
+DROP TABLE IF EXISTS `enderecos`;
+CREATE TABLE IF NOT EXISTS `enderecos` (
+  `end_id` int(11) NOT NULL AUTO_INCREMENT,
+  `end_nome` varchar(20) NOT NULL,
+  `end_iduser` int(11) NOT NULL,
+  `end_tipo` tinyint(4) NOT NULL,
+  `end_morada` varchar(20) NOT NULL,
+  `end_cidade` varchar(20) NOT NULL,
+  `end_codigopostal` varchar(8) NOT NULL,
+  PRIMARY KEY (`end_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fotos`
+--
+
+DROP TABLE IF EXISTS `fotos`;
+CREATE TABLE IF NOT EXISTS `fotos` (
+  `fot_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fot_nome` varchar(20) NOT NULL,
+  `fot_idguitarra` int(11) NOT NULL,
+  `fot_idref` int(11) NOT NULL,
+  `fot_tipofoto` varchar(20) NOT NULL,
+  `fot_principal` varchar(20) NOT NULL,
+  `fot_inativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`fot_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guitarras`
+--
+
+DROP TABLE IF EXISTS `guitarras`;
+CREATE TABLE IF NOT EXISTS `guitarras` (
+  `gui_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gui_nome` varchar(20) NOT NULL,
+  `gui_idsubcategoria` int(11) NOT NULL,
+  `gui_idmarca` int(11) NOT NULL,
+  `gui_idvenda` int(11) NOT NULL,
+  `gui_idreferencia` int(11) NOT NULL,
+  `gui_descricao` varchar(50) NOT NULL,
+  `gui_preco` float NOT NULL,
+  `gui_iva` int(11) NOT NULL,
+  `gui_inativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`gui_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lojas`
+--
+
+DROP TABLE IF EXISTS `lojas`;
+CREATE TABLE IF NOT EXISTS `lojas` (
+  `loj_id` int(11) NOT NULL AUTO_INCREMENT,
+  `loj_nome` varchar(20) NOT NULL,
+  `loj_longitude` float NOT NULL,
+  `loj_latitude` float NOT NULL,
+  PRIMARY KEY (`loj_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `marcas`
+--
+
+DROP TABLE IF EXISTS `marcas`;
+CREATE TABLE IF NOT EXISTS `marcas` (
+  `mar_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mar_nome` varchar(20) NOT NULL,
+  `mar_inativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`mar_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migration`
 --
 
 DROP TABLE IF EXISTS `migration`;
@@ -178,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `migration` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `migration`
+-- Dumping data for table `migration`
 --
 
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
@@ -194,7 +375,48 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `user`
+-- Table structure for table `saldos`
+--
+
+DROP TABLE IF EXISTS `saldos`;
+CREATE TABLE IF NOT EXISTS `saldos` (
+  `sal_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sal_iduser` int(11) NOT NULL,
+  PRIMARY KEY (`sal_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subcategoria_guitarra`
+--
+
+DROP TABLE IF EXISTS `subcategoria_guitarra`;
+CREATE TABLE IF NOT EXISTS `subcategoria_guitarra` (
+  `sub_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sub_nome` varchar(20) NOT NULL,
+  `sub_idcat` int(11) NOT NULL,
+  PRIMARY KEY (`sub_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tipoconcertos`
+--
+
+DROP TABLE IF EXISTS `tipoconcertos`;
+CREATE TABLE IF NOT EXISTS `tipoconcertos` (
+  `tip_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tip_nome` varchar(20) NOT NULL,
+  `tip_inativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`tip_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -209,6 +431,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   `verification_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `us_nome` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `us_apelido` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `us_cidade` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `us_telemovel` int(9) NOT NULL,
+  `us_contribuinte` int(9) NOT NULL,
+  `us_pontos` int(11) NOT NULL,
+  `us_inativo` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
@@ -216,32 +445,51 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
-(1, 'duarte_fpereira', 'WH-GO4zP4VwFLNH8VIkkMmjxbIz9Kz9Y', '$2y$13$aOuGfr9TeD9.cS2SYrapjOKpzpk3S.3vSivY31BrT3wMNPoV86/LW', NULL, '2190715@my.ipleiria.pt', 10, 1634936385, 1634936385, NULL),
-(2, 'alexlevs', 'tU4F73wMajQT1SIK39BvcDNk7kUgXdnd', '$2y$13$xWX8wIxnKw7zWJ1jyYqXD.kajrxs3WfTjqkp8MJTRN6Cs9uIrqHVi', NULL, 'alexandrelevchenko1@gmail.com', 10, 1634936510, 1634936510, NULL),
-(3, 'tiago_jorge', 'W7Lklqfe8cfdHvn-WQKUu_T7D1XAhyL7', '$2y$13$lVU48YoCnAuCBfMwwitrxulchoU56wJvBcltdHqP9ucuK4Ocgrr4a', NULL, 'tiago.jorge@gmail.com', 10, 1634936558, 1634936558, NULL);
+INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`, `us_nome`, `us_apelido`, `us_cidade`, `us_telemovel`, `us_contribuinte`, `us_pontos`, `us_inativo`) VALUES
+(1, 'duarte_fpereira', 'WH-GO4zP4VwFLNH8VIkkMmjxbIz9Kz9Y', '$2y$13$aOuGfr9TeD9.cS2SYrapjOKpzpk3S.3vSivY31BrT3wMNPoV86/LW', NULL, '2190715@my.ipleiria.pt', 10, 1634936385, 1634936385, NULL, '', '', '', 0, 0, 0, 0),
+(2, 'alexlevs', 'tU4F73wMajQT1SIK39BvcDNk7kUgXdnd', '$2y$13$xWX8wIxnKw7zWJ1jyYqXD.kajrxs3WfTjqkp8MJTRN6Cs9uIrqHVi', NULL, 'alexandrelevchenko1@gmail.com', 10, 1634936510, 1634936510, NULL, '', '', '', 0, 0, 0, 0),
+(3, 'tiago_jorge', 'W7Lklqfe8cfdHvn-WQKUu_T7D1XAhyL7', '$2y$13$lVU48YoCnAuCBfMwwitrxulchoU56wJvBcltdHqP9ucuK4Ocgrr4a', NULL, 'tiago.jorge@gmail.com', 10, 1634936558, 1634936558, NULL, '', '', '', 0, 0, 0, 0);
+
+-- --------------------------------------------------------
 
 --
--- Restrições para despejos de tabelas
+-- Table structure for table `vendas`
+--
+
+DROP TABLE IF EXISTS `vendas`;
+CREATE TABLE IF NOT EXISTS `vendas` (
+  `ven_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ven_iduser` int(11) NOT NULL,
+  `ven_idloja` int(11) NOT NULL,
+  `ven_idsaldo` int(11) NOT NULL,
+  `ven_idproduto` int(11) NOT NULL,
+  `ven_total` int(11) NOT NULL,
+  `ven_estado` tinyint(4) NOT NULL,
+  `ven_iva` int(11) NOT NULL,
+  PRIMARY KEY (`ven_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Limitadores para a tabela `auth_assignment`
+-- Constraints for table `auth_assignment`
 --
 ALTER TABLE `auth_assignment`
   ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `auth_item`
+-- Constraints for table `auth_item`
 --
 ALTER TABLE `auth_item`
   ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `auth_item_child`
+-- Constraints for table `auth_item_child`
 --
 ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
