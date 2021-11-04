@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m211015_181754_init_rbac
+ * Class m211104_144503_init_rbac
  */
-class m211015_181754_init_rbac extends Migration
+class m211104_144503_init_rbac extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,7 +14,7 @@ class m211015_181754_init_rbac extends Migration
     {
         $auth = Yii::$app->authManager;
 
-            // add the rule
+        // add the rule
         $rule = new \frontend\rbac\ClienteRule();
         $auth->add($rule);
 
@@ -171,9 +171,6 @@ class m211015_181754_init_rbac extends Migration
         $auth->addChild($admin, $cliente);
         $auth->addChild($admin, $crudLojas);
         $auth->addChild($admin, $crudUsers);
-
-
-
     }
 
     /**
@@ -195,7 +192,7 @@ class m211015_181754_init_rbac extends Migration
 
     public function down()
     {
-        echo "m211015_181754_init_rbac cannot be reverted.\n";
+        echo "m211104_144503_init_rbac cannot be reverted.\n";
 
         return false;
     }

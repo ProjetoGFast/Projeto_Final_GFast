@@ -229,4 +229,69 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Username',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => 'Email',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'verification_token' => 'Verification Token',
+            'us_nome' => 'Us Nome',
+            'us_apelido' => 'Us Apelido',
+            'us_cidade' => 'Us Cidade',
+            'us_telemovel' => 'Us Telemovel',
+            'us_contribuinte' => 'Us Contribuinte',
+            'us_pontos' => 'Us Pontos',
+            'us_inativo' => 'Us Inativo',
+        ];
+    }
+
+    /**
+     * Gets query for [[Avaliacoes]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAvaliacoes()
+    {
+        return $this->hasMany(Avaliacoes::className(), ['ava_iduser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Bilhetes]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBilhetes()
+    {
+        return $this->hasMany(Bilhetes::className(), ['bil_iduser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Carrinhos]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCarrinhos()
+    {
+        return $this->hasMany(Carrinho::className(), ['car_iduser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Enderecos]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEnderecos()
+    {
+        return $this->hasMany(Enderecos::className(), ['end_iduser' => 'id']);
+    }
 }

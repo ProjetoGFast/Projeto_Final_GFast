@@ -35,9 +35,20 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Utilizadores', 'url' => ['/user/index']],
-    ];
+        ['label' => 'Home', 'url' => ['/site/index']],];
+
+    if (\Yii::$app->user->can('crudUsers')) {
+        $menuItems[] =['label' => 'Utilizadores', 'url' => ['/user/index']];
+
+    }
+    if (\Yii::$app->user->can('crudtabelaGuitarras')) {
+        $menuItems[] =['label' => 'Guitarras', 'url' => ['/guitarras/index']];
+    }
+
+    if (\Yii::$app->user->can('crudMarcas')) {
+        $menuItems[] =['label' => 'Marcas', 'url' => ['/marcas/index']];
+    }
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {

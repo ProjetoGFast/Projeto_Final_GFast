@@ -59,15 +59,15 @@ class Guitarras extends \yii\db\ActiveRecord
     {
         return [
             'gui_id' => 'Gui ID',
-            'gui_nome' => 'Gui Nome',
-            'gui_idsubcategoria' => 'Gui Idsubcategoria',
-            'gui_idmarca' => 'Gui Idmarca',
-            'gui_idvenda' => 'Gui Idvenda',
-            'gui_idreferencia' => 'Gui Idreferencia',
-            'gui_descricao' => 'Gui Descricao',
-            'gui_preco' => 'Gui Preco',
-            'gui_iva' => 'Gui Iva',
-            'gui_inativo' => 'Gui Inativo',
+            'gui_nome' => 'Nome',
+            'gui_idsubcategoria' => 'Subcategoria',
+            'gui_idmarca' => 'Marca',
+            'gui_idvenda' => 'Venda',
+            'gui_idreferencia' => 'Referencia',
+            'gui_descricao' => 'Descrição',
+            'gui_preco' => 'Preço',
+            'gui_iva' => 'IVA',
+            'gui_inativo' => 'Inativo',
         ];
     }
 
