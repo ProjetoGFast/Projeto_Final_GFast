@@ -9,19 +9,30 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * User model
+ * This is the model class for table "user".
  *
- * @property integer $id
+ * @property int $id
  * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $verification_token
- * @property string $email
  * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
+ * @property string $password_hash
+ * @property string|null $password_reset_token
+ * @property string $email
+ * @property int $status
+ * @property int $created_at
+ * @property int $updated_at
+ * @property string|null $verification_token
+ * @property string $us_nome
+ * @property string $us_apelido
+ * @property string $us_cidade
+ * @property int $us_telemovel
+ * @property int $us_contribuinte
+ * @property int $us_pontos
+ * @property int $us_inativo
+ *
+ * @property Avaliacoes[] $avaliacoes
+ * @property Bilhetes[] $bilhetes
+ * @property Carrinho[] $carrinhos
+ * @property Enderecos[] $enderecos
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -56,6 +67,14 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'us_nome', 'us_apelido', 'us_cidade', 'us_telemovel', 'us_contribuinte', 'us_pontos', 'us_inativo'], 'required'],
+            [['status', 'created_at', 'updated_at', 'us_telemovel', 'us_contribuinte', 'us_pontos', 'us_inativo'], 'integer'],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32],
+            [['us_nome', 'us_apelido', 'us_cidade'], 'string', 'max' => 20],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
         ];
     }
 
