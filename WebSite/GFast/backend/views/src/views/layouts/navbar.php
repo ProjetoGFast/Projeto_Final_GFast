@@ -1,6 +1,17 @@
 <?php
 
-use yii\helpers\Html;
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use backend\assets\AppAsset;
+use common\widgets\Alert;
+use yii\bootstrap4\Breadcrumbs;
+use yii\bootstrap4\Html;
+use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
+
+AppAsset::register($this);
+AppAsset::register($this);
 
 ?>
 <!-- Navbar -->
@@ -14,7 +25,10 @@ use yii\helpers\Html;
             <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
+
             <a href="#" class="nav-link">Contact</a>
+
+
         </li>
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
