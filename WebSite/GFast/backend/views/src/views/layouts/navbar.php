@@ -5,14 +5,15 @@
 
 use backend\assets\AppAsset;
 use common\widgets\Alert;
+
+use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 
 AppAsset::register($this);
-AppAsset::register($this);
-
+$this->registerCsrfMetaTags()
 ?>
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -22,14 +23,32 @@ AppAsset::register($this);
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Home</a>
+            <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Início</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
 
-            <a href="#" class="nav-link">Contact</a>
+            <?php
+            if (\Yii::$app->user->can('crudUsers')) {
 
+                    ?>
+                        <li class="nav-item d-none d-sm-inline-block">
 
-        </li>
+                            <?= Html::a('Utilizadores', Url::to(['user/index']), [ 'class' => 'nav-link']) ?>
+                        </li>
+            <?php
+            }
+            ?>
+        <?php
+        if (\Yii::$app->user->can('crudtabelaGuitarras')) {
+
+            ?>
+            <li class="nav-item d-none d-sm-inline-block">
+
+                <?= Html::a('Guitarras', Url::toRoute(['/guitarras/index']), [ 'class' => 'nav-link']) ?>
+            </li>
+            <?php
+        }
+        ?>
+
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
