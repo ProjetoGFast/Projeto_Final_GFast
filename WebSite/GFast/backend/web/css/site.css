@@ -90,6 +90,10 @@ a.desc:after {
 }
 .brand-image-tester{
     line-height: .8;
-    max-height: 125px;
-    width: auto;
+    max-height: 64px;
+    width:auto;
+    margin-left:20px;
+}
+.brand-text{
+  font-size:30px;
 }

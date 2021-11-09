@@ -17,7 +17,9 @@ AppAsset::register($this);
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
-        <?= Html::img('@web/images/logo.png', ['class' => 'brand-image-xl'] ) ?>
+        <?= Html::img('@web/images/logoguitar.png', ['class' => 'brand-image-tester'] ) ?>
+
+        <span class="brand-text font-weight-light brand-text">&nbsp&nbsp&nbsp&nbspGFast</span>
 
     </a>
 
@@ -26,8 +28,8 @@ AppAsset::register($this);
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
+                <?= Html::img('@web/images/user.png', ['class' => 'img-circle elevation-2'] ) ?>
 
-                <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block"><?=Yii::$app->user->identity->username?></a>
@@ -50,53 +52,40 @@ AppAsset::register($this);
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
+
+            if (\Yii::$app->user->can('crudUsers')) {
+
+
             echo \hail812\adminlte\widgets\Menu::widget([
-                'items' => [
-                    [
-                        'label' => 'Starter Pages',
-                        'icon' => 'tachometer-alt',
-                        'badge' => '<span class="right badge badge-info">2</span>',
-                        'items' => [
-                            ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                            ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                        ]
-                    ],
-                    ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
-                    ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
 
-
-
-                    ['label' => 'Utilizadores',  'icon' => 'users', 'url' => ['user/index']],
-
-
-                    ['label' => 'Guitarras', 'icon' => 'bug', 'url' => ['guitarras/index']],
-                   /* ['label' => 'MULTI LEVEL EXAMPLE', 'header' => true],
-                    ['label' => 'Level1'],
-                    [
-                        'label' => 'Level1',
-                        'items' => [
-                            ['label' => 'Level2', 'iconStyle' => 'far'],
-                            [
-                                'label' => 'Level2',
-                                'iconStyle' => 'far',
-                                'items' => [
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                                ]
-                            ],
-                            ['label' => 'Level2', 'iconStyle' => 'far']
-                        ]
-                    ],
-                   ['label' => 'Level1'],
-                    ['label' => 'LABELS', 'header' => true],
-                    ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],*/
-                ],
-            ]);
+                    'items' => [['label' => 'Utilizadores',  'icon' => 'users', 'url' => ['user/index']]]
+                    ]);
+                   }
             ?>
+            <?php
+
+            if (\Yii::$app->user->can('crudtabelaGuitarras')) {
+
+
+                echo \hail812\adminlte\widgets\Menu::widget([
+
+                    'items' => [['label' => 'Guitarras',  'icon' => 'book', 'url' => ['guitarras/index']]]
+                ]);
+            }
+
+            ?>
+            <?php
+
+            if (\Yii::$app->user->can('crudMarcas')) {
+
+
+                echo \hail812\adminlte\widgets\Menu::widget([
+
+                    'items' => [['label' => 'Marcas',  'icon' => 'book', 'url' => ['marcas/index']]]
+                ]);
+            }
+            ?>
+
         </nav>
         <!-- /.sidebar-menu -->
     </div>
