@@ -85,6 +85,17 @@ AppAsset::register($this);
                 ]);
             }
             ?>
+            <?php
+
+            if (\Yii::$app->user->can('crudMarcas')) {
+
+
+                echo \hail812\adminlte\widgets\Menu::widget([
+
+                    'items' => [['label' => 'Categorias',  'icon' => 'book', 'url' => ['categoriasguitarra/index']]]
+                ]);
+            }
+            ?>
 
         </nav>
         <!-- /.sidebar-menu -->

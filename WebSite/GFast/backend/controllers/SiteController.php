@@ -40,9 +40,14 @@ class SiteController extends Controller
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' => ['guitarras', 'marcas'],
+                        'actions' => ['guitarras', 'marcas', 'index'],
                         'allow' => true,
                         'roles' => ['gestor'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['funcionario'],
                     ],
                 ],
             ],
@@ -74,7 +79,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+            return $this->render('index');
     }
 
     /**

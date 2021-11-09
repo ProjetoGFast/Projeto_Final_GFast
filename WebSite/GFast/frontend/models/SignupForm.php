@@ -29,14 +29,14 @@ class SignupForm extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\frontend\models\User', 'message' => 'Este username já está a ser utilizado'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Este Email já está a ser utilizado'],
 
             ['us_nome', 'trim'],
             ['us_nome', 'required'],
@@ -54,11 +54,13 @@ class SignupForm extends Model
             ['us_cidade', 'string', 'max' => 255],
 
             ['us_telemovel', 'trim'],
-           ['us_telemovel', 'required'],
+            ['us_telemovel', 'required'],
+            ['us_telemovel', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de telemóvel já registado'],
+            //['username', 'integer', 'min' => 9, 'max' => 9],
 
-
-           ['us_contribuinte', 'trim'],
-           ['us_contribuinte', 'required'],
+            ['us_contribuinte', 'trim'],
+            ['us_contribuinte', 'required'],
+            ['us_contribuinte', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de contribuinte já registado'],
 
 
 
