@@ -95,11 +95,6 @@ AppAsset::register($this);
                     'items' => [['label' => 'Categorias',  'icon' => 'book', 'url' => ['categoriasguitarra/index']]]
                 ]);
             }
-
-            echo \hail812\adminlte\widgets\Menu::widget([
-
-                'items' => [['label' => 'Concertos',  'icon' => 'book', 'url' => ['concertos/index']]]
-            ]);
             ?>
 
         </nav>

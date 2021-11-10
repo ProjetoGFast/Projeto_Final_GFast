@@ -56,7 +56,6 @@ class SignupForm extends Model
             ['us_telemovel', 'trim'],
             ['us_telemovel', 'required'],
             ['us_telemovel', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de telemóvel já registado'],
-            //['username', 'integer', 'min' => 9, 'max' => 9],
 
             ['us_contribuinte', 'trim'],
             ['us_contribuinte', 'required'],
@@ -105,6 +104,8 @@ class SignupForm extends Model
         if ($this->validate()) {
 
             $user = new User();
+
+
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);
