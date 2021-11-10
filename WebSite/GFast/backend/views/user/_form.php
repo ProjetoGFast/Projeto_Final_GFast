@@ -35,11 +35,6 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-            <?= $form->field($model, 'password_hash')->passwordInput() ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
             <?= $form->field($model, 'us_cidade')->textInput(['maxlength' => true]) ?>
         </div>
     </div>

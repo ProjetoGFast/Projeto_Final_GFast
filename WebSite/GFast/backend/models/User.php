@@ -66,7 +66,7 @@ class User extends \yii\db\ActiveRecord
             'id' => 'ID',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
-            'password_hash' => 'Password',
+            'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'status' => 'Status',
@@ -90,7 +90,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function getAvaliacoes()
     {
-       // return $this->hasMany(Avaliacoes::className(), ['ava_iduser' => 'id']);
+        return $this->hasMany(Avaliacoes::className(), ['ava_iduser' => 'id']);
     }
 
     /**
@@ -100,7 +100,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function getBilhetes()
     {
-       // return $this->hasMany(Bilhetes::className(), ['bil_iduser' => 'id']);
+        return $this->hasMany(Bilhetes::className(), ['bil_iduser' => 'id']);
     }
 
     /**
@@ -110,7 +110,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function getCarrinhos()
     {
-       // return $this->hasMany(Carrinho::className(), ['car_iduser' => 'id']);
+        return $this->hasMany(Carrinho::className(), ['car_iduser' => 'id']);
     }
 
     /**
@@ -120,84 +120,6 @@ class User extends \yii\db\ActiveRecord
      */
     public function getEnderecos()
     {
-        //return $this->hasMany(Enderecos::className(), ['end_iduser' => 'id']);
+        return $this->hasMany(Enderecos::className(), ['end_iduser' => 'id']);
     }
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
-    }
-    /**
-     * Generates "remember me" authentication key
-     */
-    public function generateAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
-    }
-
-    /**
-     * Generates new password reset token
-     */
-    public function generatePasswordResetToken()
-    {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
-
-    /**
-     * Generates new token for email verification
-     */
-    public function generateEmailVerificationToken()
-    {
-        $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
-
-    /**
-     * Removes password reset token
-     */
-    public function removePasswordResetToken()
-    {
-        $this->password_reset_token = null;
-    }
-
-    /**
-     * create user up.
-     *
-     * @return bool whether the creating new account was successful and email was sent
-     */
-    public function signup()
-    {
-        if ($this->validate()) {
-
-            $user = new \common\models\User();
-
-
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password_hash);
-            $user->generateAuthKey();
-            $user->generateEmailVerificationToken();
-            $user->us_nome = $this->us_nome;
-            $user->us_contribuinte =$this->us_contribuinte;
-            $user->us_apelido = $this->us_apelido;
-            $user->us_telemovel = $this->us_telemovel;
-            $user->us_cidade = $this->us_cidade;
-            $user->us_pontos = 0;
-            $user->us_inativo = 0;
-            $user->save(false);
-            // the following three lines were added:
-            $auth = \Yii::$app->authManager;
-            $authorRole = $auth->getRole('cliente');
-            $auth->assign($authorRole, $user->getId());
-
-
-            return $user;
-        }
-
-        return null;
-    }
-
 }
