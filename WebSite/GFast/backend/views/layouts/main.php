@@ -37,10 +37,10 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],];
 
-    //if (\Yii::$app->user->can('crudUsers')) {
+    if (\Yii::$app->user->can('crudUsers')) {
         $menuItems[] =['label' => 'Utilizadores', 'url' => ['/user/index']];
 
-    //}
+    }
     if (\Yii::$app->user->can('crudtabelaGuitarras')) {
         $menuItems[] =['label' => 'Guitarras', 'url' => ['/guitarras/index']];
     }
