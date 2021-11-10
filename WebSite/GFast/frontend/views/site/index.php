@@ -14,30 +14,25 @@
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+
     <![endif]-->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
 </head><!--/head-->
 
 <body>
 
-
-<section id="slider"><!--slider-->
+<!-- |----------------------------------------- CARROUSEL -------------------------------------------------------------| -->
+<section id="slider">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
+
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                         <li data-target="#slider-carousel" data-slide-to="1"></li>
                         <li data-target="#slider-carousel" data-slide-to="2"></li>
                     </ol>
-
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="col-sm-6">
@@ -61,7 +56,6 @@
                                 <img src="images/home/guitar2.png" class="girl img-responsive" alt="" />
                             </div>
                         </div>
-
                         <div class="item">
                             <div class="col-sm-6">
                                 <h1><span>G</span>Fast</h1>
@@ -73,7 +67,6 @@
                                 <img src="images/home/guitar3.png" class="girl img-responsive" alt="" />
                             </div>
                         </div>
-
                     </div>
 
                     <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
@@ -87,13 +80,18 @@
             </div>
         </div>
     </div>
-</section><!--/slider-->
+</section>
+
+<!-- |------------------------------------------------------------------------------------------------------| -->
 
 <section>
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
+
+<!-- |------------------------------------------ CATEGORIAS ------------------------------------------------------------| -->
+
                     <h2>Categorias</h2>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                         <div class="panel panel-default">
@@ -168,6 +166,8 @@
 
                     </div><!--/category-products-->
 
+<!-- |----------------------------------------- MARCAS -------------------------------------------------------------| -->
+
                     <div class="brands_products"><!--brands_products-->
                         <h2>Marcas</h2>
                         <div class="brands-name">
@@ -184,6 +184,8 @@
                         </div>
                     </div><!--/brands_products-->
 
+<!-- |--------------------------------------------- PRECO ---------------------------------------------------------| -->
+
                     <div class="price-range"><!--price-range-->
                         <h2>Preços</h2>
                         <div class="well text-center">
@@ -192,14 +194,17 @@
                         </div>
                     </div><!--/price-range-->
 
+<!-- |------------------------------------------------------------------------------------------------------| -->
+
                     <div class="shipping text-center"><!--shipping-->
                         <img src="images/home/shipping.png" alt="" />
                     </div><!--/shipping-->
-
                 </div>
             </div>
-
             <div class="col-sm-9 padding-right">
+
+<!-- |--------------------------------------------- GUITARRAS ---------------------------------------------------------| -->
+
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Guitarras</h2>
                     <div class="col-sm-4">
@@ -321,7 +326,12 @@
 
                 </div><!--features_items-->
 
+<!-- |------------------------------------------------------------------------------------------------------| -->
+                <!--   //////////////////////////////////////////////////////////////////////////////////// -->
+   <!-- |--------------------------------------------- CATEGORIAS NAVBAR ---------------------------------------------------------| -->
+
                 <div class="category-tab"><!--category-tab-->
+
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tshirt" data-toggle="tab">Acusticas</a></li>
@@ -330,6 +340,7 @@
                             <li><a href="#kids" data-toggle="tab">Baixo Eletrico</a></li>
                         </ul>
                     </div>
+
                     <div class="tab-content">
                         <div class="tab-pane fade active in" id="tshirt" >
                             <div class="col-sm-3">
@@ -608,6 +619,10 @@
                     </div>
                 </div><!--/category-tab-->
 
+<!-- |------------------------------------------------------------------------------------------------------| -->
+                <!--   ///////////////////////////////////////////////////////////////////////////// -->
+<!-- |----------------------------------------- RECOMENDADO -------------------------------------------------------------| -->
+
                 <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">Recomendado</h2>
 
@@ -703,12 +718,16 @@
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </div>
-                </div><!--/recommended_items-->
+                </div>
+
+<!-- |------------------------------------------------------------------------------------------------------| -->
 
             </div>
         </div>
     </div>
 </section>
+
+<!-- |-------------------------------------------------- FOOTER ----------------------------------------------------| -->
 
 <footer id="footer"><!--Footer-->
 
@@ -769,14 +788,15 @@
     </div>
 
 </footer><!--/Footer-->
+<!-- |------------------------------------------------------------------------------------------------------| -->
 
-
-
+<script src="js/html5shiv.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.scrollUp.min.js"></script>
 <script src="js/price-range.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
+
 </body>
 </html>
