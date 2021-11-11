@@ -10,66 +10,42 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="216dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        app:srcCompat="@drawable/logogfast" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="@string/email"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:hint="@string/introduza_o_email"/>
+        android:src="@drawable/logo_gfast" />
 
     <EditText
-        android:id="@+id/etemail"
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_weight="0"
         android:ems="10"
+        android:hint="@string/login_etEmail"
         android:inputType="textEmailAddress"
-        tools:text="teste@teste.pt" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="@string/password"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:hint="@string/introduza_a_password"/>
+        android:text="alexandrelevchenko1@gmail.com"
+        android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/etpassword"
+        android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:layout_marginBottom="10dp"
         android:ems="10"
+        android:hint="@string/login_etPassword"
         android:inputType="textPassword"
-       />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_weight="1" />
+        android:text="pass123"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClickLogin"
-        android:text="@string/login" />
+        android:text="@string/login_btnLogin" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_weight="1" />
-
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
 </LinearLayout>
