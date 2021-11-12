@@ -12,6 +12,8 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 
 AppAsset::register($this);
+//if(\Yii::$app->user->can('crudUsers')){
+
 ?>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -102,3 +104,6 @@ AppAsset::register($this);
     </div>
     <!-- /.sidebar -->
 </aside>
+<?php
+//}
+?>

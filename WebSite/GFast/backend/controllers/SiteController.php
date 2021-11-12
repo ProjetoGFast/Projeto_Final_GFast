@@ -25,17 +25,18 @@ class SiteController extends Controller
                 'rules' => [
 
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => [ 'error','login'],
                         'allow' => true,
-                        'roles' => ['?'],
+
+
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['user', 'guitarras', 'marcas'],
+                        'actions' => ['user', 'guitarras', 'marcas', 'index'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],

@@ -18,10 +18,12 @@ $this->title = $name;
     </div>
 
     <p>
-        The above error occurred while the Web server was processing your request.
+        Ocorreu um erro enquanto o servidor processava o seu pedido.
     </p>
     <p>
-        Please contact us if you think this is a server error. Thank you.
+        Por favor contacte a administração do GFast.
+        <?= Html::a('geral@gfast.pt',['mailto:geral@gfast']) ?>
     </p>
+
 
 </div>
