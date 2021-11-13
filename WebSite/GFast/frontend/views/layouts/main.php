@@ -16,6 +16,8 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
+
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
@@ -25,48 +27,14 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header>
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Início', 'url' => ['/site/index']],
-        [
-            'label' => 'Guitarras',
-            'items' => [
-                ['label' => 'Tipos.....', 'url' => '#'],
-                ['label' => 'Tiposs....', 'url' => '#'],
-            ],
-        ],
-        ['label' => 'Marcas', 'url' => ['/site/about']],
-        ['label' => 'Concertos', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-</header>
+
+
+
+
+
+
+
+
 
 <main role="main" class="flex-shrink-0">
     <div class="container">
@@ -85,7 +53,12 @@ AppAsset::register($this);
     </div>
 </footer>
 
+
+
 <?php $this->endBody() ?>
+
+<script src="js/navbar.js"></script>
+
 </body>
 </html>
 <?php $this->endPage();

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>Service</h2>
+                        <h2>Serviços</h2>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="#">Sobre Gfast</a></li>
                             <li><a href="#">Contactar a loja</a></li>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>Policies</h2>
+                        <h2>Politicas</h2>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="#">Termos de uso</a></li>
                             <li><a href="#">Politica da privacidade</a></li>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>About Shopper</h2>
+                        <h2>Sobre GFast</h2>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="#">Informações</a></li>
                             <li><a href="#">Localização de loja</a></li>
@@ -37,10 +37,17 @@
                 </div>
                 <div class="col-sm-3 col-sm-offset-1">
                     <div class="single-widget">
-                        <h2>About Shopper</h2>
+                        <h2>Partilha a tua opinião</h2>
                         <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
-                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                            <table>
+                                <tr>
+                                    <td><input type="text" placeholder="O teu E-Mail" /></td>
+                                    <td><button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="caixaTexto" type="text" placeholder="Sobre os nossos serviços" /></td>
+                                </tr>
+                            </table>
                         </form>
                     </div>
                 </div>
@@ -61,6 +68,7 @@
 </footer>
 
 <script src="js/html5shiv.js"></script>
+<script src="js/navbar.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.scrollUp.min.js"></script>

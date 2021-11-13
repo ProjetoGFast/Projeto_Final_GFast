@@ -474,6 +474,7 @@ ul.sub-menu {
 }
 
 .single-widget h2 {
+  padding-left: 30px;
   color: #666663;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -521,9 +522,16 @@ ul.sub-menu {
   border: medium none;
   border-radius: 0;
   margin-left: -5px;
-  margin-top: -3px;
-  padding: 7px 17px;
+  margin-top: -1px;
+  padding: 6px 17px;
 }
+
+#caixaTexto{
+  margin-top: 5px;
+  width: 210px;
+  height: 80px;
+}
+
 
 .searchform button i {
   color: #FFFFFF;
@@ -1385,6 +1393,7 @@ h2.title {
 **************************/
 
 .logo-404 {
+
   margin-top: 60px;
 }
 
