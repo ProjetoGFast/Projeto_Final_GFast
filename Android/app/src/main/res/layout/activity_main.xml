@@ -11,6 +11,7 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="100dp" />
+<<<<<<< HEAD
 
     <TextView
         android:id="@+id/textView"
@@ -25,6 +26,22 @@
         android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+=======
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bem-Vindo!"
+        android:textAlignment="center"
+        android:textColor="#102FD6"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+>>>>>>> 89158b298c4b6190ca7cd9c5c0c3f047e0c90e03
         android:text="Email"
         android:textAlignment="center"
         android:textColor="#423737"
@@ -59,5 +76,10 @@
         android:layout_weight="0.3"
         android:text="@string/main_btn_detalhe_email"
         android:onClick="onClickDetalhesEmail" />
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 89158b298c4b6190ca7cd9c5c0c3f047e0c90e03
 
 </LinearLayout>

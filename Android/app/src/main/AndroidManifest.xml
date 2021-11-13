@@ -10,10 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Books">
         <activity
+<<<<<<< HEAD
+            android:name=".PesquisaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuMainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Books.NoActionBar" />
+        <activity
+=======
             android:name=".MenuMainActivity"
             android:exported="true"
             android:theme="@style/Theme.Books.NoActionBar"/>
         <activity
+>>>>>>> 89158b298c4b6190ca7cd9c5c0c3f047e0c90e03
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
