@@ -1,6 +1,13 @@
 <?php
 
 
+use common\widgets\Alert;
+use frontend\assets\AppAsset;
+use yii\bootstrap4\Breadcrumbs;
+use yii\bootstrap4\Html;
+use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
+
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +26,60 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
 </head>
 
+<header>
+
+    <div id="navbar">
+
+        <img src="images/home/logo.png" alt="" id="logo"/>
+
+        <div id="navbar-right">
+            <?php
+
+            NavBar::begin([
+
+                'brandUrl' => Yii::$app->homeUrl,
+                'options' => [
+                    'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+                ],
+            ]);
+            $menuItems = [
+                ['label' => 'Início', 'url' => ['/site/index']],
+                [
+                    'label' => 'Guitarras',
+                    'items' => [
+                        ['label' => 'Tipos...', 'url' => '#'],
+                        ['label' => 'Tiposs...', 'url' => '#'],
+                    ],
+                ],
+                ['label' => 'Marcas', 'url' => ['/site/about']],
+                ['label' => 'Concertos', 'url' => ['/site/about']],
+                ['label' => 'Contactos', 'url' => ['/site/contact']],
+            ];
+            if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Registar', 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => 'Entrar', 'url' => ['/site/login']];
+            } else {
+                $menuItems[] = '<li>'
+                    . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+                    . Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>';
+            }
+            echo Nav::widget([
+                'items' => $menuItems,
+            ]);
+            NavBar::end();
+            ?>
+        </div>
+    </div>
+
+</header>
+
 <body>
+

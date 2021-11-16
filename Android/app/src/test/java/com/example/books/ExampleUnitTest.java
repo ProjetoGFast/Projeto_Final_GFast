@@ -1,4 +1,4 @@
-package com.example.gfast;
+package com.example.books;
 
 import org.junit.Test;
 

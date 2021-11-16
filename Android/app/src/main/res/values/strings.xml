@@ -1,9 +1,31 @@
 <resources>
-    <string name="app_name">GFast</string>
-    <string name="login">Login</string>
-    <string name="introduza_a_password">Introduza a password</string>
-    <string name="password">Password</string>
-    <string name="teste_teste_pt">teste@teste.pt</string>
-    <string name="introduza_o_email">Introduza o email</string>
+    <string name="app_name">books</string>
+    <string name="login_etEmail">Introduza o E-mail!</string>
+    <string name="login_etPassword">Introduza a Password!</string>
+    <string name="login_btnLogin">Login</string>
+    <string name="login_etEmail_Erro">Email Inválido!</string>
+    <string name="login_etPassword_Erro">Password errada!</string>
+    <string name="main_btn_detalhe_estatico">Ver detalhes (estático)</string>
+    <string name="main_btn_detalhe_dinamico">Ver detalhes (dinamico)</string>
+    <string name="main_btn_detalhe_email">ver detalhes (email)</string>
+    <string name="comunicar">Comunicar</string>
     <string name="email">Email</string>
+    <string name="ndOpen">aberto</string>
+    <string name="ndClose">fechado</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+=======
+>>>>>>> 89158b298c4b6190ca7cd9c5c0c3f047e0c90e03
 </resources>
