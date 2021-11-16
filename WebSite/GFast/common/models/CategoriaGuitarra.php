@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "categoria_guitarra".
+ * This is the model class for table "categoriaguitarra".
  *
  * @property int $cat_id
  * @property string $cat_nome
@@ -13,14 +13,14 @@ use Yii;
  *
  * @property SubcategoriaGuitarra[] $subcategoriaGuitarras
  */
-class CategoriaGuitarra extends \yii\db\ActiveRecord
+class Categoriaguitarra extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'categoria_guitarra';
+        return 'categoriaguitarra';
     }
 
     /**

@@ -89,12 +89,23 @@ AppAsset::register($this);
             ?>
             <?php
 
-            if (\Yii::$app->user->can('crudMarcas')) {
+            if (\Yii::$app->user->can('crudCategorias')) {
 
 
                 echo \hail812\adminlte\widgets\Menu::widget([
 
-                    'items' => [['label' => 'Categorias',  'icon' => 'book', 'url' => ['categoriasguitarra/index']]]
+                    'items' => [['label' => 'Categorias',  'icon' => 'book', 'url' => ['categoria-guitarra/index']]]
+                ]);
+            }
+            ?>
+            <?php
+
+            if (\Yii::$app->user->can('crudSubCategorias')) {
+
+
+                echo \hail812\adminlte\widgets\Menu::widget([
+
+                    'items' => [['label' => 'SubCategorias',  'icon' => 'book', 'url' => ['subcategoria-guitarra/index']]]
                 ]);
             }
             ?>

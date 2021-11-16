@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subcategoria-guitarra-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <p>
         <?= Html::a('Update', ['update', 'sub_id' => $model->sub_id], ['class' => 'btn btn-primary']) ?>
@@ -23,7 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]);
+
+        ?>
     </p>
 
     <?= DetailView::widget([
@@ -31,7 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'sub_id',
             'sub_nome',
-            'sub_idcat',
+           // 'sub_idcat',
+            //'Categoria'=>$model->sub_idcat,
+            [
+
+                'attribute'=>'sub_idcat',
+
+              'value'=>$model->subIdcat->cat_nome,
+
+            ],
         ],
     ]) ?>
 

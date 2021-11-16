@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-
+use yii\web\UploadedFile;
 /**
  * This is the model class for table "fotos".
  *
@@ -19,6 +19,11 @@ use Yii;
  */
 class Fotos extends \yii\db\ActiveRecord
 {
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
     /**
      * {@inheritdoc}
      */
@@ -37,6 +42,7 @@ class Fotos extends \yii\db\ActiveRecord
             [['fot_idguitarra', 'fot_idref', 'fot_inativo'], 'integer'],
             [['fot_nome', 'fot_tipofoto', 'fot_principal'], 'string', 'max' => 20],
             [['fot_idguitarra'], 'exist', 'skipOnError' => true, 'targetClass' => Guitarras::className(), 'targetAttribute' => ['fot_idguitarra' => 'gui_id']],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -64,5 +70,15 @@ class Fotos extends \yii\db\ActiveRecord
     public function getFotIdguitarra()
     {
         return $this->hasOne(Guitarras::className(), ['gui_id' => 'fot_idguitarra']);
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

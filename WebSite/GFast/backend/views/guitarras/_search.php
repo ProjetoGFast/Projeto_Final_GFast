@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\GuitarrasSearch */
+/* @var $model common\models\GuitarrasSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -23,9 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'gui_idmarca') ?>
 
-    <?= $form->field($model, 'gui_idvenda') ?>
-
-    <?php // echo $form->field($model, 'gui_idreferencia') ?>
+    <?= $form->field($model, 'gui_idreferencia') ?>
 
     <?php // echo $form->field($model, 'gui_descricao') ?>
 

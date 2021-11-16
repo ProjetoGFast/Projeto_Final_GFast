@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="categoria-guitarra-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <p>
         <?= Html::a('Update', ['update', 'cat_id' => $model->cat_id], ['class' => 'btn btn-primary']) ?>
@@ -32,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'cat_id',
             'cat_nome',
             'cat_inativo',
+
         ],
     ]) ?>
+
+
+
 
 </div>

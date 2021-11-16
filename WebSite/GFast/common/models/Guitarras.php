@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "guitarras".
@@ -11,7 +12,6 @@ use Yii;
  * @property string $gui_nome
  * @property int $gui_idsubcategoria
  * @property int $gui_idmarca
- * @property int $gui_idvenda
  * @property int $gui_idreferencia
  * @property string $gui_descricao
  * @property float $gui_preco
@@ -23,10 +23,14 @@ use Yii;
  * @property Fotos[] $fotos
  * @property Marcas $guiIdmarca
  * @property SubcategoriaGuitarra $guiIdsubcategoria
- * @property Vendas $guiIdvenda
+ * @property VendasGuitarras[] $vendasGuitarras
  */
 class Guitarras extends \yii\db\ActiveRecord
 {
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
     /**
      * {@inheritdoc}
      */
@@ -41,14 +45,15 @@ class Guitarras extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['gui_nome', 'gui_idsubcategoria', 'gui_idmarca', 'gui_idvenda', 'gui_idreferencia', 'gui_descricao', 'gui_preco', 'gui_iva', 'gui_inativo'], 'required'],
-            [['gui_idsubcategoria', 'gui_idmarca', 'gui_idvenda', 'gui_idreferencia', 'gui_iva', 'gui_inativo'], 'integer'],
+            [['gui_nome', 'gui_idsubcategoria', 'gui_idmarca', 'gui_idreferencia', 'gui_descricao', 'gui_preco', 'gui_iva', 'gui_inativo'], 'required'],
+            [['gui_idsubcategoria', 'gui_idmarca', 'gui_iva', 'gui_inativo'], 'integer'],
             [['gui_preco'], 'number'],
             [['gui_nome'], 'string', 'max' => 20],
-            [['gui_descricao'], 'string', 'max' => 50],
+            [['gui_descricao', 'gui_idreferencia'], 'string', 'max' => 255],
+            [['gui_descricao'], 'string'],
             [['gui_idsubcategoria'], 'exist', 'skipOnError' => true, 'targetClass' => SubcategoriaGuitarra::className(), 'targetAttribute' => ['gui_idsubcategoria' => 'sub_id']],
             [['gui_idmarca'], 'exist', 'skipOnError' => true, 'targetClass' => Marcas::className(), 'targetAttribute' => ['gui_idmarca' => 'mar_id']],
-            [['gui_idvenda'], 'exist', 'skipOnError' => true, 'targetClass' => Vendas::className(), 'targetAttribute' => ['gui_idvenda' => 'ven_id']],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -58,15 +63,14 @@ class Guitarras extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'gui_id' => 'Gui ID',
-            'gui_nome' => 'Nome',
-            'gui_idsubcategoria' => 'Subcategoria',
+            'gui_id' => 'ID Guitarra',
             'gui_idmarca' => 'Marca',
-            'gui_idvenda' => 'Venda',
+            'gui_nome' => 'Modelo Guitarra',
+            'gui_idsubcategoria' => 'Subcategoria',
             'gui_idreferencia' => 'Referencia',
             'gui_descricao' => 'Descrição',
             'gui_preco' => 'Preço',
-            'gui_iva' => 'IVA',
+            'gui_iva' => 'Iva',
             'gui_inativo' => 'Inativo',
         ];
     }
@@ -122,12 +126,21 @@ class Guitarras extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[GuiIdvenda]].
+     * Gets query for [[VendasGuitarras]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getGuiIdvenda()
+    public function getVendasGuitarras()
     {
-        return $this->hasOne(Vendas::className(), ['ven_id' => 'gui_idvenda']);
+        return $this->hasMany(VendasGuitarras::className(), ['idguitarra' => 'gui_id']);
+    }
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

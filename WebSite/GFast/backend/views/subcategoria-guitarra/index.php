@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subcategoria-guitarra-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <p>
-        <?= Html::a('Create Subcategoria Guitarra', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Subcategoria ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,8 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'sub_id',
             'sub_nome',
-            'sub_idcat',
+          //  'sub_idcat',
+            [
 
+                'attribute'=>'sub_idcat',
+
+                'value'=>function ($model, $key, $index, $column) {
+
+                   return $model->subIdcat->cat_nome;
+                },
+
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -3,8 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Guitarras;
-use backend\models\GuitarrasSearch;
-use yii\filters\AccessControl;
+use common\models\GuitarrasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,21 +21,6 @@ class GuitarrasController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'rules' => [
-                        [
-                            'actions' => ['index','update', 'delete', 'create', 'view'],
-                            'allow' => true,
-                            'roles' => ['admin'],
-                        ],
-                        [
-                            'actions' => ['logout', 'index'],
-                            'allow' => false,
-                            'roles' => ['funcionario', 'gestor'],
-                        ],
-                    ],
-                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -86,7 +70,7 @@ class GuitarrasController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'gui_id' => $model->gui_id]);
+                return $this->redirect(['view', 'id' => $model->gui_id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -109,7 +93,7 @@ class GuitarrasController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'gui_id' => $model->gui_id]);
+            return $this->redirect(['view', 'id' => $model->gui_id]);
         }
 
         return $this->render('update', [

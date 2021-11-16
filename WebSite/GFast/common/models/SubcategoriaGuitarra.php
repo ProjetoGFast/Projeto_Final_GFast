@@ -5,23 +5,23 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "subcategoria_guitarra".
+ * This is the model class for table "subcategoriaguitarra".
  *
  * @property int $sub_id
  * @property string $sub_nome
  * @property int $sub_idcat
  *
  * @property Guitarras[] $guitarras
- * @property CategoriaGuitarra $subIdcat
+ * @property Categoriaguitarra $subIdcat
  */
-class SubcategoriaGuitarra extends \yii\db\ActiveRecord
+class Subcategoriaguitarra extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'subcategoria_guitarra';
+        return 'subcategoriaguitarra';
     }
 
     /**
@@ -33,7 +33,7 @@ class SubcategoriaGuitarra extends \yii\db\ActiveRecord
             [['sub_nome', 'sub_idcat'], 'required'],
             [['sub_idcat'], 'integer'],
             [['sub_nome'], 'string', 'max' => 20],
-            [['sub_idcat'], 'exist', 'skipOnError' => true, 'targetClass' => CategoriaGuitarra::className(), 'targetAttribute' => ['sub_idcat' => 'cat_id']],
+            [['sub_idcat'], 'exist', 'skipOnError' => true, 'targetClass' => Categoriaguitarra::className(), 'targetAttribute' => ['sub_idcat' => 'cat_id']],
         ];
     }
 
@@ -43,9 +43,9 @@ class SubcategoriaGuitarra extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'sub_id' => 'Sub ID',
-            'sub_nome' => 'Sub Nome',
-            'sub_idcat' => 'Sub Idcat',
+            'sub_id' => 'ID de Subcategoria',
+            'sub_nome' => 'SubCategoria',
+            'sub_idcat' => 'Categoria Pai',
         ];
     }
 
@@ -66,6 +66,7 @@ class SubcategoriaGuitarra extends \yii\db\ActiveRecord
      */
     public function getSubIdcat()
     {
-        return $this->hasOne(CategoriaGuitarra::className(), ['cat_id' => 'sub_idcat']);
+        return $this->hasOne(Categoriaguitarra::className(), ['cat_id' => 'sub_idcat']);
     }
+
 }

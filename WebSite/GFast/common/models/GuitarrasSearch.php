@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -17,7 +17,7 @@ class GuitarrasSearch extends Guitarras
     public function rules()
     {
         return [
-            [['gui_id', 'gui_idsubcategoria', 'gui_idmarca', 'gui_idvenda', 'gui_idreferencia', 'gui_iva', 'gui_inativo'], 'integer'],
+            [['gui_id', 'gui_idsubcategoria', 'gui_idmarca', 'gui_idreferencia', 'gui_iva', 'gui_inativo'], 'integer'],
             [['gui_nome', 'gui_descricao'], 'safe'],
             [['gui_preco'], 'number'],
         ];
@@ -62,7 +62,6 @@ class GuitarrasSearch extends Guitarras
             'gui_id' => $this->gui_id,
             'gui_idsubcategoria' => $this->gui_idsubcategoria,
             'gui_idmarca' => $this->gui_idmarca,
-            'gui_idvenda' => $this->gui_idvenda,
             'gui_idreferencia' => $this->gui_idreferencia,
             'gui_preco' => $this->gui_preco,
             'gui_iva' => $this->gui_iva,
