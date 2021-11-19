@@ -125,7 +125,7 @@ class SignupForm extends Model
             $auth->assign($authorRole, $user->getId());
 
 
-            return $user;
+            return true;
         }
 
         return null;

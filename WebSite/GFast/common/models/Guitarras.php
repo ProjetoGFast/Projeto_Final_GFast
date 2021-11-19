@@ -16,6 +16,9 @@ use yii\web\UploadedFile;
  * @property string $gui_descricao
  * @property float $gui_preco
  * @property int $gui_iva
+ * @property string $gui_fotopath
+ * @property string $gui_qrcodepath
+ *
  * @property int $gui_inativo
  *
  * @property Avaliacoes[] $avaliacoes
@@ -27,10 +30,7 @@ use yii\web\UploadedFile;
  */
 class Guitarras extends \yii\db\ActiveRecord
 {
-    /**
-     * @var UploadedFile
-     */
-    public $imageFile;
+
     /**
      * {@inheritdoc}
      */
@@ -50,10 +50,9 @@ class Guitarras extends \yii\db\ActiveRecord
             [['gui_preco'], 'number'],
             [['gui_nome'], 'string', 'max' => 20],
             [['gui_descricao', 'gui_idreferencia'], 'string', 'max' => 255],
-            [['gui_descricao'], 'string'],
+            [['gui_descricao', 'gui_fotopath', 'gui_qrcodepath'], 'string'],
             [['gui_idsubcategoria'], 'exist', 'skipOnError' => true, 'targetClass' => SubcategoriaGuitarra::className(), 'targetAttribute' => ['gui_idsubcategoria' => 'sub_id']],
             [['gui_idmarca'], 'exist', 'skipOnError' => true, 'targetClass' => Marcas::className(), 'targetAttribute' => ['gui_idmarca' => 'mar_id']],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -134,13 +133,6 @@ class Guitarras extends \yii\db\ActiveRecord
     {
         return $this->hasMany(VendasGuitarras::className(), ['idguitarra' => 'gui_id']);
     }
-    public function upload()
-    {
-        if ($this->validate()) {
-            $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
-            return true;
-        } else {
-            return false;
-        }
-    }
+
+
 }

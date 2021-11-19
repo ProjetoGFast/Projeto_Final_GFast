@@ -2,11 +2,13 @@
 
 namespace backend\controllers;
 
+use app\models\UploadForm;
 use common\models\Guitarras;
 use common\models\GuitarrasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * GuitarrasController implements the CRUD actions for Guitarras model.
@@ -67,11 +69,23 @@ class GuitarrasController extends Controller
     public function actionCreate()
     {
         $model = new Guitarras();
-
+        $foto = new UploadForm();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+
+            $foto->gui_fotopath = UploadedFile::getInstance($model, 'gui_fotopath');
+            //$foto->gui_qrcodepath = UploadedFile::getInstance($model, 'gui_qrcodepath');
+
+            if ($model->load($this->request->post()) && $model->validate()) {
+                $caminhofoto =  $foto->uploadphoto();
+                if($caminhofoto != null)
+                {
+                    $model->gui_fotopath = $caminhofoto;
+                    $model->save();
+                }
                 return $this->redirect(['view', 'id' => $model->gui_id]);
             }
+
+
         } else {
             $model->loadDefaultValues();
         }

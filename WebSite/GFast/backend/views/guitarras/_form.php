@@ -13,7 +13,7 @@ use common\models\Subcategoriaguitarra;
 
 <div class="guitarras-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'gui_nome')->textInput(['maxlength' => true]) ?>
 
@@ -29,7 +29,9 @@ use common\models\Subcategoriaguitarra;
 
     <?= $form->field($model, 'gui_iva')->textInput() ?>
 
-    <?= $form->field( $model, 'imageFile')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+    <?= $form->field( $model, 'gui_fotopath')->fileInput(['accept' => 'image/*']) ?>
+
+    <?= Html::img('@web/../../common/fotos/'.$model->gui_fotopath, ['alt' => 'My logo']) ?>
 
     <?= $form->field($model, 'gui_inativo')->textInput() ?>
 

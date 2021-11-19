@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 29-Out-2021 às 21:35
+-- Tempo de geração: 19-Nov-2021 às 19:48
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -43,7 +43,25 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
 ('admin', '1', 1634936385),
 ('admin', '2', 1634936510),
-('admin', '3', 1634936558);
+('admin', '3', 1634936558),
+('admin', '8', 1636407591),
+('cliente', '10', 1636582838),
+('cliente', '11', 1636583291),
+('cliente', '12', 1636583349),
+('cliente', '13', 1636584493),
+('cliente', '14', 1636586597),
+('cliente', '15', 1636586659),
+('cliente', '16', 1636586795),
+('cliente', '17', 1636587807),
+('cliente', '18', 1636588778),
+('cliente', '19', 1636639502),
+('cliente', '20', 1636658401),
+('cliente', '21', 1636664414),
+('cliente', '6', 1636061825),
+('cliente', '7', 1636145673),
+('cliente', '9', 1636578510),
+('funcionario', '4', 1636061741),
+('gestor', '5', 1636061780);
 
 -- --------------------------------------------------------
 
@@ -70,32 +88,32 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
-('adicionarOwnCarrinho', 2, 'Adicionar ao Próprio Carrinho', 'isCliente', NULL, 1634936059, 1634936059),
-('adicionarOwnSaldo', 2, 'Adicionar Saldo', 'isCliente', NULL, 1634936059, 1634936059),
-('admin', 1, NULL, NULL, NULL, 1634936059, 1634936059),
-('alterarEncomenda', 2, 'Alterar Encomendas', NULL, NULL, 1634936059, 1634936059),
-('cliente', 1, NULL, NULL, NULL, 1634936059, 1634936059),
-('crudCategorias', 2, 'CRUD Categorias', NULL, NULL, 1634936059, 1634936059),
-('crudConcertos', 2, 'CRUD Concertos', NULL, NULL, 1634936059, 1634936059),
-('crudEncomendas', 2, 'crud Encomendas', 'isCliente', NULL, 1634936059, 1634936059),
-('crudLojas', 2, 'CRUD Lojas', NULL, NULL, 1634936059, 1634936059),
-('crudMarcas', 2, 'CRUD Marcas', NULL, NULL, 1634936059, 1634936059),
-('crudOwnAvaliacao', 2, 'CRUD à Propria Avaliação', 'isCliente', NULL, 1634936059, 1634936059),
-('crudPontos', 2, 'CRUD Pontos', NULL, NULL, 1634936059, 1634936059),
-('crudSubCategorias', 2, 'CRUD SubCategorias', NULL, NULL, 1634936059, 1634936059),
-('crudtabelaGuitarras', 2, 'CRUD Tabela Guitarras', NULL, NULL, 1634936059, 1634936059),
-('crudUsers', 2, 'CRUD Users', NULL, NULL, 1634936059, 1634936059),
-('editarOwnPerfil', 2, 'Editar Próprio Perfil', 'isCliente', NULL, 1634936059, 1634936059),
-('eliminarOwnCarrinho', 2, 'Eliminar Próprio Carrinho', 'isCliente', NULL, 1634936059, 1634936059),
-('fazerOwnEncomenda', 2, 'Fazer Próprias Encomendas', 'isCliente', NULL, 1634936059, 1634936059),
-('funcionario', 1, NULL, NULL, NULL, 1634936059, 1634936059),
-('gestor', 1, NULL, NULL, NULL, 1634936059, 1634936059),
-('logout', 2, 'Logout', NULL, NULL, 1634936059, 1634936059),
-('verOwnCarrinho', 2, 'Ver Proprio Carrinho', 'isCliente', NULL, 1634936059, 1634936059),
-('verOwnEncomenda', 2, 'Ver Próprias Encomendas', 'isCliente', NULL, 1634936059, 1634936059),
-('verOwnPerfil', 2, 'Ver Perfil', 'isCliente', NULL, 1634936059, 1634936059),
-('verOwnPontos', 2, 'Ver Próprios Pontos', 'isCliente', NULL, 1634936059, 1634936059),
-('verOwnSaldo', 2, 'Ver Próprio Saldo', 'isCliente', NULL, 1634936059, 1634936059);
+('adicionarOwnCarrinho', 2, 'Adicionar ao Próprio Carrinho', 'isCliente', NULL, 1636219415, 1636219415),
+('adicionarOwnSaldo', 2, 'Adicionar Saldo', 'isCliente', NULL, 1636219415, 1636219415),
+('admin', 1, NULL, NULL, NULL, 1636219415, 1636219415),
+('alterarEncomenda', 2, 'Alterar Encomendas', NULL, NULL, 1636219415, 1636219415),
+('cliente', 1, NULL, NULL, NULL, 1636219415, 1636219415),
+('crudCategorias', 2, 'CRUD Categorias', NULL, NULL, 1636219415, 1636219415),
+('crudConcertos', 2, 'CRUD Concertos', NULL, NULL, 1636219415, 1636219415),
+('crudEncomendas', 2, 'crud Encomendas', 'isCliente', NULL, 1636219415, 1636219415),
+('crudLojas', 2, 'CRUD Lojas', NULL, NULL, 1636219415, 1636219415),
+('crudMarcas', 2, 'CRUD Marcas', NULL, NULL, 1636219415, 1636219415),
+('crudOwnAvaliacao', 2, 'CRUD à Propria Avaliação', 'isCliente', NULL, 1636219415, 1636219415),
+('crudPontos', 2, 'CRUD Pontos', NULL, NULL, 1636219415, 1636219415),
+('crudSubCategorias', 2, 'CRUD SubCategorias', NULL, NULL, 1636219415, 1636219415),
+('crudtabelaGuitarras', 2, 'CRUD Tabela Guitarras', NULL, NULL, 1636219415, 1636219415),
+('crudUsers', 2, 'CRUD Users', NULL, NULL, 1636219415, 1636219415),
+('editarOwnPerfil', 2, 'Editar Próprio Perfil', 'isCliente', NULL, 1636219415, 1636219415),
+('eliminarOwnCarrinho', 2, 'Eliminar Próprio Carrinho', 'isCliente', NULL, 1636219415, 1636219415),
+('fazerOwnEncomenda', 2, 'Fazer Próprias Encomendas', 'isCliente', NULL, 1636219415, 1636219415),
+('funcionario', 1, NULL, NULL, NULL, 1636219415, 1636219415),
+('gestor', 1, NULL, NULL, NULL, 1636219415, 1636219415),
+('logout', 2, 'Logout', NULL, NULL, 1636219415, 1636219415),
+('verOwnCarrinho', 2, 'Ver Proprio Carrinho', 'isCliente', NULL, 1636219415, 1636219415),
+('verOwnEncomenda', 2, 'Ver Próprias Encomendas', 'isCliente', NULL, 1636219415, 1636219415),
+('verOwnPerfil', 2, 'Ver Perfil', 'isCliente', NULL, 1636219415, 1636219415),
+('verOwnPontos', 2, 'Ver Próprios Pontos', 'isCliente', NULL, 1636219415, 1636219415),
+('verOwnSaldo', 2, 'Ver Próprio Saldo', 'isCliente', NULL, 1636219415, 1636219415);
 
 -- --------------------------------------------------------
 
@@ -130,6 +148,7 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('gestor', 'crudPontos'),
 ('gestor', 'crudSubCategorias'),
 ('gestor', 'crudtabelaGuitarras'),
+('admin', 'crudUsers'),
 ('cliente', 'editarOwnPerfil'),
 ('cliente', 'eliminarOwnCarrinho'),
 ('cliente', 'fazerOwnEncomenda'),
@@ -162,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 --
 
 INSERT INTO `auth_rule` (`name`, `data`, `created_at`, `updated_at`) VALUES
-('isCliente', 0x4f3a32353a2266726f6e74656e645c726261635c436c69656e746552756c65223a333a7b733a343a226e616d65223b733a393a226973436c69656e7465223b733a393a22637265617465644174223b693a313633343933363035393b733a393a22757064617465644174223b693a313633343933363035393b7d, 1634936059, 1634936059);
+('isCliente', 0x4f3a32353a2266726f6e74656e645c726261635c436c69656e746552756c65223a333a7b733a343a226e616d65223b733a393a226973436c69656e7465223b733a393a22637265617465644174223b693a313633363231393431353b733a393a22757064617465644174223b693a313633363231393431353b7d, 1636219415, 1636219415);
 
 -- --------------------------------------------------------
 
@@ -218,16 +237,24 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categoria_guitarra`
+-- Estrutura da tabela `categoriaguitarra`
 --
 
-DROP TABLE IF EXISTS `categoria_guitarra`;
-CREATE TABLE IF NOT EXISTS `categoria_guitarra` (
+DROP TABLE IF EXISTS `categoriaguitarra`;
+CREATE TABLE IF NOT EXISTS `categoriaguitarra` (
   `cat_id` int(11) NOT NULL AUTO_INCREMENT,
   `cat_nome` varchar(20) NOT NULL,
   `cat_inativo` tinyint(4) NOT NULL,
   PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `categoriaguitarra`
+--
+
+INSERT INTO `categoriaguitarra` (`cat_id`, `cat_nome`, `cat_inativo`) VALUES
+(1, 'Elétrica', 0),
+(2, 'Acústica', 0);
 
 -- --------------------------------------------------------
 
@@ -316,17 +343,27 @@ CREATE TABLE IF NOT EXISTS `guitarras` (
   `gui_nome` varchar(20) NOT NULL,
   `gui_idsubcategoria` int(11) NOT NULL,
   `gui_idmarca` int(11) NOT NULL,
-  `gui_idvenda` int(11) NOT NULL,
-  `gui_idreferencia` int(11) NOT NULL,
-  `gui_descricao` varchar(50) NOT NULL,
+  `gui_idreferencia` varchar(255) NOT NULL,
+  `gui_descricao` text NOT NULL,
   `gui_preco` float NOT NULL,
   `gui_iva` int(11) NOT NULL,
+  `gui_fotopath` varchar(255) NOT NULL,
+  `gui_qrcodepath` varchar(255) DEFAULT NULL,
   `gui_inativo` tinyint(4) NOT NULL,
   PRIMARY KEY (`gui_id`),
   KEY `guitarra_subcategoria_fk` (`gui_idsubcategoria`),
-  KEY `marca_subcategoria_fk` (`gui_idmarca`),
-  KEY `vendas_guitarras_fk` (`gui_idvenda`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `marca_subcategoria_fk` (`gui_idmarca`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `guitarras`
+--
+
+INSERT INTO `guitarras` (`gui_id`, `gui_nome`, `gui_idsubcategoria`, `gui_idmarca`, `gui_idreferencia`, `gui_descricao`, `gui_preco`, `gui_iva`, `gui_fotopath`, `gui_qrcodepath`, `gui_inativo`) VALUES
+(1, 'Fender FA-135CE', 1, 2, '135', 'Forma do corpo: Corte de concerto', 350, 23, '', '', 0),
+(2, 'Fender FA-135CE', 1, 1, 'FA-135CE', 'testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetesteteste', 355, 23, '', '', 0),
+(3, 'teste', 1, 1, 'FA-135CE', 'rerasdsadasd', 234, 23, '', NULL, 0),
+(4, 'tesrte2', 1, 1, '3123123', 'dsadas', 350, 23, 'dea17f30-1b74-4304-b320-1d501a97e69f.png', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -355,7 +392,15 @@ CREATE TABLE IF NOT EXISTS `marcas` (
   `mar_nome` varchar(20) NOT NULL,
   `mar_inativo` tinyint(4) NOT NULL,
   PRIMARY KEY (`mar_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `marcas`
+--
+
+INSERT INTO `marcas` (`mar_id`, `mar_nome`, `mar_inativo`) VALUES
+(1, 'Fender', 0),
+(2, 'Yamaha', 0);
 
 -- --------------------------------------------------------
 
@@ -382,22 +427,31 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m180523_151638_rbac_updates_indexes_without_prefix', 1634935942),
 ('m190124_110200_add_verification_token_column_to_user_table', 1634935957),
 ('m200409_110543_rbac_update_mssql_trigger', 1634935942),
-('m211015_181754_init_rbac', 1634936059);
+('m211015_181754_init_rbac', 1634936059),
+('m211104_144503_init_rbac', 1636219415);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `subcategoria_guitarra`
+-- Estrutura da tabela `subcategoriaguitarra`
 --
 
-DROP TABLE IF EXISTS `subcategoria_guitarra`;
-CREATE TABLE IF NOT EXISTS `subcategoria_guitarra` (
+DROP TABLE IF EXISTS `subcategoriaguitarra`;
+CREATE TABLE IF NOT EXISTS `subcategoriaguitarra` (
   `sub_id` int(11) NOT NULL AUTO_INCREMENT,
   `sub_nome` varchar(20) NOT NULL,
   `sub_idcat` int(11) NOT NULL,
   PRIMARY KEY (`sub_id`),
   KEY `sub_idcat` (`sub_idcat`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `subcategoriaguitarra`
+--
+
+INSERT INTO `subcategoriaguitarra` (`sub_id`, `sub_nome`, `sub_idcat`) VALUES
+(1, 'Modelo St', 1),
+(2, 'teste', 2);
 
 -- --------------------------------------------------------
 
@@ -442,16 +496,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`, `us_nome`, `us_apelido`, `us_cidade`, `us_telemovel`, `us_contribuinte`, `us_pontos`, `us_inativo`) VALUES
-(1, 'duarte_fpereira', 'WH-GO4zP4VwFLNH8VIkkMmjxbIz9Kz9Y', '$2y$13$aOuGfr9TeD9.cS2SYrapjOKpzpk3S.3vSivY31BrT3wMNPoV86/LW', NULL, '2190715@my.ipleiria.pt', 10, 1634936385, 1634936385, NULL, '', '', '', 0, 0, 0, 0),
-(2, 'alexlevs', 'tU4F73wMajQT1SIK39BvcDNk7kUgXdnd', '$2y$13$xWX8wIxnKw7zWJ1jyYqXD.kajrxs3WfTjqkp8MJTRN6Cs9uIrqHVi', NULL, 'alexandrelevchenko1@gmail.com', 10, 1634936510, 1634936510, NULL, '', '', '', 0, 0, 0, 0),
-(3, 'tiago_jorge', 'W7Lklqfe8cfdHvn-WQKUu_T7D1XAhyL7', '$2y$13$lVU48YoCnAuCBfMwwitrxulchoU56wJvBcltdHqP9ucuK4Ocgrr4a', NULL, 'tiago.jorge@gmail.com', 10, 1634936558, 1634936558, NULL, '', '', '', 0, 0, 0, 0);
+(1, 'duarte_fpereira', 'WH-GO4zP4VwFLNH8VIkkMmjxbIz9Kz9Y', '$2y$13$aOuGfr9TeD9.cS2SYrapjOKpzpk3S.3vSivY31BrT3wMNPoV86/LW', NULL, '2190715@my.ipleiria.pt', 10, 1634936385, 1634936385, NULL, 'Manuel', 'Pereira', 'Leiria', 913456654, 234432598, 23, 0),
+(2, 'alexlevs', 'tU4F73wMajQT1SIK39BvcDNk7kUgXdnd', '$2y$13$xWX8wIxnKw7zWJ1jyYqXD.kajrxs3WfTjqkp8MJTRN6Cs9uIrqHVi', NULL, 'alexandrelevchenko1@gmail.com', 10, 1634936510, 1634936510, NULL, 'Alexandre', 'levchenko', 'Leiria', 910000000, 1234567890, 1222, 0),
+(3, 'tiago_jorge', 'W7Lklqfe8cfdHvn-WQKUu_T7D1XAhyL7', '$2y$13$lVU48YoCnAuCBfMwwitrxulchoU56wJvBcltdHqP9ucuK4Ocgrr4a', NULL, 'tiago.jorge@gmail.com', 10, 1634936558, 1634936558, NULL, 'Tiago', 'Jorge', 'Leiria', 910000000, 1234567890, 34, 0),
+(4, 'func', 'fieqz5LkgSnKS91AERHE-lfKXxCjjlnn', '$2y$13$ESo1HazSZocIT1.ovh3Veu8721tnQF.l6VMghyG0k74x7LosDsSqy', NULL, 'funcionario@gfast.pt', 10, 1636061741, 1636061741, 'SmvW_LvCPt_YoU6E2ffNFwa0JtqhS896_1636061741', 'Funcionário', 'GFast', 'Leiria', 910000000, 1234567890, 0, 0),
+(5, 'gestor', 'h_QigDGqddXzF96FfQ59F5_1MKzU-XsY', '$2y$13$dyX6BwJmdwFnxec1ubpQb.0q/EDiZRzsAKLwzB9X7yNZKU4KsbOxW', NULL, 'gestor@gfast.pt', 10, 1636061780, 1636061780, '0a3DDMoZuPitnE8uIDTu1UDDxKfATrzE_1636061780', 'Gestor', 'GFast', 'Leiria', 910000000, 1234567890, 0, 0),
+(6, 'Cliente', '4lE9GjSjUg_rk-6MYmP0ubUmlK4pjgfx', '$2y$13$WXxm6ut.KmypW5ihunwQ1e8bcGIpRos0gXowKbuHeAsnveIJmC.w.', NULL, 'cliente@gfast.pt', 10, 1636061825, 1636061825, 'AgN6mb6Chg-anGbk0ngsZaPsHVHRhNV6_1636061825', 'Cliente', 'GFast', 'Leiria', 910000000, 1234567890, 0, 0),
+(8, 'admin', '4tHXaQz54QJ7fe4MHqVPL8D9IZY6SQdg', '$2y$13$8VEAJeFOy.DnSCU05/LR2.ZY8iw3nUdKGUkU06K5tfUqx13b.KTka', NULL, 'admin@gfast.pt', 10, 1636407591, 1636407591, 'B7rJOEI9aMVIQH3zeQEkMUNiCjmqfWOp_1636407591', 'Admin', 'GFast', 'Leiria', 910000000, 1234567890, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -471,6 +529,22 @@ CREATE TABLE IF NOT EXISTS `vendas` (
   `ven_iva` int(11) NOT NULL,
   PRIMARY KEY (`ven_id`),
   KEY `vendas_lojas_fk` (`ven_idloja`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vendas_guitarras`
+--
+
+DROP TABLE IF EXISTS `vendas_guitarras`;
+CREATE TABLE IF NOT EXISTS `vendas_guitarras` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idguitarra` int(11) NOT NULL,
+  `idvenda` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `vendas_guitarras_fk` (`idguitarra`),
+  KEY `vendas_guitarrastwo_fk` (`idvenda`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -539,21 +613,27 @@ ALTER TABLE `fotos`
 -- Limitadores para a tabela `guitarras`
 --
 ALTER TABLE `guitarras`
-  ADD CONSTRAINT `guitarra_subcategoria_fk` FOREIGN KEY (`gui_idsubcategoria`) REFERENCES `subcategoria_guitarra` (`sub_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `marca_subcategoria_fk` FOREIGN KEY (`gui_idmarca`) REFERENCES `marcas` (`mar_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `vendas_guitarras_fk` FOREIGN KEY (`gui_idvenda`) REFERENCES `vendas` (`ven_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `guitarra_subcategoria_fk` FOREIGN KEY (`gui_idsubcategoria`) REFERENCES `subcategoriaguitarra` (`sub_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `marca_subcategoria_fk` FOREIGN KEY (`gui_idmarca`) REFERENCES `marcas` (`mar_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `subcategoria_guitarra`
+-- Limitadores para a tabela `subcategoriaguitarra`
 --
-ALTER TABLE `subcategoria_guitarra`
-  ADD CONSTRAINT `subcategoria_guitarra_ibfk_1` FOREIGN KEY (`sub_idcat`) REFERENCES `categoria_guitarra` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `subcategoriaguitarra`
+  ADD CONSTRAINT `subcategoriaguitarra_ibfk_1` FOREIGN KEY (`sub_idcat`) REFERENCES `categoriaguitarra` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `vendas`
 --
 ALTER TABLE `vendas`
   ADD CONSTRAINT `vendas_lojas_fk` FOREIGN KEY (`ven_idloja`) REFERENCES `lojas` (`loj_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `vendas_guitarras`
+--
+ALTER TABLE `vendas_guitarras`
+  ADD CONSTRAINT `vendas_guitarras_fk` FOREIGN KEY (`idguitarra`) REFERENCES `guitarras` (`gui_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `vendas_guitarrastwo_fk` FOREIGN KEY (`idvenda`) REFERENCES `vendas` (`ven_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
