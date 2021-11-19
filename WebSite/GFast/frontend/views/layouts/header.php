@@ -27,6 +27,7 @@ use yii\bootstrap4\NavBar;
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
     <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
 </head>
 
 <header>
@@ -50,12 +51,15 @@ use yii\bootstrap4\NavBar;
                 [
                     'label' => 'Guitarras',
                     'items' => [
-                        ['label' => 'Tipos...', 'url' => '#'],
-                        ['label' => 'Tiposs...', 'url' => '#'],
+                        ['label' => 'Guitarras Elétricas', 'url' => '#'],
+                        ['label' => 'Guitarras Clássicas', 'url' => '#'],
+                        ['label' => 'Guitarras Acústicas', 'url' => '#'],
+                        ['label' => 'Baixos Elétricos', 'url' => '#'],
+
                     ],
                 ],
-                ['label' => 'Marcas', 'url' => ['/site/about']],
-                ['label' => 'Concertos', 'url' => ['/site/about']],
+                ['label' => 'Marcas', 'url' => ['/site/marca']],
+                ['label' => 'Concertos', 'url' => ['/site/concerto']],
                 ['label' => 'Contactos', 'url' => ['/site/contact']],
             ];
             if (Yii::$app->user->isGuest) {
