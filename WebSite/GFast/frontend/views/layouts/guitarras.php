@@ -1,6 +1,17 @@
+<?php
+
+/* @var $this yii\web\View */
+/* @var $model common\models\Guitarras */
+/* @var $form yii\widgets\ActiveForm */
 
 
+//$categorias = $model->guiIdsubcategoria->subIdcat->cat_nome;
+//var_dump($model);
+//foreach($categorias as $categoria){
 
+//echo $um_filho->nome;
+//}
+?>
 <div class="features_items"><!--features_items-->
     <h2 class="title text-center">Guitarras</h2>
     <div class="col-sm-4">

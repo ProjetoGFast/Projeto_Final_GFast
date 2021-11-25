@@ -17,8 +17,8 @@ class GuitarrasSearch extends Guitarras
     public function rules()
     {
         return [
-            [['gui_id', 'gui_idsubcategoria', 'gui_idmarca', 'gui_idreferencia', 'gui_iva', 'gui_inativo'], 'integer'],
-            [['gui_nome', 'gui_descricao'], 'safe'],
+            [['gui_id', 'gui_idsubcategoria', 'gui_idmarca', 'gui_iva', 'gui_inativo'], 'integer'],
+            [['gui_nome', 'gui_idreferencia', 'gui_descricao', 'gui_fotopath', 'gui_qrcodepath'], 'safe'],
             [['gui_preco'], 'number'],
         ];
     }
@@ -62,14 +62,16 @@ class GuitarrasSearch extends Guitarras
             'gui_id' => $this->gui_id,
             'gui_idsubcategoria' => $this->gui_idsubcategoria,
             'gui_idmarca' => $this->gui_idmarca,
-            'gui_idreferencia' => $this->gui_idreferencia,
             'gui_preco' => $this->gui_preco,
             'gui_iva' => $this->gui_iva,
             'gui_inativo' => $this->gui_inativo,
         ]);
 
         $query->andFilterWhere(['like', 'gui_nome', $this->gui_nome])
-            ->andFilterWhere(['like', 'gui_descricao', $this->gui_descricao]);
+            ->andFilterWhere(['like', 'gui_idreferencia', $this->gui_idreferencia])
+            ->andFilterWhere(['like', 'gui_descricao', $this->gui_descricao])
+            ->andFilterWhere(['like', 'gui_fotopath', $this->gui_fotopath])
+            ->andFilterWhere(['like', 'gui_qrcodepath', $this->gui_qrcodepath]);
 
         return $dataProvider;
     }

@@ -1,13 +1,20 @@
 <?php
 
-
-use common\widgets\Alert;
-use frontend\assets\AppAsset;
-use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use common\models\Categoriaguitarra;
 
+
+
+//$dropdown = Categoriaguitarra::find()->all();
+//var_dump($dropdown);
+//die;
+
+//foreach ($dropdown as $categoria)
+   // {
+       //echo $categoria->cat_nome;
+    //}
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +53,8 @@ use yii\bootstrap4\NavBar;
                     'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
                 ],
             ]);
+
+
             $menuItems = [
                 ['label' => 'Início', 'url' => ['/site/index']],
                 [
