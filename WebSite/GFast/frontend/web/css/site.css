@@ -66,9 +66,8 @@ a.desc:after {
 
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
-    padding-top: 11px;
-    color: white;
-    font-size: 18px;
+    padding-top: 7px;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 @media(max-width:767px) {

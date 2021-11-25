@@ -8,7 +8,7 @@ body {
 
 #navbar {
     background-color: #2724c5;
-    padding: 25px 15px;
+    padding: 40px 5px;
     transition: 0.4s;
     position: fixed;
     width: 100%;
@@ -54,6 +54,9 @@ float: right;
 }
 
 @media screen and (max-width: 580px) {
+    #navbar {
+        padding: 10px 5px !important;
+    }
     #navbar a {
         float: none;
         display: block;

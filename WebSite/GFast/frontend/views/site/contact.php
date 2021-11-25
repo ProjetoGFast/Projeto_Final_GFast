@@ -8,6 +8,8 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 use yii\captcha\Captcha;
 
+$this->title = 'Contact';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= $this->render('..\layouts\header') ?>
@@ -44,5 +46,3 @@ use yii\captcha\Captcha;
     </div>
 
 </div>
-
-<?= $this->render('..\layouts\footer') ?>

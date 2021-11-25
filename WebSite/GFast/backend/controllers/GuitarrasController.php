@@ -105,8 +105,18 @@ class GuitarrasController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $foto = new UploadForm();
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            $foto->gui_fotopath = UploadedFile::getInstance($model, 'gui_fotopath');
+
+            $caminhofoto =  $foto->uploadphoto();
+            if($caminhofoto != null)
+            {
+                $model->gui_fotopath = $caminhofoto;
+                $model->save();
+            }
+
             return $this->redirect(['view', 'id' => $model->gui_id]);
         }
 

@@ -9,85 +9,40 @@ use yii\bootstrap4\ActiveForm;
 /* @var $model User */
 
 
+
+$this->title = 'Signup';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="site-signup">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-<?= $this->render('..\layouts\header') ?>
-
-<div class="container">
+    <p>Please fill out the following fields to signup:</p>
+    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
     <div class="row">
-        <div class="col-lg-10 col-xl-9 mx-auto" id="positionLogin">
-            <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-                <div class="left_img">
+        <div class="col-lg-5">
+
+
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+
+                <?= $form->field($model, 'email') ?>
+
+                <?= $form->field($model, 'us_nome') ?>
+
+                <?= $form->field($model, 'us_apelido') ?>
+
+                <?= $form->field($model, 'us_cidade') ?>
+
+                <?= $form->field($model, 'us_telemovel') ?>
+
+                <?= $form->field($model, 'us_contribuinte') ?>
+
+                <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
-                <div class="card-body p-4 p-sm-5">
-                    <h5 class="card-title text-center mb-5 fw-light fs-5">REGISTO</h5>
-                    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                    <hr>
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-                    </div>
 
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'email') ?>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'us_nome') ?>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'us_apelido') ?>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'us_cidade') ?>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'us_telemovel') ?>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'us_contribuinte') ?>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <?= $form->field($model, 'password')->passwordInput() ?>
-                    </div>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                    </div>
-
-
-                    <a class="d-block text-center mt-2 small" href="#">Já tens conta? faz login</a>
-
-                    <hr class="my-4">
-
-                    <div class="d-grid mb-2">
-                        <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
-                            <i class="fab fa-google me-2"></i> Login
-                        </button>
-
-                    </div>
-
-                    <?php ActiveForm::end(); ?>
-                </div>
-            </div>
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>
-
-
-<?= $this->render('..\layouts\footer') ?>
-
-
-
-
-
-
-
-
-
-
-

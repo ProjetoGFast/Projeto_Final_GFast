@@ -7,61 +7,35 @@
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 
-
-
+$this->title = 'Login';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="site-login">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-<?= $this->render('..\layouts\header') ?>
+    <p>Please fill out the following fields to login:</p>
 
+    <div class="row">
+        <div class="col-lg-5">
+            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-xl-9 mx-auto" id="positionLogin">
-                <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-                    <div class="left_img">
-                    </div>
-                        <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">LOGIN</h5>
-                        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                        <hr>
-                        <div class="form-floating mb-3">
-                            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-                        </div>
+                <?= $form->field($model, 'password')->passwordInput() ?>
 
-                        <div class="form-floating mb-3">
-                            <?= $form->field($model, 'password')->passwordInput() ?>
-                        </div>
+                <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-                        <div class="form-group">
-                            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                        </div>
-
-                        <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                        <a class="d-block text-center mt-2 small" href="#">Não tens conta? Faz registo</a>
-
-                        <hr class="my-4">
-
-                        <div class="d-grid mb-2">
-                            <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
-                                <i class="fab fa-google me-2"></i> Registo
-                            </button>
-
-                        </div>
-
-                            <?php ActiveForm::end(); ?>
-                    </div>
+                <div style="color:#999;margin:1em 0">
+                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+                    <br>
+                    Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
-
-
-<?= $this->render('..\layouts\footer') ?>
-
-
-
-
-
-
+</div>

@@ -58,6 +58,15 @@ AppAsset::register($this);
             if (\Yii::$app->user->can('crudUsers')) {
 
 
+                echo \hail812\adminlte\widgets\Menu::widget([
+
+                    'items' => [['label' => 'DashBoard',  'icon' => 'fa fa-bar-chart-o', 'url' => ['site/index']]]
+                ]);
+            }
+
+            if (\Yii::$app->user->can('crudUsers')) {
+
+
             echo \hail812\adminlte\widgets\Menu::widget([
 
                     'items' => [['label' => 'Utilizadores',  'icon' => 'users', 'url' => ['user/index']]]
@@ -71,7 +80,7 @@ AppAsset::register($this);
 
                 echo \hail812\adminlte\widgets\Menu::widget([
 
-                    'items' => [['label' => 'Guitarras',  'icon' => 'book', 'url' => ['guitarras/index']]]
+                    'items' => [['label' => 'Guitarras',  'icon' => 'fas fa-guitar', 'url' => ['guitarras/index']]]
                 ]);
             }
 

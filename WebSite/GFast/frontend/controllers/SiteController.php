@@ -136,24 +136,15 @@ class SiteController extends Controller
         ]);
     }
 
-
-
     /**
-     * Displays concerto page.
+     * Displays about page.
      *
      * @return mixed
      */
-    public function actionConcerto()
+    public function actionAbout()
     {
-        return $this->render('concerto');
+        return $this->render('about');
     }
-
-
-    public function actionMarca()
-    {
-        return $this->render('marca');
-    }
-
 
     /**
      * Signs user up.
