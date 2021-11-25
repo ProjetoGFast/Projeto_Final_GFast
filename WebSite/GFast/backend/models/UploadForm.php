@@ -1,7 +1,6 @@
 <?php
 namespace app\models;
 
-use Couchbase\Document;
 use yii\base\Model;
 use yii\web\UploadedFile;
 

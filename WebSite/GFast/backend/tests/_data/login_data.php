@@ -9,12 +9,5 @@ return [
         'created_at' => '1392559490',
         'updated_at' => '1392559490',
         'email' => 'sfriesen@jenkins.info',
-        'us_nome' => 'Bayer Hudson',
-        'us_apelido'=> 'Hudson',
-        'us_cidade' => 'Leiria',
-        'us_telemovel'=> '910078567',
-        'us_contribuinte' => '123456789',
-        'us_pontos' => '12',
-        'us_inativo' => '0',
     ],
 ];

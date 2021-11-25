@@ -31,9 +31,7 @@ use common\models\Subcategoriaguitarra;
 
     <?= $form->field( $model, 'gui_fotopath')->fileInput(['accept' => 'image/*']) ?>
 
-    <?= Html::img('@web/../../common/fotos/'.$model->gui_fotopath, ['alt' => 'My logo', 'class' => 'imagesize']) ?>
-
-
+    <?= Html::img('@web/../../common/fotos/'.$model->gui_fotopath, ['alt' => 'My logo']) ?>
 
     <?= $form->field($model, 'gui_inativo')->textInput() ?>
 
