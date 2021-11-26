@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use yii\base\Model;
@@ -22,15 +23,23 @@ class UploadForm extends Model
 
     public function uploadphoto()
     {
-        $caminho =  $this->gui_fotopath->baseName . '.' . $this->gui_fotopath->extension;
+        //var_dump($this->gui_fotopath);
+        // die();
+        if ($this->gui_fotopath != null) {
 
-        if ($this->validate()) {
+            $caminho = $this->gui_fotopath->baseName . '.' . $this->gui_fotopath->extension;
 
-            $this->gui_fotopath->saveAs('../../common/fotos/' . $caminho);
-            return $caminho;
+            if ($this->validate()) {
+
+                $this->gui_fotopath->saveAs('../../common/fotos/' . $caminho);
+                return $caminho;
+            } else {
+
+                return null;
+            }
         } else {
-
             return null;
         }
+
     }
 }

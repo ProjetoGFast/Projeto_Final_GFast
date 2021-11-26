@@ -76,9 +76,8 @@ class GuitarrasController extends Controller
             //$foto->gui_qrcodepath = UploadedFile::getInstance($model, 'gui_qrcodepath');
 
             if ($model->load($this->request->post()) && $model->validate()) {
-                $caminhofoto =  $foto->uploadphoto();
-                if($caminhofoto != null)
-                {
+                $caminhofoto = $foto->uploadphoto();
+                if ($caminhofoto != null) {
                     $model->gui_fotopath = $caminhofoto;
                     $model->save();
                 }
@@ -104,10 +103,35 @@ class GuitarrasController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->gui_id]);
+        $model = new Guitarras();
+        $foto = new UploadForm();
+
+        $foto->gui_fotopath = UploadedFile::getInstance($model, 'gui_fotopath');
+
+
+        $model = $this->findModel($id);
+        if ($this->request->isPost) {
+            $old = $model->gui_fotopath;
+            // var_dump($old);
+            //die
+            $model->gui_fotopath = $old;
+
+            $model->load($this->request->post());
+            if ($model->oldAttributes['gui_fotopath'] != null && $model->gui_fotopath == null) {
+                $model->gui_fotopath = $model->oldAttributes['gui_fotopath'];
+            }
+
+            if ($model->save()) {
+
+                $caminhofoto = $foto->uploadphoto();
+                if ($caminhofoto != null) {
+                    $model->gui_fotopath = $caminhofoto;
+                    $model->save();
+
+                }
+                return $this->redirect(['view', 'id' => $model->gui_id]);
+            }
         }
 
         return $this->render('update', [

@@ -71,7 +71,7 @@ AppAsset::register($this);
 
                 echo \hail812\adminlte\widgets\Menu::widget([
 
-                    'items' => [['label' => 'Guitarras',  'icon' => 'book', 'url' => ['guitarras/index']]]
+                    'items' => [['label' => 'Guitarras',  'icon' => 'fas fa-guitar', 'url' => ['guitarras/index']]]
                 ]);
             }
 

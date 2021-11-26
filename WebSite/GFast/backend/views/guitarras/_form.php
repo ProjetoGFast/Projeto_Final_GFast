@@ -9,13 +9,19 @@ use common\models\Subcategoriaguitarra;
 /* @var $this yii\web\View */
 /* @var $model common\models\Guitarras */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="guitarras-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'gui_nome')->textInput(['maxlength' => true]) ?>
+
+    <div class="row">
+        <div class="col-6">
+            <?= $form->field($model, 'gui_nome')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'gui_idsubcategoria')->dropDownList(ArrayHelper::map(Subcategoriaguitarra::find()->all(), 'sub_id','sub_nome'), ['prompt'=>'Seleciona uma SubCategoria']); ?>
 
@@ -31,7 +37,7 @@ use common\models\Subcategoriaguitarra;
 
     <?= $form->field( $model, 'gui_fotopath')->fileInput(['accept' => 'image/*']) ?>
 
-    <?= Html::img('@web/../../common/fotos/'.$model->gui_fotopath, ['alt' => 'My logo']) ?>
+    <?= Html::img('@web/../../common/fotos/'.$model->gui_fotopath, ['alt' => 'My logo', 'class' => 'imagesize']) ?>
 
     <?= $form->field($model, 'gui_inativo')->textInput() ?>
 

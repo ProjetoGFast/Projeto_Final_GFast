@@ -7,8 +7,10 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\GuitarrasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+
 $this->title = 'Guitarras';
 $this->params['breadcrumbs'][] = $this->title;
+$this->beginPage()
 ?>
 <div class="guitarras-index">
 
@@ -53,7 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);
+    $this->endPage()
+
+    ?>
 
 
 </div>
