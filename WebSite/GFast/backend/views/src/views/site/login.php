@@ -11,7 +11,7 @@ use yii\helpers\Html;
             'options' => ['class' => 'form-group has-feedback'],
             'inputTemplate' => '{input}<div class="input-group-append"><div class="input-group-text"><span class="fas fa-envelope"></span></div></div>',
             'template' => '{beginWrapper}{input}{error}{endWrapper}',
-            'wrapperOptions' => ['class' => 'input-group mb-3']
+            'wrapperOptions' => ['class' => 'input-group mb-3'],
         ])
             ->label(false)
             ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
@@ -36,7 +36,7 @@ use yii\helpers\Html;
                 ]) ?>
             </div>
             <div class="col-4">
-                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block']) ?>
+                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block', 'name'=>'login-button']) ?>
             </div>
         </div>
 
