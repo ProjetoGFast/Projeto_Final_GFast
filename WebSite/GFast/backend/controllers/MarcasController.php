@@ -28,12 +28,12 @@ class MarcasController extends Controller
                         [
                             'actions' => ['index','update', 'delete', 'create', 'view',],
                             'allow' => true,
-                            'roles' => ['admin'],
+                            'roles' => ['admin', 'gestor'],
                         ],
                         [
                             'actions' => ['logout', 'index'],
                             'allow' => false,
-                            'roles' => ['funcionario', 'gestor'],
+                            'roles' => ['funcionario'],
                         ],
                     ],
                 ],

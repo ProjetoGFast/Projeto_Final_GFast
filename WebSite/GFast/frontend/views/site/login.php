@@ -39,16 +39,7 @@ use yii\bootstrap4\ActiveForm;
 
                         <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-                        <a class="d-block text-center mt-2 small" href="#">Não tens conta? Faz registo</a>
-
-                        <hr class="my-4">
-
-                        <div class="d-grid mb-2">
-                            <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
-                                <i class="fab fa-google me-2"></i> Registo
-                            </button>
-
-                        </div>
+                            <?= Html::a('Não tens conta? Faz Registo',['site/signup'], ['class' => 'd-block text-center mt-2 small']) ?>
 
                             <?php ActiveForm::end(); ?>
                     </div>

@@ -17,8 +17,8 @@ class SubcategoriaGuitarraSearch extends SubcategoriaGuitarra
     public function rules()
     {
         return [
-            [['sub_id', 'sub_idcat'], 'integer'],
-            [['sub_nome'], 'safe'],
+            [['sub_id'], 'integer'],
+            [['sub_nome', 'sub_idcat'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class SubcategoriaGuitarraSearch extends SubcategoriaGuitarra
      */
     public function search($params)
     {
-        $query = SubcategoriaGuitarra::find();
+        $query = SubcategoriaGuitarra::find()->joinWith(['subIdcat']);
 
         // add conditions that should always apply here
 
@@ -59,10 +59,11 @@ class SubcategoriaGuitarraSearch extends SubcategoriaGuitarra
         // grid filtering conditions
         $query->andFilterWhere([
             'sub_id' => $this->sub_id,
-            'sub_idcat' => $this->sub_idcat,
+            //'sub_idcat' => $this->sub_idcat,
         ]);
 
-        $query->andFilterWhere(['like', 'sub_nome', $this->sub_nome]);
+        $query->andFilterWhere(['like', 'sub_nome', $this->sub_nome])
+            ->andFilterWhere(['like', 'cat_nome', $this->sub_idcat]);
 
         return $dataProvider;
     }

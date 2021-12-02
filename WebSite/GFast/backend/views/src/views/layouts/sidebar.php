@@ -54,60 +54,44 @@ AppAsset::register($this);
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
-
             if (\Yii::$app->user->can('crudUsers')) {
+                $menuItems[] = ['label' => 'Utilizadores', 'icon' => 'users', 'url' => ['user/index']];
+            }
 
-
-            echo \hail812\adminlte\widgets\Menu::widget([
-
-                    'items' => [['label' => 'Utilizadores',  'icon' => 'users', 'url' => ['user/index']]]
-                    ]);
-                   }
-            ?>
-            <?php
 
             if (\Yii::$app->user->can('crudtabelaGuitarras')) {
 
+                $menuItems[] =['label' => 'Guitarras',  'icon' => 'fas fa-guitar', 'url' => ['guitarras/index']];
 
-                echo \hail812\adminlte\widgets\Menu::widget([
-
-                    'items' => [['label' => 'Guitarras',  'icon' => 'fas fa-guitar', 'url' => ['guitarras/index']]]
-                ]);
             }
 
-            ?>
-            <?php
+
 
             if (\Yii::$app->user->can('crudMarcas')) {
 
-
-                echo \hail812\adminlte\widgets\Menu::widget([
-
-                    'items' => [['label' => 'Marcas',  'icon' => 'book', 'url' => ['marcas/index']]]
-                ]);
+                $menuItems[] = ['label' => 'Marcas',  'icon' => 'fa fa-tags', 'url' => ['marcas/index']];
             }
-            ?>
-            <?php
+
 
             if (\Yii::$app->user->can('crudCategorias')) {
 
 
-                echo \hail812\adminlte\widgets\Menu::widget([
 
-                    'items' => [['label' => 'Categorias',  'icon' => 'book', 'url' => ['categoria-guitarra/index']]]
-                ]);
+                $menuItems[] = [
+                    'label' => 'Categorias',
+                    'icon' => 'tfa fa-list',
+                    'items' => [
+                        ['label' => 'Categorias',  'icon' => 'fa fa-list', 'url' => ['categoria-guitarra/index']],
+                        ['label' => 'SubCategorias',  'icon' => 'fa fa-list', 'url' => ['subcategoria-guitarra/index']],
+                    ]
+                ];
+
+
             }
-            ?>
-            <?php
 
-            if (\Yii::$app->user->can('crudSubCategorias')) {
-
-
-                echo \hail812\adminlte\widgets\Menu::widget([
-
-                    'items' => [['label' => 'SubCategorias',  'icon' => 'book', 'url' => ['subcategoria-guitarra/index']]]
-                ]);
-            }
+            echo \hail812\adminlte\widgets\Menu::widget([
+                'items' => $menuItems,
+            ]);
             ?>
 
         </nav>

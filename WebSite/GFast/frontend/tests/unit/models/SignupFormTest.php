@@ -29,6 +29,11 @@ class SignupFormTest extends \Codeception\Test\Unit
             'username' => 'some_username',
             'email' => 'some_email@example.com',
             'password' => 'some_password',
+            'us_nome'=>'erau',
+            'us_apelido'=>'uare',
+            'us_cidade'=>'Leiria',
+            'us_telemovel'=>'934765893',
+            'us_contribuinte'=>'1234567890',
         ]);
 
         $user = $model->signup();
@@ -38,6 +43,11 @@ class SignupFormTest extends \Codeception\Test\Unit
         $user = $this->tester->grabRecord('common\models\User', [
             'username' => 'some_username',
             'email' => 'some_email@example.com',
+            'us_nome'=>'erau',
+            'us_apelido'=>'uare',
+            'us_cidade'=>'Leiria',
+            'us_telemovel'=>'934765893',
+            'us_contribuinte'=>'1234567890',
             'status' => \common\models\User::STATUS_INACTIVE
         ]);
 
@@ -58,6 +68,11 @@ class SignupFormTest extends \Codeception\Test\Unit
             'username' => 'troy.becker',
             'email' => 'nicolas.dianna@hotmail.com',
             'password' => 'some_password',
+            'us_nome'=>'erau',
+            'us_apelido'=>'uare',
+            'us_cidade'=>'Leiria',
+            'us_telemovel'=>'934765893',
+            'us_contribuinte'=>'1234567890',
         ]);
 
         expect_not($model->signup());
@@ -65,7 +80,7 @@ class SignupFormTest extends \Codeception\Test\Unit
         expect_that($model->getErrors('email'));
 
         expect($model->getFirstError('username'))
-            ->equals('This username has already been taken.');
+            ->equals('Este username já está a ser utilizado');
         expect($model->getFirstError('email'))
             ->equals('This email address has already been taken.');
     }

@@ -11,10 +11,19 @@ $this->title = 'Utilizadores';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
+    <div class="row">
+        <div class="col-md-6 col-6 col-6 leftalign">
+            <p class="alignbtn">
+            <h1><?= Html::encode($this->title) ?></h1>
+            </p>
+        </div>
 
-    <p>
-        <?= Html::a('Criar utilizador', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <div class="col-md-6 col-6 col-6 rightalign">
+            <p>
+                <?= Html::a('Criar utilizador', ['create'], ['class' => 'btncreate']) ?>
+            </p>
+        </div>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -10,5 +10,12 @@ return [
         'created_at' => '1402312317',
         'updated_at' => '1402312317',
         'email' => 'nicole.paucek@schultz.info',
+        'us_nome'=>'erau',
+        'us_apelido'=>'uare',
+        'us_cidade'=>'Leiria',
+        'us_telemovel'=>'934765893',
+        'us_contribuinte'=>'1234567890',
+        'us_pontos'=>'111',
+        'us_inativo'=>'0',
     ],
 ];

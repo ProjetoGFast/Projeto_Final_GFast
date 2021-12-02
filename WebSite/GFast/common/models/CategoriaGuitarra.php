@@ -41,9 +41,9 @@ class Categoriaguitarra extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'cat_id' => 'Cat ID',
-            'cat_nome' => 'Cat Nome',
-            'cat_inativo' => 'Cat Inativo',
+            'cat_id' => 'ID',
+            'cat_nome' => 'Categoria',
+            'cat_inativo' => 'Inativo',
         ];
     }
 

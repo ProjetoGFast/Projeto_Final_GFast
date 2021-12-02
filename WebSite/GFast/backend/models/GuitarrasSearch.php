@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -17,8 +17,8 @@ class GuitarrasSearch extends Guitarras
     public function rules()
     {
         return [
-            [['gui_id', 'gui_idsubcategoria', 'gui_idmarca', 'gui_iva', 'gui_inativo'], 'integer'],
-            [['gui_nome', 'gui_idreferencia', 'gui_descricao', 'gui_fotopath', 'gui_qrcodepath'], 'safe'],
+            [['gui_id','gui_iva', 'gui_inativo'], 'integer'],
+            [['gui_nome', 'gui_idreferencia', 'gui_descricao', 'gui_fotopath', 'gui_qrcodepath','gui_idmarca', 'gui_idsubcategoria'], 'safe'],
             [['gui_preco'], 'number'],
         ];
     }
@@ -41,7 +41,7 @@ class GuitarrasSearch extends Guitarras
      */
     public function search($params)
     {
-        $query = Guitarras::find();
+        $query = Guitarras::find()->joinWith(['guiIdmarca', 'guiIdsubcategoria']);
 
         // add conditions that should always apply here
 
@@ -60,15 +60,17 @@ class GuitarrasSearch extends Guitarras
         // grid filtering conditions
         $query->andFilterWhere([
             'gui_id' => $this->gui_id,
-            'gui_idsubcategoria' => $this->gui_idsubcategoria,
-            'gui_idmarca' => $this->gui_idmarca,
+          //  'sub_nome' => $this->gui_idsubcategoria,
+           // 'mar_nome' => $this->gui_idmarca,
             'gui_preco' => $this->gui_preco,
             'gui_iva' => $this->gui_iva,
             'gui_inativo' => $this->gui_inativo,
         ]);
 
         $query->andFilterWhere(['like', 'gui_nome', $this->gui_nome])
-            ->andFilterWhere(['like', 'gui_idreferencia', $this->gui_idreferencia])
+            ->andFilterWhere(['like', 'mar_nome', $this->gui_idmarca])
+            ->andFilterWhere(['like', 'sub_nome', $this->gui_idsubcategoria])
+
             ->andFilterWhere(['like', 'gui_descricao', $this->gui_descricao])
             ->andFilterWhere(['like', 'gui_fotopath', $this->gui_fotopath])
             ->andFilterWhere(['like', 'gui_qrcodepath', $this->gui_qrcodepath]);

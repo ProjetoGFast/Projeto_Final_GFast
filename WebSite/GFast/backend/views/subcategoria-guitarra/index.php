@@ -13,10 +13,19 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="subcategoria-guitarra-index">
 
 
+    <div class="row">
+        <div class="col-md-6 col-6 col-6 leftalign">
+            <p class="alignbtn">
+            <h1><?= Html::encode($this->title) ?></h1>
+            </p>
+        </div>
 
-    <p>
-        <?= Html::a('Criar Subcategoria ', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <div class="col-md-6 col-6 col-6 rightalign">
+            <p>
+                <?= Html::a('Criar Subcategoria', ['create'], ['class' => 'btncreate']) ?>
+            </p>
+        </div>
+    </div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -24,21 +33,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'sub_id',
-            'sub_nome',
-          //  'sub_idcat',
             [
 
-                'attribute'=>'sub_idcat',
+                'attribute' => 'sub_id',
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'width:5%'];
+                },
+            ],
+            [
 
-                'value'=>function ($model, $key, $index, $column) {
+                'attribute' => 'sub_nome',
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'width:45%'];
+                },
+            ],
+            [
 
-                   return $model->subIdcat->cat_nome;
+                'attribute' => 'sub_idcat',
+                'value' => 'subIdcat.cat_nome',
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'width:45%'];
                 },
 
             ],
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

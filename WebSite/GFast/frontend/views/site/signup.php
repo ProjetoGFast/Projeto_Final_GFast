@@ -59,17 +59,10 @@ use yii\bootstrap4\ActiveForm;
                         <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                     </div>
 
+                    <?= Html::a('Já tens conta? Faz login',['site/login'], ['class' => 'd-block text-center mt-2 small']) ?>
 
-                    <a class="d-block text-center mt-2 small" href="#">Já tens conta? faz login</a>
 
-                    <hr class="my-4">
 
-                    <div class="d-grid mb-2">
-                        <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
-                            <i class="fab fa-google me-2"></i> Login
-                        </button>
-
-                    </div>
 
                     <?php ActiveForm::end(); ?>
                 </div>

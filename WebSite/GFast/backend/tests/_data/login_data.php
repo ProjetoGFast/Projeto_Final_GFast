@@ -9,5 +9,13 @@ return [
         'created_at' => '1392559490',
         'updated_at' => '1392559490',
         'email' => 'sfriesen@jenkins.info',
+        'us_nome'=>'erau',
+        'us_apelido'=>'uare',
+        'us_cidade'=>'Leiria',
+        'us_telemovel'=>'934765893',
+        'us_contribuinte'=>'1234567890',
+        'us_pontos'=>'111',
+        'us_inativo'=>'0',
+
     ],
 ];

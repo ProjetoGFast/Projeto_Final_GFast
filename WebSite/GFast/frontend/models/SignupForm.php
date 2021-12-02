@@ -55,10 +55,12 @@ class SignupForm extends Model
 
             ['us_telemovel', 'trim'],
             ['us_telemovel', 'required'],
+            ['us_telemovel', 'string', 'max' => 9, 'min' => 9],
             ['us_telemovel', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de telemóvel já registado'],
 
             ['us_contribuinte', 'trim'],
             ['us_contribuinte', 'required'],
+            ['us_contribuinte', 'string', 'max' => 9, 'min' =>9],
             ['us_contribuinte', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de contribuinte já registado'],
 
 
@@ -102,10 +104,7 @@ class SignupForm extends Model
     public function signup()
     {
         if ($this->validate()) {
-
             $user = new User();
-
-
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);
@@ -123,11 +122,8 @@ class SignupForm extends Model
             $auth = \Yii::$app->authManager;
             $authorRole = $auth->getRole('cliente');
             $auth->assign($authorRole, $user->getId());
-
-
-            return true;
+            return $user;
         }
-
         return null;
     }
 

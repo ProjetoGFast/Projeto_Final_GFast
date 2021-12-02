@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use app\models\UploadForm;
 use common\models\Guitarras;
-use common\models\GuitarrasSearch;
+use backend\models\GuitarrasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

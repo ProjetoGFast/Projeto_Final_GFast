@@ -5,16 +5,7 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use common\models\Categoriaguitarra;
 
-
-
-//$dropdown = Categoriaguitarra::find()->all();
-//var_dump($dropdown);
-//die;
-
-//foreach ($dropdown as $categoria)
-   // {
-       //echo $categoria->cat_nome;
-    //}
+$categorias = Categoriaguitarra::find()->all();
 ?>
 
 <!DOCTYPE html>
@@ -55,17 +46,14 @@ use common\models\Categoriaguitarra;
             ]);
 
 
+            foreach ($categorias as $categoria) {
+                $marcas[]=['label' => $categoria->cat_nome, 'url' => '#'];
+            }
             $menuItems = [
                 ['label' => 'Início', 'url' => ['/site/index']],
                 [
                     'label' => 'Guitarras',
-                    'items' => [
-                        ['label' => 'Guitarras Elétricas', 'url' => '#'],
-                        ['label' => 'Guitarras Clássicas', 'url' => '#'],
-                        ['label' => 'Guitarras Acústicas', 'url' => '#'],
-                        ['label' => 'Baixos Elétricos', 'url' => '#'],
-
-                    ],
+                    'items' => $marcas,
                 ],
                 ['label' => 'Marcas', 'url' => ['/site/marca']],
                 ['label' => 'Concertos', 'url' => ['/site/concerto']],

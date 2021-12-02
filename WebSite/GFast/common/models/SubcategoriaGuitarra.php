@@ -43,7 +43,7 @@ class Subcategoriaguitarra extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'sub_id' => 'ID de Subcategoria',
+            'sub_id' => 'ID',
             'sub_nome' => 'SubCategoria',
             'sub_idcat' => 'Categoria Pai',
         ];

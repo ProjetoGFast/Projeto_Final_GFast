@@ -12,11 +12,19 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="categoria-guitarra-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="row">
+        <div class="col-md-6 col-6 col-6 leftalign">
+            <p class="alignbtn">
+            <h1><?= Html::encode($this->title) ?></h1>
+            </p>
+        </div>
 
-    <p>
-        <?= Html::a('Create Categoria Guitarra', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <div class="col-md-6 col-6 col-6 rightalign">
+            <p>
+                <?= Html::a('Criar Categoria', ['create'], ['class' => 'btncreate']) ?>
+            </p>
+        </div>
+    </div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -24,11 +32,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
 
-            'cat_id',
-            'cat_nome',
-            'cat_inativo',
+                'attribute' => 'cat_id',
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'width:5%'];
+                },
+            ],
+            [
+
+                'attribute' => 'cat_nome',
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'width:80%'];
+                },
+            ],
+            [
+
+                'attribute' => 'cat_inativo',
+
+
+                'value' => function ($model, $key, $index, $column) {
+
+                    return $model->cat_inativo == 0 ? 'Ativo' : 'Inativo';
+                },
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'width:10%; text-align:center; background-color:'
+                        . ($model->cat_inativo == 0 ? 'green' : 'red')];
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

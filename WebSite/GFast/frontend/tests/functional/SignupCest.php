@@ -45,6 +45,13 @@ class SignupCest
             'SignupForm[username]' => 'tester',
             'SignupForm[email]' => 'tester.email@example.com',
             'SignupForm[password]' => 'tester_password',
+            'SignupForm[us_nome]'=>'erau',
+            'SignupForm[us_apelido]'=>'uare',
+            'SignupForm[us_cidade]'=>'Leiria',
+            'SignupForm[us_telemovel]'=>'934765893',
+            'SignupForm[us_contribuinte]'=>'1234567890',
+            'SignupForm[us_pontos]'=>'111',
+            'SignupForm[us_inativo]'=>'0',
         ]);
 
         $I->seeRecord('common\models\User', [

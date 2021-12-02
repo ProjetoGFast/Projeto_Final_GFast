@@ -6,6 +6,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+
             <?= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => '362',
                 'text' => 'Novas Encomendas',

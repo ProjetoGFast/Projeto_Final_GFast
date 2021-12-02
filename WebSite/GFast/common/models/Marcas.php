@@ -41,9 +41,9 @@ class Marcas extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'mar_id' => 'Mar ID',
-            'mar_nome' => 'Mar Nome',
-            'mar_inativo' => 'Mar Inativo',
+            'mar_id' => 'ID',
+            'mar_nome' => 'Marca',
+            'mar_inativo' => 'Inativo',
         ];
     }
 

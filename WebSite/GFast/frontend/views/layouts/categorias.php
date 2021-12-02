@@ -7,7 +7,7 @@ use common\models\Categoriaguitarra;
 
 
 
-$dropdown = Categoriaguitarra::find()->all();
+$categoria = Categoriaguitarra::find()->all();
 
 
 ?>
@@ -16,7 +16,7 @@ $dropdown = Categoriaguitarra::find()->all();
 <h2>Categorias</h2>
 <div class="panel-group category-products" id="accordian">
 <?php
-foreach ($dropdown as $categoria)
+foreach ($categoria as $categoria)
 {
 
 ?>
