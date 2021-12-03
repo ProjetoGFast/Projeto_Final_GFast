@@ -149,9 +149,20 @@ class SiteController extends Controller
     }
 
 
+    public function actionSubcategoria()
+    {
+        return $this->render('subcategoria');
+    }
+
+
     public function actionMarca()
     {
         return $this->render('marca');
+    }
+
+    public function actionEditarPerfil()
+    {
+        return $this->render('editarPerfil');
     }
 
 

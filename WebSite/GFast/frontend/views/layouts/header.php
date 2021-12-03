@@ -26,6 +26,9 @@ $categorias = Categoriaguitarra::find()->all();
     <link href="css/responsive.css" rel="stylesheet">
     <link href="css/navbar.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
+    <link href="css/subcategorias.css" rel="stylesheet" />
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+
 </head>
 
 <header>
@@ -47,7 +50,7 @@ $categorias = Categoriaguitarra::find()->all();
 
 
             foreach ($categorias as $categoria) {
-                $marcas[]=['label' => $categoria->cat_nome, 'url' => '#'];
+                $marcas[]=['label' => $categoria->cat_nome, 'url' => ['/site/subcategoria', 'id' => $categoria -> cat_id]];
             }
             $menuItems = [
                 ['label' => 'Início', 'url' => ['/site/index']],
@@ -63,6 +66,7 @@ $categorias = Categoriaguitarra::find()->all();
                 $menuItems[] = ['label' => 'Registar', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Entrar', 'url' => ['/site/login']];
             } else {
+                $menuItems[] = ['label' => 'Perfil', 'url' => ['/site/editarPerfil']];
                 $menuItems[] = '<li>'
                     . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                     . Html::submitButton(
