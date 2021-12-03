@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\ResendVerificationEmailForm;
+use frontend\models\User;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -162,7 +163,11 @@ class SiteController extends Controller
 
     public function actionEditarPerfil()
     {
-        return $this->render('editarPerfil');
+        $model = new User();
+        return $this->render('editarPerfil', [
+            'model' => $model,
+        ]);
+        $model = new editForm();
     }
 
 

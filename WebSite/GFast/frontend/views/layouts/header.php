@@ -66,7 +66,7 @@ $categorias = Categoriaguitarra::find()->all();
                 $menuItems[] = ['label' => 'Registar', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Entrar', 'url' => ['/site/login']];
             } else {
-                $menuItems[] = ['label' => 'Perfil', 'url' => ['/site/editarPerfil']];
+                $menuItems[] = ['label' => 'Perfil', 'url' => ['/site/editar-perfil']];
                 $menuItems[] = '<li>'
                     . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                     . Html::submitButton(

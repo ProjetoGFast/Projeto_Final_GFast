@@ -4,9 +4,12 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\User */
+/* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+
+
+<?= $this->render('..\layouts\header') ?>
 
 <div class="user-form" style="left:50%">
 
@@ -15,13 +18,10 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
             <?= $form->field($model, 'us_nome')->textInput(['maxlength' => true]) ?>
-
-
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
             <?= $form->field($model, 'us_apelido')->textInput(['maxlength' => true]) ?>
         </div>
-
     </div>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
@@ -45,15 +45,12 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
             <?= $form->field($model, 'us_contribuinte')->textInput() ?>
         </div>
-
     </div>
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2 col-4">
             <?= $form->field($model, 'us_pontos')->textInput() ?>
         </div>
     </div>
-
-
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -63,3 +60,4 @@ use yii\widgets\ActiveForm;
 
 </div>
 
+<?= $this->render('..\layouts\footer') ?>
