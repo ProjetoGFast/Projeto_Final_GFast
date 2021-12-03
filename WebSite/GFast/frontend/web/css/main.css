@@ -1285,7 +1285,10 @@ h2.title {
 .share {
   margin-top: 15px;
 }
-
+.user-form{
+  padding-top: 170px;
+  padding-bottom: 50px;
+}
 
 .cart {
   background: #2724c5;

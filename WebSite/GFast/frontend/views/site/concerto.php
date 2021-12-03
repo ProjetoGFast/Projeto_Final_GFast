@@ -18,7 +18,7 @@ use yii\helpers\Html;
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-3">
+
                 <div class="left-sidebar">
 
                     <!-- |------------------------------------------ CATEGORIAS ------------------------------------------------------------| -->
@@ -41,7 +41,7 @@ use yii\helpers\Html;
                     <!-- |----------------------------------------- CARTAZ -------------------------------------------------------------| -->
 
                 </div>
-            </div>
+
 
             <div class="col-sm-9 padding-right">
 
