@@ -59,7 +59,7 @@ class UserCrudCest
 
 
     }
-    public function testErrorMessages(FunctionalTester $I)
+    public function testNulls(FunctionalTester $I)
     {
         $I->click('Utilizadores');
         $I->click('Criar utilizador');
@@ -72,15 +72,20 @@ class UserCrudCest
         $I->fillField('User[us_telemovel]', '');
         $I->fillField('User[us_contribuinte]', '');
         $I->fillField('User[us_pontos]', '');
-        // $I->see('Email is not a valid email address.');
-        //$I->fillField('User[email]', 'testeremail@gmail.com');
-        // $I->see('Email is not a valid email address.');
 
 
         $I->click('submitbtn');
-        $I->dontSee('Save');
-        $I->see('Showing');
-        $I->see('testernome');
+        $I->see('Email cannot be blank');
+        $I->see('Username cannot be blank');
+        $I->see('Cidade cannot be blank');
+        $I->see('Email cannot be blank');
+        $I->see('Username cannot be blank');
+        $I->see('Telemovel cannot be blank');
+
+       // $I->click('submitbtn');
+       // $I->dontSee('Save');
+        //$I->see('Showing');
+       // $I->see('testernome');
 
 
 

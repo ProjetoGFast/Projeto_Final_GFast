@@ -16,7 +16,7 @@ $categoria = Categoriaguitarra::find()->all();
 <h2>Categorias</h2>
 <div class="panel-group category-products" id="accordian">
 <?php
-foreach ($categoria as $categoria)
+foreach ($categoria as $categorias)
 {
 
 ?>
@@ -27,7 +27,7 @@ foreach ($categoria as $categoria)
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
                     <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                    <?= $categoria->cat_nome?>
+                    <?= $categorias->cat_nome?>
                 </a>
             </h4>
         </div>
