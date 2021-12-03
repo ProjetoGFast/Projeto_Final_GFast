@@ -31,7 +31,7 @@ class UploadForm extends Model
 
             if ($this->validate()) {
 
-                $this->gui_fotopath->saveAs('../../common/fotos/' . $caminho);
+                $this->gui_fotopath->saveAs('../web/fotos/' . $caminho);
                 return $caminho;
             } else {
 

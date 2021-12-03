@@ -9,9 +9,7 @@ use common\models\Subcategoriaguitarra;
 
 $categorias = Categoriaguitarra::find()->all();
 
-
 ?>
-
 
 <h2>Categorias</h2>
 <div class="panel-group category-products" id="accordian">
@@ -39,13 +37,12 @@ $categorias = Categoriaguitarra::find()->all();
                     <ul>
                         <?php
                         foreach ($subcategorias as $subcategoria) { ?>
-
                             <li><a href="#"><?= $subcategoria->sub_nome?> </a></li>
-
                         <?php } ?>
 
                     </ul>
                 </div>
+
             </div>
         </div>
         <?php

@@ -68,13 +68,54 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'us_nome', 'us_apelido', 'us_cidade', 'us_telemovel', 'us_contribuinte', 'us_pontos', 'us_inativo'], 'required'],
-            [['status', 'created_at', 'updated_at', 'us_telemovel', 'us_contribuinte', 'us_pontos', 'us_inativo'], 'integer'],
+            [['status', 'created_at', 'updated_at', 'us_contribuinte', 'us_pontos', 'us_inativo'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
+
+            ['us_contribuinte', 'string', 'max' => 9, 'min' =>9],
             [['us_nome', 'us_apelido', 'us_cidade'], 'string', 'max' => 20],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
+
+
+            ['username', 'trim'],
+            ['username', 'required'],
+            ['username', 'unique', 'targetClass' => '\frontend\models\User', 'message' => 'Este username já está a ser utilizado'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
+
+            ['email', 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Este Email já está a ser utilizado'],
+
+            ['us_nome', 'trim'],
+            ['us_nome', 'required'],
+
+            ['us_nome', 'string', 'max' => 255],
+
+            ['us_apelido', 'trim'],
+            ['us_apelido', 'required'],
+
+            ['us_apelido', 'string', 'max' => 255],
+
+            ['us_cidade', 'trim'],
+            ['us_cidade', 'required'],
+
+            ['us_cidade', 'string', 'max' => 255],
+
+            ['us_telemovel', 'trim'],
+            ['us_telemovel', 'required'],
+            ['us_telemovel', 'string', 'max' => 9, 'min' => 9],
+            ['us_telemovel', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de telemóvel já registado'],
+
+            ['us_contribuinte', 'trim'],
+            ['us_contribuinte', 'required'],
+            ['us_contribuinte', 'string', 'max' => 9, 'min' =>9],
+            ['us_contribuinte', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de contribuinte já registado'],
+
+
         ];
     }
 
