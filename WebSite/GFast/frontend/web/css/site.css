@@ -90,7 +90,7 @@ a.desc:after {
     outline: none;
 }
 * {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
+body {font-family: Verdana, sans-serif; margin:0; padding-top: 40px;}
 .mySlides {display: none}
 img {vertical-align: middle;}
 
@@ -185,4 +185,18 @@ img {vertical-align: middle;}
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
     .prev, .next,.text {font-size: 11px}
+}
+
+
+.logout{
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: white;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
 }

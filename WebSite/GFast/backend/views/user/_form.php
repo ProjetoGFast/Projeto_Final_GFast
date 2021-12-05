@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\User */
+/* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -57,6 +57,9 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'us_pontos')->textInput() ?>
         </div>
     </div>
+
+
+
 
 
 

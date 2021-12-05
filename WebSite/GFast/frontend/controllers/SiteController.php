@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\ResendVerificationEmailForm;
-use frontend\models\User;
+use common\models\User;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -16,6 +16,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller
@@ -91,6 +92,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
@@ -124,9 +126,9 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success', 'Registado com Sucesso :)');
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('error', 'Houve algum erro ao registar o utilizar por favor tente mais tarde');
             }
 
             return $this->refresh();
@@ -161,13 +163,52 @@ class SiteController extends Controller
         return $this->render('marca');
     }
 
+
+    public function actionVerPerfil()
+    {
+        $id = Yii::$app->user->getId();
+        $model = User::findOne($id);
+
+        return $this->render('verperfil', [
+            'model' => $model,
+        ]);
+    }
+
+
+    public function actionDelete()
+    {
+        $id = Yii::$app->user->getId();
+        $model = User::findOne($id);
+        $model->delete();
+        Yii::$app->user->logout();
+
+
+        return $this->goHome();
+
+       // return $this->redirect(['index']);
+    }
+    /**
+     * Updates an existing User model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id ID
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionEditarPerfil()
     {
-        $model = new User();
+        $id = Yii::$app->user->getId();
+        $model = User::findOne($id);
+       // var_dump($model);
+        //die();
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            //return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', 'Perfil Editado com Sucesso');
+            return $this->goHome();
+        }
+
         return $this->render('editarPerfil', [
             'model' => $model,
         ]);
-        $model = new editForm();
     }
 
 
@@ -180,7 +221,7 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            Yii::$app->session->setFlash('success', 'Registo Concluido :)');
             return $this->goHome();
         }
 

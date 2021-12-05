@@ -16,7 +16,7 @@ $categorias = Categoriaguitarra::find()->all();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | GFast</title>
+    <title>GFast</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -32,8 +32,8 @@ $categorias = Categoriaguitarra::find()->all();
 </head>
 
 <header>
+    <nav id="navbar">
 
-    <div id="navbar">
 
         <img src="images/home/logo.png" alt="" id="logo"/>
 
@@ -66,15 +66,27 @@ $categorias = Categoriaguitarra::find()->all();
                 $menuItems[] = ['label' => 'Registar', 'url' => ['/site/signup']];
                 $menuItems[] = ['label' => 'Entrar', 'url' => ['/site/login']];
             } else {
-                $menuItems[] = ['label' => 'Perfil', 'url' => ['/site/editar-perfil']];
-                $menuItems[] = '<li>'
-                    . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>';
+
+                $utilizador[] = ['label' => 'Perfil', 'url' => ['/site/ver-perfil']];
+                $utilizador[] =
+                        Html::beginForm(['/site/logout'], 'post') .' <a class ="dropdown-item ">'.
+                        Html::submitButton('Logout', ['class' => 'logout']) . ' </a>'. Html::endForm();
+
+                $menuItems = [
+                    ['label' => 'Início', 'url' => ['/site/index']],
+                    [
+                        'label' => 'Guitarras',
+                        'items' => $marcas,
+                    ],
+                    ['label' => 'Marcas', 'url' => ['/site/marca']],
+                    ['label' => 'Concertos', 'url' => ['/site/concerto']],
+                    ['label' => 'Contactos', 'url' => ['/site/contact']],
+                    [
+                        'label' => Yii::$app->user->identity->username,
+                        'items' => $utilizador,
+                    ],
+
+                ];
             }
             echo Nav::widget([
                 'items' => $menuItems,
@@ -82,9 +94,9 @@ $categorias = Categoriaguitarra::find()->all();
             NavBar::end();
             ?>
         </div>
-    </div>
 
-</header>
 
+</nav>
+    </header>
 <body>
 

@@ -1,10 +1,11 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\User */
+/* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -51,8 +52,11 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-2 col-md-2 col-sm-2 col-4">
             <?= $form->field($model, 'us_pontos')->textInput() ?>
         </div>
-    </div>
 
+        <div class="col-lg-4 col-md-4 col-sm-4 col-8">
+            <?= $form->field($model, 'us_inativo')->textInput() ?>
+        </div>
+    </div>
 
 
     <div class="form-group">

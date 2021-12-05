@@ -9,7 +9,9 @@
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
-  font-weight: 400px;
+  /*font-weight: 400;*/
+  padding-top: 150px;
+
 }
 
 ul li {
@@ -346,6 +348,9 @@ ul.sub-menu {
 
 #footer {
   background: #F0F0E9;
+  position: absolute;
+  width: 100%;
+  left: 0;
 }
 
 
@@ -1286,7 +1291,7 @@ h2.title {
   margin-top: 15px;
 }
 .user-form{
-  padding-top: 170px;
+  /*padding-top: 170px;*/
   padding-bottom: 50px;
 }
 

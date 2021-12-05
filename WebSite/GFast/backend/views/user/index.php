@@ -37,8 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'us_cidade',
             'us_telemovel',
             'us_contribuinte',
-            'us_pontos',
-            //'us_inativo',
+            [
+
+                'attribute' => 'us_inativo',
+
+
+                'value' => function ($model, $key, $index, $column) {
+
+                    return $model->us_inativo == 0 ? 'Ativo' : 'Inativo';
+                },
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'width:10%; text-align:center; background-color:'
+                        . ($model->us_inativo == 0 ? 'green' : 'red')];
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

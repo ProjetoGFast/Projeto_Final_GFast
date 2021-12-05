@@ -8,12 +8,20 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-
 <?= $this->render('..\layouts\header') ?>
 
 <div class="user-form" style="left:50%">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+   /* if (\Yii::$app->user->can('editarOwnPerfil', ['post' => $post])) {
+
+    }*/
+
+
+    $form = ActiveForm::begin(); ?>
+
+
+
 
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
@@ -46,11 +54,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'us_contribuinte')->textInput() ?>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-4">
-            <?= $form->field($model, 'us_pontos')->textInput() ?>
-        </div>
-    </div>
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
