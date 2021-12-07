@@ -12,8 +12,6 @@ use yii\widgets\DetailView;
 
 <div class="user-view">
 
-
-
     <p>
         <?= Html::a('Update', ['editar-perfil', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -43,8 +41,7 @@ use yii\widgets\DetailView;
             'us_cidade',
             'us_telemovel',
             'us_contribuinte',
-            //'us_pontos',
-            //'us_inativo',
+
         ],
     ]) ?>
 

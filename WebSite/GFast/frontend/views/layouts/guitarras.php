@@ -1,134 +1,46 @@
 <?php
+use common\models\Guitarras;
+use yii\helpers\Html;
+use frontend\assets\BackendAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Guitarras */
 /* @var $form yii\widgets\ActiveForm */
 
+$backend = BackendAsset::register($this);
 
-//$categorias = $model->guiIdsubcategoria->subIdcat->cat_nome;
-//var_dump($model);
-//foreach($categorias as $categoria){
-
-//echo $um_filho->nome;
-//}
+$guitarras = Guitarras::find()
+    ->all();
 ?>
 <div class="features_items"><!--features_items-->
     <h2 class="title text-center">Guitarras</h2>
+
+
+    <?php
+    foreach ($guitarras as $guitarra) { ?>
+
+
+
     <div class="col-sm-4">
         <div class="product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
-                    <img src="images/home/product1.png" alt="" />
-                    <h2>$56</h2>
-                    <p>Apenas texto</p>
+                    <?= Html::img($backend->baseUrl."/".$guitarra->gui_fotopath, ['alt' => '']) ?>
+                    <h2><?=$guitarra->gui_preco?>€</h2>
+                    <p><?=$guitarra->gui_nome?> </p>
                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                 </div>
                 <div class="product-overlay">
                     <div class="overlay-content">
-                        <h2>$56</h2>
-                        <p>Apenas texto</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <h2><?=$guitarra->gui_preco?>€</h2>
+                        <p><?=$guitarra->gui_nome?> </p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicicon</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="images/home/product2.png" alt="" />
-                    <h2>$56</h2>
-                    <p>Apenas texto</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <div class="product-overlay">
-                    <div class="overlay-content">
-                        <h2>$56</h2>
-                        <p>Apenas texto</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="images/home/product3.png" alt="" />
-                    <h2>$56</h2>
-                    <p>Apenas texto</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <div class="product-overlay">
-                    <div class="overlay-content">
-                        <h2>$56</h2>
-                        <p>Apenas texto</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="images/home/product4.png" alt="" />
-                    <h2>$56</h2>
-                    <p>Apenas texto</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <div class="product-overlay">
-                    <div class="overlay-content">
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                </div>
-                <img src="images/home/new.png" class="new" alt="" />
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="images/home/product5.png" alt="" />
-                    <h2>$56</h2>
-                    <p>Apenas texto</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <div class="product-overlay">
-                    <div class="overlay-content">
-                        <h2>$56</h2>
-                        <p>Apenas texton</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                </div>
-                <img src="images/home/sale.png" class="new" alt="" />
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="images/home/product6.png" alt="" />
-                    <h2>$56</h2>
-                    <p>Apenas texto</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <div class="product-overlay">
-                    <div class="overlay-content">
-                        <h2>$56</h2>
-                        <p>Apenas texto</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <?php } ?>
 
 </div>

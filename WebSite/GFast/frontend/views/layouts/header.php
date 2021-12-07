@@ -67,6 +67,14 @@ $categorias = Categoriaguitarra::find()->all();
                 $menuItems[] = ['label' => 'Entrar', 'url' => ['/site/login']];
             } else {
 
+                if (\Yii::$app->user->can('createPost')) {
+                    $utilizador[] = ['label' => 'Backend', 'url' => Yii::$app->urlManagerBackend->createUrl([''])];
+                }
+
+
+
+
+
                 $utilizador[] = ['label' => 'Perfil', 'url' => ['/site/ver-perfil']];
                 $utilizador[] =
                         Html::beginForm(['/site/logout'], 'post') .' <a class ="dropdown-item ">'.
