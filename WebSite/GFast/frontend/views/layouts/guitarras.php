@@ -28,13 +28,17 @@ $guitarras = Guitarras::find()
                     <?= Html::img($backend->baseUrl."/".$guitarra->gui_fotopath, ['alt' => '']) ?>
                     <h2><?=$guitarra->gui_preco?>€</h2>
                     <p><?=$guitarra->gui_nome?> </p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                 </div>
                 <div class="product-overlay">
                     <div class="overlay-content">
                         <h2><?=$guitarra->gui_preco?>€</h2>
                         <p><?=$guitarra->gui_nome?> </p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicicon</a>
+                        <div class="btn btn-default add-to-cart"><i class="fa fa-plus"></i>
+                            <?= Html::a('Ver Mais', ['produto', 'id' => $guitarra->gui_id]) ?>
+                        </div>
+                        <div class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                            <?= Html::a('Adicionar', ['produto', 'id' => $guitarra->gui_id]) ?>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -13,11 +13,34 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/bootstrap.min.css',
+        'css/font-awesome.min.css',
+        'css/prettyPhoto.css',
+        'css/price-range.css',
+        'css/animate.css',
+        'css/main.css',
+        'css/responsive.css',
+        'css/navbar.css',
+        'css/login.css',
+        'css/subcategorias.css',
+        'https://unpkg.com/swiper/swiper-bundle.min.css',
+
     ];
     public $js = [
+        'js/html5shiv.js',
+        'js/navbar.js',
+        'js/jquery.js',
+        'js/bootstrap.min.js',
+        'js/jquery.scrollUp.min.js',
+        'js/price-range.js',
+        'js/jquery.prettyPhoto.js',
+        'js/main.js',
+        'https://unpkg.com/swiper/swiper-bundle.min.js',
+        'js/subcategorias.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap4\BootstrapAsset',
     ];
+
 }

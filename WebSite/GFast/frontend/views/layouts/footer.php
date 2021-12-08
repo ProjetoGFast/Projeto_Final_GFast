@@ -67,18 +67,5 @@
 
 </footer>
 
-<script src="js/html5shiv.js"></script>
-<script src="js/navbar.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.scrollUp.min.js"></script>
-<script src="js/price-range.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/main.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="js/subcategorias.js"/>
-
-
-
 </body>
 </html>
