@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Guitarras;
 use frontend\models\ResendVerificationEmailForm;
 use common\models\User;
 use frontend\models\VerifyEmailForm;
@@ -211,6 +212,14 @@ class SiteController extends Controller
         ]);
     }
 
+
+    public function actionProduto($id)
+    {
+        $model = Guitarras::findOne($id);
+        return $this->render('produto', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Signs user up.

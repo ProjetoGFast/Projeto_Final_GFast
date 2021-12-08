@@ -4,26 +4,20 @@
 /* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
-use frontend\assets\BackendAsset;
-use yii\helpers\Html;
-
-$backend = BackendAsset::register($this);
-
 ?>
 <?= $this->render('..\layouts\header') ?>
 <main class="container">
 
     <!-- Left Column / Headphones Image -->
-    <div class="col-sm-6">
+    <div class="left-column">
         <img data-image="black" src="images/black.png" alt="">
         <img data-image="blue" src="images/blue.png" alt="">
         <img data-image="red" class="active" src="images/red.png" alt="">
-        <?= Html::img($backend->baseUrl."/ESP_E_II_M_II_NT_BTB.jpg", ['class' => 'active']) ?>
     </div>
 
 
     <!-- Right Column -->
-    <div class="col-sm-6">
+    <div class="right-column">
 
         <!-- Product Description -->
         <div class="product-description">
