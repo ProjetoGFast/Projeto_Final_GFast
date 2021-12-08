@@ -2,7 +2,9 @@
 
 namespace frontend\controllers;
 
+use common\models\Categoriaguitarra;
 use common\models\Guitarras;
+use common\models\Marcas;
 use frontend\models\ResendVerificationEmailForm;
 use common\models\User;
 use frontend\models\VerifyEmailForm;
@@ -78,7 +80,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
+        $marcas = Marcas::find()->all();
+        $categorias = Categoriaguitarra::find()->all();
+        return $this->render('index', [
+            'guitarras' => $guitarras, 'marcas' => $marcas, 'categorias' => $categorias
+        ]);
     }
 
     /**
@@ -216,10 +223,12 @@ class SiteController extends Controller
     public function actionProduto($id)
     {
         $model = Guitarras::findOne($id);
+        $guitarras = Guitarras::find()->limit(10)->all();
         return $this->render('produto', [
-            'model' => $model,
+            'model' => $model, 'guitarras' => $guitarras
         ]);
     }
+
 
     /**
      * Signs user up.

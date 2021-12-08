@@ -1,5 +1,8 @@
 <?php
 /* @var $this \yii\web\View */
+/* @var $guitarras common\models\Guitarras */
+/* @var $marcas common\models\Marcas */
+/* @var $categorias common\models\Categoriaguitarra */
 /* @var $content string */
 
 use yii\helpers\Html;
@@ -30,7 +33,7 @@ use yii\helpers\Html;
 
 
 <!-- |----------------------------------------- MARCAS -------------------------------------------------------------| -->
-<?= $this->render('..\layouts\marcas') ?>
+<?= $this->render('..\layouts\marcas',['marcas' => $marcas]) ?>
 <!-- |----------------------------------------- MARCAS -------------------------------------------------------------| -->
 
 
@@ -47,12 +50,12 @@ use yii\helpers\Html;
             <div class="col-sm-9 padding-right">
 
 <!-- |--------------------------------------------- GUITARRAS ---------------------------------------------------------| -->
-<?= $this->render('..\layouts\guitarras') ?>
+<?= $this->render('..\layouts\guitarras',['guitarras' => $guitarras]) ?>
  <!-- |--------------------------------------------- GUITARRAS ---------------------------------------------------------| -->
 
 
    <!-- |--------------------------------------------- CATEGORIAS NAVBAR ---------------------------------------------------------| -->
-<?= $this->render('..\layouts\categoriasNavbar') ?>
+<?= $this->render('..\layouts\categoriasNavbar',['categorias' => $categorias]) ?>
  <!-- |--------------------------------------------- CATEGORIAS NAVBAR ---------------------------------------------------------| -->
 
 

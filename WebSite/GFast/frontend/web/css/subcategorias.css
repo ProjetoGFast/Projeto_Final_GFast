@@ -65,7 +65,7 @@
 }
 .cart:hover{
     transform: scale(1.1);
-    background-color: #fe9048;
+    background-color: #312fe2;
     box-shadow: 2px 2px 12px rgba(47,47,47,0.40);
     transition: all ease 0.1s;
 }

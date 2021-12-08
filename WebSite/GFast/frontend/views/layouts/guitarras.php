@@ -4,13 +4,12 @@ use yii\helpers\Html;
 use frontend\assets\BackendAsset;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Guitarras */
+/* @var $guitarras common\models\Guitarras */
 /* @var $form yii\widgets\ActiveForm */
 
 $backend = BackendAsset::register($this);
 
-$guitarras = Guitarras::find()
-    ->all();
+
 ?>
 <div class="features_items"><!--features_items-->
     <h2 class="title text-center">Guitarras</h2>

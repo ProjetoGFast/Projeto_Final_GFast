@@ -1,13 +1,25 @@
+<?php
+use common\models\Guitarras;
+use yii\helpers\Html;
 
+
+/* @var $this yii\web\View */
+/* @var $categorias common\models\Categoriaguitarra */
+
+
+
+?>
 
 <div class="category-tab"><!--category-tab-->
 
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#tshirt" data-toggle="tab">Acusticas</a></li>
-            <li><a href="#blazers" data-toggle="tab">Classicas</a></li>
-            <li><a href="#sunglass" data-toggle="tab">Ukuleles</a></li>
-            <li><a href="#kids" data-toggle="tab">Baixo Eletrico</a></li>
+            <?php
+            foreach ($categorias as $categoria) { ?>
+            <li><a href="#tshirt" data-toggle="tab"><?=$categoria->cat_nome?> </a></li>
+            <?php
+            }?>
+
         </ul>
     </div>
 

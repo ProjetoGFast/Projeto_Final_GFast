@@ -162,8 +162,12 @@ img {vertical-align: middle;}
 
 .active, .dot:hover {
     background-color: #ffffff;
-}
 
+}
+.activeproduto {
+    background-color: #ffffff;
+    height: 500px
+}
 /* Fading animation */
 .fade {
     -webkit-animation-name: fade;
@@ -230,6 +234,7 @@ img {vertical-align: middle;}
     border-bottom: 1px solid #E1E8EE;
     margin-bottom: 20px;
 }
+
 .product-description span {
     font-size: 12px;
     color: #358ED7;
@@ -240,6 +245,12 @@ img {vertical-align: middle;}
 .product-description h1 {
     font-weight: 300;
     font-size: 52px;
+    color: #43484D;
+    letter-spacing: -2px;
+}
+.product-description h3 {
+    font-weight: 300;
+    font-size: 40px;
     color: #43484D;
     letter-spacing: -2px;
 }
@@ -312,8 +323,7 @@ img {vertical-align: middle;}
 
 .cart-btn {
     display: inline-block;
-    background-color: #7DC855;
-    border-radius: 6px;
+    background-color: #2724c5;
     font-size: 16px;
     color: #FFFFFF;
     text-decoration: none;
@@ -321,5 +331,5 @@ img {vertical-align: middle;}
     transition: all .5s;
 }
 .cart-btn:hover {
-    background-color: #64af3d;
+    background-color: #2d2aec;
 }
