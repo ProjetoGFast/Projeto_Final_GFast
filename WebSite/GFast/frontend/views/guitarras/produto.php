@@ -41,13 +41,10 @@ $backend = BackendAsset::register($this);
                 <p><?= $model->gui_descricao ?></p>
             </div>
         </div>
-        <?= $this->render('../avaliacoes/avaliacoes', ['id' => $model->gui_id]);?>
-
 
         <?= $this->render('recomendados', [
             'guitarras' => $guitarras,
         ]); ?>
-
 
     </main>
 

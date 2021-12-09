@@ -33,7 +33,7 @@ class Avaliacoes extends \yii\db\ActiveRecord
         return [
             [['ava_avaliacao', 'ava_idguitarra', 'ava_iduser'], 'required'],
             [['ava_idguitarra', 'ava_iduser'], 'integer'],
-            [['ava_avaliacao'], 'string', 'max' => 45],
+            [['ava_avaliacao'], 'string'],
             [['ava_idguitarra'], 'exist', 'skipOnError' => true, 'targetClass' => Guitarras::className(), 'targetAttribute' => ['ava_idguitarra' => 'gui_id']],
             [['ava_iduser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['ava_iduser' => 'id']],
         ];

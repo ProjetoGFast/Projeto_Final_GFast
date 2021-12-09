@@ -2,7 +2,7 @@
 namespace frontend\rbac;
 use yii\rbac\Item;
 use yii\rbac\Rule;
-use app\models\Post;
+use common\models\Avaliacoes;
 
 class ClienteRule extends Rule
 {
@@ -16,6 +16,6 @@ class ClienteRule extends Rule
      */
     public function execute($user, $item, $params)
     {
-        return isset($params['post']) ? $params['post']->createdBy == $user : false;
+        return isset($params['post']) ? $params['post']->ava_iduser == $user : false;
     }
 }

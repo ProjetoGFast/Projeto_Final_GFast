@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Avaliacoes;
 use common\models\Categoriaguitarra;
 use common\models\Guitarras;
 use common\models\Marcas;
@@ -83,8 +84,21 @@ class SiteController extends Controller
         $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
         $marcas = Marcas::find()->all();
         $categorias = Categoriaguitarra::find()->all();
+
+
         return $this->render('index', [
             'guitarras' => $guitarras, 'marcas' => $marcas, 'categorias' => $categorias
+        ]);
+    }
+
+    public function actionAvaliacoes($id)
+    {
+        $avaliacoes = Avaliacoes::find()->where(['gui_inativo' => 0, 'ava_idguitarra' => $id])->all();
+
+
+
+        return $this->render('avaliacoes', [
+            'avaliacoes' => $avaliacoes
         ]);
     }
 
