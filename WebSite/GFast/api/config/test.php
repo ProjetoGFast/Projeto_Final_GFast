@@ -1,11 +1,15 @@
 <?php
 return [
-    'id' => 'app-common-tests',
-    'basePath' => dirname(__DIR__),
+    'id' => 'app-api-tests',
     'components' => [
-        'user' => [
-            'class' => 'yii\web\User',
-            'identityClass' => 'common\models\User',
+        'assetManager' => [
+            'basePath' => __DIR__ . '/../web/assets',
+        ],
+        'urlManager' => [
+            'showScriptName' => true,
+        ],
+        'request' => [
+            'cookieValidationKey' => 'test',
         ],
     ],
 ];
