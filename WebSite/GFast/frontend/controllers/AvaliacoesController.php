@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Avaliacoes;
 use frontend\models\AvaliacoesSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -115,9 +116,10 @@ class AvaliacoesController extends Controller
         return $this->redirect(['index']);
     }
 
+
     /**
      * Finds the Avaliacoes model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * If the model is not found, a 404 HyTTP exception will be thrown.
      * @param int $id Ava ID
      * @return Avaliacoes the loaded model
      * @throws NotFoundHttpException if the model cannot be found
@@ -130,4 +132,5 @@ class AvaliacoesController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

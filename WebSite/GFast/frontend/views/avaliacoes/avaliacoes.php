@@ -11,6 +11,8 @@ use frontend\assets\BackendAsset;
 use yii\helpers\Html;
 
 $avaliacoes = Avaliacoes::find()->where(['ava_idguitarra' => $id])->all();
+
+if($avaliacoes != null){
 ?>
 
 <section id="testimonials">
@@ -54,3 +56,6 @@ $avaliacoes = Avaliacoes::find()->where(['ava_idguitarra' => $id])->all();
 
     </div>
 </section>
+    <?php
+}
+?>

@@ -150,7 +150,7 @@ class SiteController extends Controller
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('success', 'Registado com Sucesso :)');
             } else {
-                Yii::$app->session->setFlash('error', 'Houve algum erro ao registar o utilizar por favor tente mais tarde');
+                Yii::$app->session->setFlash('error', 'Houve um erro ao registar o utilizar por favor tente mais tarde');
             }
 
             return $this->refresh();
