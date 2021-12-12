@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.books">
+    package="com.example.gfast">
 
     <application
         android:allowBackup="true"
@@ -8,34 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Books">
+        android:theme="@style/Theme.GFast">
         <activity
-<<<<<<< HEAD
-            android:name=".PesquisaActivity"
-            android:exported="false" />
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
-            android:name=".MenuMainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Books.NoActionBar" />
-        <activity
-=======
-            android:name=".MenuMainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Books.NoActionBar"/>
-        <activity
->>>>>>> 89158b298c4b6190ca7cd9c5c0c3f047e0c90e03
             android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".vistas.MainActivity"
             android:exported="true"
-            android:launchMode="singleTop">
+
+            android:theme="@style/Theme.Withoutbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

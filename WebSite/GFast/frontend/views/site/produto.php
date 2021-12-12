@@ -1,13 +1,14 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model common\models\User */
+/* @var $model common\models\Guitarras */
 /* @var $guitarras common\models\Guitarras */
 
 /* @var $form yii\widgets\ActiveForm */
 
 use frontend\assets\BackendAsset;
 use yii\helpers\Html;
+
 
 
 $backend = BackendAsset::register($this);
@@ -33,7 +34,7 @@ $backend = BackendAsset::register($this);
                 <!-- Product Pricing -->
                 <div class="product-price">
                     <span><?= $model->gui_preco ?>€</span>
-                    <a href="#" class="cart-btn"><i class="fa fa-shopping-cart"></i>Adicionar ao Carrinho</a>
+                    <a href="#" class="cart-btn"><i class="fa fa-shopping-cart"></i>&nbsp;Adicionar ao Carrinho</a>
                 </div>
                 <div class="product-description">
                     <h3>Descrição</h3>

@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Avaliacoes */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 <?= $this->render('..\layouts\header') ?>
 <div class="avaliacoes-form">
@@ -22,3 +23,4 @@ use yii\widgets\ActiveForm;
 
 </div>
 <?= $this->render('..\layouts\footer') ?>
+

@@ -24,8 +24,8 @@ $categorias = Categoriaguitarra::find()->all();
 <header>
     <nav id="navbar">
 
+        <?= Html::img('@web/images/thumbnail.png', ['id' => 'logo']) ?>
 
-        <img src="images/home/logo.png" alt="" id="logo"/>
 
         <div id="navbar-right">
             <?php

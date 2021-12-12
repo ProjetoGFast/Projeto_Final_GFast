@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Avaliacoes */
 
-if (\Yii::$app->user->can('crudOwnAvaliacao', ['post' => $model])) {
+
     $this->title = 'Editar Avaliação: ' . $model->ava_id;
     ?>
     <div class="avaliacoes-update">
@@ -17,9 +17,3 @@ if (\Yii::$app->user->can('crudOwnAvaliacao', ['post' => $model])) {
         ]) ?>
 
     </div>
-<?php } else {
-
-    return $this->render('error', ['name' => 'Not Allowed', 'message' => 'Não tem Autorizacão Para Aceder']);
-}
-
-?>

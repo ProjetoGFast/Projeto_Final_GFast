@@ -23,14 +23,14 @@ return [
             // 'cache' => 'cache',
         ],
         'urlManager' => [
-            'baseUrl' => 'http://gfastbackend',
-            'hostInfo' => 'http://gfastbackend',
+           // 'baseUrl' => 'http://gfast:8060',
+          //  'hostInfo' => 'http://gfastbackend',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi?gui_id='],
                // 'pluralize' => false,
 
             ],

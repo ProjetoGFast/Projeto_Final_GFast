@@ -1,5 +1,11 @@
+<?php
+
+use yii\helpers\Html;
+
+?>
 
 
 <div class="shipping text-center"><!--shipping-->
-    <img src="images/home/shipping.png" alt="" />
+    <?= Html::img('@web/images/home/shipping.png') ?>
+
 </div>

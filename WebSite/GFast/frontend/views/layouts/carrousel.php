@@ -1,3 +1,8 @@
+<?php
+
+use yii\helpers\Html;
+
+?>
 
 
 <section id="slider">
@@ -20,7 +25,7 @@
                                 <button type="button" class="btn btn-default get">Compra agora</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/guitar1.png" class="girl img-responsive" alt="" />
+                                <?= Html::img('@web/images/home/guitar1.png', ['class' => 'girl img-responsive']) ?>
                             </div>
                         </div>
                         <div class="item">
@@ -31,7 +36,8 @@
                                 <button type="button" class="btn btn-default get">Compra agora</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/guitar2.png" class="girl img-responsive" alt="" />
+                                <?= Html::img('@web/images/home/guitar2.png', ['class' => 'girl img-responsive']) ?>
+
                             </div>
                         </div>
                         <div class="item">
@@ -42,7 +48,7 @@
                                 <button type="button" class="btn btn-default get">Compra agora</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/guitar3.png" class="girl img-responsive" alt="" />
+                                <?= Html::img('@web/images/home/guitar3.png', ['class' => 'girl img-responsive']) ?>
                             </div>
                         </div>
                     </div>

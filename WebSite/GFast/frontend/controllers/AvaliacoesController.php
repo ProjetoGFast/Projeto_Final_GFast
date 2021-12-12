@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Avaliacoes;
+use common\models\Guitarras;
 use frontend\models\AvaliacoesSearch;
 use Yii;
 use yii\web\Controller;
@@ -71,7 +72,11 @@ class AvaliacoesController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->ava_id]);
+                $guitarra = Guitarras::find()->where(['gui_id' => $model->ava_idguitarra])->one();
+                $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
+                return $this->render('../site/produto', [
+                    'model' => $guitarra, 'guitarras' => $guitarras
+                ]);
             }
         } else {
             $model->loadDefaultValues();
@@ -92,14 +97,26 @@ class AvaliacoesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if (\Yii::$app->user->can('crudOwnAvaliacao', ['post' => $model])) {
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ava_id]);
+            $guitarra = Guitarras::find()->where(['gui_id' => $model->ava_idguitarra])->one();
+            $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
+
+            if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
+                return $this->render('../site/produto', [
+                    'model' => $guitarra, 'guitarras' => $guitarras
+                ]);
+            }
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+
+        } else {
+
+            echo $this->render('error', ['name' => 'Não Autorizado(401)', 'message' => 'Não está autorizado a aceder a esta página']);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -111,9 +128,22 @@ class AvaliacoesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        if (\Yii::$app->user->can('crudOwnAvaliacao', ['post' => $model])) {
+
+            $guitarra = Guitarras::find()->where(['gui_id' => $model->ava_idguitarra])->one();
+            $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
+
+            $this->findModel($id)->delete();
+
+            return $this->render('../site/produto', [
+                'model' => $guitarra, 'guitarras' => $guitarras
+            ]);
+        } else {
+
+            echo $this->render('error', ['name' => 'Não Autorizado(401)', 'message' => 'Não está autorizado a aceder a esta página']);
+        }
     }
 
 
