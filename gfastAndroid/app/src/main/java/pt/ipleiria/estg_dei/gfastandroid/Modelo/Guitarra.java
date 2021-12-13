@@ -1,6 +1,6 @@
 package pt.ipleiria.estg_dei.gfastandroid.Modelo;
 
-public class Guitarras {
+public class Guitarra {
 
 
 
@@ -8,9 +8,9 @@ public class Guitarras {
     private int gui_id, gui_idsubcategoria, gui_idmarca, gui_iva;
     private float gui_preco;
     private String gui_nome, gui_idreferencia, gui_descricao, gui_fotopath, gui_qrcodepath;
-    private boolean gui_inativo;
+    private int gui_inativo;
 
-    public Guitarras(int gui_id, int gui_idsubcategoria, int gui_idmarca, int gui_iva, float gui_preco, String gui_nome, String gui_idreferencia, String gui_descricao, String gui_fotopath, String gui_qrcodepath, boolean gui_inativo) {
+    public Guitarra(int gui_id, int gui_idsubcategoria, int gui_idmarca, int gui_iva, float gui_preco, String gui_nome, String gui_idreferencia, String gui_descricao, String gui_fotopath, String gui_qrcodepath, int gui_inativo) {
         this.gui_id = gui_id;
         this.gui_idsubcategoria = gui_idsubcategoria;
         this.gui_idmarca = gui_idmarca;
@@ -104,11 +104,10 @@ public class Guitarras {
         this.gui_qrcodepath = gui_qrcodepath;
     }
 
-    public boolean isGui_inativo() {
+    public int getGui_inativo() {
         return gui_inativo;
     }
-
-    public void setGui_inativo(boolean gui_inativo) {
+    public void setGui_inativo(int gui_inativo) {
         this.gui_inativo = gui_inativo;
     }
 }

@@ -66,9 +66,15 @@ class AvaliacoesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
+        $user_id = Yii::$app->user->identity;
+
+
         $model = new Avaliacoes();
+
+        $model->ava_iduser = $user_id->getId();
+        $model->ava_idguitarra = $id;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

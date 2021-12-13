@@ -45,10 +45,10 @@ class Avaliacoes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ava_id' => 'Ava ID',
-            'ava_avaliacao' => 'Ava Avaliacao',
-            'ava_idguitarra' => 'Ava Idguitarra',
-            'ava_iduser' => 'Ava Iduser',
+            'ava_id' => 'ID',
+            'ava_avaliacao' => 'Avaliação',
+            'ava_idguitarra' => 'Guitarra',
+            'ava_iduser' => 'Utilizador',
         ];
     }
 

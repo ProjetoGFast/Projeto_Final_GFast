@@ -5,7 +5,9 @@ use common\fixtures\UserFixture;
 
 class UserCrudCest{
 
-    public function _fixtures(){
+
+    public function _fixtures()
+    {
         return [
             'user' => [
                 'class' => UserFixture::className(),
@@ -14,15 +16,19 @@ class UserCrudCest{
         ];
     }
 
-    public function _before(FunctionalTester $I){
+
+    public function _before(FunctionalTester $I)
+    {
         $I->amOnPage('/site/login');
         $I->fillField('LoginForm[username]', 'erau');
         $I->fillField('LoginForm[password]', 'password_0');
         $I->click('login-button');
+
     }
 
     // tests
-    public function createUser(FunctionalTester $I){
+    public function createUser(FunctionalTester $I)
+    {
         $I->click('Utilizadores');
         $I->click('Criar utilizador');
         $I->fillField('User[us_nome]', 'testernome');
@@ -42,7 +48,10 @@ class UserCrudCest{
 
     }
 
-   /* public function testNulls(FunctionalTester $I) {
+
+
+   /* public function testNulls(FunctionalTester $I)
+    {
         $I->click('Utilizadores');
         $I->click('Criar utilizador');
         $I->fillField('User[us_nome]', '');
@@ -60,15 +69,6 @@ class UserCrudCest{
         //$I->click('submitbtn');
     }*/
 
-    public function editUser(FunctionalTester $I){
-
-        $I->click('Utilizadores');
-        $I->click('//table/tbody/tr[2]/td[9]/a[2]');
-        $I->fillField('User[username]', 'tester');
-        $I->click('submitbtn');
-        $I->see('Update');
-        $I->see('tester');
-    }
 
 
 }

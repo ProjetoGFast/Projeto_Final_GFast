@@ -22,6 +22,12 @@ if ($avaliacoes != null) {
         </div>
         <?php
 
+        if (!Yii::$app->user->isGuest) {
+
+            echo Html::a('<i class="fa fa-plus" aria-hidden="true"></i>', ['/avaliacoes/create', 'id' => $id], ['class' => 'btn btn-primary']);
+
+        }
+
         foreach ($avaliacoes
 
         as $avalicao) {
@@ -74,7 +80,7 @@ if ($avaliacoes != null) {
         <?php
         if (!Yii::$app->user->isGuest) {
 
-            echo Html::a('<i class="fa fa-plus" aria-hidden="true"></i>', ['/avaliacoes/create'], ['class' => 'btn btn-primary']);
+            echo Html::a('<i class="fa fa-plus" aria-hidden="true"></i>', ['/avaliacoes/create','id' => $id], ['class' => 'btn btn-primary']);
 
         }
         ?>
