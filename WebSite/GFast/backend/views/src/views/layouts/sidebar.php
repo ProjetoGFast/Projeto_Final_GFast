@@ -81,7 +81,7 @@ AppAsset::register($this);
                     'label' => 'Categorias',
                     'icon' => 'tfa fa-list',
                     'items' => [
-                        ['label' => 'Categorias',  'icon' => 'fa fa-list', 'url' => ['categoria-guitarra/index']],
+                        ['label' => 'Categoria',  'icon' => 'fa fa-list', 'url' => ['categoria-guitarra/index']],
                         ['label' => 'SubCategorias',  'icon' => 'fa fa-list', 'url' => ['subcategoria-guitarra/index']],
                     ]
                 ];
