@@ -8,47 +8,47 @@
         <item
             android:id="@+id/navPerfil"
             android:icon="@drawable/ic_action_perfil"
-            android:title="Perfil" />
+            android:title="@string/perfil" />
 
         <item
-            android:id="@+id/navPesquisa"
-            android:icon="@drawable/ic_action_pesquisa"
-            android:title="Pesquisa" />
+            android:id="@+id/navGuitarras"
+            android:icon="@drawable/ic_action_carrinho"
+            android:title="@string/guitarras" />
         <item
             android:id="@+id/navCarrinho"
             android:icon="@drawable/ic_action_carrinho"
-            android:title="Carrinho" />
+            android:title="@string/carrinho" />
         <item
             android:id="@+id/navHistorico"
             android:icon="@drawable/ic_action_historico"
-            android:title="Histórico" />
+            android:title="@string/hist_rico" />
         <item
             android:id="@+id/navLocalizacao"
             android:icon="@drawable/ic_action_localizacao"
-            android:title="Localização" />
+            android:title="@string/localiza_o" />
         <item
             android:id="@+id/navNoticias"
             android:icon="@drawable/ic_action_noticias"
-            android:title="Noticias" />
+            android:title="@string/noticias" />
     </group>
     <item android:title="@string/comunicar">
         <menu>
             <item
                 android:id="@+id/navSobre"
                 android:icon="@drawable/ic_action_about"
-                android:title="Sobre" />
+                android:title="@string/sobre" />
             <item
                 android:id="@+id/navEmail"
                 android:icon="@drawable/ic_action_email"
                 android:title="@string/email" />
         </menu>
     </item>
-    <item android:title="Sair">
+    <item android:title="@string/sair">
         <menu>
             <item
                 android:id="@+id/navSair"
                 android:icon="@drawable/ic_action_sair"
-                android:title="Sair" />
+                android:title="@string/sair" />
         </menu>
     </item>
 </menu>
