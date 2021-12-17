@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a06015be-36d1-4743-9277-30c4613537c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Android/app/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Android/app/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android/app/src/main/java/com/example/books/vistas/PesquisaFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android/app/src/main/res/layout/fragment_pesquisa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gfastAndroid/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gfastAndroid/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/GFast/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/GFast/vendor/bower-asset/bootstrap" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/GFast/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2-swiftmailer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2-gii" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2-faker" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2-debug" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2-bootstrap" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2-composer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/GFast/vendor/yiisoft/yii2-bootstrap4" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/GFast/vendor/hail812/yii2-adminlte3" />
+      <path value="$PROJECT_DIR$/GFast/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/GFast/vendor/hail812/yii2-adminlte-widgets" />
+      <path value="$PROJECT_DIR$/GFast/vendor/almasaeed2010/adminlte" />
+      <path value="$PROJECT_DIR$/GFast/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/GFast/vendor/composer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/lib-asserts" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/codeception" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/module-filesystem" />
+      <path value="$PROJECT_DIR$/GFast/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/phpunit-wrapper" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/stub" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/lib-innerbrowser" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/verify" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/module-yii2" />
+      <path value="$PROJECT_DIR$/GFast/vendor/codeception/module-asserts" />
+      <path value="$PROJECT_DIR$/GFast/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/GFast/vendor/npm-asset/bootstrap" />
+      <path value="$PROJECT_DIR$/GFast/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/GFast/vendor/perminder-klair/yii2-dropzone" />
+      <path value="$PROJECT_DIR$/GFast/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/GFast/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/GFast/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpspec/php-diff" />
+      <path value="$PROJECT_DIR$/GFast/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/GFast/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/GFast/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/GFast/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/GFast/vendor/kartik-v/yii2-krajee-base" />
+      <path value="$PROJECT_DIR$/GFast/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/GFast/vendor/kartik-v/bootstrap-fileinput" />
+      <path value="$PROJECT_DIR$/GFast/vendor/kartik-v/yii2-widget-fileinput" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/GFast/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/GFast/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/GFast/vendor/cebe/markdown" />
+      <path value="$PROJECT_DIR$/GFast/vendor/bower-asset/jquery" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/GFast/vendor/bower-asset/yii2-pjax" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/GFast/vendor/bower-asset/punycode" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/GFast/vendor/bower-asset/inputmask" />
+      <path value="$PROJECT_DIR$/GFast/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/GFast/vendor/symfony/polyfill-iconv" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="22Hx2zM0tj0GUCNB1EXk98ODAKM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GFast" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a06015be-36d1-4743-9277-30c4613537c8" name="Default Changelist" comment="" />
+      <created>1639508111470</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639508111470</updated>
+      <workItem from="1639508112977" duration="32000" />
+      <workItem from="1639508657960" duration="111000" />
+      <workItem from="1639508845780" duration="111000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
