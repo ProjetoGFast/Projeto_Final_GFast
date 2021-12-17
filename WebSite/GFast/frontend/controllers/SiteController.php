@@ -82,6 +82,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
+
         $marcas = Marcas::find()->all();
         $categorias = Categoriaguitarra::find()->all();
 

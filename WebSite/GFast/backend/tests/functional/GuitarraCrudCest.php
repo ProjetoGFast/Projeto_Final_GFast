@@ -2,13 +2,13 @@
 namespace backend\tests\functional;
 use backend\tests\FunctionalTester;
 use common\fixtures\UserFixture;
-use Codeception\Util\Locator;
 
 
 class GuitarraCrudCest{
 
 
-    public function _fixtures(){
+    public function _fixtures()
+    {
         return [
             'user' => [
                 'class' => UserFixture::className(),
@@ -18,10 +18,12 @@ class GuitarraCrudCest{
     }
 
     public function _before(FunctionalTester $I){
+
         $I->amOnPage('/site/login');
         $I->fillField('LoginForm[username]', 'erau');
         $I->fillField('LoginForm[password]', 'password_0');
         $I->click('login-button');
+
     }
 
 
@@ -44,14 +46,5 @@ class GuitarraCrudCest{
         $I->see('GuitarTest');
 
     }
-
-
-    public function testEditarGuitarra(FunctionalTester $I){
-
-            $I->click('Guitarras');
-            $I->click('//table/tbody/tr[1]/td[7]/a[2]');
-            $I->see('Gui Fotopathhhhh');
-
-}
 
 }

@@ -24,10 +24,6 @@ public class Guitarra {
         this.gui_inativo = gui_inativo;
     }
 
-    public Guitarra(int gui_id, int gui_idsubcategoria, int gui_idmarca, int gui_iva, int gui_preco, String fender, String g001, String guitarraGfast) {
-
-
-    }
 
     public int getGui_id() {
         return gui_id;

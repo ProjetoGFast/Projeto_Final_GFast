@@ -28,9 +28,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
+
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi?gui_id='],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi'],
                // 'pluralize' => false,
 
             ],

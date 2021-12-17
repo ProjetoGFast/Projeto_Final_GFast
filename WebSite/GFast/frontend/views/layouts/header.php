@@ -38,9 +38,9 @@ $categorias = Categoriaguitarra::find()->all();
                 ],
             ]);
 
-
+            $marcas = [];
             foreach ($categorias as $categoria) {
-                $marcas[]=['label' => $categoria->cat_nome, 'url' => ['/site/subcategoria', 'id' => $categoria -> cat_id]];
+                $marcas[] = ['label' => $categoria->cat_nome, 'url' => ['/site/subcategoria', 'id' => $categoria->cat_id]];
             }
             $menuItems = [
                 ['label' => 'Início', 'url' => ['/site/index']],
@@ -62,13 +62,10 @@ $categorias = Categoriaguitarra::find()->all();
                 }
 
 
-
-
-
                 $utilizador[] = ['label' => 'Perfil', 'url' => ['/site/ver-perfil']];
                 $utilizador[] =
-                        Html::beginForm(['/site/logout'], 'post') .' <a class ="dropdown-item ">'.
-                        Html::submitButton('Logout', ['class' => 'logout']) . ' </a>'. Html::endForm();
+                    Html::beginForm(['/site/logout'], 'post') . ' <a class ="dropdown-item ">' .
+                    Html::submitButton('Logout', ['class' => 'logout']) . ' </a>' . Html::endForm();
 
                 $menuItems = [
                     ['label' => 'Início', 'url' => ['/site/index']],
@@ -94,7 +91,7 @@ $categorias = Categoriaguitarra::find()->all();
         </div>
 
 
-</nav>
-    </header>
+    </nav>
+</header>
 <body>
 
