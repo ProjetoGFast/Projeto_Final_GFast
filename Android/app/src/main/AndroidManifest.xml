@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.books">
+    package="com.example.gfastandroid">
 
     <application
         android:allowBackup="true"
@@ -10,9 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Books">
         <activity
+            android:name=".vistas.DetalhesGuitarrasActivity"
+            android:exported="true" />
+        <activity
+            android:name=".vistas.DetalhesGuitarras"
+            android:exported="true" />
+        <activity
             android:name=".MenuMainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Books.NoActionBar"/>
+            android:theme="@style/Theme.Books.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

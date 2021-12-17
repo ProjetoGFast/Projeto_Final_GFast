@@ -51,7 +51,6 @@ class Guitarras extends \yii\db\ActiveRecord
             [['gui_nome'], 'string', 'max' => 20],
             [['gui_descricao', 'gui_fotopath', 'gui_qrcodepath'], 'string'],
             [['gui_idsubcategoria'], 'exist', 'skipOnError' => true, 'targetClass' => SubcategoriaGuitarra::className(), 'targetAttribute' => ['gui_idsubcategoria' => 'sub_id']],
-           // [['gui_idmarca'], 'exist', 'skipOnError' => true, 'targetClass' => Marcas::className(), 'targetAttribute' => ['gui_idmarca' => 'mar_id']],
         ];
     }
 
@@ -70,6 +69,8 @@ class Guitarras extends \yii\db\ActiveRecord
             'gui_preco' => 'Preço',
             'gui_iva' => 'Iva',
             'gui_inativo' => 'Inativo',
+            'gui_fotopath'=>'Foto',
+            'gui_qrcodepath'=>'qr',
         ];
     }
 
