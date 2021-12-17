@@ -30,7 +30,7 @@ return [
             'enableStrictParsing' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user'],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi?gui_id='],
                // 'pluralize' => false,
 
             ],
