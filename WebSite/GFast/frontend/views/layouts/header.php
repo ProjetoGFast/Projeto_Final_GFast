@@ -40,7 +40,7 @@ $categorias = Categoriaguitarra::find()->all();
 
             $marcas = [];
             foreach ($categorias as $categoria) {
-                $marcas[] = ['label' => $categoria->cat_nome, 'url' => ['/site/subcategoria', 'id' => $categoria->cat_id]];
+                $marcas[] = ['label' => $categoria->cat_nome, 'url' => ['/subcategoria-guitarra/index', 'id' => $categoria->cat_id]];
             }
             $menuItems = [
                 ['label' => 'Início', 'url' => ['/site/index']],
@@ -73,7 +73,7 @@ $categorias = Categoriaguitarra::find()->all();
                         'label' => 'Guitarras',
                         'items' => $marcas,
                     ],
-                    ['label' => 'Marcas', 'url' => ['/site/marca']],
+                    ['label' => 'Marcas', 'url' => ['/marcas/index']],
                     ['label' => 'Concertos', 'url' => ['/site/concerto']],
                     ['label' => 'Contactos', 'url' => ['/site/contact']],
                     [
