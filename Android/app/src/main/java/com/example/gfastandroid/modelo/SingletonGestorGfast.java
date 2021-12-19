@@ -16,28 +16,37 @@ public class SingletonGestorGfast {
     private static SingletonGestorGfast instance = null;
 
 
-    public static synchronized SingletonGestorGfast getInstance(){
-        if(instance == null)
+    public static synchronized SingletonGestorGfast getInstance() {
+        if (instance == null)
             instance = new SingletonGestorGfast();
 
         return instance;
     }
+
     public SingletonGestorGfast() {
         gerarDadosDinamicos();
     }
 
-    private void gerarDadosDinamicos(){
+    private void gerarDadosDinamicos() {
 
         guitarras = new ArrayList<>();
 
-        Guitarra guitarra = new Guitarra(1,2, 2,23, 34, "Fender", "G001", "GuitarraGfast");
+        Guitarra guitarra = new Guitarra(1, 1, 1, 1, 1, "eh", "he", "hdsa", "wer", "eds", 0);
+        guitarras.add(new Guitarra(1, 1, 1, 1, 1, "eh", "he", "hdsa", "wer", "eds", 0));
+        guitarras.add(new Guitarra(1, 1, 1, 1, 1, "eh", "he", "hdsa", "wer", "eds", 0));
+        guitarras.add(new Guitarra(1, 1, 1, 1, 1, "eh", "he", "hdsa", "wer", "eds", 0));
+        guitarras.add(new Guitarra(1, 1, 1, 1, 1, "eh", "he", "hdsa", "wer", "eds", 0));
+        guitarras.add(new Guitarra(1, 1, 1, 1, 1, "eh", "he", "hdsa", "wer", "eds", 0));
+        guitarras.add(new Guitarra(1, 1, 1, 1, 1, "eh", "he", "hdsa", "wer", "eds", 0));
 
         guitarras.add(guitarra);
 
     }
-    public ArrayList<Guitarra> getGuitarras()
-    {
+
+    public ArrayList<Guitarra> getGuitarras() {
 
         return new ArrayList<>(guitarras);
     }
+
+
 }

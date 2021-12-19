@@ -30,34 +30,5 @@
         android:textColor="#423737"
         android:textSize="25dp" />
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="match_parent"
-        android:layout_height="60dp" />
-
-    <Button
-        android:id="@+id/btnEstatico"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:text="@string/main_btn_detalhe_estatico"
-        android:onClick="onClickDetalhesEstatico" />
-
-
-    <Button
-        android:id="@+id/btnDinamico"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:text="@string/main_btn_detalhe_dinamico"
-        android:onClick="onClickDetalhesDinamico" />
-
-    <Button
-        android:id="@+id/btnEmail"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:text="@string/main_btn_detalhe_email"
-        android:onClick="onClickDetalhesEmail" />
 
 </LinearLayout>

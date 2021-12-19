@@ -24,14 +24,12 @@ public class Guitarra {
         this.gui_inativo = gui_inativo;
     }
 
-<<<<<<< HEAD:gfastAndroid/app/src/main/java/pt/ipleiria/estg_dei/gfastandroid/Modelo/Guitarra.java
-=======
+
     public Guitarra(int gui_id, int gui_idsubcategoria, int gui_idmarca, int gui_iva, int gui_preco, String fender, String g001, String guitarraGfast) {
 
 
     }
 
->>>>>>> parent of b96dfdd... Android Listviews e Singleton:Android/app/src/main/java/com/example/gfastandroid/modelo/Guitarra.java
     public int getGui_id() {
         return gui_id;
     }
