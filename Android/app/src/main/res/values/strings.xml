@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">gfastandroid</string>
     <string name="login_etEmail">Introduza o E-mail!</string>
+    <string name="login_etName">Introduza o Nome!</string>
+    <string name="login_etSurname">Introduza o Sobrenome!</string>
+    <string name="login_etCity">Introduza a Cidade!</string>
+    <string name="login_etPhone">Introduza o Contacto!</string>
+    <string name="login_etContribuinte">Introduza o Contribuinte!</string>
     <string name="login_etPassword">Introduza a Password!</string>
     <string name="login_btnLogin">Login</string>
+    <string name="login_btnRegister">Registo</string>
     <string name="login_etEmail_Erro">Email Inválido!</string>
+    <string name="login_etUserName_Erro">UserName Inválido!</string>
+    <string name="login_etName_Erro">Nome Inválido!</string>
+    <string name="login_etSurname_Erro">Sobrenome Inválido!</string>
+    <string name="login_etCity_Erro">Cidade Inválido!</string>
+    <string name="login_etPhone_Erro">Telemóvel Inválido!</string>
+    <string name="login_etContribuinte_Erro">Contribuinte Inválido!</string>
     <string name="login_etPassword_Erro">Password errada!</string>
     <string name="main_btn_detalhe_estatico">Ver detalhes (estático)</string>
     <string name="main_btn_detalhe_dinamico">Ver detalhes (dinamico)</string>

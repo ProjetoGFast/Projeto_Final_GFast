@@ -862,6 +862,12 @@ h2.title {
 	overflow: hidden;
 	margin-bottom:30px;
 }
+.marcas-box{
+
+  overflow: hidden;
+  margin-bottom:30px;
+  height:150px;
+}
 
 .single-products {
   position: relative;
@@ -2537,3 +2543,8 @@ h2.title {
 }
 
 
+.marca{
+  position:relative;
+  width: 40%;
+  height: 40%;
+}

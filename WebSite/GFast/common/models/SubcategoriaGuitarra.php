@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "subcategoriaguitarra".
+ * This is the model class for table "subcategoria-guitarra".
  *
  * @property int $sub_id
  * @property string $sub_nome
@@ -21,7 +21,7 @@ class Subcategoriaguitarra extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'subcategoriaguitarra';
+        return 'subcategoria-guitarra';
     }
 
     /**
