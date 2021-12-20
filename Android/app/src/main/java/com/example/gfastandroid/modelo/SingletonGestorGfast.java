@@ -49,19 +49,4 @@ public class SingletonGestorGfast {
     }
 
 
-    public Guitarra getGuitarraBD(int id) {
-
-        for (Guitarra g : guitarras) {
-
-            if (g.getGui_id() == id) {
-
-                return g;
-
-            }
-
-        }
-
-        return null;
-    }
-
 }
