@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 
@@ -65,21 +67,6 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    public ArrayList<Guitarra> getAllGuitarrasBD() {
-        ArrayList<Guitarra> guitarras = new ArrayList<>();
-
-        Cursor cursor = this.db.query(TABLE_GUITARRAS, new String[]{GUI_ID, GUI_NOME, GUI_IDSUBCATEGORIA, GUI_IDMARCA, GUI_IDREFERENCIA, GUI_PRECO, GUI_IVA, GUI_FOTOPATH, GUI_QRCODEPATH, GUI_INATIVO, GUI_DESCRICAO}, null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                Guitarra guitarraaux = new Guitarra(cursor.getInt(0), cursor.getInt(2), cursor.getInt(3), cursor.getInt(6), cursor.getFloat(5), cursor.getString(2), cursor.getString(4), cursor.getString(10), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
-                //livroaux.setId(cursor.getInt(0));
-                guitarras.add(guitarraaux);
-            } while (cursor.moveToNext());
-        }
-        return guitarras;
-    }
-
     public Guitarra adicionarGuitarraBD(Guitarra g) {
         ContentValues values = new ContentValues();
         values.put(GUI_NOME, g.getGui_nome());
@@ -98,9 +85,25 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return null;
 
     }
+    public ArrayList<Guitarra> getAllGuitarrasBD() {
+        ArrayList<Guitarra> guitarras = new ArrayList<>();
+
+        Cursor cursor = this.db.query(TABLE_GUITARRAS, new String[]{GUI_ID, GUI_NOME, GUI_IDSUBCATEGORIA, GUI_IDMARCA, GUI_IDREFERENCIA, GUI_PRECO, GUI_IVA, GUI_FOTOPATH, GUI_QRCODEPATH, GUI_INATIVO, GUI_DESCRICAO}, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Guitarra guitarraaux = new Guitarra(cursor.getInt(0), cursor.getInt(2), cursor.getInt(3), cursor.getInt(6), cursor.getFloat(5), cursor.getString(2), cursor.getString(4), cursor.getString(10), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
+                //livroaux.setId(cursor.getInt(0));
+                guitarras.add(guitarraaux);
+            } while (cursor.moveToNext());
+        }
+        return guitarras;
+    }
 
 
-    public boolean editarLivroBD(Guitarra g) {
+
+
+    public boolean editarGuitarraBD(Guitarra g) {
 
 
         ContentValues values = new ContentValues();
@@ -121,5 +124,9 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
     public boolean removerGuitarraBD(int id) {
         return (this.db.delete(TABLE_GUITARRAS, GUI_ID + "= ?", new String[]{"" + id}) == 1);
+    }
+
+    public void removerAllGuitarrasBD() {
+        db.delete(TABLE_GUITARRAS, null, null);
     }
 }
