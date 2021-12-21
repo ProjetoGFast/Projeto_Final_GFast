@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Url;
 use yii\web\UploadedFile;
 
 /**
@@ -74,6 +75,15 @@ class Guitarras extends \yii\db\ActiveRecord
         ];
     }
 
+    //public function fields()
+   // {
+       /* return ['gui_fotopath'=>function(){
+            return $this->imageUrl();
+        }, 'gui_idmarca'=>function(){
+            return $this->guiIdmarca->mar_nome;
+        }];*/
+   // }
+
     /**
      * Gets query for [[Avaliacoes]].
      *
@@ -103,6 +113,11 @@ class Guitarras extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Fotos::className(), ['fot_idguitarra' => 'gui_id']);
     }
+
+    public function imageUrl(){
+        return Url::to('@web/fotos/'.$this->gui_fotopath);
+    }
+
 
     /**
      * Gets query for [[GuiIdmarca]].

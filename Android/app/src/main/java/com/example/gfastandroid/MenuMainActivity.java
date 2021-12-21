@@ -100,11 +100,15 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         switch (item.getItemId())
         {
             case R.id.navPerfil:
-                fragment = new PerfilFragment(); fragment = new CarrinhoFragment();
+                fragment = new PerfilFragment();
                 setTitle(item.getTitle());
                 break;
             case R.id.navGuitarras:
                 fragment = new ListaGuitarrasFragment();
+                setTitle(item.getTitle());
+                break;
+            case R.id.navCarrinho:
+                fragment = new CarrinhoFragment();
                 setTitle(item.getTitle());
                 break;
             case R.id.navLocalizacao:
