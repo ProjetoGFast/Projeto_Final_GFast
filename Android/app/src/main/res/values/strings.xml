@@ -9,6 +9,7 @@
     <string name="login_etPassword">Introduza a Password!</string>
     <string name="login_btnLogin">Login</string>
     <string name="login_btnRegister">Registo</string>
+    <string name="login_btnEditar">Editar</string>
     <string name="login_etEmail_Erro">Email Inválido!</string>
     <string name="login_etUserName_Erro">UserName Inválido!</string>
     <string name="login_etName_Erro">Nome Inválido!</string>

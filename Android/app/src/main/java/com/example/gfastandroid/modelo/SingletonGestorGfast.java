@@ -26,7 +26,7 @@ public class SingletonGestorGfast {
     private ArrayList<Guitarra> guitarras;
     private static SingletonGestorGfast instance = null;
     private static RequestQueue volleyQueue = null;
-    private static final String urlAPIGFast = "http://192.168.1.76:8061/v1/guitarrasapis";
+    private static final String urlAPIGFast = "http://192.168.1.160:8061/v1/guitarrasapis";
     private GuitarrasListener guitarrasListener;
     private GuitarraListener guitarraListener;
 
