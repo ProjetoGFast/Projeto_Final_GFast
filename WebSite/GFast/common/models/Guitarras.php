@@ -70,19 +70,59 @@ class Guitarras extends \yii\db\ActiveRecord
             'gui_preco' => 'Preço',
             'gui_iva' => 'Iva',
             'gui_inativo' => 'Inativo',
-            'gui_fotopath'=>'Foto',
-            'gui_qrcodepath'=>'qr',
+            'gui_fotopath' => 'Foto',
+            'gui_qrcodepath' => 'qr',
         ];
     }
 
-    //public function fields()
-   // {
-       /* return ['gui_fotopath'=>function(){
-            return $this->imageUrl();
-        }, 'gui_idmarca'=>function(){
-            return $this->guiIdmarca->mar_nome;
-        }];*/
-   // }
+    public function fields()
+    {
+        return [
+            'gui_fotopath' => function () {
+                return $this->imageUrl();
+            },
+            'gui_nome' => function () {
+                return $this->gui_nome;
+            },
+            'gui_idmarca' => function () {
+                return $this->guiIdmarca->mar_nome;
+            },
+            'gui_id' => function () {
+                return $this->gui_id;
+            },
+
+            'gui_idsubcategoria' => function () {
+                return $this->gui_idsubcategoria;
+            },
+
+            'gui_idreferencia' => function () {
+                return $this->gui_idreferencia;
+            },
+
+            'gui_descricao' => function () {
+                return $this->gui_descricao;
+            },
+
+            'gui_preco' => function () {
+                return $this->gui_preco;
+            },
+
+            'gui_iva' => function () {
+                return $this->gui_iva;
+            },
+
+            'gui_qrcodepath' => function () {
+                return $this->gui_qrcodepath;
+            },
+
+            'gui_inativo' => function () {
+                return $this->gui_inativo;
+            },
+
+
+        ];
+
+    }
 
     /**
      * Gets query for [[Avaliacoes]].
@@ -114,8 +154,9 @@ class Guitarras extends \yii\db\ActiveRecord
         return $this->hasMany(Fotos::className(), ['fot_idguitarra' => 'gui_id']);
     }
 
-    public function imageUrl(){
-        return Url::to('@web/fotos/'.$this->gui_fotopath);
+    public function imageUrl()
+    {
+        return Url::to('@web/fotos/' . $this->gui_fotopath);
     }
 
 

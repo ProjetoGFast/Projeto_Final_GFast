@@ -92,7 +92,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Guitarra guitarraaux = new Guitarra(cursor.getInt(0), cursor.getInt(2), cursor.getInt(3), cursor.getInt(6), cursor.getFloat(5), cursor.getString(2), cursor.getString(4), cursor.getString(10), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
+                Guitarra guitarraaux = new Guitarra(cursor.getInt(0), cursor.getInt(2), cursor.getString(3), cursor.getInt(6), cursor.getFloat(5), cursor.getString(2), cursor.getString(4), cursor.getString(10), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
                 //livroaux.setId(cursor.getInt(0));
                 guitarras.add(guitarraaux);
             } while (cursor.moveToNext());

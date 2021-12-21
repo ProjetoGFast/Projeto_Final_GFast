@@ -5,12 +5,12 @@ public class Guitarra {
 
 
 
-    private int gui_id, gui_idsubcategoria, gui_idmarca, gui_iva;
+    private int gui_id, gui_idsubcategoria, gui_iva;
     private float gui_preco;
-    private String gui_nome, gui_idreferencia, gui_descricao, gui_fotopath, gui_qrcodepath;
+    private String gui_nome, gui_idreferencia,gui_idmarca, gui_descricao, gui_fotopath, gui_qrcodepath;
     private int gui_inativo;
 
-    public Guitarra(int gui_id, int gui_idsubcategoria, int gui_idmarca, int gui_iva, float gui_preco, String gui_nome, String gui_idreferencia, String gui_descricao, String gui_fotopath, String gui_qrcodepath, int gui_inativo) {
+    public Guitarra(int gui_id, int gui_idsubcategoria, String gui_idmarca, int gui_iva, float gui_preco, String gui_nome, String gui_idreferencia, String gui_descricao, String gui_fotopath, String gui_qrcodepath, int gui_inativo) {
         this.gui_id = gui_id;
         this.gui_idsubcategoria = gui_idsubcategoria;
         this.gui_idmarca = gui_idmarca;
@@ -46,11 +46,11 @@ public class Guitarra {
         this.gui_idsubcategoria = gui_idsubcategoria;
     }
 
-    public int getGui_idmarca() {
+    public String getGui_idmarca() {
         return gui_idmarca;
     }
 
-    public void setGui_idmarca(int gui_idmarca) {
+    public void setGui_idmarca(String gui_idmarca) {
         this.gui_idmarca = gui_idmarca;
     }
 

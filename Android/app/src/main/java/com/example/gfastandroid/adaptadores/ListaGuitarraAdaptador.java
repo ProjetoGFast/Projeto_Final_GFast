@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gfastandroid.R;
 import com.example.gfastandroid.modelo.Guitarra;
 
@@ -65,21 +67,26 @@ public class ListaGuitarraAdaptador extends BaseAdapter {
 
     private class ViewHolderLista{
         private TextView tvModelo,tvMarca, tvPreco, foto;
-        private ImageView imgCapa;
+        private ImageView imgGuitarra;
 
         public ViewHolderLista(View view){
             tvModelo = view.findViewById(R.id.tvModelo);
             tvMarca = view.findViewById(R.id.tvMarca);
             tvPreco = view.findViewById(R.id.tvPreco);
 
-           // foto = view.findViewById(R.id.imageView);
+            imgGuitarra = view.findViewById(R.id.imgGuitarra);
         }
 
         public void update(Guitarra guitarra){
             tvModelo.setText(guitarra.getGui_nome());
-            tvMarca.setText(""+guitarra.getGui_idmarca());
+            tvMarca.setText(guitarra.getGui_idmarca());
              tvPreco.setText(""+guitarra.getGui_preco());
-          //  imgCapa.setImageResource(guitarra.getCapa());
+            Glide.with(context)
+                    .load(context.getString(R.string.iplocal) + guitarra.getGui_fotopath())
+                    .placeholder(R.drawable.programarandroid1)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imgGuitarra);
+             //imgCapa.setImageResource(guitarra.getGui_fotopath());
         }
     }
 }

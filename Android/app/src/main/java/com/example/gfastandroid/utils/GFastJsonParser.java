@@ -25,7 +25,7 @@ public class GFastJsonParser {
                 int gui_id = guitarra.getInt("gui_id");
                 String gui_nome = guitarra.getString("gui_nome");
                 int gui_idsubcategoria = guitarra.getInt("gui_idsubcategoria");
-                int gui_idmarca = guitarra.getInt("gui_idmarca");
+                String gui_idmarca = guitarra.getString("gui_idmarca");
                 String gui_idreferencia = guitarra.getString("gui_idreferencia");
                 String gui_descricao = guitarra.getString("gui_descricao");
                 int gui_preco = guitarra.getInt("gui_preco");
