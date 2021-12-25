@@ -56,4 +56,15 @@ public class GFastJsonParser {
 
     }
 
+    public static String parserJsonLogin(String response) {
+        String token = null;
+        try {
+            JSONObject login = new JSONObject(response);
+            token = login.getString("verification_token");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return token;
+    }
+
 }

@@ -39,5 +39,6 @@
     <string name="perfil">Perfil</string>
     <string name="sobre">Sobre</string>
     <string name="sair">Sair</string>
-    <string name="iplocal">http://192.168.1.76:8061</string>
+    <string name="iplocal">http://192.168.1.76:8061/</string>
+    <string name="username">Username</string>
 </resources>

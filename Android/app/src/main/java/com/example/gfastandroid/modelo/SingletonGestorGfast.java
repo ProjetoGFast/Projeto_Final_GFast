@@ -4,6 +4,7 @@ package com.example.gfastandroid.modelo;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -11,14 +12,19 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.gfastandroid.R;
 import com.example.gfastandroid.listeners.GuitarraListener;
 import com.example.gfastandroid.listeners.GuitarrasListener;
+import com.example.gfastandroid.listeners.UserListener;
 import com.example.gfastandroid.utils.GFastJsonParser;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SingletonGestorGfast {
 
@@ -26,10 +32,11 @@ public class SingletonGestorGfast {
     private ArrayList<Guitarra> guitarras;
     private static SingletonGestorGfast instance = null;
     private static RequestQueue volleyQueue = null;
-    private static final String urlAPIGFast = "http://192.168.1.76:8061/v1/guitarrasapis";
+    private static String urlAPIGFast;
+    private static String urlAPILogin;
     private GuitarrasListener guitarrasListener;
     private GuitarraListener guitarraListener;
-
+    public UserListener userListener;
 
     public static synchronized SingletonGestorGfast getInstance(Context context) {
         if (instance == null)
@@ -40,15 +47,22 @@ public class SingletonGestorGfast {
     }
 
     public SingletonGestorGfast(Context context) {
-        //gerarDadosDinamicos();
+
         guitarras = new ArrayList<>();
         gfastBDHelper = new GfastBDHelper(context);
+        urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
+        urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
     }
 
     public void setGuitarrasListener(GuitarrasListener guitarrasListener){
 
         this.guitarrasListener = guitarrasListener;
 
+    }
+
+    public void setUserListener(UserListener userListener) {
+
+        this.userListener = userListener;
     }
     public void setGuitarraListener(GuitarraListener guitarraListener){
 
@@ -154,6 +168,38 @@ public class SingletonGestorGfast {
             volleyQueue.add(request);
         }
 
+    }
+
+    public void loginUserAPI(final String username, final String password, final Context context) {
+        StringRequest req = new StringRequest(Request.Method.POST, urlAPILogin, new Response.Listener<String>() {
+
+            public void onResponse(String response) {
+                if (userListener != null) {
+                    userListener.onValidateLogin(GFastJsonParser.parserJsonLogin(response), username);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (userListener != null) {
+                    userListener.onErroLogin();
+
+
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("username", username);
+                params.put("password", password);
+                return params;
+            }
+        };
+
+        volleyQueue.add(req);
     }
 
 
