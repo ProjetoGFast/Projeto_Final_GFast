@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,11 +14,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText etUserName, etEmail, etName, etSurname, etCity, etPhone, etContribuinte, etPassword;
     private Button btnRegister;
+    private Button btnToLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_register);
 
         etUserName = findViewById(R.id.etUserName);
         etEmail = findViewById(R.id.etEmail);
@@ -27,8 +32,23 @@ public class RegisterActivity extends AppCompatActivity {
         etPhone = findViewById(R.id.etPhone);
         etContribuinte = findViewById(R.id.etContribuinte);
         etPassword = findViewById(R.id.etPassword);
-
+        btnToLogin = findViewById(R.id.btnToLogin);
         btnRegister = findViewById(R.id.btnLogin);
+
+
+        btnToLogin = (Button) findViewById(R.id.btnToLogin);
+        btnToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickToLogin();
+            }
+        });
+    }
+
+    public void onClickToLogin(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
     }
 
     public void onClickRegister(View view) {

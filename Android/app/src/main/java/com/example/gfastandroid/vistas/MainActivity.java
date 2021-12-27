@@ -15,13 +15,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvEmail;
     private String email;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-    }
-
 
     public void onClickDetalhesEmail(View view) {
         String subject = "AMSI 2021/2022";

@@ -9,6 +9,7 @@
     <string name="login_etPassword">Introduza a Password!</string>
     <string name="login_btnLogin">Login</string>
     <string name="login_btnRegister">Registo</string>
+    <string name="login_btnToLogin">Login</string>
     <string name="login_btnEditar">Editar</string>
     <string name="login_etEmail_Erro">Email Inválido!</string>
     <string name="login_etUserName_Erro">UserName Inválido!</string>
@@ -39,6 +40,8 @@
     <string name="perfil">Perfil</string>
     <string name="sobre">Sobre</string>
     <string name="sair">Sair</string>
-    <string name="iplocal">http://192.168.1.76:8061/</string>
+    <string name="iplocal">http://192.168.1.160:8061/</string>
     <string name="username">Username</string>
+    <string name="login_text">Login</string>
+    <string name="register_text">Registo</string>
 </resources>

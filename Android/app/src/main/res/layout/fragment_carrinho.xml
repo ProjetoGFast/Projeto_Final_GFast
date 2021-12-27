@@ -94,6 +94,7 @@
                 android:id="@+id/tvRemoverCarrinho"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_700"
                 android:text="Remover"
                 app:cornerRadius="40dp"
                 tools:ignore="TouchTargetSizeCheck" />

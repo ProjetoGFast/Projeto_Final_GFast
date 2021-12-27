@@ -25,6 +25,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:src="@drawable/ic_action_adicionar" />
+        android:src="@drawable/ic_adicionaricon"
+        app:backgroundTint="@color/purple_700"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </FrameLayout>
