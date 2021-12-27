@@ -1,18 +1,13 @@
 package com.example.gfastandroid;
 
 
-import static java.security.AccessController.getContext;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +17,6 @@ import android.widget.Toast;
 import com.example.gfastandroid.listeners.UserListener;
 import com.example.gfastandroid.modelo.SingletonGestorGfast;
 import com.example.gfastandroid.utils.GFastJsonParser;
-import com.example.gfastandroid.vistas.ListaGuitarrasFragment;
 
 public class LoginActivity extends AppCompatActivity implements UserListener {
 
@@ -54,13 +48,13 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     }
 
     public void onClickLogin(View view) {
-        String email = etUserName.getText().toString();
+        String username = etUserName.getText().toString();
         String password = etPassword.getText().toString();
 
 
         SingletonGestorGfast.getInstance(getApplicationContext()).setUserListener(this);
 
-        if (!isEmailValido(email)) {
+        if (!isEmailValido(username)) {
             etUserName.setError(getString(R.string.login_etEmail_Erro));
             return;
         }
@@ -73,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
 
         if (GFastJsonParser.isConnectionInternet(getApplicationContext())) {
 
-            SingletonGestorGfast.getInstance(getApplicationContext()).loginUserAPI(email, password, getApplicationContext());
+            SingletonGestorGfast.getInstance(getApplicationContext()).loginUserAPI(username, password, getApplicationContext());
 
         } else {
             Toast.makeText(getApplicationContext(), "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
@@ -99,13 +93,16 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     public void onValidateLogin(String token, String username) {
         if (token != null) {
 
-          /*  Fragment fragment = new ListaGuitarrasFragment();
-            fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).addToBackStack(null).commit();
-*/
+            guardarInfoSharedPref(token, username);
+
+
             Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
-            intent.putExtra(MenuMainActivity.EMAIL, username);
+            intent.putExtra(MenuMainActivity.USERNAME, username);
             startActivity(intent);
             finish();
+
+
+
             Toast.makeText(getApplicationContext(), "Bem Vindo!", Toast.LENGTH_LONG).show();
         } else {
 
@@ -119,13 +116,16 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         etPassword.setError("Utilizador ou Palavra-Passe Incorretos!");
     }
 
-    private void guardarInfoSharedPref(String token, String email) {
-      /*  SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
+    private void guardarInfoSharedPref(String token, String username) {
+
+        /*SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferencesUser.edit();
 
-        editor.putString(MenuMainActivity.EMAIL, email);
+        editor.putString(MenuMainActivity.USERNAME, username);
         editor.putString(MenuMainActivity.TOKEN, token);
 
         editor.apply();*/
+
+
     }
 }

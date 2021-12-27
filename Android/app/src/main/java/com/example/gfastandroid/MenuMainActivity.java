@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.gfastandroid.vistas.CarrinhoFragment;
-import com.example.gfastandroid.vistas.HistoricoFragment;
 import com.example.gfastandroid.vistas.ListaGuitarrasFragment;
 import com.example.gfastandroid.vistas.LocalizacaoFragment;
 import com.example.gfastandroid.vistas.NoticiasFragment;
@@ -29,7 +28,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String EMAIL = "email";
+    public static final String USERNAME = "email";
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private String email;
@@ -60,7 +59,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void carregarCabecalho() {
-        email = getIntent().getStringExtra(EMAIL);
+        email = getIntent().getStringExtra(USERNAME);
         if(email != null){
             View view = navigationView.getHeaderView(0);
             TextView tvEmail = view.findViewById(R.id.tvEmailHeader);
@@ -71,7 +70,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
     private boolean carregarFragmentoInicial(){
         Menu menu = navigationView.getMenu();
-        MenuItem item = menu.getItem(0);
+        MenuItem item = menu.getItem(1);
         item.setCheckable(true);
         return onNavigationItemSelected(item);
 

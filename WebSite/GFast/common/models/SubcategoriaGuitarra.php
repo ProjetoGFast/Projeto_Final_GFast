@@ -21,7 +21,7 @@ class Subcategoriaguitarra extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'subcategoria-guitarra';
+        return 'subcategoriaguitarra';
     }
 
     /**
