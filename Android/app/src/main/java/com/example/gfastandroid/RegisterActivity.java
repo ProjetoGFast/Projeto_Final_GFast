@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.putExtra(MenuMainActivity.EMAIL, email);
+        intent.putExtra(MenuMainActivity.USERNAME, email);
         startActivity(intent);
         finish();
 
