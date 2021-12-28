@@ -13,5 +13,5 @@ public class DetalhesGuitarras extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_lista_guitarras);    }
-        
+
 }
