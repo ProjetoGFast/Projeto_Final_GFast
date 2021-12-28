@@ -7,39 +7,38 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navPerfil"
-            android:icon="@drawable/ic_action_perfil"
+            android:icon="@drawable/ic_perfilicon"
             android:title="@string/perfil" />
-
         <item
             android:id="@+id/navGuitarras"
-            android:icon="@drawable/ic_action_carrinho"
+            android:icon="@drawable/ic_guitarrasicon"
             android:title="@string/guitarras" />
         <item
             android:id="@+id/navCarrinho"
-            android:icon="@drawable/ic_action_carrinho"
+            android:icon="@drawable/ic_carrinhoicon"
             android:title="@string/carrinho" />
         <item
             android:id="@+id/navHistorico"
-            android:icon="@drawable/ic_action_historico"
+            android:icon="@drawable/ic_historiaicon"
             android:title="@string/hist_rico" />
         <item
             android:id="@+id/navLocalizacao"
-            android:icon="@drawable/ic_action_localizacao"
+            android:icon="@drawable/ic_localicon"
             android:title="@string/localiza_o" />
         <item
             android:id="@+id/navNoticias"
-            android:icon="@drawable/ic_action_noticias"
+            android:icon="@drawable/ic_noticiaicon"
             android:title="@string/noticias" />
     </group>
     <item android:title="@string/comunicar">
         <menu>
             <item
                 android:id="@+id/navSobre"
-                android:icon="@drawable/ic_action_about"
+                android:icon="@drawable/ic_sobreicon"
                 android:title="@string/sobre" />
             <item
                 android:id="@+id/navEmail"
-                android:icon="@drawable/ic_action_email"
+                android:icon="@drawable/ic_emailicon"
                 android:title="@string/email" />
         </menu>
     </item>
@@ -47,7 +46,7 @@
         <menu>
             <item
                 android:id="@+id/navSair"
-                android:icon="@drawable/ic_action_sair"
+                android:icon="@drawable/ic_sairicon"
                 android:title="@string/sair" />
         </menu>
     </item>
