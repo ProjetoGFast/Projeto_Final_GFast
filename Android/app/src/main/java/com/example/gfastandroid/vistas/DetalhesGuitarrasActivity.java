@@ -7,10 +7,10 @@ import android.os.Bundle;
 import com.example.gfastandroid.R;
 
 public class DetalhesGuitarrasActivity extends AppCompatActivity {
-    public static final String ID_GUITARRA = "IDLIVRO";
+    public static final String ID_GUITARRA = "ID_GUITARRA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_guitarras);
+        setContentView(R.layout.item_lista_guitarras);
     }
 }
