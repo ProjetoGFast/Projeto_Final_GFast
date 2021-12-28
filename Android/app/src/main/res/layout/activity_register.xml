@@ -122,7 +122,7 @@
         tools:layout_editor_absoluteX="92dp" />
 
     <Button
-        android:id="@+id/btnEditarPerfil"
+        android:id="@+id/btnVoltarGui"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -159,6 +159,6 @@
         app:cornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditarPerfil" />
+        app:layout_constraintTop_toBottomOf="@+id/btnVoltarGui" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

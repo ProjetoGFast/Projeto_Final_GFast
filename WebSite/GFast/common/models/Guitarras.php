@@ -75,7 +75,7 @@ class Guitarras extends \yii\db\ActiveRecord
         ];
     }
 
-   /* public function fields()
+    public function fields()
     {
         return [
             'gui_fotopath' => function () {
@@ -122,7 +122,7 @@ class Guitarras extends \yii\db\ActiveRecord
 
         ];
 
-    }*/
+    }
 
     /**
      * Gets query for [[Avaliacoes]].
