@@ -49,7 +49,7 @@ public class ListaGuitarraAdaptador extends BaseAdapter {
         }
 
         if (view == null) {
-            view = inflater.inflate(R.layout.activity_guitarras, null);
+            view = inflater.inflate(R.layout.item_lista_guitarras, null);
         }
 
 
@@ -81,10 +81,10 @@ public class ListaGuitarraAdaptador extends BaseAdapter {
              tvPreco.setText(""+guitarra.getGui_preco());
             Glide.with(context)
                     .load(context.getString(R.string.iplocal) + guitarra.getGui_fotopath())
-                    .placeholder(R.drawable.programarandroid1)
+                    .placeholder(R.drawable.logo_gfast)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgGuitarra);
-             //imgCapa.setImageResource(guitarra.getGui_fotopath());
+
         }
     }
 }

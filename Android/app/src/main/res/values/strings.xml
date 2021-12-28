@@ -45,4 +45,6 @@
     <string name="username">Username</string>
     <string name="login_text">Login</string>
     <string name="register_text">Registo</string>
+    <string name="pesquisa">pesquisa</string>
+    <string name="adicionar">Adicionar</string>
 </resources>

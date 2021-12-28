@@ -57,17 +57,15 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_lista_guitarras, container, false);
 
         lvGuitarras = view.findViewById(R.id.lvguitarras);
         lvGuitarras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), DetalhesGuitarrasActivity.class);
-                intent.putExtra(DetalhesGuitarrasActivity.ID_GUITARRA, (int) id);
-
+                intent.putExtra(DetalhesGuitarrasActivity.ID_GUITARRA, (int) l);
                 activityResultLauncher.launch(intent);
             }
         });
@@ -94,7 +92,7 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-       /* inflater.inflate(R.menu.menu_pesquisa, menu);
+        inflater.inflate(R.menu.menu_pesquisa, menu);
         MenuItem itemPesquisa = menu.findItem(R.id.itemPesquisa);
         searchView = (SearchView) itemPesquisa.getActionView();
 
@@ -109,19 +107,19 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
 
                 ArrayList<Guitarra> tempLivros = new ArrayList<>();
 
-                for (Livro l : SingletonGestorLivros.getInstance(getContext()).getLivros()) {
-                    if (l.getTitulo().toLowerCase().contains(s.toLowerCase())) {
-                        tempLivros.add(l);
+                for (Guitarra g : SingletonGestorGfast.getInstance(getContext()).getGuitarras()) {
+                    if (g.getGui_nome().toLowerCase().contains(s.toLowerCase())) {
+                        tempLivros.add(g);
                     }
 
                 }
 
-                lvlivros.setAdapter(new ListaLivroAdaptador(getContext(), tempLivros));
+                lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), tempLivros));
                 return true;
             }
         });
 
-        super.onCreateOptionsMenu(menu, inflater);*/
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -133,9 +131,10 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
 
     @Override
     public void onRefreshListaGuitarras(ArrayList<Guitarra> guitarras) {
-        if(guitarras != null)
-        {
+        if (guitarras != null) {
             lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), guitarras));
         }
     }
+
+
 }
