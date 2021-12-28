@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,10 +29,10 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String USERNAME = "email";
+    public static final String USERNAME = "username";
     private NavigationView navigationView;
     private DrawerLayout drawer;
-    private String email;
+    private String username;
     private FragmentManager fragmentManager;
     public static final String OP_CODE = "operacao";
     public static final int ADD_REQCOD = 1, EDIT_REQCOD = 2, DEL_REQCOD = 3;
@@ -59,14 +60,32 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void carregarCabecalho() {
-        email = getIntent().getStringExtra(USERNAME);
-        if(email != null){
+
+        SharedPreferences sharedpreferences = this.getSharedPreferences("Login",0);
+
+        String username = sharedpreferences.getString("username", null);
+
+        if(username != null){
             View view = navigationView.getHeaderView(0);
-            TextView tvEmail = view.findViewById(R.id.tvEmailHeader);
-            tvEmail.setText(email);
+            TextView tvUsername = view.findViewById(R.id.tvUsernameDrawer);
+            tvUsername.setText(username);
         }
 
     }
+    private void logout() {
+
+        SharedPreferences sharedpreferences =this.getSharedPreferences("Login",0);
+
+
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.clear();
+            editor.apply();
+            finish();
+
+
+    }
+
+
 
     private boolean carregarFragmentoInicial(){
         Menu menu = navigationView.getMenu();
@@ -78,11 +97,11 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
     public void onClickDetalhesEmail() {
         String subject = "AMSI 2021/2022";
-        String message = "olá " + email + " isto é uma mensagem de texto enviada pela minha APP! :)";
+        String message = "olá " + username + " isto é uma mensagem de texto enviada pela minha APP! :)";
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("message/rfc822");
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{username});
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, message);
 
@@ -124,6 +143,10 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.navEmail:
                 onClickDetalhesEmail();
+                break;
+
+            case R.id.navSair:
+                logout();
                 break;
         }
         if(fragment != null)

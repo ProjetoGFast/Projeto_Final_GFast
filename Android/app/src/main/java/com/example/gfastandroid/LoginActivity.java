@@ -4,7 +4,6 @@ package com.example.gfastandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -93,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     public void onValidateLogin(String token, String username) {
         if (token != null) {
 
-            guardarInfoSharedPref(token, username);
+            loginSharedPreferences(token, username);
 
 
             Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
@@ -116,16 +115,13 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         etPassword.setError("Utilizador ou Palavra-Passe Incorretos!");
     }
 
-    private void guardarInfoSharedPref(String token, String username) {
+    private void loginSharedPreferences(String token, String username) {
 
-        /*SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.PREF_INFO_USER, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferencesUser.edit();
-
-        editor.putString(MenuMainActivity.USERNAME, username);
-        editor.putString(MenuMainActivity.TOKEN, token);
-
-        editor.apply();*/
-
+        SharedPreferences sharedPreferences = getSharedPreferences("Login", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", username );
+        editor.putString("token", token );
+        editor.commit();
 
     }
 }
