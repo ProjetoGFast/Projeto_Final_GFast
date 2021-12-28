@@ -19,7 +19,6 @@ public class HistoricoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_historico, container, false);
 
-
         return view;
     }
 

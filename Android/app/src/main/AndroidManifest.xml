@@ -17,9 +17,6 @@
             android:name=".vistas.DetalhesGuitarrasActivity"
             android:exported="true" />
         <activity
-            android:name=".vistas.DetalhesGuitarras"
-            android:exported="true" />
-        <activity
             android:name=".MenuMainActivity"
             android:exported="true"
             android:theme="@style/Theme.Books.NoActionBar" />

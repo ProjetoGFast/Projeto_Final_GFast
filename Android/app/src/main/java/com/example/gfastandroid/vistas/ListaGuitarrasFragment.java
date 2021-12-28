@@ -40,7 +40,6 @@ import java.util.ArrayList;
 
 public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, GuitarrasListener {
 
-
     private FragmentManager fragmentManager;
     private ListView lvGuitarras;
     private ArrayList<Guitarra> guitarras;
@@ -66,12 +65,10 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
 
+                Intent intent = new Intent(getContext(), DetalhesGuitarrasActivity.class);
+                intent.putExtra(DetalhesGuitarrasActivity.ID_GUITARRA, (int) id);
 
-                //Intent intent = new Intent(getContext(), DetalhesLivroActivity.class);
-               // intent.putExtra(DetalhesLivroActivity.ID_LIVRO, (int) id);
-
-
-                //activityResultLauncher.launch(intent);
+                activityResultLauncher.launch(intent);
             }
         });
 
@@ -79,8 +76,8 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
         fabAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Intent intent = new Intent(getContext(), DetalhesLivroActivity.class);
-               // activityResultLauncher.launch(intent);
+                Intent intent = new Intent(getContext(), DetalhesGuitarrasActivity.class);
+                activityResultLauncher.launch(intent);
             }
         });
 

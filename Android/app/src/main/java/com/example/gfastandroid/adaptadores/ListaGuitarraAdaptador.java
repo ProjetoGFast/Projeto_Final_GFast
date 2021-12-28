@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gfastandroid.R;
@@ -51,7 +49,7 @@ public class ListaGuitarraAdaptador extends BaseAdapter {
         }
 
         if (view == null) {
-            view = inflater.inflate(R.layout.activity_detalhes_guitarras, null);
+            view = inflater.inflate(R.layout.activity_guitarras, null);
         }
 
 

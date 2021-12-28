@@ -6,8 +6,9 @@ import android.os.Bundle;
 
 import com.example.gfastandroid.R;
 
+
 public class DetalhesGuitarrasActivity extends AppCompatActivity {
-    public static final String ID_GUITARRA = "IDLIVRO";
+    public static final String ID_GUITARRA = "IDGUITARRA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
