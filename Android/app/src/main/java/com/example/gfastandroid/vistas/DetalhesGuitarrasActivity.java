@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.gfastandroid.R;
 
+
 public class DetalhesGuitarrasActivity extends AppCompatActivity {
     public static final String ID_GUITARRA = "IDLIVRO";
     @Override
