@@ -18,6 +18,8 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
     private final SQLiteDatabase db;
 
+
+    //Tabela Guitarras
     private static final String TABLE_GUITARRAS = "guitarras";
     private static final String GUI_NOME = "gui_nome";
     private static final String GUI_IDSUBCATEGORIA = "gui_idsubcategoria";
@@ -30,6 +32,24 @@ public class GfastBDHelper extends SQLiteOpenHelper {
     private static final String GUI_QRCODEPATH = "gui_qrcodepath";
     private static final String GUI_INATIVO = "gui_inativo";
     private static final String GUI_ID = "gui_id";
+
+
+
+    //Tabela User
+    private static final String TABLE_USER = "guitarras";
+    private static final String ID = "id";
+    private static final String USERNAME = "username";
+    private static final String AUTH_KEY = "auth_key";
+    private static final String PASSWORD_RESET_TOKEN = "password_reset_token";
+    private static final String EMAIL = "email";
+    private static final String VERIFICATION_TOKEN = "verification_token";
+    private static final String US_NOME = "us_nome";
+    private static final String US_APELIDO = "us_apelido";
+    private static final String US_CIDADE = "us_cidade";
+    private static final String US_TELEMOVEL = "us_telemovel";
+    private static final String US_CONTRIBUINTE = "us_contribuinte";
+    private static final String US_PONTOS = "us_pontos";
+
 
 
     public GfastBDHelper(Context context) {
@@ -57,6 +77,26 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createGuitarrasTable);
 
 
+        String createUserTable = "CREATE TABLE " + TABLE_USER + "(" + ID + " INTEGER PRIMARY KEY , " +
+                USERNAME + " TEXT NOT NULL, " +
+                AUTH_KEY + " TEXT NOT NULL, " +
+                PASSWORD_RESET_TOKEN + " TEXT NOT NULL, " +
+                EMAIL + " TEXT NOT NULL, " +
+                VERIFICATION_TOKEN + " TEXT NOT NULL, " +
+                US_NOME + " TEXT NOT NULL, " +
+                US_APELIDO + " TEXT NOT NULL, " +
+                US_CIDADE + " TEXT NOT NULL, " +
+                US_TELEMOVEL + " INTEGER NOT NULL, " +
+                US_PONTOS + "INTEGER NOT NULL, " +
+                US_CONTRIBUINTE + " INTEGER NOT NULL )";
+
+
+        sqLiteDatabase.execSQL(createUserTable);
+
+
+
+
+
     }
 
     @Override
@@ -65,7 +105,12 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_GUITARRAS);
 
         this.onCreate(db);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+
+        this.onCreate(db);
     }
+//#########################################GUITARRAS############################################\\
 
     public Guitarra adicionarGuitarraBD(Guitarra g) {
         ContentValues values = new ContentValues();
@@ -99,33 +144,34 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return guitarras;
     }
 
-
-
-
-    public boolean editarGuitarraBD(Guitarra g) {
-
-
-        ContentValues values = new ContentValues();
-        values.put(GUI_NOME, g.getGui_nome());
-        values.put(GUI_IDSUBCATEGORIA, g.getGui_idsubcategoria());
-        values.put(GUI_IDMARCA, g.getGui_idmarca());
-        values.put(GUI_IDREFERENCIA, g.getGui_idreferencia());
-        values.put(GUI_PRECO, g.getGui_preco());
-        values.put(GUI_IVA, g.getGui_iva());
-        values.put(GUI_FOTOPATH, g.getGui_fotopath());
-        values.put(GUI_QRCODEPATH, g.getGui_qrcodepath());
-        values.put(GUI_INATIVO, g.getGui_inativo());
-        values.put(GUI_DESCRICAO, g.getGui_descricao());
-
-        return this.db.update(TABLE_GUITARRAS, values, GUI_ID + "= ?", new String[]{"" + g.getGui_id()}) > 0;
-
-    }
-
-    public boolean removerGuitarraBD(int id) {
-        return (this.db.delete(TABLE_GUITARRAS, GUI_ID + "= ?", new String[]{"" + id}) == 1);
-    }
-
     public void removerAllGuitarrasBD() {
         db.delete(TABLE_GUITARRAS, null, null);
     }
+    //#########################################USER############################################\\
+
+    public User adicionarUserBD(User u) {
+        ContentValues values = new ContentValues();
+        values.put(USERNAME, u.getUsername());
+        values.put(AUTH_KEY, u.getAuth_key());
+        values.put(PASSWORD_RESET_TOKEN, u.getPassword_reset_token());
+        values.put(EMAIL, u.getEmail());
+        values.put(VERIFICATION_TOKEN, u.getVerification_token());
+        values.put(US_NOME, u.getUs_nome());
+        values.put(US_APELIDO, u.getUs_apelido());
+        values.put(US_CIDADE, u.getUs_cidade());
+        values.put(US_TELEMOVEL, u.getUs_telemovel());
+        values.put(US_PONTOS, u.getUs_pontos());
+        values.put(US_CONTRIBUINTE, u.getUs_contribuinte());
+
+        this.db.insert(TABLE_GUITARRAS, null, values);
+
+        return null;
+
+
+
+    }
+    public boolean removerUserBD(int id) {
+        return (this.db.delete(TABLE_USER, ID + "= ?", new String[]{"" + id}) == 1);
+    }
+
 }

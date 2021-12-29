@@ -39,4 +39,26 @@ class UserController extends ActiveController
         }
     }
 
+    public function actionCheckuser()
+    {
+        $model = new User();
+
+        $model->username = \Yii::$app->request->post('username');
+        $model->verification_token = \Yii::$app->request->post('verification_token');
+        $modelUser = User::find()->where(['username' => $model->username])->one();
+
+
+
+            if($modelUser->verification_token ==  $model->verification_token)
+            {
+                return $modelUser;
+            }else
+            {
+                throw new \yii\web\NotFoundHttpException("Ocorreu um Erro");
+            }
+
+
+        }
+
+
 }

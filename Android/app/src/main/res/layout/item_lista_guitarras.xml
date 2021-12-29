@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/programarandroid1" />
+        app:srcCompat="@drawable/logo_gfast" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -101,16 +101,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-
-            <Button
-                android:id="@+id/tvRemoverCarrinho"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple_700"
-                android:text="Adicionar"
-                app:cornerRadius="40dp"
-                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
     </LinearLayout>

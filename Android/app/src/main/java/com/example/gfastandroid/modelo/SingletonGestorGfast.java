@@ -34,6 +34,7 @@ public class SingletonGestorGfast {
     private static RequestQueue volleyQueue = null;
     private static String urlAPIGFast;
     private static String urlAPILogin;
+    private static String urlAPIUser;
     private GuitarrasListener guitarrasListener;
     private GuitarraListener guitarraListener;
     public UserListener userListener;
@@ -52,6 +53,7 @@ public class SingletonGestorGfast {
         gfastBDHelper = new GfastBDHelper(context);
         urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
         urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
+        urlAPIUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
     }
 
     public void setGuitarrasListener(GuitarrasListener guitarrasListener){
@@ -112,28 +114,12 @@ public class SingletonGestorGfast {
 
     }
 
-    public void removerGuitarraBD(int id){
 
-        Guitarra g = getGuitarraBD(id);
 
-        if(g != null){
-            gfastBDHelper.removerGuitarraBD(g.getGui_id());
-        }
 
-    }
 
-    public void editarLivroBD(Guitarra guitarra){
+// ############################## API PEDIDOS ###############################################\\
 
-        Guitarra g = getGuitarraBD(guitarra.getGui_id());
-        if(g != null)
-        {
-            gfastBDHelper.editarGuitarraBD(g);
-
-        }
-
-    }
-
-// ############################## API PEDIDOS ###############################################
     public void getAllGuitarrasAPI(final Context context){
 
      if(!GFastJsonParser.isConnectionInternet(context)){
