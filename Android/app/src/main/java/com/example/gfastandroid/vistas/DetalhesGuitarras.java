@@ -11,5 +11,6 @@ public class DetalhesGuitarras extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_guitarras);    }
+        setContentView(R.layout.item_lista_guitarras);    }
+
 }

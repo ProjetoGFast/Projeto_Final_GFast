@@ -40,7 +40,6 @@ import java.util.ArrayList;
 
 public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, GuitarrasListener {
 
-
     private FragmentManager fragmentManager;
     private ListView lvGuitarras;
     private ArrayList<Guitarra> guitarras;
