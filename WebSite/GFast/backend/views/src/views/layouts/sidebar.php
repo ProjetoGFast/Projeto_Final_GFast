@@ -54,6 +54,7 @@ AppAsset::register($this);
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
+
             if (\Yii::$app->user->can('crudUsers')) {
                 $menuItems[] = ['label' => 'Utilizadores', 'icon' => 'users', 'url' => ['user/index']];
             }

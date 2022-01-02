@@ -1,6 +1,6 @@
 <?php
 
-use frontend\models\SignupForm;
+
 use frontend\models\User;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;

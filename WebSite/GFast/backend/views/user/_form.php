@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -63,7 +64,10 @@ use yii\widgets\ActiveForm;
 
 
 
-                <div class="form-group">
+
+
+
+    <div class="form-group">
                     <?= Html::submitButton('Save', ['name'=>'submitbtn','class' => 'btn btn-success']) ?>
                 </div>
 

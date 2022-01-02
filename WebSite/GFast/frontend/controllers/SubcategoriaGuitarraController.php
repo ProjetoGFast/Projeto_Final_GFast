@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Guitarras;
 use common\models\Marcas;
 use common\models\SubcategoriaGuitarra;
 use frontend\models\SubcategoriaGuitarraSearch;
@@ -56,8 +57,12 @@ class SubcategoriaGuitarraController extends Controller
      */
     public function actionView($id)
     {
+        $subcat = $this->findModel($id);
+        $guitarras = Guitarras::find()->where(['gui_idsubcategoria' => $id])->all();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'guitarras' => $guitarras,
+            'subcat' => $subcat,
         ]);
     }
 

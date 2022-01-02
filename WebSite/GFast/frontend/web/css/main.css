@@ -843,6 +843,7 @@ h2.title:before{
 
 .features_items{
 	overflow:hidden;
+    min-height:300px;
 }
 
 

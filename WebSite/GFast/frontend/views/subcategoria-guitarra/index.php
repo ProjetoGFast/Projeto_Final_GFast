@@ -27,7 +27,7 @@ $backend = BackendAsset::register($this);
                     <div class="single-products">
                         <div class=" text-center">
                             <div>
-                                <?=  Html::a(Html::img("@web/images/marcas/$subcategoria->sub_nome.png", ['class' => 'marca']) , ['view', 'id' => $subcategoria->sub_id])?>
+                                <?=  Html::a($subcategoria->sub_nome , ['view', 'id' => $subcategoria->sub_id])?>
 
                             </div>
                         </div>

@@ -2,25 +2,25 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap4\ActiveForm */
-/* @var $model \frontend\models\ContactForm */
+/* @var $model ContactForm */
 
+use frontend\models\ContactForm;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
-use yii\captcha\Captcha;
+
 
 ?>
 
 <?= $this->render('..\layouts\header') ?>
 
 <div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
+    <h1>
+      Contata-nos
+    </h1>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
@@ -31,12 +31,10 @@ use yii\captcha\Captcha;
 
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
+
 
                 <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Enviar', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

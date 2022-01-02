@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "codeception/module-db": "^1.1"
+    }
+}
