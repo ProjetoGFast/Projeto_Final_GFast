@@ -79,10 +79,10 @@ AppAsset::register($this);
 
 
                 $menuItems[] = [
-                    'label' => 'Categorias',
+                    'label' => 'Categoria',
                     'icon' => 'tfa fa-list',
                     'items' => [
-                        ['label' => 'Categorias',  'icon' => 'fa fa-list', 'url' => ['categoria-guitarra/index']],
+                        ['label' => 'Categorias',  'name' => 'categoria', 'icon' => 'fa fa-list', 'url' => ['categoria-guitarra/index']],
                         ['label' => 'SubCategorias',  'icon' => 'fa fa-list', 'url' => ['subcategoria-guitarra/index']],
                     ]
                 ];
