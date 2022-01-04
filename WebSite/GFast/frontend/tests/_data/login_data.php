@@ -34,6 +34,6 @@ return [
         'us_telemovel'=>'934765893',
         'us_contribuinte'=>'1234567890',
         'us_pontos'=>'111',
-        'us_inativo'=>'0',
+        'us_inativo'=>'1',
     ],
 ];

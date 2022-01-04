@@ -48,8 +48,8 @@ $categorias = Categoriaguitarra::find()->all();
                     'label' => 'Guitarras',
                     'items' => $marcas,
                 ],
-                ['label' => 'Marcas', 'url' => ['/site/marca']],
-                ['label' => 'Concertos', 'url' => ['/site/concerto']],
+                ['label' => 'Marcas', 'url' => ['/marcas/index']],
+               // ['label' => 'Concertos', 'url' => ['/site/concerto']],
                 ['label' => 'Contactos', 'url' => ['/site/contact']],
             ];
             if (Yii::$app->user->isGuest) {

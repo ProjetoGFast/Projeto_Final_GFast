@@ -1,2 +1,13 @@
 suite_namespace: backend\tests\unit
 actor: UnitTester
+modules:
+  enabled:
+    - Yii2:
+        part: [ orm, email, fixtures ]
+    - Asserts
+
+    - Db:
+        dsn: 'mysql:host=localhost;dbname=gfast_test'
+        user: 'root'
+        password: ''
+        cleanup: false

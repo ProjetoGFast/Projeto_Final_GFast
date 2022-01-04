@@ -6,7 +6,7 @@ use frontend\tests\FunctionalTester;
 
 class SignupCest
 {
-    protected $formId = '#form-signup';
+    protected $formId = '#login-form';
 
 
     public function _before(FunctionalTester $I)
@@ -14,53 +14,53 @@ class SignupCest
         $I->amOnRoute('site/signup');
     }
 
-    public function signupWithEmptyFields(FunctionalTester $I)
+    public function registoCamposVazios(FunctionalTester $I)
     {
-        $I->see('Signup', 'h1');
-        $I->see('Please fill out the following fields to signup:');
+        $I->see('Registo', 'h5');
         $I->submitForm($this->formId, []);
         $I->seeValidationError('Username cannot be blank.');
         $I->seeValidationError('Email cannot be blank.');
         $I->seeValidationError('Password cannot be blank.');
+        $I->seeValidationError('Nome cannot be blank.');
+        $I->seeValidationError('Apelido cannot be blank.');
+        $I->seeValidationError('Cidade cannot be blank.');
+        $I->seeValidationError('Telemovel cannot be blank.');
+        $I->seeValidationError('Contribuinte cannot be blank.');
+
 
     }
 
-    public function signupWithWrongEmail(FunctionalTester $I)
+    public function registoCamposIncorretos(FunctionalTester $I)
     {
         $I->submitForm(
             $this->formId, [
-            'SignupForm[username]'  => 'tester',
+            'SignupForm[us_contribuinte]'  => 1234567890,
             'SignupForm[email]'     => 'ttttt',
-            'SignupForm[password]'  => 'tester_password',
+            'SignupForm[us_telemovel]'  => 1234567890,
         ]
         );
-        $I->dontSee('Username cannot be blank.', '.invalid-feedback');
-        $I->dontSee('Password cannot be blank.', '.invalid-feedback');
+        $I->see('Contribuinte should contain at most 9 characters.', '.invalid-feedback');
+        $I->see('Telemovel should contain at most 9 characters.', '.invalid-feedback');
         $I->see('Email is not a valid email address.', '.invalid-feedback');
     }
 
-    public function signupSuccessfully(FunctionalTester $I)
+
+    public function registoCorreto(FunctionalTester $I)
     {
-        $I->submitForm($this->formId, [
-            'SignupForm[username]' => 'tester',
-            'SignupForm[email]' => 'tester.email@example.com',
-            'SignupForm[password]' => 'tester_password',
-            'SignupForm[us_nome]'=>'erau',
-            'SignupForm[us_apelido]'=>'uare',
-            'SignupForm[us_cidade]'=>'Leiria',
-            'SignupForm[us_telemovel]'=>'934765893',
-            'SignupForm[us_contribuinte]'=>'1234567890',
-            'SignupForm[us_pontos]'=>'111',
-            'SignupForm[us_inativo]'=>'0',
-        ]);
-
-        $I->seeRecord('common\models\User', [
-            'username' => 'tester',
-            'email' => 'tester.email@example.com',
-            'status' => \common\models\User::STATUS_INACTIVE
-        ]);
-
-        $I->seeEmailIsSent();
-        $I->see('Thank you for registration. Please check your inbox for verification email.');
+        $I->amOnPage('/site/signup');
+        $I->fillField('SignupForm[username]', 'Tester');
+        $I->fillField('SignupForm[email]', 'teste@teste.pt');
+        $I->fillField('SignupForm[us_nome]', 'tester1234');
+        $I->fillField('SignupForm[us_apelido]', 'gfast');
+        $I->fillField('SignupForm[us_cidade]', 'Leiria');
+        $I->fillField('SignupForm[us_telemovel]', '914254541');
+        $I->fillField('SignupForm[us_telemovel]', '914252341');
+        $I->fillField('SignupForm[us_contribuinte]', '1234567890');
+        $I->fillField('SignupForm[us_contribuinte]', '247685938');
+        $I->fillField('SignupForm[password]', 'teste123');
+        $I->click('signup-button');
+        $I->see('Registo Concluido :)');
     }
+
+
 }

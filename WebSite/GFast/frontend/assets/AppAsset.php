@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
         'css/login.css',
         'css/subcategorias.css',
         'https://unpkg.com/swiper/swiper-bundle.min.css',
+        'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css'
 
     ];
     public $js = [
@@ -38,6 +39,8 @@ class AppAsset extends AssetBundle
         'js/main.js',
         'https://unpkg.com/swiper/swiper-bundle.min.js',
         'js/subcategorias.js',
+        'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js',
+        'js/mapa.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

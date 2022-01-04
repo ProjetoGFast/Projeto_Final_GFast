@@ -39,6 +39,10 @@ use yii\bootstrap4\ActiveForm;
 
             <?php ActiveForm::end(); ?>
         </div>
+
+        <div class="col-lg-6 pb-4">
+            <div id='map' ></div>
+        </div>
     </div>
 
 </div>

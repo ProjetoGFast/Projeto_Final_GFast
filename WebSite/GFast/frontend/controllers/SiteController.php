@@ -81,7 +81,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
+        $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->orderBy('gui_id desc')->limit(9)->all();
 
         $marcas = Marcas::find()->all();
         $categorias = Categoriaguitarra::find()->all();
@@ -221,8 +221,7 @@ class SiteController extends Controller
     {
         $id = Yii::$app->user->getId();
         $model = User::findOne($id);
-       // var_dump($model);
-        //die();
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             //return $this->redirect(['view', 'id' => $model->id]);
             Yii::$app->session->setFlash('success', 'Perfil Editado com Sucesso');
