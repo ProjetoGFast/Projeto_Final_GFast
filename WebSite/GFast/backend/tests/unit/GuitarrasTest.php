@@ -3,6 +3,7 @@ namespace backend\tests;
 
 use common\fixtures\GuitarrasFixture;
 use common\models\Estiloconstrucao;
+use common\models\Guitarras;
 use common\models\Localidade;
 use common\models\Pontosturisticos;
 use common\models\Tipomonumento;
@@ -31,95 +32,64 @@ class GuitarrasTest extends \Codeception\Test\Unit
     // tests
     public function testValidarGuitarra()
     {
-        $guitarra = $this->tester->grabFixture('guitarras', 0);
-        var_dump($guitarra);
-        die();
-       /* $pontoTuristico = new Pontosturisticos();
 
-        //Despoletar todas as regras de validação
+        $guitarras = new Guitarras();
 
-        //Nome Ponto Turistico
-        $pontoTuristico->nome = null;
-        $this->assertFalse($pontoTuristico->validate(['nome']));
+        //modelo
+        $guitarras->gui_nome = null;
+        $this->assertFalse($guitarras->validate(['gui_nome']));
 
-        $pontoTuristico->nome = 'Castelo de Leiria';
-        $this->assertTrue($pontoTuristico->validate(['nome']));
+        $guitarras->gui_nome = 'Fender 231';
+        $this->assertTrue($guitarras->validate(['gui_nome']));
 
-        //Ano de Construção
+        //idsubcategoria
+        $guitarras->gui_idsubcategoria = null;
+        $this->assertFalse($guitarras->validate(['gui_idsubcategoria']));
 
-        $pontoTuristico->anoConstrucao = null;
-        $this->assertTrue($pontoTuristico->validate(['anoConstrucao']));
+        $guitarras->gui_idsubcategoria = '1';
+        $this->assertTrue($guitarras->validate(['gui_idsubcategoria']));
 
-        $pontoTuristico->anoConstrucao = '1135';
-        $this->assertTrue($pontoTuristico->validate(['anoConstrucao']));
 
-        //Descrição
+        //idmarca
+        $guitarras->gui_idmarca = null;
+        $this->assertFalse($guitarras->validate(['gui_idmarca']));
 
-        $pontoTuristico->descricao = null;
-        $this->assertFalse($pontoTuristico->validate(['descricao']));
+        $guitarras->gui_idmarca = '1';
+        $this->assertTrue($guitarras->validate(['gui_idmarca']));
 
-        $pontoTuristico->descricao = 'Localizado em Leiria';
-        $this->assertTrue($pontoTuristico->validate(['descricao']));
+        //referencia
+        $guitarras->gui_idreferencia = null;
+        $this->assertFalse($guitarras->validate(['gui_idreferencia']));
+
+        $guitarras->gui_idreferencia = 'G001';
+        $this->assertTrue($guitarras->validate(['gui_idreferencia']));
+
+        //descricao
+        $guitarras->gui_descricao = null;
+        $this->assertFalse($guitarras->validate(['gui_descricao']));
+
+        $guitarras->gui_descricao = 'Lorem Ipsum';
+        $this->assertTrue($guitarras->validate(['gui_descricao']));
+
+        //Preco
+        $guitarras->gui_preco = null;
+        $this->assertFalse($guitarras->validate(['gui_preco']));
+
+        $guitarras->gui_preco = '145';
+        $this->assertTrue($guitarras->validate(['gui_preco']));
+
+
+
+        //IVA
+        $guitarras->gui_iva = null;
+        $this->assertFalse($guitarras->validate(['gui_iva']));
+
+        $guitarras->gui_iva = '23';
+        $this->assertTrue($guitarras->validate(['gui_iva']));
 
         //Foto
-
-        $pontoTuristico->foto = 'castelo-de-leiria.jpg';
-        $this->assertTrue($pontoTuristico->validate(['foto']));
-
-        //Tipo de Monumento
-
-        $pontoTuristico->tm_idTipoMonumento = Tipomonumento::findOne(['descricao' => 'Castelo'])->idTipoMonumento;
-        $this->assertTrue($pontoTuristico->validate(['tm_idTipoMonumento']));
-
-        //Estilo de Construção
-
-        $pontoTuristico->ec_idEstiloConstrucao = Estiloconstrucao::findOne(['descricao' => 'Barroco'])->idEstiloConstrucao;
-        $this->assertTrue($pontoTuristico->validate(['ec_idEstiloConstrucao']));
-
-        //Localidade
-
-        $pontoTuristico->localidade_idLocalidade = Localidade::findOne(['nomeLocalidade' => 'Leiria'])->id_localidade;
-        $this->assertTrue($pontoTuristico->validate(['localidade_idLocalidade']));
-
-        //Horário
-
-        $pontoTuristico->horario = null;
-        $this->assertTrue($pontoTuristico->validate(['horario']));
-
-        $pontoTuristico->horario = '09:00h - 17:00h';
-        $this->assertTrue($pontoTuristico->validate(['horario']));
-
-        //Morada
-
-        $pontoTuristico->morada = null;
-        $this->assertTrue($pontoTuristico->validate(['morada']));
-
-        $pontoTuristico->morada = 'Rua C, nº50';
-        $this->assertTrue($pontoTuristico->validate(['morada']));
-
-        //Telefone
-
-        $pontoTuristico->telefone = null;
-        $this->assertTrue($pontoTuristico->validate(['telefone']));
-
-        $pontoTuristico->telefone = '924639852';
-        $this->assertTrue($pontoTuristico->validate(['telefone']));
-
-        //Latitude
-
-        $pontoTuristico->latitude = null;
-        $this->assertFalse($pontoTuristico->validate(['latitude']));
-
-        $pontoTuristico->latitude = '39.74362';
-        $this->assertTrue($pontoTuristico->validate(['latitude']));
-
-        //Longitude
-
-        $pontoTuristico->longitude = null;
-        $this->assertFalse($pontoTuristico->validate(['longitude']));
-
-        $pontoTuristico->longitude = '-8.80705';
-        $this->assertTrue($pontoTuristico->validate(['longitude']));*/
+        $guitarras->gui_fotopath = 'foto.png';
+        $this->assertTrue($guitarras->validate(['gui_fotopath']));
 
     }
 }

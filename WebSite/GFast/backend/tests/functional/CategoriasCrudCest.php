@@ -19,6 +19,7 @@ class CategoriasCrudCest{
         $I->fillField('LoginForm[username]', 'erau');
         $I->fillField('LoginForm[password]', 'password_0');
         $I->click('login-button');
+
     }
 
     public function testInserirCategoria(FunctionalTester $I){

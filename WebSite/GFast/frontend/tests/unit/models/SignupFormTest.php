@@ -37,7 +37,7 @@ class SignupFormTest extends \Codeception\Test\Unit
             'us_contribuinte'=>'1234567890',
         ]);
 
-        $user = $model->signup();
+        $user = $model->signupTest();
         expect($user)->true();
 
         /** @var \common\models\User $user */
@@ -52,15 +52,7 @@ class SignupFormTest extends \Codeception\Test\Unit
             'status' => \common\models\User::STATUS_INACTIVE
         ]);
 
-        $this->tester->seeEmailIsSent();
 
-        $mail = $this->tester->grabLastSentEmail();
-
-        expect($mail)->isInstanceOf('yii\mail\MessageInterface');
-        expect($mail->getTo())->hasKey('some_email@example.com');
-        expect($mail->getFrom())->hasKey(\Yii::$app->params['supportEmail']);
-        expect($mail->getSubject())->equals('Account registration at ' . \Yii::$app->name);
-        expect($mail->toString())->stringContainsString($user->verification_token);
     }
 
     public function testNotCorrectSignup()
@@ -78,11 +70,14 @@ class SignupFormTest extends \Codeception\Test\Unit
 
         expect_not($model->signup());
         expect_that($model->getErrors('username'));
-        expect_that($model->getErrors('email'));
+        expect_not($model->signup());
+        expect_that($model->getErrors('password'));
 
         expect($model->getFirstError('username'))
             ->equals('Este username já está a ser utilizado');
-        expect($model->getFirstError('email'))
-            ->equals('This email address has already been taken.');
+
+        expect($model->getFirstError('username'))
+            ->equals('Este username já está a ser utilizado');
+
     }
 }
