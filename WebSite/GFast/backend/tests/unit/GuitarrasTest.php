@@ -32,7 +32,6 @@ class GuitarrasTest extends \Codeception\Test\Unit
     // tests
     public function testValidarGuitarra()
     {
-
         $guitarras = new Guitarras();
 
         //modelo
@@ -78,8 +77,6 @@ class GuitarrasTest extends \Codeception\Test\Unit
         $guitarras->gui_preco = '145';
         $this->assertTrue($guitarras->validate(['gui_preco']));
 
-
-
         //IVA
         $guitarras->gui_iva = null;
         $this->assertFalse($guitarras->validate(['gui_iva']));
@@ -92,4 +89,25 @@ class GuitarrasTest extends \Codeception\Test\Unit
         $this->assertTrue($guitarras->validate(['gui_fotopath']));
 
     }
+
+    public function testCriarGuitarra()
+    {
+        $model = new Guitarras([
+            'gui_nome' => 'TesteGuitar',
+            'gui_idsubcategoria' => '1',
+            'gui_idmarca' => '1',
+            'gui_idreferencia' => 'A01',
+            'gui_descricao' => 'teste de guitarras',
+            'gui_preco' => '60',
+            'gui_iva' => '23',
+            'gui_fotopath' => 'foto.png',
+            'gui_inativo' => '0',
+        ]);
+
+        $guitarras = $model->save();
+        $this->tester->seeInDatabase('guitarras', ['gui_nome' => "TesteGuitar"]);
+        expect($guitarras)->true();
+    }
+
+
 }

@@ -81,9 +81,7 @@ class User extends ActiveRecord implements IdentityInterface
 
             ['username', 'trim'],
             ['username', 'required'],
-          /*  ['username', 'unique','on'=>'update', 'when' => function($model){
-                return $model->isAttributeChanged('username');
-}, 'targetClass' => '\common\models\User', 'message' => 'Este username já está a ser utilizado'],*/
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Este Username já está a ser utilizado'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],

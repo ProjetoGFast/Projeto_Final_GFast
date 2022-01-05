@@ -58,7 +58,7 @@ class User extends \yii\db\ActiveRecord
             [['us_contribuinte'], 'unique'],
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\frontend\models\User', 'message' => 'Este username já está a ser utilizado'],
+            ['username', 'unique', 'targetClass' => '\backend\models\User', 'message' => 'Este Username já está a ser utilizado'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],

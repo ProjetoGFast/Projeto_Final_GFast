@@ -231,7 +231,7 @@ class Guitarras extends \yii\db\ActiveRecord
     public function afterDelete()
     {
         parent::afterDelete();
-        $prod_id= $this->id;
+        $prod_id= $this->gui_id;
         $myObj=new \stdClass();
         $myObj->id=$prod_id;
         $myJSON = json_encode($myObj);
