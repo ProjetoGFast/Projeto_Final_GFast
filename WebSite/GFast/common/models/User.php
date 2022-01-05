@@ -65,14 +65,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-           ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'us_nome', 'us_apelido', 'us_cidade', 'us_telemovel', 'us_contribuinte', 'us_pontos', 'us_inativo'], 'required'],
             [['status', 'created_at', 'updated_at', 'us_contribuinte', 'us_pontos', 'us_inativo'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
 
-            ['us_contribuinte', 'string', 'max' => 9, 'min' =>9],
+            ['us_contribuinte', 'string', 'max' => 9, 'min' => 9],
             [['us_nome', 'us_apelido', 'us_cidade'], 'string', 'max' => 20],
             [['username'], 'unique'],
             [['email'], 'unique'],
@@ -81,7 +81,10 @@ class User extends ActiveRecord implements IdentityInterface
 
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Este Username já está a ser utilizado'],
+
+           /* ['username', 'unique', 'on' => 'create', 'when' => function ($model) {
+                return $model->isAttributeChanged('username');
+            }, 'targetClass' => '\common\models\User', 'message' => 'Este username já está a ser utilizado'],*/
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
@@ -112,7 +115,7 @@ class User extends ActiveRecord implements IdentityInterface
 
             ['us_contribuinte', 'trim'],
             ['us_contribuinte', 'required'],
-            ['us_contribuinte', 'string', 'max' => 9, 'min' =>9],
+            ['us_contribuinte', 'string', 'max' => 9, 'min' => 9],
             ['us_contribuinte', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Número de contribuinte já registado'],
 
 
@@ -170,7 +173,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -189,7 +193,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
@@ -270,6 +274,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -345,32 +350,30 @@ class User extends ActiveRecord implements IdentityInterface
     {
 
 
-
-            $user = new \common\models\User();
-
-
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password_hash);
-            $user->generateAuthKey();
-            $user->generateEmailVerificationToken();
-            $user->us_nome = $this->us_nome;
-            $user->us_contribuinte =$this->us_contribuinte;
-            $user->us_apelido = $this->us_apelido;
-            $user->us_telemovel = $this->us_telemovel;
-            $user->us_cidade = $this->us_cidade;
-            $user->us_pontos = 0;
-            $user->us_inativo = 0;
-
-            $user->save(false);
-            // the following three lines were added:
-            $auth = \Yii::$app->authManager;
-            $authorRole = $auth->getRole('cliente');
-            $auth->assign($authorRole, $user->getId());
+        $user = new \common\models\User();
 
 
-            return true;
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password_hash);
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        $user->us_nome = $this->us_nome;
+        $user->us_contribuinte = $this->us_contribuinte;
+        $user->us_apelido = $this->us_apelido;
+        $user->us_telemovel = $this->us_telemovel;
+        $user->us_cidade = $this->us_cidade;
+        $user->us_pontos = 0;
+        $user->us_inativo = 0;
 
+        $user->save(false);
+        // the following three lines were added:
+        $auth = \Yii::$app->authManager;
+        $authorRole = $auth->getRole('cliente');
+        $auth->assign($authorRole, $user->getId());
+
+
+        return true;
 
 
     }
@@ -392,7 +395,7 @@ class User extends ActiveRecord implements IdentityInterface
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         $user->us_nome = $this->us_nome;
-        $user->us_contribuinte =$this->us_contribuinte;
+        $user->us_contribuinte = $this->us_contribuinte;
         $user->us_apelido = $this->us_apelido;
         $user->us_telemovel = $this->us_telemovel;
         $user->us_cidade = $this->us_cidade;
@@ -405,14 +408,10 @@ class User extends ActiveRecord implements IdentityInterface
         return true;
 
 
-
     }
-    /**
-     * create user up.
-     *
-     * @return bool whether the creating new account was successful and email was sent
-     */
-    public function delete()
+
+
+    public function eliminaUser()
     {
         $id = Yii::$app->user->getId();
         $model = User::findOne($id);
@@ -422,7 +421,6 @@ class User extends ActiveRecord implements IdentityInterface
         $model->save(false);
 
         return $model;
-
 
 
     }
@@ -562,7 +560,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->us_inativo = $us_inativo;
     }
-
 
 
 }
