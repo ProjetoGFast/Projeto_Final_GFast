@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\mosquitto\phpMQTT;
 use Yii;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
@@ -188,6 +189,68 @@ class Guitarras extends \yii\db\ActiveRecord
     public function getVendasGuitarras()
     {
         return $this->hasMany(VendasGuitarras::className(), ['idguitarra' => 'gui_id']);
+    }
+
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        //Obter dados do registo em causa
+        $id = $this->gui_id;
+        $marca = $this->gui_idmarca;
+        $subcategoria = $this->gui_idsubcategoria;
+        $idreferencia = $this->gui_idreferencia;
+        $descricao = $this->gui_descricao;
+        $nome = $this->gui_nome;
+        $preco = $this->gui_preco;
+        $iva = $this->gui_iva;
+        $inativo = $this->gui_inativo;
+        $fotopath = $this->gui_fotopath;
+        $qrcodepath = $this->gui_qrcodepath;
+
+        $myObj=new \stdClass();
+        $myObj->id=$id;
+        $myObj->subcategoria=$subcategoria;
+        $myObj->marca=$marca;
+        $myObj->iva=$iva;
+        $myObj->preco=$preco;
+        $myObj->nome=$nome;
+        $myObj->idreferencia=$idreferencia;
+        $myObj->descricao=$descricao;
+        $myObj->fotopath=$fotopath;
+        $myObj->qrcodepath=$qrcodepath;
+        $myObj->inativo=$inativo;
+
+
+        $myJSON = json_encode($myObj);
+        if($insert)
+            $this->FazPublishNoMosquitto("INSERT",$myJSON);
+        else
+            $this->FazPublishNoMosquitto("UPDATE",$myJSON);
+    }
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        $prod_id= $this->id;
+        $myObj=new \stdClass();
+        $myObj->id=$prod_id;
+        $myJSON = json_encode($myObj);
+        $this->FazPublishNoMosquitto("DELETE",$myJSON);
+    }
+    public function FazPublishNoMosquitto($canal,$msg)
+    {
+        $server = "broker.emqx.io";
+        $port = 1883;
+        $username = ""; // set your username
+        $password = ""; // set your password
+        $client_id = "PHP"; // unique!
+        $mqtt = new phpMQTT($server, $port, $client_id);
+        if ($mqtt->connect(true, NULL, $username, $password))
+        {
+            $mqtt->publish($canal, $msg, 1);
+            $mqtt->close();
+        }
+        else { file_put_contents('debug.output',"Time out!"); }
     }
 
 

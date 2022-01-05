@@ -20,6 +20,12 @@ import com.example.gfastandroid.listeners.GuitarrasListener;
 import com.example.gfastandroid.listeners.UserListener;
 import com.example.gfastandroid.utils.GFastJsonParser;
 
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
@@ -28,14 +34,15 @@ import java.util.Map;
 
 public class SingletonGestorGfast {
 
-    private GfastBDHelper gfastBDHelper = null;
+    private MqttAndroidClient client = null;
+    public GfastBDHelper gfastBDHelper = null;
     private ArrayList<Guitarra> guitarras;
     private static SingletonGestorGfast instance = null;
     private static RequestQueue volleyQueue = null;
     private static String urlAPIGFast;
     private static String urlAPILogin;
     private static String urlAPIUser;
-    private GuitarrasListener guitarrasListener;
+    public GuitarrasListener guitarrasListener;
     private GuitarraListener guitarraListener;
     public UserListener userListener;
 
@@ -54,6 +61,34 @@ public class SingletonGestorGfast {
         urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
         urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
         urlAPIUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
+
+
+        client = new MqttAndroidClient(context, "tcp://broker.emqx.io:1883", MqttClient.generateClientId());
+        client.setCallback(new MosquittoCallBack(context));
+        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+        mqttConnectOptions.setCleanSession(true);
+        // Establish a connection to IoT Platform by using MQTT.
+        try {
+            client.connect(mqttConnectOptions, null, new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    try {
+                        client.subscribe("INSERT", 1);
+                        client.subscribe("UPDATE", 1);
+                        client.subscribe("DELETE", 1);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    System.out.println("-->erro:");
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setGuitarrasListener(GuitarrasListener guitarrasListener){

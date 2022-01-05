@@ -133,6 +133,14 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
     }
 
     @Override
+    public void onRefreshGuitarras() {
+
+        ArrayList<Guitarra>arrayListGuitarras=SingletonGestorGfast.getInstance(getContext()).gfastBDHelper.getAllGuitarrasBD();
+        lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), arrayListGuitarras));
+
+    }
+
+    @Override
     public void onRefreshListaGuitarras(ArrayList<Guitarra> guitarras) {
         if(guitarras != null)
         {
