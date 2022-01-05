@@ -202,7 +202,7 @@ class SiteController extends Controller
     {
         $id = Yii::$app->user->getId();
         $model = User::findOne($id);
-        $model->delete();
+        $model->eliminaUser();
         Yii::$app->user->logout();
 
 

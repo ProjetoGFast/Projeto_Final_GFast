@@ -4,10 +4,10 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\User;
+use common\models\User;
 
 /**
- * UserSearch represents the model behind the search form of `backend\models\User`.
+ * UserSearch represents the model behind the search form of `common\models\User`.
  */
 class UserSearch extends User
 {
