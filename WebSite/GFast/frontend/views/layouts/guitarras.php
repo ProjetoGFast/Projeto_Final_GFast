@@ -12,7 +12,7 @@ $backend = BackendAsset::register($this);
 
 ?>
 <div class="features_items"><!--features_items-->
-    <h2 class="title text-center">Guitarras</h2>
+    <h2 class="title text-center">Mais Recentes</h2>
 
 
     <?php

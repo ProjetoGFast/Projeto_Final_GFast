@@ -76,9 +76,12 @@ class LoginForm extends Model
     {
         if ($this->_user === null) {
             $this->_user = User::findByUsername($this->username);
-            if($this->_user->us_inativo == 1)
-            {
-                return null;
+            if($this->_user !== null){
+                if($this->_user->us_inativo == 1)
+                {
+                    return null;
+                }
+
             }
         }
 

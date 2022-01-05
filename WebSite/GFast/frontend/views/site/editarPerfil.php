@@ -13,9 +13,7 @@ use yii\widgets\ActiveForm;
 <div class="user-form" style="left:50%">
 
     <?php
-   /* if (\Yii::$app->user->can('editarOwnPerfil', ['post' => $post])) {
 
-    }*/
 
 
     $form = ActiveForm::begin(); ?>

@@ -364,8 +364,6 @@ class User extends ActiveRecord implements IdentityInterface
             $user->us_pontos = 0;
             $user->us_inativo = 0;
 
-
-
             $user->save(false);
             // the following three lines were added:
             $auth = \Yii::$app->authManager;
@@ -373,7 +371,40 @@ class User extends ActiveRecord implements IdentityInterface
             $auth->assign($authorRole, $user->getId());
 
 
-            return $user;
+            return true;
+
+
+
+    }
+
+    /**
+     * create user up.
+     *
+     * @return bool whether the creating new account was successful and email was sent
+     */
+    public function signupTest()
+    {
+
+        $user = new \common\models\User();
+
+
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password_hash);
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        $user->us_nome = $this->us_nome;
+        $user->us_contribuinte =$this->us_contribuinte;
+        $user->us_apelido = $this->us_apelido;
+        $user->us_telemovel = $this->us_telemovel;
+        $user->us_cidade = $this->us_cidade;
+        $user->us_pontos = 0;
+        $user->us_inativo = 0;
+
+        $user->save(false);
+
+
+        return true;
 
 
 
@@ -397,6 +428,143 @@ class User extends ActiveRecord implements IdentityInterface
 
 
     }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string $auth_key
+     */
+    public function setAuthKey($auth_key)
+    {
+        $this->auth_key = $auth_key;
+    }
+
+    /**
+     * @param string $password_hash
+     */
+    public function setPasswordHash($password_hash)
+    {
+        $this->password_hash = $password_hash;
+    }
+
+    /**
+     * @param string|null $password_reset_token
+     */
+    public function setPasswordResetToken($password_reset_token)
+    {
+        $this->password_reset_token = $password_reset_token;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param int $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @param int $created_at
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
+    /**
+     * @param int $updated_at
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
+    }
+
+    /**
+     * @param string|null $verification_token
+     */
+    public function setVerificationToken($verification_token)
+    {
+        $this->verification_token = $verification_token;
+    }
+
+    /**
+     * @param string $us_nome
+     */
+    public function setUsNome($us_nome)
+    {
+        $this->us_nome = $us_nome;
+    }
+
+    /**
+     * @param string $us_apelido
+     */
+    public function setUsApelido($us_apelido)
+    {
+        $this->us_apelido = $us_apelido;
+    }
+
+    /**
+     * @param string $us_cidade
+     */
+    public function setUsCidade($us_cidade)
+    {
+        $this->us_cidade = $us_cidade;
+    }
+
+    /**
+     * @param int $us_telemovel
+     */
+    public function setUsTelemovel($us_telemovel)
+    {
+        $this->us_telemovel = $us_telemovel;
+    }
+
+    /**
+     * @param int $us_contribuinte
+     */
+    public function setUsContribuinte($us_contribuinte)
+    {
+        $this->us_contribuinte = $us_contribuinte;
+    }
+
+    /**
+     * @param int $us_pontos
+     */
+    public function setUsPontos($us_pontos)
+    {
+        $this->us_pontos = $us_pontos;
+    }
+
+    /**
+     * @param int $us_inativo
+     */
+    public function setUsInativo($us_inativo)
+    {
+        $this->us_inativo = $us_inativo;
+    }
+
 
 
 }

@@ -14,13 +14,13 @@ $categorias = Categoriaguitarra::find()->all();
 <h2>Categorias</h2>
 <div class="panel-group category-products" id="accordian">
     <?php
-   /* foreach ($categorias as $categoria)
+   foreach ($categorias as $categoria)
     {
 
         $subcategorias = Subcategoriaguitarra::find()
             ->where(['sub_idcat' => $categoria->cat_id])
             ->all();
-*/
+
         ?>
         <!--category-productsr-->
         <div class="panel panel-default">
@@ -28,7 +28,7 @@ $categorias = Categoriaguitarra::find()->all();
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
                         <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                        <?php // $categoria->cat_nome?>
+                        <?=  $categoria->cat_nome?>
                     </a>
                 </h4>
             </div>
@@ -36,9 +36,9 @@ $categorias = Categoriaguitarra::find()->all();
                 <div class="panel-body">
                     <ul>
                         <?php
-                        /*foreach ($subcategorias as $subcategoria) { ?>
-                            <li><a href="#"><?= $subcategoria->sub_nome?> </a></li>
-                        <?php }*/ ?>
+                        foreach ($subcategorias as $subcategoria) { ?>
+                            <li>  <?=  Html::a($subcategoria->sub_nome , ['/subcategoria-guitarra/view', 'id' => $subcategoria->sub_id])?></li>
+                        <?php } ?>
 
                     </ul>
                 </div>
@@ -46,7 +46,7 @@ $categorias = Categoriaguitarra::find()->all();
             </div>
         </div>
         <?php
-    //}
+    }
     ?>
 
 </div>

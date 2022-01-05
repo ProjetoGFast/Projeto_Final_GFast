@@ -56,6 +56,9 @@ $backend = BackendAsset::register($this);
 
     <div class="col-sm-12">
     <h4>Sem Modelos a Apresentar </h4>
+
+        <?= Html::a('Voltar atrás', ['/subcategoria-guitarra/index' , 'id'=>$subcat->sub_idcat], ['class' => 'btn btn-primary']) ?>
+
         <?= Html::a('Voltar atrás', ['index'], ['class' => 'btn btn-primary']) ?>
     </div>
   <?php }

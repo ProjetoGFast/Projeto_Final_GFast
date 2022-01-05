@@ -38,6 +38,7 @@ class MarcasController extends Controller
      */
     public function actionIndex()
     {
+
         $marcas = Marcas::find()->where(['mar_inativo' => 0])->all();
 
         return $this->render('index', [
