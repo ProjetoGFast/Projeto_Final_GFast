@@ -2,6 +2,8 @@
 namespace frontend\tests;
 
 use common\fixtures\AvaliacoesFixture;
+use common\fixtures\GuitarrasFixture;
+use common\fixtures\UserFixture;
 use common\models\Avaliacoes;
 use common\models\User;
 
@@ -18,6 +20,18 @@ class AvaliacoesTest extends \Codeception\Test\Unit
             'avaliacao' => [
                 'class' => AvaliacoesFixture::className(),
                 'dataFile' => codecept_data_dir() . 'avaliacoes.php'
+            ]
+        ]);
+        $this->tester->haveFixtures([
+        'guitarras' => [
+            'class' => GuitarrasFixture::className(),
+            'dataFile' => codecept_data_dir() . 'guitarras.php'
+            ]
+        ]);
+        $this->tester->haveFixtures([
+            'user' => [
+                'class' => UserFixture::className(),
+                'dataFile' => codecept_data_dir() . 'user.php'
             ]
         ]);
 
