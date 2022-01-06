@@ -46,6 +46,14 @@ class CategoriasCrudCest{
         $I->see('Update');
     }
 
+    public function testEliminarCategoria(FunctionalTester $I)
+    {
 
+        $I->click('Categoria');
+        $I->click('Categorias');
+        $I->click('//table/tbody/tr[1]/td[4]/a[3]');
 
+        $I->acceptPopup();
+
+    }
 }
