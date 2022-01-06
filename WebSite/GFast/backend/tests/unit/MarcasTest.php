@@ -2,6 +2,7 @@
 namespace backend\tests;
 
 use common\fixtures\GuitarrasFixture;
+use common\fixtures\MarcasFixture;
 use common\models\Marcas;
 
 class MarcasTest extends \Codeception\Test\Unit
@@ -14,9 +15,9 @@ class MarcasTest extends \Codeception\Test\Unit
     protected function _before()
     {
         $this->tester->haveFixtures([
-        'marcas' => [
-        'class' => GuitarrasFixture::className(),
-        'dataFile' => codecept_data_dir() . 'marcas.php'
+            'marcas' => [
+                'class' => MarcasFixture::className(),
+                'dataFile' => codecept_data_dir() . 'marcas.php'
             ]
         ]);
     }
@@ -28,7 +29,6 @@ class MarcasTest extends \Codeception\Test\Unit
     // tests
     public function testValidarMarca()
     {
-
         $marcas = new Marcas();
 
         //Nome
@@ -45,6 +45,32 @@ class MarcasTest extends \Codeception\Test\Unit
         $marcas->mar_inativo = '0';
         $this->assertTrue($marcas->validate(['mar_inativo']));
 
+    }
+
+    public function testCriarMarca()
+    {
+        $model = new Marcas([
+            'mar_nome' => 'Teste',
+            'mar_inativo' => '0',
+        ]);
+        $marcas = $model->createMarca();
+        $this->tester->seeInDatabase('marcas', ['mar_nome' => "Teste"]);
+        expect($marcas)->true();
 
     }
+
+    public function testEditarMarca()
+    {
+        $marcas = $this->tester->grabRecord('common\models\marcas', ['mar_nome'=>'Yamaha']);
+        $model = Marcas::findByMarcasname($marcas->mar_nome);
+
+        $model->setMarNome('Sadowsky123');
+        $model->save(false);
+        $this->tester->seeInDatabase('marcas', ['mar_nome' => 'Sadowsky123']);
+
+
+    }
+
+
+
 }

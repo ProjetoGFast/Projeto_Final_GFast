@@ -41,6 +41,8 @@ class Guitarras extends \yii\db\ActiveRecord
         return 'guitarras';
     }
 
+
+
     /**
      * {@inheritdoc}
      */
@@ -133,6 +135,12 @@ class Guitarras extends \yii\db\ActiveRecord
     public function getAvaliacoes()
     {
         return $this->hasMany(Avaliacoes::className(), ['ava_idguitarra' => 'gui_id']);
+    }
+
+
+    public static function findByGuitarrasname($guitarras)
+    {
+        return static::findOne(['gui_nome' => $guitarras]);
     }
 
     /**
@@ -251,6 +259,94 @@ class Guitarras extends \yii\db\ActiveRecord
             $mqtt->close();
         }
         else { file_put_contents('debug.output',"Time out!"); }
+    }
+
+    /**
+     * @param int $gui_id
+     */
+    public function setGuiId($gui_id)
+    {
+        $this->gui_id = $gui_id;
+    }
+
+    /**
+     * @param string $gui_nome
+     */
+    public function setGuiNome($gui_nome)
+    {
+        $this->gui_nome = $gui_nome;
+    }
+
+    /**
+     * @param int $gui_idsubcategoria
+     */
+    public function setGuiIdsubcategoria($gui_idsubcategoria)
+    {
+        $this->gui_idsubcategoria = $gui_idsubcategoria;
+    }
+
+    /**
+     * @param int $gui_idmarca
+     */
+    public function setGuiIdmarca($gui_idmarca)
+    {
+        $this->gui_idmarca = $gui_idmarca;
+    }
+
+    /**
+     * @param int $gui_idreferencia
+     */
+    public function setGuiIdreferencia($gui_idreferencia)
+    {
+        $this->gui_idreferencia = $gui_idreferencia;
+    }
+
+    /**
+     * @param string $gui_descricao
+     */
+    public function setGuiDescricao($gui_descricao)
+    {
+        $this->gui_descricao = $gui_descricao;
+    }
+
+    /**
+     * @param float $gui_preco
+     */
+    public function setGuiPreco($gui_preco)
+    {
+        $this->gui_preco = $gui_preco;
+    }
+
+    /**
+     * @param int $gui_iva
+     */
+    public function setGuiIva($gui_iva)
+    {
+        $this->gui_iva = $gui_iva;
+    }
+
+    /**
+     * @param string $gui_fotopath
+     */
+    public function setGuiFotopath($gui_fotopath)
+    {
+        $this->gui_fotopath = $gui_fotopath;
+    }
+
+    /**
+     * @param string $gui_qrcodepath
+     */
+    public function setGuiQrcodepath($gui_qrcodepath)
+    {
+        $this->gui_qrcodepath = $gui_qrcodepath;
+    }
+
+    /**
+     * @param int $gui_inativo
+     */
+    public function setGuiInativo($gui_inativo)
+    {
+        $this->gui_inativo = $gui_inativo;
     }
 
 

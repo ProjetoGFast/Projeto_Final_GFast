@@ -47,6 +47,11 @@ class Marcas extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function findByMarcasname($marcas)
+    {
+        return static::findOne(['mar_nome' => $marcas]);
+    }
+
     /**
      * Gets query for [[Guitarras]].
      *
@@ -56,4 +61,44 @@ class Marcas extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Guitarras::className(), ['gui_idmarca' => 'mar_id']);
     }
+
+    /**
+     * @param string $mar_nome
+     */
+    public function setMarNome($mar_nome)
+    {
+        $this->mar_nome = $mar_nome;
+    }
+
+    /**
+     * @param int $mar_inativo
+     */
+    public function setMarInativo($mar_inativo)
+    {
+        $this->mar_inativo = $mar_inativo;
+    }
+
+
+
+    public function createMarca()
+    {
+
+
+        $marca = new Marcas();
+
+
+
+        $marca->mar_nome = $this->mar_nome;
+        $marca->mar_inativo = $this->mar_inativo;
+
+        $marca->save(false);
+
+
+        return true;
+
+
+
+    }
+
+
 }

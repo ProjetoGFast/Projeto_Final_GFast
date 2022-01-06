@@ -66,4 +66,8 @@ class CategoriaGuitarraSearch extends CategoriaGuitarra
 
         return $dataProvider;
     }
+
+
+
+
 }

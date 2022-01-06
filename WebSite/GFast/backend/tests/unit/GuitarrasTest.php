@@ -2,11 +2,8 @@
 namespace backend\tests;
 
 use common\fixtures\GuitarrasFixture;
-use common\models\Estiloconstrucao;
+use common\fixtures\MarcasFixture;
 use common\models\Guitarras;
-use common\models\Localidade;
-use common\models\Pontosturisticos;
-use common\models\Tipomonumento;
 
 class GuitarrasTest extends \Codeception\Test\Unit
 {
@@ -21,6 +18,12 @@ class GuitarrasTest extends \Codeception\Test\Unit
             'guitarras' => [
                 'class' => GuitarrasFixture::className(),
                 'dataFile' => codecept_data_dir() . 'guitarras.php'
+            ]
+        ]);
+        $this->tester->haveFixtures([
+            'marcas' => [
+                'class' => MarcasFixture::className(),
+                'dataFile' => codecept_data_dir() . 'marcas.php'
             ]
         ]);
     }
@@ -103,10 +106,19 @@ class GuitarrasTest extends \Codeception\Test\Unit
             'gui_fotopath' => 'foto.png',
             'gui_inativo' => '0',
         ]);
-
         $guitarras = $model->save();
         $this->tester->seeInDatabase('guitarras', ['gui_nome' => "TesteGuitar"]);
         expect($guitarras)->true();
+    }
+
+    public function testEditarGuitarra()
+    {
+        $guitarras = $this->tester->grabRecord('common\models\guitarras', ['gui_nome'=>'Joe Duplantier Pro-M']);
+        $model = Guitarras::findByGuitarrasname($guitarras->gui_nome);
+        $model->setGuiNome('Charvel');
+        $model->save(false);
+        $this->tester->seeInDatabase('guitarras', ['gui_nome' => 'Charvel']);
+
     }
 
 

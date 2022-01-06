@@ -56,4 +56,41 @@ class Categoriaguitarra extends \yii\db\ActiveRecord
     {
         return $this->hasMany(SubcategoriaGuitarra::className(), ['sub_idcat' => 'cat_id']);
     }
+
+
+    public static function findByCategoriasname($categoria)
+    {
+        return static::findOne(['cat_nome' => $categoria]);
+    }
+
+    /**
+     * @param string $cat_nome
+     */
+    public function setCatNome($cat_nome)
+    {
+        $this->cat_nome = $cat_nome;
+    }
+
+    /**
+     * @param int $cat_inativo
+     */
+    public function setCatInativo($cat_inativo)
+    {
+        $this->cat_inativo = $cat_inativo;
+    }
+
+    public function createCategoria()
+    {
+        $categoria = new CategoriaGuitarra();
+
+        $categoria->cat_nome = $this->cat_nome;
+        $categoria->cat_inativo = $this->cat_inativo;
+
+        $categoria->save(false);
+
+
+        return true;
+
+    }
+
 }
