@@ -71,4 +71,48 @@ class Avaliacoes extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'ava_iduser']);
     }
+
+    /**
+     * @param string $ava_avaliacao
+     */
+    public function setAvaAvaliacao($ava_avaliacao)
+    {
+        $this->ava_avaliacao = $ava_avaliacao;
+    }
+
+    /**
+     * @param int $ava_idguitarra
+     */
+    public function setAvaIdguitarra($ava_idguitarra)
+    {
+        $this->ava_idguitarra = $ava_idguitarra;
+    }
+
+    /**
+     * @param int $ava_iduser
+     */
+    public function setAvaIduser($ava_iduser)
+    {
+        $this->ava_iduser = $ava_iduser;
+    }
+    public static function findByTitulo($titulo)
+    {
+        return static::findOne(['ava_avaliacao' => $titulo]);
+    }
+    /**
+     * @param int $ava_iduser
+     */
+    public function createAva()
+    {
+        $ava = new \common\models\Avaliacoes();
+
+        $ava->ava_iduser = $this->ava_iduser;
+        $ava->ava_avaliacao = $this->ava_avaliacao;
+        $ava->ava_idguitarra = $this->ava_idguitarra;
+
+        $ava->save(false);
+
+
+        return true;
+    }
 }
