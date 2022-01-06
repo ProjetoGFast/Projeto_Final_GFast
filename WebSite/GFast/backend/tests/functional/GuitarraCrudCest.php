@@ -55,6 +55,6 @@ class GuitarraCrudCest{
             $I->see('Update');
             $I->see('GuiTester');
 
-}
+        }
 
 }

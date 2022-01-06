@@ -5,6 +5,7 @@ namespace backend\controllers;
 use app\models\UploadForm;
 use common\models\Guitarras;
 use backend\models\GuitarrasSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,13 +24,31 @@ class GuitarrasController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['index','update', 'delete', 'create', 'view'],
+                            'allow' => true,
+                            'roles' => ['admin', 'gestor'],
+                        ],
+                        [
+                            'actions' => ['logout', 'index'],
+                            'allow' => false,
+                            'roles' => ['funcionario', 'gestor'],
+                        ],
                     ],
                 ],
+
+                    'verbs' => [
+                        'class' => VerbFilter::className(),
+                        'actions' => [
+                            'delete' => ['POST'],
+                        ],
+                    ],
+
             ]
+
         );
     }
 

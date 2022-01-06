@@ -89,10 +89,17 @@ AppAsset::register($this);
 
 
             }
+            if (\Yii::$app->user->can('crudCategorias')) {
 
-            echo \hail812\adminlte\widgets\Menu::widget([
-                'items' => $menuItems,
-            ]);
+                echo \hail812\adminlte\widgets\Menu::widget([
+                    'items' => $menuItems,
+                ]);
+
+
+
+            }
+
+
             ?>
 
         </nav>

@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\SubcategoriaGuitarra;
 use backend\models\SubcategoriaGuitarraSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,13 +22,31 @@ class SubcategoriaGuitarraController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['index','update', 'delete', 'create', 'view'],
+                            'allow' => true,
+                            'roles' => ['admin', 'gestor'],
+                        ],
+                        [
+                            'actions' => ['logout', 'index'],
+                            'allow' => false,
+                            'roles' => ['funcionario', 'gestor'],
+                        ],
+                    ],
+                ],
+
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
                     ],
                 ],
+
             ]
+
         );
     }
 
