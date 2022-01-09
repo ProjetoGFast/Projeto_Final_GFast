@@ -132,8 +132,7 @@ class GuitarrasController extends Controller
         $model = $this->findModel($id);
         if ($this->request->isPost) {
             $old = $model->gui_fotopath;
-            // var_dump($old);
-            //die
+
             $model->gui_fotopath = $old;
 
             $model->load($this->request->post());

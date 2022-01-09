@@ -8,7 +8,6 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONObject;
 
 public class MosquittoCallBack implements MqttCallback {
-
     private Context context;
 
     public MosquittoCallBack(Context context) {

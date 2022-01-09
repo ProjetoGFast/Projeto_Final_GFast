@@ -11,4 +11,9 @@ use yii\web\Controller;
 class GuitarrasController extends ActiveController
 {
   public $modelClass = 'common\models\Guitarras';
+
+
+
+
+
 }

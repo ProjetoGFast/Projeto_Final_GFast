@@ -40,6 +40,8 @@ AppAsset::register($this);
     //if (\Yii::$app->user->can('crudUsers')) {
         $menuItems[] =['label' => 'Utilizadores', 'url' => ['/user/index']];
 
+
+
     //}
     if (\Yii::$app->user->can('crudtabelaGuitarras')) {
         $menuItems[] =['label' => 'Guitarras', 'url' => ['/guitarras/index']];

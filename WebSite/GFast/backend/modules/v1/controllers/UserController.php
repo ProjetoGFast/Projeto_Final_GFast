@@ -48,7 +48,6 @@ class UserController extends ActiveController
         $modelUser = User::find()->where(['username' => $model->username])->one();
 
 
-
             if($modelUser->verification_token ==  $model->verification_token)
             {
                 return $modelUser;

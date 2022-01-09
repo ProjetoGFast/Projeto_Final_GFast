@@ -67,12 +67,10 @@ AppAsset::register($this);
             }
 
 
-
             if (\Yii::$app->user->can('crudMarcas')) {
 
                 $menuItems[] = ['label' => 'Marcas',  'icon' => 'fa fa-tags', 'url' => ['marcas/index']];
             }
-
 
             if (\Yii::$app->user->can('crudCategorias')) {
 

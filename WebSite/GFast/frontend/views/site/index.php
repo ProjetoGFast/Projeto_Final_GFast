@@ -3,6 +3,7 @@
 /* @var $guitarras common\models\Guitarras */
 /* @var $marcas common\models\Marcas */
 /* @var $categorias common\models\Categoriaguitarra */
+/* @var $employees app\models\EmployeesSearch */
 /* @var $content string */
 
 use yii\helpers\Html;
@@ -35,9 +36,6 @@ use yii\helpers\Html;
 <!-- |----------------------------------------- MARCAS -------------------------------------------------------------| -->
 <?= $this->render('..\layouts\marcas',['marcas' => $marcas]) ?>
 <!-- |----------------------------------------- MARCAS -------------------------------------------------------------| -->
-
-
-
 
 
 <!-- |----------------------------------------- CARTAZ -------------------------------------------------------------| -->

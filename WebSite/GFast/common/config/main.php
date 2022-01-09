@@ -32,6 +32,12 @@ return [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/subcategorias', 'extraPatterns' => [
+                    'GET {id}/guitarras' => 'guitarra',
+                ],],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/categorias', 'extraPatterns' => [
+                    'GET {id}/subcategorias' => 'subcategorias',
+                ],],
                // 'pluralize' => false,
 
             ],

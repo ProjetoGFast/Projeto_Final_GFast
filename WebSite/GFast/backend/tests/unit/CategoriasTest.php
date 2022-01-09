@@ -68,6 +68,5 @@ class CategoriasTest extends \Codeception\Test\Unit
         $model->save(false);
         $this->tester->seeInDatabase('categoriaguitarra', ['cat_nome' => 'Baixo123']);
 
-
     }
 }

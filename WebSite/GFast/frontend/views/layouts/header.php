@@ -74,7 +74,7 @@ $categorias = Categoriaguitarra::find()->all();
                         'items' => $marcas,
                     ],
                     ['label' => 'Marcas', 'url' => ['/marcas/index']],
-                    ['label' => 'Concertos', 'url' => ['/site/concerto']],
+                    //['label' => 'Concertos', 'url' => ['/site/concerto']],
                     ['label' => 'Contactos', 'url' => ['/site/contact']],
                     [
                         'label' => Yii::$app->user->identity->username,

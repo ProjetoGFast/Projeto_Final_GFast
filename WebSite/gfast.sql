@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 06-Jan-2022 às 02:43
+-- Tempo de geração: 09-Jan-2022 às 15:01
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `categoriaguitarra` (
   `cat_nome` varchar(20) NOT NULL,
   `cat_inativo` tinyint(4) NOT NULL,
   PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `categoriaguitarra`
@@ -344,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `guitarras` (
   PRIMARY KEY (`gui_id`),
   KEY `guitarra_subcategoria_fk` (`gui_idsubcategoria`),
   KEY `marca_subcategoria_fk` (`gui_idmarca`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `guitarras`
@@ -360,7 +360,8 @@ INSERT INTO `guitarras` (`gui_id`, `gui_nome`, `gui_idsubcategoria`, `gui_idmarc
 (24, 'TESTETEEE', 2, 17, 'A1111', 'TESTESTES', 500, 25, 'guitar.jpg', NULL, 0),
 (25, 'ola', 2, 15, 'A001', 'resfrsd', 500, 25, 'guitar.jpg', NULL, 0),
 (26, 'duarte', 2, 10, 'A001', 'teste', 444, 44, 'guitar.jpg', NULL, 0),
-(27, 'ALEXLEVS', 10, 19, '1111', 'TESTE', 77, 25, 'guitar.jpg', NULL, 1);
+(27, 'ALEXLEVS', 10, 19, '1111', 'TESTE', 77, 25, 'guitar.jpg', NULL, 1),
+(28, 'DUARTEGUITAR', 1, 17, 'AAA1', 'DUARTETESTE', 333, 33, 'guitar.jpg', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -389,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `marcas` (
   `mar_nome` varchar(20) NOT NULL,
   `mar_inativo` tinyint(4) NOT NULL,
   PRIMARY KEY (`mar_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `marcas`
@@ -470,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `subcategoriaguitarra` (
   `sub_idcat` int(11) NOT NULL,
   PRIMARY KEY (`sub_id`),
   KEY `sub_idcat` (`sub_idcat`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `subcategoriaguitarra`
