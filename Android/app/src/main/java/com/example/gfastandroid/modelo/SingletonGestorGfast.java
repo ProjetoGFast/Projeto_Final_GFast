@@ -297,9 +297,14 @@ public class SingletonGestorGfast {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
-
                     userListener.onErroEditar(error.getMessage());
-                    //Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    try {
+                        String body = new String (error.networkResponse.data, "UTF-8");
+                        Toast.makeText(context, body, Toast.LENGTH_SHORT).show();
+
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }){
