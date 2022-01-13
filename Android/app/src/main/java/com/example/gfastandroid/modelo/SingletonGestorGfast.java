@@ -4,7 +4,6 @@ package com.example.gfastandroid.modelo;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -14,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.gfastandroid.MenuMainActivity;
 import com.example.gfastandroid.R;
 import com.example.gfastandroid.listeners.GuitarraListener;
 import com.example.gfastandroid.listeners.GuitarrasListener;
@@ -28,6 +28,7 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONArray;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,11 +38,13 @@ public class SingletonGestorGfast {
     private MqttAndroidClient client = null;
     public GfastBDHelper gfastBDHelper = null;
     private ArrayList<Guitarra> guitarras;
+    public User user;
     private static SingletonGestorGfast instance = null;
     private static RequestQueue volleyQueue = null;
     private static String urlAPIGFast;
     private static String urlAPILogin;
-    private static String urlAPIUser;
+    private static String urlAPIGetUser;
+    private static String urlAPIPutUser;
     public GuitarrasListener guitarrasListener;
     private GuitarraListener guitarraListener;
     public UserListener userListener;
@@ -60,8 +63,8 @@ public class SingletonGestorGfast {
         gfastBDHelper = new GfastBDHelper(context);
         urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
         urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
-        urlAPIUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
-
+        urlAPIGetUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
+        urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
 
         client = new MqttAndroidClient(context, "tcp://broker.emqx.io:1883", MqttClient.generateClientId());
         client.setCallback(new MosquittoCallBack(context));
@@ -128,10 +131,6 @@ public class SingletonGestorGfast {
         return null;
     }
 
-
-
-
-
     public void adicionarGuitarraBD(Guitarra guitarra){
 
 
@@ -149,6 +148,18 @@ public class SingletonGestorGfast {
 
     }
 
+    public void adicionarLoggedUserBD(User user){
+
+
+       gfastBDHelper.adicionarUserBD(user);
+
+    }
+
+    public User getUserBD() {
+
+        return user;
+
+    }
 
 
 
@@ -195,8 +206,14 @@ public class SingletonGestorGfast {
         StringRequest req = new StringRequest(Request.Method.POST, urlAPILogin, new Response.Listener<String>() {
 
             public void onResponse(String response) {
+
+                user = GFastJsonParser.parserJsonUser(response);
+                adicionarLoggedUserBD(user);
+
                 if (userListener != null) {
-                    userListener.onValidateLogin(GFastJsonParser.parserJsonLogin(response), username);
+                    userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
+
+
                 }
 
             }
@@ -221,6 +238,88 @@ public class SingletonGestorGfast {
         };
 
         volleyQueue.add(req);
+    }
+
+
+    public void getLoggedUser(final String username, final String token, final Context context) {
+
+
+        StringRequest req = new StringRequest(Request.Method.POST, urlAPIGetUser, new Response.Listener<String>() {
+
+            public void onResponse(String response) {
+                if (userListener != null) {
+                    //userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response), username);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (userListener != null) {
+                    userListener.onErroLogin();
+
+
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("username", username);
+                params.put("token", token);
+                return params;
+            }
+        };
+
+        volleyQueue.add(req);
+
+
+       // return null;
+    }
+
+    public void editarUser(final User user, final Context context) {
+        if(!GFastJsonParser.isConnectionInternet(context))
+        {
+            Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
+
+        }
+        else{
+            StringRequest request = new StringRequest(Request.Method.PUT, urlAPIPutUser + "/" + user.getId(), new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                   // editarLivroBD(livro);
+                    if(userListener != null ){
+                        userListener.onRefreshDetalhes(MenuMainActivity.USERNAME);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+
+                    userListener.onErroEditar(error.getMessage());
+                    //Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams(){
+                    Map<String, String> params = new HashMap<>();
+                    params.put("username", user.getUsername());
+                    params.put("email", user.getEmail());
+                    params.put("us_nome", user.getUs_nome());
+                    params.put("us_apelido", user.getUs_apelido());
+                    params.put("us_contribuinte", user.getUs_contribuinte()+ "");
+                    params.put("us_telemovel", user.getUs_telemovel()+"");
+                    params.put("us_email", user.getEmail());
+                    params.put("us_cidade", user.getUs_cidade());
+                    return params;
+
+                }
+            };
+            volleyQueue.add(request);
+        }
     }
 
 

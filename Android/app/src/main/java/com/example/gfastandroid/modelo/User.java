@@ -121,4 +121,5 @@ public class User {
     public void setUs_pontos(int us_pontos) {
         this.us_pontos = us_pontos;
     }
+
 }

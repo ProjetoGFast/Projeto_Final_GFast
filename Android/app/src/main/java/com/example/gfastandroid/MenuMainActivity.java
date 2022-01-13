@@ -30,6 +30,8 @@ import com.google.android.material.navigation.NavigationView;
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String USERNAME = "username";
+    public static final String TOKEN = "token";
+    public static final String LOGIN = "Login";
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private String username;

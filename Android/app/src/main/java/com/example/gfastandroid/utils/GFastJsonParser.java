@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.example.gfastandroid.modelo.Guitarra;
+import com.example.gfastandroid.modelo.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +57,7 @@ public class GFastJsonParser {
 
     }
 
+
     public static String parserJsonLogin(String response) {
         String token = null;
         try {
@@ -65,6 +67,34 @@ public class GFastJsonParser {
             e.printStackTrace();
         }
         return token;
+    }
+
+    public static User parserJsonUser(String response) {
+        User auxUser = null;
+        try {
+
+            JSONObject user = new JSONObject(response);
+            int idUser = user.getInt("id");
+            String username = user.getString("username");
+            String auth_key = user.getString("auth_key");
+            String password_reset_token = user.getString("password_reset_token");
+            String email = user.getString("email");
+            String verification_token = user.getString("verification_token");
+            String us_nome = user.getString("us_nome");
+            String us_apelido = user.getString("us_apelido");
+            String us_cidade = user.getString("us_cidade");
+            int us_telemovel = user.getInt("us_telemovel");
+            int us_contribuinte = user.getInt("us_contribuinte");
+            int us_pontos = user.getInt("us_pontos");
+
+            auxUser = new User(idUser, username,auth_key,password_reset_token,email, verification_token, us_nome, us_apelido, us_cidade, us_telemovel, us_contribuinte, us_pontos);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
+        return auxUser;
     }
 
 }

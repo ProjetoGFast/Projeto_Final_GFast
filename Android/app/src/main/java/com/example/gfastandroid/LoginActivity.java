@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.gfastandroid.listeners.UserListener;
 import com.example.gfastandroid.modelo.SingletonGestorGfast;
+import com.example.gfastandroid.modelo.User;
 import com.example.gfastandroid.utils.GFastJsonParser;
 
 public class LoginActivity extends AppCompatActivity implements UserListener {
@@ -98,14 +99,22 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     }
 
 
-    public void onValidateLogin(String token, String username) {
-        if (token != null) {
+    @Override
+    public void onUserRegistado(String response) {
 
-            loginSharedPreferences(token, username);
+    }
+
+
+    @Override
+    public void onValidateLogin(User user) {
+
+        if (user.getId() != 0) {
+
+            loginSharedPreferences(user);
 
 
             Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
-            intent.putExtra(MenuMainActivity.USERNAME, username);
+            intent.putExtra(MenuMainActivity.USERNAME, user.getUsername());
             startActivity(intent);
             finish();
 
@@ -119,17 +128,49 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     }
 
     @Override
+    public void onRefreshDetalhes(String response) {
+
+    }
+
+    @Override
+    public void onApagarConta() {
+
+    }
+
+    @Override
     public void onErroLogin() {
 
         etPassword.setError("Utilizador ou Palavra-Passe Incorretos!");
     }
 
-    private void loginSharedPreferences(String token, String username) {
+    @Override
+    public void onLoadEditarRegisto(User utilizador) {
+
+    }
+
+    @Override
+    public void onErroEditar(String mensagem) {
+        setContentView(R.layout.fragment_perfil);
+        String username = etUserName.getText().toString();
+
+        etUserName.setError("UsernameInvalido");
+
+
+    }
+
+    private void loginSharedPreferences(User user) {
 
         SharedPreferences sharedPreferences = getSharedPreferences("Login", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", username );
-        editor.putString("token", token );
+        editor.putString("username", user.getUsername());
+        editor.putString("token", user.getVerification_token());
+        editor.putString("email", user.getEmail());
+        editor.putString("us_nome", user.getUs_nome());
+        editor.putString("us_apelido", user.getUs_apelido());
+        editor.putString("us_cidade", user.getUs_cidade());
+        editor.putInt("us_contribuinte", user.getUs_contribuinte());
+        editor.putInt("us_pontos", user.getUs_pontos());
+        editor.putInt("us_telemovel", user.getUs_telemovel());
         editor.commit();
 
     }

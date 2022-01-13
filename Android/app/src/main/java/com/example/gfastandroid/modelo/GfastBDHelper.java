@@ -36,7 +36,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
 
     //Tabela User
-    private static final String TABLE_USER = "guitarras";
+    private static final String TABLE_USER = "user";
     private static final String ID = "id";
     private static final String USERNAME = "username";
     private static final String AUTH_KEY = "auth_key";
@@ -87,7 +87,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
                 US_APELIDO + " TEXT NOT NULL, " +
                 US_CIDADE + " TEXT NOT NULL, " +
                 US_TELEMOVEL + " INTEGER NOT NULL, " +
-                US_PONTOS + "INTEGER NOT NULL, " +
+                US_PONTOS + " INTEGER NOT NULL, " +
                 US_CONTRIBUINTE + " INTEGER NOT NULL )";
 
 
@@ -147,6 +147,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
     public void removerAllGuitarrasBD() {
         db.delete(TABLE_GUITARRAS, null, null);
     }
+
     //#########################################USER############################################\\
 
     public User adicionarUserBD(User u) {
@@ -163,7 +164,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         values.put(US_PONTOS, u.getUs_pontos());
         values.put(US_CONTRIBUINTE, u.getUs_contribuinte());
 
-        this.db.insert(TABLE_GUITARRAS, null, values);
+        this.db.insert(TABLE_USER, null, values);
 
         return null;
 
