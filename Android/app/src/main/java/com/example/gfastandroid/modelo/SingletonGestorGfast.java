@@ -27,6 +27,8 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -300,9 +302,11 @@ public class SingletonGestorGfast {
                     userListener.onErroEditar(error.getMessage());
                     try {
                         String body = new String (error.networkResponse.data, "UTF-8");
-                        Toast.makeText(context, body, Toast.LENGTH_SHORT).show();
+                        JSONArray obj = new JSONArray(body);
+                        JSONObject errorMessage = obj.getJSONObject(0);
+                        Toast.makeText(context, errorMessage.getString("message"), Toast.LENGTH_SHORT).show();
 
-                    } catch (UnsupportedEncodingException e) {
+                    } catch (UnsupportedEncodingException | JSONException e) {
                         e.printStackTrace();
                     }
 

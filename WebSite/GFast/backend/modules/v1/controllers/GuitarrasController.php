@@ -12,7 +12,11 @@ class GuitarrasController extends ActiveController
 {
   public $modelClass = 'common\models\Guitarras';
 
-
+    public function actionGuitarras($id)
+    {
+        $guitarras = Guitarras::find()-> all();
+        return ['gui_id'=> count($guitarras)];
+    }
 
 
 
