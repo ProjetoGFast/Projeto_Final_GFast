@@ -26,9 +26,13 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     private Button btnLogin;
     private Button btnToRegister;
     private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
@@ -41,16 +45,14 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
         String username = sharedPreferencesUser.getString(MenuMainActivity.USERNAME, null);
         String token = sharedPreferencesUser.getString(MenuMainActivity.TOKEN, null);
-       /* if(username != null && token != null)
-        {
-            if (SingletonGestorGfast.getInstance(getApplicationContext()).getLoggedUser(username, token))
-            {
+        if (username != null && token != null) {
+            if (SingletonGestorGfast.getInstance(getApplicationContext()).getLoggedUser(username, token)) {
                 Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
                 startActivity(intent);
                 finish();
             }
 
-        }*/
+        }
         btnToRegister = (Button) findViewById(R.id.btnToRegister);
         btnToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +63,10 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
 
     }
 
-    public void onClickToRegister(){
+    public void onClickToRegister() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
-
-
 
 
     public void onClickLogin(View view) {
@@ -134,7 +134,6 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
 
     @Override
     public void onRefreshDetalhes(String response) {
-
 
 
     }

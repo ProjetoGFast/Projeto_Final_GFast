@@ -175,7 +175,8 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return (this.db.delete(TABLE_USER, ID + "= ?", new String[]{"" + id}) == 1);
     }
     public void removelAllUser() {
-        db.delete(TABLE_GUITARRAS, null, null);
+
+        db.delete(TABLE_USER, null, null);
     }
 
 

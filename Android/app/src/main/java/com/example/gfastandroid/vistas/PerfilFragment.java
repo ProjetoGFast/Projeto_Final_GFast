@@ -48,7 +48,7 @@ public class PerfilFragment extends Fragment {
         int us_contribuinte = sharedPreferencesUser.getInt("us_contribuinte", 0);
         int us_telemovel = sharedPreferencesUser.getInt("us_telemovel", 0);
 
-        user = SingletonGestorGfast.getInstance(getContext()).getUserBD();
+        user = SingletonGestorGfast.getInstance(getContext()).getUser();
 
         fragmentManager = getFragmentManager();
         etUserName = view.findViewById(R.id.etUserName);

@@ -53,7 +53,7 @@ public class SingletonGestorGfast {
     public static synchronized SingletonGestorGfast getInstance(Context context) {
         if (instance == null)
             instance = new SingletonGestorGfast(context);
-            volleyQueue = Volley.newRequestQueue(context);
+        volleyQueue = Volley.newRequestQueue(context);
         return instance;
 
     }
@@ -67,35 +67,46 @@ public class SingletonGestorGfast {
         urlAPIGetLoggedUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
         urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
 
-        client = new MqttAndroidClient(context, "tcp://broker.emqx.io:1883", MqttClient.generateClientId());
-        client.setCallback(new MosquittoCallBack(context));
-        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
-        mqttConnectOptions.setCleanSession(true);
-        // Establish a connection to IoT Platform by using MQTT.
         try {
-            client.connect(mqttConnectOptions, null, new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    try {
-                        client.subscribe("INSERT", 1);
-                        client.subscribe("UPDATE", 1);
-                        client.subscribe("DELETE", 1);
-                    } catch (MqttException e) {
-                        e.printStackTrace();
-                    }
+
+            if (!GFastJsonParser.isConnectionInternet(context)) {
+                Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
+
+                if (guitarrasListener != null) {
+                    guitarrasListener.onRefreshListaGuitarras(gfastBDHelper.getAllGuitarrasBD());
                 }
 
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    System.out.println("-->erro:");
-                }
-            });
+
+            } else {
+                client = new MqttAndroidClient(context, "tcp://broker.emqx.io:1883", MqttClient.generateClientId());
+                client.setCallback(new MosquittoCallBack(context));
+                MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+                mqttConnectOptions.setCleanSession(true);
+                // Establish a connection to IoT Platform by using MQTT.
+                client.connect(mqttConnectOptions, null, new IMqttActionListener() {
+                    @Override
+                    public void onSuccess(IMqttToken asyncActionToken) {
+                        try {
+                            client.subscribe("INSERT", 1);
+                            client.subscribe("UPDATE", 1);
+                            client.subscribe("DELETE", 1);
+                        } catch (MqttException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                        System.out.println("-->erro:");
+                    }
+                });
+            }
         } catch (MqttException e) {
             e.printStackTrace();
         }
     }
 
-    public void setGuitarrasListener(GuitarrasListener guitarrasListener){
+    public void setGuitarrasListener(GuitarrasListener guitarrasListener) {
 
         this.guitarrasListener = guitarrasListener;
 
@@ -105,30 +116,24 @@ public class SingletonGestorGfast {
 
         this.userListener = userListener;
     }
-    public void setGuitarraListener(GuitarraListener guitarraListener){
+
+    public void setGuitarraListener(GuitarraListener guitarraListener) {
 
         this.guitarraListener = guitarraListener;
 
     }
 
-    public ArrayList<Guitarra> getGuitarras()
-    {
+    public ArrayList<Guitarra> getGuitarras() {
         guitarras = gfastBDHelper.getAllGuitarrasBD();
         return guitarras;
-    }
-
-    public User getUser()
-    {
-        user = gfastBDHelper.getUser();
-        return user;
     }
 
 
     public Guitarra getGuitarraBD(int id) {
 
-        for (Guitarra g: guitarras) {
+        for (Guitarra g : guitarras) {
 
-            if(g.getGui_id() == id){
+            if (g.getGui_id() == id) {
 
                 return g;
 
@@ -139,59 +144,59 @@ public class SingletonGestorGfast {
         return null;
     }
 
-    public void adicionarGuitarraBD(Guitarra guitarra){
+    public void adicionarGuitarraBD(Guitarra guitarra) {
 
 
         gfastBDHelper.adicionarGuitarraBD(guitarra);
 
     }
 
-    public void adicionarGuitarrasBD(ArrayList<Guitarra> guitarras){
+    public void adicionarGuitarrasBD(ArrayList<Guitarra> guitarras) {
 
         gfastBDHelper.removerAllGuitarrasBD();
-        for(Guitarra g : guitarras)
-        {
+        for (Guitarra g : guitarras) {
             adicionarGuitarraBD(g);
         }
 
     }
 
-    public void adicionarLoggedUserBD(User user){
+    public void adicionarLoggedUserBD(User user) {
         gfastBDHelper.removelAllUser();
-       gfastBDHelper.adicionarUserBD(user);
+        gfastBDHelper.adicionarUserBD(user);
 
     }
 
-    public User getUserBD() {
+    public void cleanDBUser() {
+        gfastBDHelper.removelAllUser();
+    }
+
+    public User getUser() {
         return user;
     }
 
-    public boolean getLoggedUser(String username, String token)
-    {
-        User users = user;
-        return true;
-      //  String bdtoken = user.getVerification_token();
-      // String bdusername = user.getUsername();
+    public boolean getLoggedUser(String username, String token) {
 
-       // return username.equals(bdusername) && token.equals(bdtoken);
+        User users = gfastBDHelper.getUser();
+        String bdtoken = users.getVerification_token();
+        String bdusername = users.getUsername();
+
+        return username.equals(bdusername) && token.equals(bdtoken);
     }
-
-
 
 
 // ############################## API PEDIDOS ###############################################\\
 
-    public void getAllGuitarrasAPI(final Context context){
+    public void getAllGuitarrasAPI(final Context context) {
 
-     if(!GFastJsonParser.isConnectionInternet(context)){
+        if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
-            if(guitarrasListener != null ){
+            if (guitarrasListener != null) {
                 guitarrasListener.onRefreshListaGuitarras(gfastBDHelper.getAllGuitarrasBD());
             }
 
 
-        }else{
+        } else {
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, urlAPIGFast, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
@@ -200,7 +205,7 @@ public class SingletonGestorGfast {
                     guitarras = GFastJsonParser.parserJsonGuitarras(response);
                     adicionarGuitarrasBD(guitarras);
 
-                    if(guitarrasListener != null ){
+                    if (guitarrasListener != null) {
                         guitarrasListener.onRefreshListaGuitarras(guitarras);
                     }
                 }
@@ -218,43 +223,52 @@ public class SingletonGestorGfast {
     }
 
     public void loginUserAPI(final String username, final String password, final Context context) {
-        StringRequest req = new StringRequest(Request.Method.POST, urlAPILogin, new Response.Listener<String>() {
+        if (!GFastJsonParser.isConnectionInternet(context)) {
+            Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
-            public void onResponse(String response) {
+            if (guitarrasListener != null) {
+                guitarrasListener.onRefreshListaGuitarras(gfastBDHelper.getAllGuitarrasBD());
+            }
 
-                user = GFastJsonParser.parserJsonUser(response);
-                adicionarLoggedUserBD(user);
 
-                if (userListener != null) {
-                    userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
+        } else {
+            StringRequest req = new StringRequest(Request.Method.POST, urlAPILogin, new Response.Listener<String>() {
 
+                public void onResponse(String response) {
+
+                    user = GFastJsonParser.parserJsonUser(response);
+                    adicionarLoggedUserBD(user);
+
+                    if (userListener != null) {
+                        userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
+
+
+                    }
 
                 }
+            }, new Response.ErrorListener() {
 
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (userListener != null) {
-                    userListener.onErroLogin();
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if (userListener != null) {
+                        userListener.onErroLogin();
 
 
+                    }
                 }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("password", password);
-                return params;
-            }
-        };
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("username", username);
+                    params.put("password", password);
+                    return params;
+                }
+            };
 
-        volleyQueue.add(req);
+            volleyQueue.add(req);
+        }
     }
-
 
    /* public void getLoggedUser(final String username, final String token, final Context context) {
 
@@ -293,17 +307,15 @@ public class SingletonGestorGfast {
     }*/
 
     public void editarUser(final User user, final Context context) {
-        if(!GFastJsonParser.isConnectionInternet(context))
-        {
+        if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
-        }
-        else{
+        } else {
             StringRequest request = new StringRequest(Request.Method.PUT, urlAPIPutUser + "/" + user.getId(), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
 
-                    if(userListener != null ){
+                    if (userListener != null) {
                         userListener.loginSharedPreferences(user);
                         Toast.makeText(context, "Editado com Sucesso", Toast.LENGTH_SHORT).show();
                     }
@@ -314,7 +326,7 @@ public class SingletonGestorGfast {
 
                     userListener.onErroEditar(error.getMessage());
                     try {
-                        String body = new String (error.networkResponse.data, "UTF-8");
+                        String body = new String(error.networkResponse.data, "UTF-8");
                         JSONArray obj = new JSONArray(body);
                         JSONObject errorMessage = obj.getJSONObject(0);
                         Toast.makeText(context, errorMessage.getString("message"), Toast.LENGTH_SHORT).show();
@@ -324,16 +336,16 @@ public class SingletonGestorGfast {
                     }
 
                 }
-            }){
+            }) {
                 @Override
-                protected Map<String, String> getParams(){
+                protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
                     params.put("username", user.getUsername());
                     params.put("email", user.getEmail());
                     params.put("us_nome", user.getUs_nome());
                     params.put("us_apelido", user.getUs_apelido());
-                    params.put("us_contribuinte", user.getUs_contribuinte()+ "");
-                    params.put("us_telemovel", user.getUs_telemovel()+"");
+                    params.put("us_contribuinte", user.getUs_contribuinte() + "");
+                    params.put("us_telemovel", user.getUs_telemovel() + "");
                     params.put("us_email", user.getEmail());
                     params.put("us_cidade", user.getUs_cidade());
                     return params;

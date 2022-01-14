@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.gfastandroid.modelo.SingletonGestorGfast;
 import com.example.gfastandroid.vistas.CarrinhoFragment;
 import com.example.gfastandroid.vistas.ListaGuitarrasFragment;
 import com.example.gfastandroid.vistas.LocalizacaoFragment;
@@ -24,7 +25,6 @@ import com.example.gfastandroid.vistas.NoticiasFragment;
 import com.example.gfastandroid.vistas.PerfilFragment;
 import com.example.gfastandroid.vistas.SobreFragment;
 import com.google.android.material.navigation.NavigationView;
-
 
 
 public class MenuMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -63,33 +63,35 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
     private void carregarCabecalho() {
 
-        SharedPreferences sharedpreferences = this.getSharedPreferences("Login",0);
+        SharedPreferences sharedpreferences = this.getSharedPreferences("Login", 0);
 
         String username = sharedpreferences.getString("username", null);
 
-        if(username != null){
+        if (username != null) {
             View view = navigationView.getHeaderView(0);
             TextView tvUsername = view.findViewById(R.id.tvUsernameDrawer);
             tvUsername.setText(username);
         }
 
     }
+
     private void logout() {
 
-        SharedPreferences sharedpreferences =this.getSharedPreferences("Login",0);
+        SingletonGestorGfast.getInstance(getApplicationContext()).cleanDBUser();
+        SharedPreferences sharedpreferences = this.getSharedPreferences("Login", 0);
 
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.apply();
+        finish();
 
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.clear();
-            editor.apply();
-            finish();
-
-
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
-
-    private boolean carregarFragmentoInicial(){
+    private boolean carregarFragmentoInicial() {
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.getItem(1);
         item.setCheckable(true);
@@ -107,7 +109,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, message);
 
-        if (intent.resolveActivity(getPackageManager()) != null){
+        if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
@@ -117,8 +119,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
         Fragment fragment = null;
 
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.navPerfil:
                 fragment = new PerfilFragment();
                 setTitle(item.getTitle());
@@ -151,7 +152,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
                 logout();
                 break;
         }
-        if(fragment != null)
+        if (fragment != null)
             fragmentManager.beginTransaction().replace(R.id.contentFragment, fragment).commit();
 
         drawer.closeDrawer(GravityCompat.START);
