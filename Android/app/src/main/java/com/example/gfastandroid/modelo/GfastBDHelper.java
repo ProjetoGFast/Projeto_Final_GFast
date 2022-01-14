@@ -174,5 +174,25 @@ public class GfastBDHelper extends SQLiteOpenHelper {
     public boolean removerUserBD(int id) {
         return (this.db.delete(TABLE_USER, ID + "= ?", new String[]{"" + id}) == 1);
     }
+    public void removelAllUser() {
+        db.delete(TABLE_GUITARRAS, null, null);
+    }
+
+
+    public User getUser() {
+
+        User useraux;
+
+        Cursor cursor = this.db.query(TABLE_USER, new String[]{ID, USERNAME, AUTH_KEY, PASSWORD_RESET_TOKEN, EMAIL, VERIFICATION_TOKEN, US_NOME, US_APELIDO, US_CIDADE, US_TELEMOVEL, US_PONTOS, US_CONTRIBUINTE}, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+
+               useraux = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), cursor.getInt(10), cursor.getInt(11));
+            return useraux;
+        }
+
+        return null;
+
+    }
 
 }

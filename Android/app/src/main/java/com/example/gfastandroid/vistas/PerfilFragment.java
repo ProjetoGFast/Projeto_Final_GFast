@@ -77,17 +77,7 @@ public class PerfilFragment extends Fragment {
         etPhone.setText(String.valueOf(us_telemovel));
 
 
-        // user.setUsername(etUserName.getText().toString());
-        /*user.setAuth_key("");
-        user.setPassword_reset_token("");
-        user.setEmail(etEmail.getText().toString());
-        user.setVerification_token(token);
-        user.setUs_nome(etName.getText().toString());
-        user.setUs_apelido(etSurname.getText().toString());
-        user.setUs_cidade(etCity.getText().toString());
-        user.setUs_telemovel(1234567890);
-        user.setUs_contribuinte(123456789);
-        user.setUs_pontos(10);*/
+
 
         editarPerfilbtn = view.findViewById(R.id.btnEditarPerfil);
 
@@ -102,8 +92,9 @@ public class PerfilFragment extends Fragment {
                     user.setUs_nome(etName.getText().toString());
                     user.setUs_apelido(etSurname.getText().toString());
                     user.setUs_cidade(etCity.getText().toString());
-                    //user.setUs_telemovel(etPhone.getText().toString());
-                    //user.setUs_contribuinte(etContribuinte.getText().toString());
+                    user.setEmail(etEmail.getText().toString());
+                    user.setUs_telemovel(Integer.parseInt(etPhone.getText().toString()));
+                    user.setUs_contribuinte(Integer.parseInt(etContribuinte.getText().toString()));
 
                     SingletonGestorGfast.getInstance(getContext()).editarUser(user, getContext());
 

@@ -23,6 +23,8 @@ public class User {
         this.us_pontos = us_pontos;
     }
 
+
+
     public int getId() {
         return id;
     }

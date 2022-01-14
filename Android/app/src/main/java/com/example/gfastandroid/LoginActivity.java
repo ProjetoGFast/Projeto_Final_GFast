@@ -4,6 +4,7 @@ package com.example.gfastandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -37,7 +38,19 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         btnLogin = findViewById(R.id.btnLogin);
         btnToRegister = findViewById(R.id.btnToRegister);
 
+        SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
+        String username = sharedPreferencesUser.getString(MenuMainActivity.USERNAME, null);
+        String token = sharedPreferencesUser.getString(MenuMainActivity.TOKEN, null);
+       /* if(username != null && token != null)
+        {
+            if (SingletonGestorGfast.getInstance(getApplicationContext()).getLoggedUser(username, token))
+            {
+                Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
+        }*/
         btnToRegister = (Button) findViewById(R.id.btnToRegister);
         btnToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,14 +125,6 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
 
             loginSharedPreferences(user);
 
-
-            Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
-            intent.putExtra(MenuMainActivity.USERNAME, user.getUsername());
-            startActivity(intent);
-            finish();
-
-
-
             Toast.makeText(getApplicationContext(), "Bem Vindo!", Toast.LENGTH_LONG).show();
         } else {
 
@@ -129,6 +134,8 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
 
     @Override
     public void onRefreshDetalhes(String response) {
+
+
 
     }
 
@@ -144,21 +151,15 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     }
 
     @Override
-    public void onLoadEditarRegisto(User utilizador) {
-
-    }
-
-    @Override
     public void onErroEditar(String mensagem) {
         setContentView(R.layout.fragment_perfil);
         String username = etUserName.getText().toString();
 
         etUserName.setError("UsernameInvalido");
-
-
     }
 
-    private void loginSharedPreferences(User user) {
+    @Override
+    public void loginSharedPreferences(User user) {
 
         SharedPreferences sharedPreferences = getSharedPreferences("Login", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -172,6 +173,11 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         editor.putInt("us_pontos", user.getUs_pontos());
         editor.putInt("us_telemovel", user.getUs_telemovel());
         editor.commit();
+
+        Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+        intent.putExtra(MenuMainActivity.USERNAME, user.getUsername());
+        startActivity(intent);
+        finish();
 
     }
 }

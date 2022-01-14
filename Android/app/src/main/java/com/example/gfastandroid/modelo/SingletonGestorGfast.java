@@ -13,7 +13,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.gfastandroid.MenuMainActivity;
 import com.example.gfastandroid.R;
 import com.example.gfastandroid.listeners.GuitarraListener;
 import com.example.gfastandroid.listeners.GuitarrasListener;
@@ -45,7 +44,7 @@ public class SingletonGestorGfast {
     private static RequestQueue volleyQueue = null;
     private static String urlAPIGFast;
     private static String urlAPILogin;
-    private static String urlAPIGetUser;
+    private static String urlAPIGetLoggedUser;
     private static String urlAPIPutUser;
     public GuitarrasListener guitarrasListener;
     private GuitarraListener guitarraListener;
@@ -65,7 +64,7 @@ public class SingletonGestorGfast {
         gfastBDHelper = new GfastBDHelper(context);
         urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
         urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
-        urlAPIGetUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
+        urlAPIGetLoggedUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
         urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
 
         client = new MqttAndroidClient(context, "tcp://broker.emqx.io:1883", MqttClient.generateClientId());
@@ -118,6 +117,13 @@ public class SingletonGestorGfast {
         return guitarras;
     }
 
+    public User getUser()
+    {
+        user = gfastBDHelper.getUser();
+        return user;
+    }
+
+
     public Guitarra getGuitarraBD(int id) {
 
         for (Guitarra g: guitarras) {
@@ -151,16 +157,23 @@ public class SingletonGestorGfast {
     }
 
     public void adicionarLoggedUserBD(User user){
-
-
+        gfastBDHelper.removelAllUser();
        gfastBDHelper.adicionarUserBD(user);
 
     }
 
     public User getUserBD() {
-
         return user;
+    }
 
+    public boolean getLoggedUser(String username, String token)
+    {
+        User users = user;
+        return true;
+      //  String bdtoken = user.getVerification_token();
+      // String bdusername = user.getUsername();
+
+       // return username.equals(bdusername) && token.equals(bdtoken);
     }
 
 
@@ -243,14 +256,16 @@ public class SingletonGestorGfast {
     }
 
 
-    public void getLoggedUser(final String username, final String token, final Context context) {
+   /* public void getLoggedUser(final String username, final String token, final Context context) {
 
-
-        StringRequest req = new StringRequest(Request.Method.POST, urlAPIGetUser, new Response.Listener<String>() {
+        StringRequest req = new StringRequest(Request.Method.POST, urlAPIGetLoggedUser, new Response.Listener<String>() {
 
             public void onResponse(String response) {
+
                 if (userListener != null) {
-                    //userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response), username);
+                    userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
+
+
                 }
 
             }
@@ -269,16 +284,13 @@ public class SingletonGestorGfast {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("username", username);
-                params.put("token", token);
+                params.put("verification_token", token);
                 return params;
             }
         };
 
         volleyQueue.add(req);
-
-
-       // return null;
-    }
+    }*/
 
     public void editarUser(final User user, final Context context) {
         if(!GFastJsonParser.isConnectionInternet(context))
@@ -290,9 +302,10 @@ public class SingletonGestorGfast {
             StringRequest request = new StringRequest(Request.Method.PUT, urlAPIPutUser + "/" + user.getId(), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                   // editarLivroBD(livro);
+
                     if(userListener != null ){
-                        userListener.onRefreshDetalhes(MenuMainActivity.USERNAME);
+                        userListener.loginSharedPreferences(user);
+                        Toast.makeText(context, "Editado com Sucesso", Toast.LENGTH_SHORT).show();
                     }
                 }
             }, new Response.ErrorListener() {

@@ -13,7 +13,7 @@ public interface UserListener {
 
     void onErroLogin();
 
-    void onLoadEditarRegisto(User utilizador);
+    void loginSharedPreferences(User user);
 
     void onErroEditar(String mensagem);
 }
