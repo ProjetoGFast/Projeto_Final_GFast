@@ -6,12 +6,24 @@ import android.os.Bundle;
 
 import com.example.gfastandroid.R;
 
+public class DetalhesGuitarraActivity extends AppCompatActivity {
+    public static final String ID_GUITARRA = "gui_id";
 
-public class DetalhesGuitarrasActivity extends AppCompatActivity {
-    public static final String ID_GUITARRA = "IDLIVRO";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_lista_guitarras);
+        setContentView(R.layout.activity_detalhes_guitarra);
+
+
+
+
+
+
+
+
+
     }
+
+
 }

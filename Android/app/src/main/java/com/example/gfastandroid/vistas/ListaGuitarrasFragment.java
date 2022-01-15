@@ -65,11 +65,11 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
 
-               // Intent intent = new Intent(getContext(), DetalhesLivroActivity.class);
-                //intent.putExtra(DetalhesLivroActivity.ID_LIVRO, (int) id);
 
+                Intent intent = new Intent(getContext(), DetalhesGuitarraActivity.class);
+                intent.putExtra(DetalhesGuitarraActivity.ID_GUITARRA, (int) id);
 
-                //activityResultLauncher.launch(intent);
+                activityResultLauncher.launch(intent);
             }
         });
 

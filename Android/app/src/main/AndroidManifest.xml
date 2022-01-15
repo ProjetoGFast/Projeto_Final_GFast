@@ -15,14 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Books"
-        android:usesCleartextTraffic="true"
-        >
-        <service android:name="org.eclipse.paho.android.service.MqttService">
-        </service>
-
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".vistas.DetalhesGuitarrasActivity"
+            android:name=".vistas.DetalhesGuitarraActivity"
             android:exported="true" />
+
+        <service android:name="org.eclipse.paho.android.service.MqttService"></service>
+
         <activity
             android:name=".MenuMainActivity"
             android:exported="true"
@@ -32,6 +31,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
