@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        SingletonGestorGfast.getInstance(getApplicationContext()).setUserListener(this);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         String password = etPassword.getText().toString();
 
 
-        SingletonGestorGfast.getInstance(getApplicationContext()).setUserListener(this);
+
 
         if (!isEmailValido(username)) {
             etUserName.setError(getString(R.string.login_etEmail_Erro));
@@ -162,6 +162,7 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
 
         SharedPreferences sharedPreferences = getSharedPreferences("Login", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("iduser", user.getId());
         editor.putString("username", user.getUsername());
         editor.putString("token", user.getVerification_token());
         editor.putString("email", user.getEmail());

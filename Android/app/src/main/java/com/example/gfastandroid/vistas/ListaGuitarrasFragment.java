@@ -95,7 +95,7 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-       /* inflater.inflate(R.menu.menu_pesquisa, menu);
+        inflater.inflate(R.menu.menu_pesquisa, menu);
         MenuItem itemPesquisa = menu.findItem(R.id.itemPesquisa);
         searchView = (SearchView) itemPesquisa.getActionView();
 
@@ -108,21 +108,21 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
             @Override
             public boolean onQueryTextChange(String s) {
 
-                ArrayList<Guitarra> tempLivros = new ArrayList<>();
+                ArrayList<Guitarra> guitarrasbd = new ArrayList<>();
 
-                for (Livro l : SingletonGestorLivros.getInstance(getContext()).getLivros()) {
-                    if (l.getTitulo().toLowerCase().contains(s.toLowerCase())) {
-                        tempLivros.add(l);
+                for (Guitarra g : SingletonGestorGfast.getInstance(getContext()).getGuitarras()) {
+                    if (g.getGui_nome().toLowerCase().contains(s.toLowerCase())) {
+                        guitarrasbd.add(g);
                     }
 
                 }
 
-                lvlivros.setAdapter(new ListaLivroAdaptador(getContext(), tempLivros));
+                lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), guitarrasbd));
                 return true;
             }
         });
 
-        super.onCreateOptionsMenu(menu, inflater);*/
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

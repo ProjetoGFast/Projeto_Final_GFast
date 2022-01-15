@@ -46,4 +46,5 @@
     <string name="login_text">Login</string>
     <string name="register_text">Registo</string>
     <string name="introduza_o_username">Introduza o Username</string>
+    <string name="pesquisa">pesquisa</string>
 </resources>

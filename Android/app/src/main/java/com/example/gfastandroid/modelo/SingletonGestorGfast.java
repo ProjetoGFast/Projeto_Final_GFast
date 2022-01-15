@@ -171,7 +171,9 @@ public class SingletonGestorGfast {
     }
 
     public User getUser() {
-        return user;
+
+        User users = gfastBDHelper.getUser();
+        return users;
     }
 
     public boolean getLoggedUser(String username, String token) {
@@ -270,50 +272,18 @@ public class SingletonGestorGfast {
         }
     }
 
-   /* public void getLoggedUser(final String username, final String token, final Context context) {
 
-        StringRequest req = new StringRequest(Request.Method.POST, urlAPIGetLoggedUser, new Response.Listener<String>() {
-
-            public void onResponse(String response) {
-
-                if (userListener != null) {
-                    userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
-
-
-                }
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (userListener != null) {
-                    userListener.onErroLogin();
-
-
-                }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("verification_token", token);
-                return params;
-            }
-        };
-
-        volleyQueue.add(req);
-    }*/
-
-    public void editarUser(final User user, final Context context) {
+    public void editarUser(final User userlogged, final int iduser,  final Context context) {
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
         } else {
-            StringRequest request = new StringRequest(Request.Method.PUT, urlAPIPutUser + "/" + user.getId(), new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.PUT, urlAPIPutUser + "/" + iduser, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+
+                    user = GFastJsonParser.parserJsonUser(response);
+                    adicionarLoggedUserBD(user);
 
                     if (userListener != null) {
                         userListener.loginSharedPreferences(user);
@@ -324,7 +294,7 @@ public class SingletonGestorGfast {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
-                    userListener.onErroEditar(error.getMessage());
+
                     try {
                         String body = new String(error.networkResponse.data, "UTF-8");
                         JSONArray obj = new JSONArray(body);
@@ -340,14 +310,14 @@ public class SingletonGestorGfast {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
-                    params.put("username", user.getUsername());
-                    params.put("email", user.getEmail());
-                    params.put("us_nome", user.getUs_nome());
-                    params.put("us_apelido", user.getUs_apelido());
-                    params.put("us_contribuinte", user.getUs_contribuinte() + "");
-                    params.put("us_telemovel", user.getUs_telemovel() + "");
-                    params.put("us_email", user.getEmail());
-                    params.put("us_cidade", user.getUs_cidade());
+                    params.put("username", userlogged.getUsername());
+                    params.put("email", userlogged.getEmail());
+                    params.put("us_nome", userlogged.getUs_nome());
+                    params.put("us_apelido", userlogged.getUs_apelido());
+                    params.put("us_contribuinte", userlogged.getUs_contribuinte() + "");
+                    params.put("us_telemovel", userlogged.getUs_telemovel() + "");
+                    params.put("us_email", userlogged.getEmail());
+                    params.put("us_cidade", userlogged.getUs_cidade());
                     return params;
 
                 }

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.gfastandroid.LoginActivity;
 import com.example.gfastandroid.MenuMainActivity;
 import com.example.gfastandroid.R;
 import com.example.gfastandroid.modelo.Guitarra;
@@ -47,6 +48,8 @@ public class PerfilFragment extends Fragment {
         String us_cidade = sharedPreferencesUser.getString("us_cidade", null);
         int us_contribuinte = sharedPreferencesUser.getInt("us_contribuinte", 0);
         int us_telemovel = sharedPreferencesUser.getInt("us_telemovel", 0);
+        int iduser = sharedPreferencesUser.getInt("iduser", 0);
+
 
         user = SingletonGestorGfast.getInstance(getContext()).getUser();
 
@@ -85,8 +88,9 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                //SingletonGestorGfast.getInstance(getContext()).setUserListener(this);
 
-                if (user != null) {
+                if (user != null && iduser != 0) {
 
                     user.setUsername(etUserName.getText().toString());
                     user.setUs_nome(etName.getText().toString());
@@ -96,7 +100,7 @@ public class PerfilFragment extends Fragment {
                     user.setUs_telemovel(Integer.parseInt(etPhone.getText().toString()));
                     user.setUs_contribuinte(Integer.parseInt(etContribuinte.getText().toString()));
 
-                    SingletonGestorGfast.getInstance(getContext()).editarUser(user, getContext());
+                    SingletonGestorGfast.getInstance(getContext()).editarUser(user, iduser, getContext());
 
                 }
 

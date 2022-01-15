@@ -88,7 +88,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
                 US_CIDADE + " TEXT NOT NULL, " +
                 US_TELEMOVEL + " INTEGER NOT NULL, " +
                 US_PONTOS + " INTEGER NOT NULL, " +
-                US_CONTRIBUINTE + " INTEGER NOT NULL )";
+                US_CONTRIBUINTE + " TEXT NOT NULL )";
 
 
         sqLiteDatabase.execSQL(createUserTable);
@@ -162,7 +162,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         values.put(US_CIDADE, u.getUs_cidade());
         values.put(US_TELEMOVEL, u.getUs_telemovel());
         values.put(US_PONTOS, u.getUs_pontos());
-        values.put(US_CONTRIBUINTE, u.getUs_contribuinte());
+        values.put(US_CONTRIBUINTE, u.getUs_contribuinte()+"");
 
         this.db.insert(TABLE_USER, null, values);
 
@@ -184,7 +184,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
         User useraux;
 
-        Cursor cursor = this.db.query(TABLE_USER, new String[]{ID, USERNAME, AUTH_KEY, PASSWORD_RESET_TOKEN, EMAIL, VERIFICATION_TOKEN, US_NOME, US_APELIDO, US_CIDADE, US_TELEMOVEL, US_PONTOS, US_CONTRIBUINTE}, null, null, null, null, null);
+        Cursor cursor = this.db.query(TABLE_USER, new String[]{ID, USERNAME, AUTH_KEY, PASSWORD_RESET_TOKEN, EMAIL, VERIFICATION_TOKEN, US_NOME, US_APELIDO, US_CIDADE, US_TELEMOVEL, US_CONTRIBUINTE, US_PONTOS}, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
 
