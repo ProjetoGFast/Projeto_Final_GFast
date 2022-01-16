@@ -164,7 +164,12 @@ public class SingletonGestorGfast {
     public void adicionarLoggedUserBD(User user) {
         gfastBDHelper.removelAllUser();
         gfastBDHelper.adicionarUserBD(user);
-        //gfastBDHelper.editarUserBD(user);
+
+    }
+
+    public void editarUserBD(User user) {
+
+        gfastBDHelper.editarUserBD(user);
     }
 
     public void cleanDBUser() {
@@ -274,7 +279,7 @@ public class SingletonGestorGfast {
     }
 
 
-    public void editarUser(final User userlogged, final int iduser,  final Context context) {
+    public void editarUser(final User userlogged, final int iduser, final Context context) {
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
@@ -284,7 +289,7 @@ public class SingletonGestorGfast {
                 public void onResponse(String response) {
 
                     user = GFastJsonParser.parserJsonUser(response);
-                    adicionarLoggedUserBD(user);
+                    editarUserBD(user);
 
                     if (userListener != null) {
                         userListener.loginSharedPreferences(user);

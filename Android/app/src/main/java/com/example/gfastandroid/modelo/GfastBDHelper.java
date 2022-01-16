@@ -187,7 +187,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         values.put(US_PONTOS, u.getUs_pontos());
         values.put(US_CONTRIBUINTE, u.getUs_contribuinte());
 
-        return this.db.update(TABLE_USER, values, ID + "= ?", new String[]{"" + u.getId()}) > 0;
+       return this.db.update(TABLE_USER, values, VERIFICATION_TOKEN + "=?", new String[]{u.getVerification_token()}) > 0;
 
     }
 
