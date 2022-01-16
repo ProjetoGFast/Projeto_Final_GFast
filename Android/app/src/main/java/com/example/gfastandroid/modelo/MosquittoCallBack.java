@@ -25,7 +25,7 @@ public class MosquittoCallBack implements MqttCallback {
         JSONObject jsonObject = new JSONObject(message.toString());
         String preco_json = jsonObject.getString("preco");
         float preco = Float.parseFloat(preco_json);
-        Guitarra guitarra = new Guitarra(jsonObject.getInt("id"), jsonObject.getInt("subcategoria"), jsonObject.getString("marca"), jsonObject.getInt("iva"), preco, jsonObject.getString("nome"), jsonObject.getString("idreferencia"), jsonObject.getString("descricao"), jsonObject.getString("fotopath"), jsonObject.getString("qrcodepath"), jsonObject.getInt("inativo"));
+        Guitarra guitarra = new Guitarra(jsonObject.getInt("id"), jsonObject.getString("subcategoria"), jsonObject.getString("marca"), jsonObject.getInt("iva"), preco, jsonObject.getString("nome"), jsonObject.getString("idreferencia"), jsonObject.getString("descricao"), jsonObject.getString("fotopath"), jsonObject.getString("qrcodepath"), jsonObject.getInt("inativo"));
         SingletonGestorGfast.getInstance(context).gfastBDHelper.adicionarGuitarraBD(guitarra);
         SingletonGestorGfast.getInstance(context).guitarrasListener.onRefreshGuitarras();
 

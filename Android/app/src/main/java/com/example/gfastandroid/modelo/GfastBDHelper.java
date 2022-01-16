@@ -63,7 +63,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
         String createGuitarrasTable = "CREATE TABLE " + TABLE_GUITARRAS + "(" + GUI_ID + " INTEGER PRIMARY KEY , " +
                 GUI_NOME + " TEXT NOT NULL, " +
-                GUI_IDSUBCATEGORIA + " INTEGER NOT NULL, " +
+                GUI_IDSUBCATEGORIA + " TEXT NOT NULL, " +
                 GUI_IDMARCA + " INTEGER NOT NULL, " +
                 GUI_IDREFERENCIA + " INTEGER NOT NULL, " +
                 GUI_PRECO + " REAL NOT NULL, " +
@@ -114,6 +114,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
     public Guitarra adicionarGuitarraBD(Guitarra g) {
         ContentValues values = new ContentValues();
+        values.put(GUI_ID, g.getGui_id());
         values.put(GUI_NOME, g.getGui_nome());
         values.put(GUI_IDSUBCATEGORIA, g.getGui_idsubcategoria());
         values.put(GUI_IDMARCA, g.getGui_idmarca());
@@ -137,7 +138,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Guitarra guitarraaux = new Guitarra(cursor.getInt(0), cursor.getInt(2), cursor.getString(3), cursor.getInt(6), cursor.getFloat(5), cursor.getString(1), cursor.getString(4), cursor.getString(10), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
+                Guitarra guitarraaux = new Guitarra(cursor.getInt(0), cursor.getString(2), cursor.getString(3), cursor.getInt(6), cursor.getFloat(5), cursor.getString(1), cursor.getString(4), cursor.getString(10), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
                 guitarras.add(guitarraaux);
             } while (cursor.moveToNext());
         }
@@ -167,10 +168,30 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         this.db.insert(TABLE_USER, null, values);
 
         return null;
+    }
 
 
+    public boolean editarUserBD(User u) {
+
+
+        ContentValues values = new ContentValues();
+        values.put(USERNAME, u.getUsername());
+        values.put(AUTH_KEY, u.getAuth_key());
+        values.put(PASSWORD_RESET_TOKEN, u.getPassword_reset_token());
+        values.put(EMAIL, u.getEmail());
+        values.put(VERIFICATION_TOKEN, u.getVerification_token());
+        values.put(US_NOME, u.getUs_nome());
+        values.put(US_APELIDO, u.getUs_apelido());
+        values.put(US_CIDADE, u.getUs_cidade());
+        values.put(US_TELEMOVEL, u.getUs_telemovel());
+        values.put(US_PONTOS, u.getUs_pontos());
+        values.put(US_CONTRIBUINTE, u.getUs_contribuinte());
+
+        return this.db.update(TABLE_USER, values, ID + "= ?", new String[]{"" + u.getId()}) > 0;
 
     }
+
+
     public boolean removerUserBD(int id) {
         return (this.db.delete(TABLE_USER, ID + "= ?", new String[]{"" + id}) == 1);
     }

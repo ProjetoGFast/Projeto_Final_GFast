@@ -131,6 +131,7 @@ public class SingletonGestorGfast {
 
     public Guitarra getGuitarraBD(int id) {
 
+
         for (Guitarra g : guitarras) {
 
             if (g.getGui_id() == id) {
@@ -163,7 +164,7 @@ public class SingletonGestorGfast {
     public void adicionarLoggedUserBD(User user) {
         gfastBDHelper.removelAllUser();
         gfastBDHelper.adicionarUserBD(user);
-
+        //gfastBDHelper.editarUserBD(user);
     }
 
     public void cleanDBUser() {

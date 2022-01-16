@@ -95,7 +95,7 @@ class Guitarras extends \yii\db\ActiveRecord
             },
 
             'gui_idsubcategoria' => function () {
-                return $this->gui_idsubcategoria;
+                return $this->guiIdsubcategoria->sub_nome;
             },
 
             'gui_idreferencia' => function () {

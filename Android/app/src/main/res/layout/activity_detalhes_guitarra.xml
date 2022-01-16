@@ -6,117 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".vistas.DetalhesGuitarraActivity">
 
-    <ImageView
-        android:id="@+id/imageGuitarra"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:elevation="4dp"
-        android:minHeight="379dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/logo_gfast" />
-
-    <TextView
-        android:id="@+id/et_modelo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="The best guitar"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageGuitarra" />
-
-    <TextView
-        android:id="@+id/et_preco"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="50$"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/et_categoria"
-        app:layout_constraintTop_toBottomOf="@+id/et_marca" />
-
-    <TextView
-        android:id="@+id/et_marca"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Yamaha"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_modelo" />
-
-    <TextView
-        android:id="@+id/et_categoria"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Elétrica"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_marca" />
-
-    <TextView
-        android:id="@+id/et_subcategoria"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Modelo St"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_categoria" />
-
-    <TextView
-        android:id="@+id/et_descricao"
-        android:layout_width="0dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:text="Esta guitarra é a melhor porque tem um acabamento incrivel de metal e tem detalhes especiais!!"
-        android:textAlignment="viewStart"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_subcategoria" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/et_verCarrinho"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:clickable="true"
-        android:src="@drawable/ic_carrinhoicon"
-        app:backgroundTint="@color/purple_700"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_descricao"
-        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/et_adicionar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="Adicionar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_descricao" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+
+            <ImageView
+                android:id="@+id/imageGuitarra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:minHeight="379dp"
+                android:visibility="visible"
+                tools:srcCompat="@drawable/logo_gfast"
+                />
+
+            <TextView
+                android:id="@+id/tv_modelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/the_best_guitar"
+                android:textAlignment="center"
+                android:textSize="25sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="306dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_marca"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yamaha"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_subcategoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/modelo_st"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_preco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/_50"
+
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/tv_descricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/esta_guitarra_a_melhor_porque_tem_um_acabamento_incrivel_de_metal_e_tem_detalhes_especiais"
+                android:textAlignment="viewStart"
+                android:textSize="16sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <Button
+                android:id="@+id/bt_adicionar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_700"
+                android:text="@string/adicionar" />
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
