@@ -66,7 +66,7 @@ public class SingletonGestorGfast {
         urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
         urlAPIGetLoggedUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
         urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
-
+//#################################MOSQUITTO###################################################
         try {
 
             if (!GFastJsonParser.isConnectionInternet(context)) {
@@ -105,7 +105,7 @@ public class SingletonGestorGfast {
             e.printStackTrace();
         }
     }
-
+//#################################LISTENERS###################################################
     public void setGuitarrasListener(GuitarrasListener guitarrasListener) {
 
         this.guitarrasListener = guitarrasListener;
@@ -122,7 +122,7 @@ public class SingletonGestorGfast {
         this.guitarraListener = guitarraListener;
 
     }
-
+//#################################LOCAL DB###################################################
     public ArrayList<Guitarra> getGuitarras() {
         guitarras = gfastBDHelper.getAllGuitarrasBD();
         return guitarras;
@@ -192,8 +192,9 @@ public class SingletonGestorGfast {
     }
 
 
-// ############################## API PEDIDOS ###############################################\\
+// ############################## API PEDIDOS ###############################################
 
+//GUITARRAS
     public void getAllGuitarrasAPI(final Context context) {
 
         if (!GFastJsonParser.isConnectionInternet(context)) {
@@ -230,6 +231,7 @@ public class SingletonGestorGfast {
 
     }
 
+//USER
     public void loginUserAPI(final String username, final String password, final Context context) {
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();

@@ -2,6 +2,7 @@
 
 namespace backend\modules\v1\controllers;
 
+use common\models\Carrinho;
 use common\models\LoginForm;
 use common\models\User;
 use yii\rest\ActiveController;
@@ -12,7 +13,7 @@ use yii\web\Controller;
  */
 class UserController extends ActiveController
 {
-  public $modelClass = 'common\models\User';
+    public $modelClass = 'common\models\User';
 
     public function actionLogin()
     {
@@ -27,11 +28,9 @@ class UserController extends ActiveController
 
         } else {
 
-            if($model->login())
-            {
+            if ($model->login()) {
                 return $modelUser;
-            }else
-            {
+            } else {
                 throw new \yii\web\NotFoundHttpException("Username ou Password Incorretos!");
             }
 
@@ -48,16 +47,59 @@ class UserController extends ActiveController
         $modelUser = User::find()->where(['username' => $model->username])->one();
 
 
-            if($modelUser->verification_token ==  $model->verification_token)
-            {
-                return $modelUser;
-            }else
-            {
-                throw new \yii\web\NotFoundHttpException("Ocorreu um Erro");
-            }
-
-
+        if ($modelUser->verification_token == $model->verification_token) {
+            return $modelUser;
+        } else {
+            throw new \yii\web\NotFoundHttpException("Ocorreu um Erro");
         }
+
+
+    }
+
+
+    public function actionSignUp()
+    {
+
+        $user = new User();
+
+        $username = \Yii::$app->request->post('username');
+        $email = \Yii::$app->request->post('email');
+        $password = \Yii::$app->request->post('password');
+        //....
+
+
+
+        $user->username = $username;
+        $user->email = $email;
+        $user->setPassword($password);
+
+        //Não mexe*
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        //*
+
+        $user->us_nome = $this->us_nome;
+        $user->us_contribuinte = $this->us_contribuinte;
+        $user->us_apelido = $this->us_apelido;
+        $user->us_telemovel = $this->us_telemovel;
+        $user->us_cidade = $this->us_cidade;
+        $user->us_pontos = 0;
+        $user->us_inativo = 0;
+
+        $user->save(false);
+
+
+        //Não mexe
+        $auth = \Yii::$app->authManager;
+        $authorRole = $auth->getRole('cliente');
+        $auth->assign($authorRole, $user->getId());
+
+
+
+
+
+
+    }
 
 
 }

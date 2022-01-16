@@ -148,9 +148,9 @@ class Guitarras extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCarrinhos()
+    public function getFavoritos()
     {
-        return $this->hasMany(Carrinho::className(), ['car_iduser' => 'gui_id']);
+        return $this->hasMany(Favoritos::className(), ['fav_iduser' => 'gui_id']);
     }
 
     /**
