@@ -31,8 +31,9 @@ use yii\web\IdentityInterface;
  *
  * @property Avaliacoes[] $avaliacoes
  * @property Bilhetes[] $bilhetes
- * @property Carrinho[] $carrinhos
+ * @property Favoritos[] $favoritos
  * @property Enderecos[] $enderecos
+ *
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -322,13 +323,13 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Gets query for [[Carrinhos]].
+     * Gets query for [[Favoritos]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCarrinhos()
+    public function getFavoritos()
     {
-        return $this->hasMany(Carrinho::className(), ['car_iduser' => 'id']);
+        return $this->hasMany(Favoritos::className(), ['fav_iduser' => 'id']);
     }
 
     /**

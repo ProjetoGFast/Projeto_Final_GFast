@@ -90,6 +90,7 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
                 .into(imageGuitarra);
 
     }
+
     @Override
     public void onRefreshDetalhes(int op) {
         Intent intent = new Intent();
