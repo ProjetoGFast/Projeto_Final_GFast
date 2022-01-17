@@ -46,6 +46,7 @@ public class SingletonGestorGfast {
     private static String urlAPILogin;
     private static String urlAPIGetLoggedUser;
     private static String urlAPIPutUser;
+    private static String urlAPIRegistar;
     public GuitarrasListener guitarrasListener;
     private GuitarraListener guitarraListener;
     public UserListener userListener;
@@ -66,6 +67,8 @@ public class SingletonGestorGfast {
         urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
         urlAPIGetLoggedUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
         urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
+        urlAPIRegistar = context.getString(R.string.iplocal) + "v1/user/registo";
+
 //#################################MOSQUITTO###################################################
         try {
 
@@ -324,8 +327,62 @@ public class SingletonGestorGfast {
                     params.put("us_apelido", userlogged.getUs_apelido());
                     params.put("us_contribuinte", userlogged.getUs_contribuinte() + "");
                     params.put("us_telemovel", userlogged.getUs_telemovel() + "");
-                    params.put("us_email", userlogged.getEmail());
+                    //params.put("us_email", userlogged.getEmail());
                     params.put("us_cidade", userlogged.getUs_cidade());
+                    return params;
+
+                }
+            };
+            volleyQueue.add(request);
+        }
+    }
+
+
+    public void registarUser(final String username, final String password, final String email, final String nome, final String apelido, final String cidade, final String telemovel, final String contribuinte, final Context context) {
+        if (!GFastJsonParser.isConnectionInternet(context)) {
+            Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
+
+        } else {
+            StringRequest request = new StringRequest(Request.Method.POST, urlAPIRegistar, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                    user = GFastJsonParser.parserJsonUser(response);
+                    editarUserBD(user);
+
+                    if (userListener != null) {
+                        userListener.loginSharedPreferences(user);
+                        Toast.makeText(context, "Registado com Sucesso", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+
+                    try {
+                        String body = new String(error.networkResponse.data, "UTF-8");
+                        JSONArray obj = new JSONArray(body);
+                        JSONObject errorMessage = obj.getJSONObject(0);
+                        Toast.makeText(context, errorMessage.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (UnsupportedEncodingException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("username", username);
+                    params.put("password", password);
+                    params.put("email", email);
+                    params.put("nome", nome);
+                    params.put("apelido", apelido);
+                    params.put("cidade", cidade);
+                    params.put("telemovel", telemovel + "");
+                    params.put("contribuinte", contribuinte + "");
                     return params;
 
                 }

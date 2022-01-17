@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.gfastandroid.modelo.SingletonGestorGfast;
+import com.example.gfastandroid.utils.GFastJsonParser;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -55,16 +59,16 @@ public class RegisterActivity extends AppCompatActivity {
 
         String username = etUserName.getText().toString();
         String email = etEmail.getText().toString();
-        String name = etName.getText().toString();
-        String surname = etSurname.getText().toString();
-        String city = etCity.getText().toString();
-        String phone = etPhone.getText().toString();
+        String nome = etName.getText().toString();
+        String apelido = etSurname.getText().toString();
+        String cidade = etCity.getText().toString();
+        String telemovel = etPhone.getText().toString();
         String contribuinte = etContribuinte.getText().toString();
         String password = etPassword.getText().toString();
 
 
         if (!isUserNameValido(username)){
-            etEmail.setError(getString(R.string.login_etUserName_Erro));
+            etUserName.setError(getString(R.string.login_etUserName_Erro));
             return;
         }
 
@@ -73,22 +77,22 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (!isNameValido(name)){
+        if (!isNameValido(nome)){
             etName.setError(getString(R.string.login_etName_Erro));
             return;
         }
 
-        if (!isSurnameValido(surname)){
+        if (!isSurnameValido(apelido)){
             etSurname.setError(getString(R.string.login_etSurname_Erro));
             return;
         }
 
-        if (!isCityValido(city)){
+        if (!isCityValido(cidade)){
             etCity.setError(getString(R.string.login_etCity_Erro));
             return;
         }
 
-        if (!isPhoneValido(phone)){
+        if (!isPhoneValido(telemovel)){
             etPhone.setError(getString(R.string.login_etPhone_Erro));
             return;
         }
@@ -103,6 +107,14 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        if (GFastJsonParser.isConnectionInternet(getApplicationContext())) {
+
+            SingletonGestorGfast.getInstance(getApplicationContext()).registarUser(username, password, email, nome, apelido, cidade, telemovel, contribuinte, getApplicationContext());
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
+        }
+
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         intent.putExtra(MenuMainActivity.USERNAME, email);
         startActivity(intent);
@@ -112,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isUserNameValido(String username){
         if (username == null)
             return false;
-        return Patterns.EMAIL_ADDRESS.matcher(username).matches();
+        return true;
     }
     private boolean isEmailValido(String email){
         if (email == null)
@@ -122,27 +134,27 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isNameValido(String name){
         if (name == null)
             return false;
-        return Patterns.EMAIL_ADDRESS.matcher(name).matches();
+        return true;
     }
     private boolean isSurnameValido(String surname){
         if (surname == null)
             return false;
-        return Patterns.EMAIL_ADDRESS.matcher(surname).matches();
+        return true;
     }
     private boolean isCityValido(String city){
         if (city == null)
             return false;
-        return Patterns.EMAIL_ADDRESS.matcher(city).matches();
+        return true;
     }
     private boolean isPhoneValido(String phone){
         if (phone == null)
             return false;
-        return Patterns.EMAIL_ADDRESS.matcher(phone).matches();
+        return true;
     }
     private boolean isContribuinteValido(String contribuinte){
         if (contribuinte == null)
             return false;
-        return Patterns.EMAIL_ADDRESS.matcher(contribuinte).matches();
+        return true;
     }
     private boolean isPasswordValida(String password){
         if (password == null)

@@ -57,7 +57,7 @@ class UserController extends ActiveController
     }
 
 
-    public function actionSignUp()
+    public function actionRegisto()
     {
 
         $user = new User();
@@ -65,35 +65,38 @@ class UserController extends ActiveController
         $username = \Yii::$app->request->post('username');
         $email = \Yii::$app->request->post('email');
         $password = \Yii::$app->request->post('password');
-        //....
-
+        $nome = \Yii::$app->request->post('nome');
+        $apelido = \Yii::$app->request->post('apelido');
+        $contribuinte = \Yii::$app->request->post('contribuinte');
+        $telemovel = \Yii::$app->request->post('telemovel');
+        $cidade = \Yii::$app->request->post('cidade');
 
 
         $user->username = $username;
         $user->email = $email;
         $user->setPassword($password);
 
-        //Não mexe*
+        // Não mexe //
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        //*
+        // Não mexe //
 
-        $user->us_nome = $this->us_nome;
-        $user->us_contribuinte = $this->us_contribuinte;
-        $user->us_apelido = $this->us_apelido;
-        $user->us_telemovel = $this->us_telemovel;
-        $user->us_cidade = $this->us_cidade;
+        $user->us_nome = $nome;
+        $user->us_apelido = $apelido;
+        $user->us_contribuinte = $contribuinte;
+        $user->us_telemovel = $telemovel;
+        $user->us_cidade = $cidade;
         $user->us_pontos = 0;
         $user->us_inativo = 0;
 
         $user->save(false);
 
 
-        //Não mexe
+        //Não mexe //
         $auth = \Yii::$app->authManager;
         $authorRole = $auth->getRole('cliente');
         $auth->assign($authorRole, $user->getId());
-
+        //Não mexe //
 
 
 
