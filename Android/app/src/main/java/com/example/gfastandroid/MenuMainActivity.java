@@ -17,8 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.gfastandroid.adaptadores.ListaFavoritosAdaptador;
 import com.example.gfastandroid.modelo.SingletonGestorGfast;
 import com.example.gfastandroid.vistas.CarrinhoFragment;
+import com.example.gfastandroid.vistas.FavoritosFragment;
 import com.example.gfastandroid.vistas.ListaGuitarrasFragment;
 import com.example.gfastandroid.vistas.LocalizacaoFragment;
 import com.example.gfastandroid.vistas.NoticiasFragment;
@@ -126,6 +128,10 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.navGuitarras:
                 fragment = new ListaGuitarrasFragment();
+                setTitle(item.getTitle());
+                break;
+            case R.id.navFavoritos:
+                fragment = new FavoritosFragment();
                 setTitle(item.getTitle());
                 break;
             case R.id.navCarrinho:

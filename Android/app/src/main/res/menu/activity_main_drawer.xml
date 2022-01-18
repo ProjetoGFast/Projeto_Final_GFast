@@ -18,8 +18,8 @@
             android:icon="@drawable/ic_carrinhoicon"
             android:title="@string/carrinho" />
         <item
-            android:id="@+id/navHistorico"
-            android:icon="@drawable/ic_historiaicon"
+            android:id="@+id/navFavoritos"
+            android:icon="@drawable/ic_action_favorito"
             android:title="@string/hist_rico" />
         <item
             android:id="@+id/navLocalizacao"
