@@ -97,6 +97,10 @@ class UserController extends ActiveController
         $auth->assign($authorRole, $user->getId());
         //Não mexe //
 
+
+
+
+
     }
 
 }
