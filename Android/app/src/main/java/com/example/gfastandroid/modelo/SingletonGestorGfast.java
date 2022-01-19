@@ -4,6 +4,7 @@ package com.example.gfastandroid.modelo;
 
 
 import android.content.Context;
+import android.icu.text.Edits;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -14,10 +15,12 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gfastandroid.R;
+import com.example.gfastandroid.listeners.FavoritosListener;
 import com.example.gfastandroid.listeners.GuitarraListener;
 import com.example.gfastandroid.listeners.GuitarrasListener;
 import com.example.gfastandroid.listeners.UserListener;
 import com.example.gfastandroid.utils.GFastJsonParser;
+import com.example.gfastandroid.vistas.FavoritosFragment;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -39,6 +42,7 @@ public class SingletonGestorGfast {
     private MqttAndroidClient client = null;
     public GfastBDHelper gfastBDHelper = null;
     private ArrayList<Guitarra> guitarras;
+    private ArrayList<Favoritos> favoritos;
     public User user;
     private static SingletonGestorGfast instance = null;
     private static RequestQueue volleyQueue = null;
@@ -47,7 +51,10 @@ public class SingletonGestorGfast {
     private static String urlAPIGetLoggedUser;
     private static String urlAPIPutUser;
     private static String urlAPIRegistar;
+    private static String urlAPIGetFavByUser;
+
     public GuitarrasListener guitarrasListener;
+    public FavoritosListener favoritosListener;
     private GuitarraListener guitarraListener;
     public UserListener userListener;
 
@@ -68,6 +75,7 @@ public class SingletonGestorGfast {
         urlAPIGetLoggedUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
         urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
         urlAPIRegistar = context.getString(R.string.iplocal) + "v1/user/registo";
+        urlAPIGetFavByUser = context.getString(R.string.iplocal) + "v1/favoritos/favoritos";
 
 //#################################MOSQUITTO###################################################
         try {
@@ -112,6 +120,12 @@ public class SingletonGestorGfast {
     public void setGuitarrasListener(GuitarrasListener guitarrasListener) {
 
         this.guitarrasListener = guitarrasListener;
+
+    }
+
+    public void setFavoritosListener(FavoritosListener favoritosListener) {
+
+        this.favoritosListener = favoritosListener;
 
     }
 
@@ -161,6 +175,36 @@ public class SingletonGestorGfast {
         for (Guitarra g : guitarras) {
             adicionarGuitarraBD(g);
         }
+
+    }
+
+    public void adicionarFavoritosBD(ArrayList<Favoritos> favoritos) {
+
+        gfastBDHelper.removelAllFavoritos();
+        for (Favoritos g : favoritos) {
+            gfastBDHelper.adicionarFavoritoBD(g);
+        }
+
+
+    }
+
+    public ArrayList<Guitarra> getGuitarrasFavoritas(ArrayList<Favoritos> favoritos) {
+
+        ArrayList<Guitarra> guitarrasAux = new ArrayList<Guitarra>();
+        ArrayList<Guitarra> guitarras = getGuitarras();
+        for (Favoritos f : favoritos) {
+            for (Guitarra g : guitarras) {
+
+                if(f.getFav_idguitarras() == g.getGui_id())
+                {
+                    guitarrasAux.add(g);
+
+                }
+
+
+            }
+        }
+        return guitarrasAux;
 
     }
 
@@ -219,7 +263,9 @@ public class SingletonGestorGfast {
 
                     if (guitarrasListener != null) {
                         guitarrasListener.onRefreshListaGuitarras(guitarras);
+
                     }
+
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -300,6 +346,9 @@ public class SingletonGestorGfast {
                         userListener.loginSharedPreferences(user);
                         Toast.makeText(context, "Editado com Sucesso", Toast.LENGTH_SHORT).show();
                     }
+
+
+
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -347,12 +396,20 @@ public class SingletonGestorGfast {
                 @Override
                 public void onResponse(String response) {
 
-                    user = GFastJsonParser.parserJsonUser(response);
+                   /* user = GFastJsonParser.parserJsonUser(response);
                     editarUserBD(user);
 
                     if (userListener != null) {
                         userListener.loginSharedPreferences(user);
                         Toast.makeText(context, "Registado com Sucesso", Toast.LENGTH_SHORT).show();
+                    }*/
+                    user = GFastJsonParser.parserJsonUser(response);
+                    adicionarLoggedUserBD(user);
+
+                    if (userListener != null) {
+                        userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
+
+
                     }
                 }
             }, new Response.ErrorListener() {
@@ -390,6 +447,48 @@ public class SingletonGestorGfast {
             volleyQueue.add(request);
         }
     }
+//Favoritos
+
+    public void getFavoritosByUser(final int iduser, final Context context) {
+        if (!GFastJsonParser.isConnectionInternet(context)) {
+            Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
+
+            if (guitarrasListener != null) {
+                guitarrasListener.onRefreshListaGuitarras(gfastBDHelper.getAllGuitarrasBD());
+            }
 
 
+        } else {
+            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, urlAPIGetFavByUser + "?id=" + iduser, null, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+
+
+                    favoritos = GFastJsonParser.parserJsonFavoritos(response);
+
+                    adicionarFavoritosBD(favoritos);
+                   ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(favoritos);
+                    if (favoritosListener != null) {
+
+                        favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
+
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    System.out.println(error.getMessage());
+                }
+            });
+
+            volleyQueue.add(request);
+        }
+
+
+
+    }
 }
+
+

@@ -41,7 +41,7 @@
     <string name="perfil">Perfil</string>
     <string name="sobre">Sobre</string>
     <string name="sair">Sair</string>
-    <string name="iplocal">http://192.168.1.160:8061/</string>
+    <string name="iplocal">http://192.168.1.76:8061/</string>
     <string name="username">Username</string>
     <string name="login_text">Login</string>
     <string name="register_text">Registo</string>
@@ -54,4 +54,5 @@
     <string name="modelo_st">Modelo St</string>
     <string name="esta_guitarra_a_melhor_porque_tem_um_acabamento_incrivel_de_metal_e_tem_detalhes_especiais">Esta guitarra é a melhor porque tem um acabamento incrivel de metal e tem detalhes especiais!!</string>
     <string name="adicionar">Adicionar</string>
+    <string name="favoritos">Favoritos</string>
 </resources>

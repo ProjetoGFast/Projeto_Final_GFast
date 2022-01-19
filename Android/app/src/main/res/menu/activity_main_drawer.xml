@@ -20,7 +20,7 @@
         <item
             android:id="@+id/navFavoritos"
             android:icon="@drawable/ic_action_favorito"
-            android:title="@string/hist_rico" />
+            android:title="@string/favoritos" />
         <item
             android:id="@+id/navLocalizacao"
             android:icon="@drawable/ic_localicon"

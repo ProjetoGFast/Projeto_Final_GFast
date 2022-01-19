@@ -84,7 +84,7 @@ public class ListaGuitarraAdaptador extends BaseAdapter {
                     .placeholder(R.drawable.logo_gfast)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgGuitarra);
-             //imgCapa.setImageResource(guitarra.getGui_fotopath());
+
         }
     }
 }

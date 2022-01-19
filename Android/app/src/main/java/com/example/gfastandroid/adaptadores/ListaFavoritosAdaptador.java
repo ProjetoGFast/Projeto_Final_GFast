@@ -50,12 +50,8 @@ public class ListaFavoritosAdaptador extends BaseAdapter {
 
         if(view == null)
         {
-            view = inflater.inflate(R.layout.item_lista_guitarras, null);
+            view = inflater.inflate(R.layout.item_lista_favoritos, null);
         }
-
-
-
-
 
         ViewHolderLista viewHolderLista = (ViewHolderLista) view.getTag();
         if(viewHolderLista == null)
@@ -73,11 +69,11 @@ public class ListaFavoritosAdaptador extends BaseAdapter {
         private ImageView imgGuitarra;
 
         public ViewHolderLista(View view){
-            tvModelo = view.findViewById(R.id.tvModelo);
-            tvMarca = view.findViewById(R.id.tvMarca);
-            tvPreco = view.findViewById(R.id.tvPreco);
+            tvModelo = view.findViewById(R.id.tvModelofav);
+            tvMarca = view.findViewById(R.id.tvMarcafav);
+            tvPreco = view.findViewById(R.id.tvPrecofav);
 
-            imgGuitarra = view.findViewById(R.id.imgGuitarra);
+            imgGuitarra = view.findViewById(R.id.imgGuitarrafav);
         }
 
         public void update(Guitarra guitarra){

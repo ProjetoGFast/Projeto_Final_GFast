@@ -9,13 +9,23 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/swipe_refresh_layout">
+        android:id="@+id/swipe_refresh_layoutfav">
 
         <ListView
-            android:id="@+id/lvguitarras"
+            android:id="@+id/lvguitarrasfav"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
         </ListView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabListafav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_action_favorito" />
+
 
 </FrameLayout>

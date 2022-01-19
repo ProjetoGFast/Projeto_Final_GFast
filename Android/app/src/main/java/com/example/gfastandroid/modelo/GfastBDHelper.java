@@ -51,6 +51,13 @@ public class GfastBDHelper extends SQLiteOpenHelper {
     private static final String US_PONTOS = "us_pontos";
 
 
+    //Tabela Favoritos
+    private static final String TABLE_FAVORITOS = "favoritos";
+    private static final String FAV_ID = "fav_id";
+    private static final String FAV_IDUSER = "fav_iduser";
+    private static final String FAV_IDGUITARRAS = "fav_idguitarras";
+
+
 
     public GfastBDHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -92,6 +99,14 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
 
         sqLiteDatabase.execSQL(createUserTable);
+
+
+        String createFavoritosTable = "CREATE TABLE " + TABLE_FAVORITOS + "(" + FAV_ID + " INTEGER PRIMARY KEY , " +
+                FAV_IDGUITARRAS + " INTEGER NOT NULL, " +
+                FAV_IDUSER + " INTEGER NOT NULL)";
+
+
+        sqLiteDatabase.execSQL(createFavoritosTable);
 
 
 
@@ -216,5 +231,32 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return null;
 
     }
+
+
+    //#########################################FAVORITOS############################################\\
+
+    public Favoritos adicionarFavoritoBD(Favoritos f) {
+        ContentValues values = new ContentValues();
+        values.put(FAV_ID,f.getFav_id());
+        values.put(FAV_IDGUITARRAS, f.getFav_idguitarras());
+        values.put(FAV_IDUSER, f.getFav_iduser());
+
+        this.db.insert(TABLE_FAVORITOS, null, values);
+
+        return null;
+    }
+
+
+
+
+    public boolean removerFavoritoBD(int id) {
+        return (this.db.delete(TABLE_FAVORITOS, FAV_ID + "= ?", new String[]{"" + id}) == 1);
+    }
+    public void removelAllFavoritos() {
+
+        db.delete(TABLE_FAVORITOS, null, null);
+    }
+
+
 
 }

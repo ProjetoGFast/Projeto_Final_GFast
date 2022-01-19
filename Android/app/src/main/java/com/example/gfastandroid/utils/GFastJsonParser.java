@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.example.gfastandroid.modelo.Favoritos;
 import com.example.gfastandroid.modelo.Guitarra;
 import com.example.gfastandroid.modelo.User;
 
@@ -44,6 +45,30 @@ public class GFastJsonParser {
 
         }
         return guitarras;
+    }
+
+
+    public static ArrayList<Favoritos> parserJsonFavoritos(JSONArray response) {
+        ArrayList<Favoritos> favoritos = new ArrayList<>();
+        try {
+
+            for(int i = 0; i<response.length(); i++)
+            {
+                JSONObject favorito = (JSONObject) response.get(i);
+                int fav_id = favorito.getInt("fav_id");
+                int fav_idguitarras = favorito.getInt("fav_idguitarras");
+                int fav_iduser = favorito.getInt("fav_iduser");
+
+
+                Favoritos auxFavoritos = new Favoritos(fav_id, fav_idguitarras, fav_iduser);
+                favoritos.add(auxFavoritos);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
+        return favoritos;
     }
 
 

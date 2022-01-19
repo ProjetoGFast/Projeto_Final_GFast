@@ -17,13 +17,13 @@ class FavoritosController extends ActiveController
     public $modelClass = 'common\models\Favoritos';
 
 
-    public function actionFavoritos()
+    public function actionFavoritos($id)
     {
         $model = new Favoritos();
 
         $model->fav_iduser = \Yii::$app->request->post('fav_iduser');
 
-        $modelFavoritos = Favoritos::find()->where(['fav_iduser' => $model->fav_iduser])->all();
+        $modelFavoritos = Favoritos::find()->where(['fav_iduser' => $id])->all();
 
 
         if ($modelFavoritos != null) {
