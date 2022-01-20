@@ -12,6 +12,7 @@ use yii\web\Controller;
 /**
  * Default controller for the `v1` module
  */
+header('Content-Type: application/json');
 class FavoritosController extends ActiveController
 {
     public $modelClass = 'common\models\Favoritos';
@@ -19,9 +20,7 @@ class FavoritosController extends ActiveController
 
     public function actionFavoritos($id)
     {
-        $model = new Favoritos();
 
-        $model->fav_iduser = \Yii::$app->request->post('fav_iduser');
 
         $modelFavoritos = Favoritos::find()->where(['fav_iduser' => $id])->all();
 
@@ -31,6 +30,29 @@ class FavoritosController extends ActiveController
         } else {
            // throw new \yii\web\NotFoundHttpException("Ocorreu um Erro");
         }
+
+
+    }
+
+    public function actionAdicionar()
+    {
+
+        $model = new Favoritos();
+
+        $iduser = \Yii::$app->request->post('fav_iduser');
+        $idguitarras = \Yii::$app->request->post('fav_idguitarras');
+
+
+
+
+        $model->fav_iduser = $iduser;
+        $model->fav_idguitarras = $idguitarras;
+
+
+        $model->save(false);
+
+
+        return $model;
 
 
     }

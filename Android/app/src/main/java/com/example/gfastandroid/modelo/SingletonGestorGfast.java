@@ -4,16 +4,20 @@ package com.example.gfastandroid.modelo;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.icu.text.Edits;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.gfastandroid.MenuMainActivity;
 import com.example.gfastandroid.R;
 import com.example.gfastandroid.listeners.FavoritosListener;
 import com.example.gfastandroid.listeners.GuitarraListener;
@@ -43,6 +47,8 @@ public class SingletonGestorGfast {
     public GfastBDHelper gfastBDHelper = null;
     private ArrayList<Guitarra> guitarras;
     private ArrayList<Favoritos> favoritos;
+
+
     public User user;
     private static SingletonGestorGfast instance = null;
     private static RequestQueue volleyQueue = null;
@@ -51,6 +57,7 @@ public class SingletonGestorGfast {
     private static String urlAPIGetLoggedUser;
     private static String urlAPIPutUser;
     private static String urlAPIRegistar;
+    private static String urlAPIPostAdicionarFav;
     private static String urlAPIGetFavByUser;
 
     public GuitarrasListener guitarrasListener;
@@ -76,7 +83,7 @@ public class SingletonGestorGfast {
         urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
         urlAPIRegistar = context.getString(R.string.iplocal) + "v1/user/registo";
         urlAPIGetFavByUser = context.getString(R.string.iplocal) + "v1/favoritos/favoritos";
-
+        urlAPIPostAdicionarFav = context.getString(R.string.iplocal) + "v1/favoritos/adicionar";
 //#################################MOSQUITTO###################################################
         try {
 
@@ -116,7 +123,8 @@ public class SingletonGestorGfast {
             e.printStackTrace();
         }
     }
-//#################################LISTENERS###################################################
+
+    //#################################LISTENERS###################################################
     public void setGuitarrasListener(GuitarrasListener guitarrasListener) {
 
         this.guitarrasListener = guitarrasListener;
@@ -139,7 +147,8 @@ public class SingletonGestorGfast {
         this.guitarraListener = guitarraListener;
 
     }
-//#################################LOCAL DB###################################################
+
+    //#################################LOCAL DB###################################################
     public ArrayList<Guitarra> getGuitarras() {
         guitarras = gfastBDHelper.getAllGuitarrasBD();
         return guitarras;
@@ -188,6 +197,7 @@ public class SingletonGestorGfast {
 
     }
 
+
     public ArrayList<Guitarra> getGuitarrasFavoritas(ArrayList<Favoritos> favoritos) {
 
         ArrayList<Guitarra> guitarrasAux = new ArrayList<Guitarra>();
@@ -195,8 +205,7 @@ public class SingletonGestorGfast {
         for (Favoritos f : favoritos) {
             for (Guitarra g : guitarras) {
 
-                if(f.getFav_idguitarras() == g.getGui_id())
-                {
+                if (f.getFav_idguitarras() == g.getGui_id()) {
                     guitarrasAux.add(g);
 
                 }
@@ -241,7 +250,7 @@ public class SingletonGestorGfast {
 
 // ############################## API PEDIDOS ###############################################
 
-//GUITARRAS
+    //GUITARRAS
     public void getAllGuitarrasAPI(final Context context) {
 
         if (!GFastJsonParser.isConnectionInternet(context)) {
@@ -280,7 +289,7 @@ public class SingletonGestorGfast {
 
     }
 
-//USER
+    //USER
     public void loginUserAPI(final String username, final String password, final Context context) {
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
@@ -348,7 +357,6 @@ public class SingletonGestorGfast {
                     }
 
 
-
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -396,13 +404,6 @@ public class SingletonGestorGfast {
                 @Override
                 public void onResponse(String response) {
 
-                   /* user = GFastJsonParser.parserJsonUser(response);
-                    editarUserBD(user);
-
-                    if (userListener != null) {
-                        userListener.loginSharedPreferences(user);
-                        Toast.makeText(context, "Registado com Sucesso", Toast.LENGTH_SHORT).show();
-                    }*/
                     user = GFastJsonParser.parserJsonUser(response);
                     adicionarLoggedUserBD(user);
 
@@ -467,7 +468,7 @@ public class SingletonGestorGfast {
                     favoritos = GFastJsonParser.parserJsonFavoritos(response);
 
                     adicionarFavoritosBD(favoritos);
-                   ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(favoritos);
+                    ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(favoritos);
                     if (favoritosListener != null) {
 
                         favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
@@ -487,8 +488,67 @@ public class SingletonGestorGfast {
         }
 
 
-
     }
+
+
+    public void adicionarFavoritoApi(final int idguitarra, final int iduser, final Context context) {
+        if (!GFastJsonParser.isConnectionInternet(context)) {
+            Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
+
+        } else {
+
+            StringRequest  request = new StringRequest(Request.Method.POST, urlAPIPostAdicionarFav, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                   Favoritos favoritos = GFastJsonParser.parserJsonFavorito(response);
+                    ArrayList<Favoritos> fav = new ArrayList<Favoritos>();
+                    fav.add(favoritos);
+                    adicionarFavoritosBD(fav);
+
+                    ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(fav);
+                    if (favoritosListener != null) {
+
+                       favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
+
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+
+                    try {
+                        String body = new String(error.networkResponse.data, "UTF-8");
+                        JSONArray obj = new JSONArray(body);
+                        JSONObject errorMessage = obj.getJSONObject(0);
+                        Toast.makeText(context, errorMessage.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (UnsupportedEncodingException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }) {
+
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("fav_iduser", iduser + "");
+                    params.put("fav_idguitarras", idguitarra + "");
+
+                    return params;
+
+                }
+
+
+            };
+            volleyQueue.add(request);
+        }
+    }
+
 }
 
 

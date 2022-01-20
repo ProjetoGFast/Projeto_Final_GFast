@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +31,6 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
 
     private TextView tv_modelo, tv_subcategoria, tv_preco, tv_descricao, tv_marca;
     private ImageView imageGuitarra;
-
 
 
     @Override
@@ -54,14 +56,31 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
         imageGuitarra = findViewById(R.id.imageGuitarra);
 
         //Ação de Editar
-        if(guitarra != null)
-        {
+        if (guitarra != null) {
 
             carregarGuitarra();
         }
 
+        Button button = (Button) findViewById(R.id.bt_adicionar);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // click handling code
+            }
+        });
+
 
         SingletonGestorGfast.getInstance(getApplicationContext()).setGuitarraListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_fav_guitarra, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -70,11 +89,23 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
             case android.R.id.home:
                 this.finish();
                 return true;
+            case R.id.itemfav:
+                adicionarGuitarra();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void carregarGuitarra(){
+    public void adicionarGuitarra() {
+
+        SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
+        int iduser = sharedPreferencesUser.getInt("iduser", 0);
+        SingletonGestorGfast.getInstance(getApplicationContext()).adicionarFavoritoApi(guitarra.getGui_id(), iduser, getApplicationContext());
+
+    }
+
+
+    private void carregarGuitarra() {
 
         setTitle(guitarra.getGui_nome());
         tv_modelo.setText(guitarra.getGui_nome());

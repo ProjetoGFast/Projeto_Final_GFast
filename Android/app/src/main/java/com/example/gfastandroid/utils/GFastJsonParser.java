@@ -72,6 +72,29 @@ public class GFastJsonParser {
     }
 
 
+    public static Favoritos parserJsonFavorito(String response) {
+
+        Favoritos auxFav = null;
+        try {
+
+            JSONObject favorito = new JSONObject(response);
+            int fav_id = favorito.getInt("fav_id");
+            int fav_idguitarras = favorito.getInt("fav_idguitarras");
+            int fav_iduser = favorito.getInt("fav_iduser");
+
+
+            auxFav = new Favoritos(fav_id, fav_idguitarras, fav_iduser);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
+        return auxFav;
+    }
+
+
+
     public static boolean isConnectionInternet(Context context){
 
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

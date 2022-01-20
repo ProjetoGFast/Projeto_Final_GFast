@@ -1,16 +1,24 @@
 package com.example.gfastandroid.vistas;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -39,6 +47,7 @@ public class FavoritosFragment extends Fragment implements SwipeRefreshLayout.On
     private SearchView searchView;
     private ActivityResultLauncher<Intent> activityResultLauncher;
     private SwipeRefreshLayout swipeRefreshLayout;
+
     public FavoritosFragment() {
         // Required empty public constructor
     }
@@ -50,7 +59,7 @@ public class FavoritosFragment extends Fragment implements SwipeRefreshLayout.On
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
-       lvGuitarras = view.findViewById(R.id.lvguitarrasfav);
+        lvGuitarras = view.findViewById(R.id.lvguitarrasfav);
         lvGuitarras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
@@ -80,7 +89,7 @@ public class FavoritosFragment extends Fragment implements SwipeRefreshLayout.On
         int iduser = sharedPreferencesUser.getInt("iduser", 0);
 
         SingletonGestorGfast.getInstance(getContext()).setFavoritosListener(this);
-        SingletonGestorGfast.getInstance(getContext()).getFavoritosByUser( iduser, getContext());
+        SingletonGestorGfast.getInstance(getContext()).getFavoritosByUser(iduser, getContext());
 
         return view;
 
@@ -88,14 +97,13 @@ public class FavoritosFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void onRefreshGuitarras() {
-        ArrayList<Guitarra>arrayListGuitarras=SingletonGestorGfast.getInstance(getContext()).gfastBDHelper.getAllGuitarrasBD();
+        ArrayList<Guitarra> arrayListGuitarras = SingletonGestorGfast.getInstance(getContext()).gfastBDHelper.getAllGuitarrasBD();
         lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), arrayListGuitarras));
     }
 
     @Override
     public void onRefreshListaGuitarras(ArrayList<Guitarra> guitarras) {
-        if(guitarras != null)
-        {
+        if (guitarras != null) {
             lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), guitarras));
         }
     }
