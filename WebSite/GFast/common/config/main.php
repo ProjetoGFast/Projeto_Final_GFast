@@ -34,6 +34,7 @@ return [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarrasapi'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/guitarras'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/carrinho'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/favoritos'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/subcategorias', 'extraPatterns' => [ 'GET {id}/guitarras' => 'guitarra',], ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/categorias', 'extraPatterns' => [
                     'GET {id}/subcategorias' => 'subcategorias',

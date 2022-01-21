@@ -124,6 +124,10 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
 
         this.onCreate(db);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FAVORITOS);
+
+        this.onCreate(db);
     }
 //#########################################GUITARRAS############################################\\
 
@@ -234,6 +238,19 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
 
     //#########################################FAVORITOS############################################\\
+    public ArrayList<Favoritos> getAllFavoritosBD() {
+        ArrayList<Favoritos> favoritos = new ArrayList<>();
+
+        Cursor cursor = this.db.query(TABLE_FAVORITOS, new String[]{FAV_ID, FAV_IDGUITARRAS, FAV_IDUSER}, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Favoritos favoritosaux = new Favoritos(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2));
+                favoritos.add(favoritosaux);
+            } while (cursor.moveToNext());
+        }
+        return favoritos;
+    }
 
     public Favoritos adicionarFavoritoBD(Favoritos f) {
         ContentValues values = new ContentValues();
@@ -249,7 +266,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
 
 
-    public boolean removerFavoritoBD(int id) {
+    public boolean removerFavoritoByidBD(int id) {
         return (this.db.delete(TABLE_FAVORITOS, FAV_ID + "= ?", new String[]{"" + id}) == 1);
     }
     public void removelAllFavoritos() {

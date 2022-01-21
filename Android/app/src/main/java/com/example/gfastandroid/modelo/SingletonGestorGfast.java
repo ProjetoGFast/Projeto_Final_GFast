@@ -59,6 +59,7 @@ public class SingletonGestorGfast {
     private static String urlAPIRegistar;
     private static String urlAPIPostAdicionarFav;
     private static String urlAPIGetFavByUser;
+    private static String urlAPIDELETEFav;
 
     public GuitarrasListener guitarrasListener;
     public FavoritosListener favoritosListener;
@@ -84,6 +85,7 @@ public class SingletonGestorGfast {
         urlAPIRegistar = context.getString(R.string.iplocal) + "v1/user/registo";
         urlAPIGetFavByUser = context.getString(R.string.iplocal) + "v1/favoritos/favoritos";
         urlAPIPostAdicionarFav = context.getString(R.string.iplocal) + "v1/favoritos/adicionar";
+        urlAPIDELETEFav = context.getString(R.string.iplocal) + "v1/favoritos";
 //#################################MOSQUITTO###################################################
         try {
 
@@ -171,6 +173,8 @@ public class SingletonGestorGfast {
         return null;
     }
 
+
+
     public void adicionarGuitarraBD(Guitarra guitarra) {
 
 
@@ -246,6 +250,46 @@ public class SingletonGestorGfast {
 
         return username.equals(bdusername) && token.equals(bdtoken);
     }
+
+
+    public Favoritos getFavGuitarrafav(int idguitarra) {
+
+        ArrayList<Favoritos> favoritos = gfastBDHelper.getAllFavoritosBD();
+
+        for(Favoritos fav : favoritos)
+        {
+            if(idguitarra ==  fav.getFav_idguitarras()){
+                return fav;
+            }
+
+        }
+        return null;
+
+
+    }
+    public Favoritos getFavoritosBD(int id) {
+
+        for (Favoritos f: favoritos) {
+
+            if(f.getFav_id() == id){
+
+                return f;
+
+            }
+
+        }
+
+        return null;
+    }
+    public void removerFavoritoBD(int id){
+
+        Favoritos f = getFavoritosBD(id);
+        if(f != null){
+          // GfastBDHelper.removerFavoritoByidBD(f.getFav_id());
+        }
+
+    }
+
 
 
 // ############################## API PEDIDOS ###############################################
@@ -548,7 +592,39 @@ public class SingletonGestorGfast {
             volleyQueue.add(request);
         }
     }
+    public void removerFavoritoAPI(final Favoritos favoritos, final Context context){
+        if(!GFastJsonParser.isConnectionInternet(context))
+        {
+            Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
+        }else
+        {
+            StringRequest request = new StringRequest(Request.Method.DELETE, urlAPIDELETEFav + "/" + favoritos.getFav_id(), new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    removerFavoritoBD(favoritos.getFav_id());
+                    if(favoritosListener != null ){
+                        //favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    try {
+                        String body = new String(error.networkResponse.data, "UTF-8");
+                        JSONArray obj = new JSONArray(body);
+                        JSONObject errorMessage = obj.getJSONObject(0);
+                        Toast.makeText(context, errorMessage.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (UnsupportedEncodingException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            volleyQueue.add(request);
+        }
+    }
 }
 
 

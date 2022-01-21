@@ -3,6 +3,7 @@ package com.example.gfastandroid.vistas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gfastandroid.MenuMainActivity;
 import com.example.gfastandroid.R;
 import com.example.gfastandroid.listeners.GuitarraListener;
+import com.example.gfastandroid.modelo.Favoritos;
 import com.example.gfastandroid.modelo.Guitarra;
 import com.example.gfastandroid.modelo.SingletonGestorGfast;
 
@@ -28,10 +30,10 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
     public static final String ID_GUITARRA = "gui_id";
 
     private Guitarra guitarra;
-
+    private Favoritos favorito;
     private TextView tv_modelo, tv_subcategoria, tv_preco, tv_descricao, tv_marca;
     private ImageView imageGuitarra;
-
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        int id = getIntent().getIntExtra(ID_GUITARRA, 0);
+         id = getIntent().getIntExtra(ID_GUITARRA, 0);
 
         guitarra = SingletonGestorGfast.getInstance(getApplicationContext()).getGuitarraBD(id);
 
@@ -55,7 +57,7 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
         tv_marca = findViewById(R.id.tv_marca);
         imageGuitarra = findViewById(R.id.imageGuitarra);
 
-        //Ação de Editar
+
         if (guitarra != null) {
 
             carregarGuitarra();
@@ -63,11 +65,10 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
 
         Button button = (Button) findViewById(R.id.bt_adicionar);
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // click handling code
+
             }
         });
 
@@ -80,7 +81,18 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
 
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_fav_guitarra, menu);
+
+        int id = getIntent().getIntExtra(ID_GUITARRA, 0);
+        favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(id);
+
+        if (favorito != null) {
+            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_action_favorito_white));
+        }
+
+
+
         return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
@@ -98,9 +110,21 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
 
     public void adicionarGuitarra() {
 
-        SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
-        int iduser = sharedPreferencesUser.getInt("iduser", 0);
-        SingletonGestorGfast.getInstance(getApplicationContext()).adicionarFavoritoApi(guitarra.getGui_id(), iduser, getApplicationContext());
+
+
+        favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(id);
+
+        if (favorito != null) {
+            SingletonGestorGfast.getInstance(getApplicationContext()).removerFavoritoAPI(favorito,getApplicationContext());
+        }
+        else
+        {
+            SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
+            int iduser = sharedPreferencesUser.getInt("iduser", 0);
+            SingletonGestorGfast.getInstance(getApplicationContext()).adicionarFavoritoApi(guitarra.getGui_id(), iduser, getApplicationContext());
+
+        }
+
 
     }
 

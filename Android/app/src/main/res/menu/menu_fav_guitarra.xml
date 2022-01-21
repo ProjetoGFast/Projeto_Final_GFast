@@ -5,7 +5,7 @@
     <item
         android:title="favortios"
         android:id="@+id/itemfav"
-        android:icon="@drawable/ic_action_favorito_white"
+        android:icon="@drawable/ic_action_favorito_transparent"
         app:showAsAction="always"/>
 
 </menu>
