@@ -252,6 +252,45 @@ public class SingletonGestorGfast {
     }
 
 
+    //FAVORITOS
+    public ArrayList<Favoritos> getAllFavoritosBD() {
+
+        ArrayList<Favoritos> favoritos = gfastBDHelper.getAllFavoritosBD();
+
+        if(favoritos != null){
+
+                return favoritos;
+
+
+        }
+        return null;
+
+    }
+
+    public ArrayList<Guitarra> getAllGuitarrasFavoritas() {
+
+        ArrayList<Guitarra> guitarrasAux = new ArrayList<Guitarra>();
+        ArrayList<Guitarra> guitarras = getGuitarras();
+        ArrayList<Favoritos> fav = getAllFavoritosBD();
+
+        for (Favoritos f : fav) {
+            for (Guitarra g : guitarras) {
+
+                if (f.getFav_idguitarras() == g.getGui_id()) {
+                    guitarrasAux.add(g);
+
+                }
+
+
+            }
+        }
+        return guitarrasAux;
+
+    }
+
+
+
+
     public Favoritos getFavGuitarrafav(int idguitarra) {
 
         ArrayList<Favoritos> favoritos = gfastBDHelper.getAllFavoritosBD();
@@ -285,7 +324,7 @@ public class SingletonGestorGfast {
 
         Favoritos f = getFavoritosBD(id);
         if(f != null){
-          // GfastBDHelper.removerFavoritoByidBD(f.getFav_id());
+          gfastBDHelper.removerFavoritoByidBD(f.getFav_id());
         }
 
     }
@@ -498,8 +537,8 @@ public class SingletonGestorGfast {
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
-            if (guitarrasListener != null) {
-                guitarrasListener.onRefreshListaGuitarras(gfastBDHelper.getAllGuitarrasBD());
+            if (favoritosListener != null) {
+                favoritosListener.onRefreshListaGuitarras(getAllGuitarrasFavoritas());
             }
 
 
@@ -603,8 +642,10 @@ public class SingletonGestorGfast {
                 @Override
                 public void onResponse(String response) {
                     removerFavoritoBD(favoritos.getFav_id());
+
+                    ArrayList<Guitarra> guitarrasfavoritas = getAllGuitarrasFavoritas();
                     if(favoritosListener != null ){
-                        //favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
+                        favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
                     }
                 }
             }, new Response.ErrorListener() {

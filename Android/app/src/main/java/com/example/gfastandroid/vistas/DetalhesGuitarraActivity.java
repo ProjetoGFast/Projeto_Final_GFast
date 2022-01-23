@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -82,8 +83,7 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_fav_guitarra, menu);
 
-        int id = getIntent().getIntExtra(ID_GUITARRA, 0);
-        favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(id);
+        favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(guitarra.getGui_id());
 
         if (favorito != null) {
             menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_action_favorito_white));
@@ -102,13 +102,13 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
                 this.finish();
                 return true;
             case R.id.itemfav:
-                adicionarGuitarra();
+                favoritoGuitarra();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void adicionarGuitarra() {
+    public void favoritoGuitarra() {
 
 
 
@@ -116,13 +116,14 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
 
         if (favorito != null) {
             SingletonGestorGfast.getInstance(getApplicationContext()).removerFavoritoAPI(favorito,getApplicationContext());
+            Toast.makeText(getApplicationContext(), "Removido dos Favoritos", Toast.LENGTH_SHORT).show();
         }
         else
         {
             SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
             int iduser = sharedPreferencesUser.getInt("iduser", 0);
             SingletonGestorGfast.getInstance(getApplicationContext()).adicionarFavoritoApi(guitarra.getGui_id(), iduser, getApplicationContext());
-
+            Toast.makeText(getApplicationContext(), "Adicionado aos Favoritos", Toast.LENGTH_SHORT).show();
         }
 
 
