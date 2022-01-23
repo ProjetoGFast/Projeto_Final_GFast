@@ -19,12 +19,8 @@
             android:title="@string/carrinho" />
         <item
             android:id="@+id/navFavoritos"
-            android:icon="@drawable/ic_action_favorito"
+            android:icon="@drawable/ic_baseline_favorite_24"
             android:title="@string/favoritos" />
-        <item
-            android:id="@+id/navLocalizacao"
-            android:icon="@drawable/ic_localicon"
-            android:title="@string/localiza_o" />
         <item
             android:id="@+id/navNoticias"
             android:icon="@drawable/ic_noticiaicon"

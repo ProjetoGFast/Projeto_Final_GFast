@@ -66,14 +66,14 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
             }
         });
 
-        fabAdicionar = view.findViewById(R.id.fab_carrinho);
+        /*fabAdicionar = view.findViewById(R.id.fab_carrinho);
         fabAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                // Intent intent = new Intent(getContext(), DetalhesLivroActivity.class);
                // activityResultLauncher.launch(intent);
             }
-        });
+        });*/
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);

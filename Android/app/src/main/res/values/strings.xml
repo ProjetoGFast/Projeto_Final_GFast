@@ -41,7 +41,7 @@
     <string name="perfil">Perfil</string>
     <string name="sobre">Sobre</string>
     <string name="sair">Sair</string>
-    <string name="iplocal">http://192.168.1.85:8061/</string>
+    <string name="iplocal">http://192.168.1.160:8061/</string>
     <string name="username">Username</string>
     <string name="login_text">Login</string>
     <string name="register_text">Registo</string>
