@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     private String username;
     private FragmentManager fragmentManager;
     public static final String OP_CODE = "operacao";
+    public static final String FAVORITOSTAB = "favtab";
     public static final int ADD_REQCOD = 1, EDIT_REQCOD = 2, DEL_REQCOD = 3;
     public static final int ADD = 100, EDIT = 200, DELETE = 300;
 
@@ -59,7 +61,27 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
         navigationView.setNavigationItemSelectedListener(this);
         carregarCabecalho();
         fragmentManager = getSupportFragmentManager();
-        carregarFragmentoInicial();
+
+        String favtab = getIntent().getStringExtra(FAVORITOSTAB);
+
+        if (favtab != null) {
+
+            if (favtab.equals("true")) {
+
+                carregarFragmentoFavoritos();
+            }
+
+        } else {
+            carregarFragmentoGuitarras();
+
+        }
+
+
+        SharedPreferences sharedPreferencesUser = getApplication().getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
+        int iduser = sharedPreferencesUser.getInt("iduser", 0);
+
+        SingletonGestorGfast.getInstance(getApplicationContext()).getFavoritosByUser(iduser, getApplicationContext());
+
 
     }
 
@@ -93,13 +115,22 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     }
 
 
-    private boolean carregarFragmentoInicial() {
+    private boolean carregarFragmentoGuitarras() {
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.getItem(1);
         item.setCheckable(true);
         return onNavigationItemSelected(item);
 
     }
+
+    private boolean carregarFragmentoFavoritos() {
+        Menu menu = navigationView.getMenu();
+        MenuItem item = menu.getItem(3);
+        item.setCheckable(true);
+        return onNavigationItemSelected(item);
+
+    }
+
 
     public void onClickDetalhesEmail() {
         String subject = "AMSI 2021/2022";

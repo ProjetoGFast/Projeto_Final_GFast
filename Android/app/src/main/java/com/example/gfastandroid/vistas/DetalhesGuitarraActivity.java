@@ -117,6 +117,7 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
         if (favorito != null) {
             SingletonGestorGfast.getInstance(getApplicationContext()).removerFavoritoAPI(favorito,getApplicationContext());
             Toast.makeText(getApplicationContext(), "Removido dos Favoritos", Toast.LENGTH_SHORT).show();
+
         }
         else
         {
@@ -126,7 +127,10 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
             Toast.makeText(getApplicationContext(), "Adicionado aos Favoritos", Toast.LENGTH_SHORT).show();
         }
 
-
+        Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+        intent.putExtra(MenuMainActivity.FAVORITOSTAB, "true");
+        startActivity(intent);
+        finish();
     }
 
 

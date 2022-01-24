@@ -40,14 +40,6 @@ public class PerfilFragment extends Fragment {
 
 
         SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
-        String username = sharedPreferencesUser.getString(MenuMainActivity.USERNAME, null);
-        String token = sharedPreferencesUser.getString(MenuMainActivity.TOKEN, null);
-        String email = sharedPreferencesUser.getString("email", null);
-        String us_nome = sharedPreferencesUser.getString("us_nome", null);
-        String us_apelido = sharedPreferencesUser.getString("us_apelido", null);
-        String us_cidade = sharedPreferencesUser.getString("us_cidade", null);
-        int us_contribuinte = sharedPreferencesUser.getInt("us_contribuinte", 0);
-        int us_telemovel = sharedPreferencesUser.getInt("us_telemovel", 0);
         int iduser = sharedPreferencesUser.getInt("iduser", 0);
 
 
@@ -55,29 +47,29 @@ public class PerfilFragment extends Fragment {
 
         fragmentManager = getFragmentManager();
         etUserName = view.findViewById(R.id.etUserName);
-        etUserName.setText(username);
+        etUserName.setText(user.getUsername());
 
         etEmail = view.findViewById(R.id.etEmail);
-        etEmail.setText(email);
+        etEmail.setText(user.getEmail());
 
         etName = view.findViewById(R.id.etName);
-        etName.setText(us_nome);
+        etName.setText(user.getUs_nome());
 
 
         etSurname = view.findViewById(R.id.etSurname);
-        etSurname.setText(us_apelido);
+        etSurname.setText(user.getUs_apelido());
 
 
         etCity = view.findViewById(R.id.etCity);
-        etCity.setText(us_cidade);
+        etCity.setText(user.getUs_cidade());
 
 
         etContribuinte = view.findViewById(R.id.etContribuinte);
-        etContribuinte.setText(String.valueOf(us_contribuinte));
+        etContribuinte.setText(String.valueOf(user.getUs_contribuinte()));
 
 
         etPhone = view.findViewById(R.id.etPhone);
-        etPhone.setText(String.valueOf(us_telemovel));
+        etPhone.setText(String.valueOf(user.getUs_telemovel()));
 
 
 

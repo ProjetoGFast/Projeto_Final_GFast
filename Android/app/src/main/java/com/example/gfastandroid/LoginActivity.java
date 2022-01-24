@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
 
             SingletonGestorGfast.getInstance(getApplicationContext()).loginUserAPI(username, password, getApplicationContext());
 
+
         } else {
             Toast.makeText(getApplicationContext(), "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
         }
@@ -112,10 +113,6 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
     }
 
 
-    @Override
-    public void onUserRegistado(String response) {
-
-    }
 
 
     @Override
@@ -132,16 +129,8 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         }
     }
 
-    @Override
-    public void onRefreshDetalhes(String response) {
 
 
-    }
-
-    @Override
-    public void onApagarConta() {
-
-    }
 
     @Override
     public void onErroLogin() {
@@ -165,13 +154,7 @@ public class LoginActivity extends AppCompatActivity implements UserListener {
         editor.putInt("iduser", user.getId());
         editor.putString("username", user.getUsername());
         editor.putString("token", user.getVerification_token());
-        editor.putString("email", user.getEmail());
-        editor.putString("us_nome", user.getUs_nome());
-        editor.putString("us_apelido", user.getUs_apelido());
-        editor.putString("us_cidade", user.getUs_cidade());
-        editor.putInt("us_contribuinte", user.getUs_contribuinte());
-        editor.putInt("us_pontos", user.getUs_pontos());
-        editor.putInt("us_telemovel", user.getUs_telemovel());
+
         editor.commit();
 
         Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
