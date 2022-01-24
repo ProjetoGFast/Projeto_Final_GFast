@@ -18,12 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.gfastandroid.adaptadores.ListaFavoritosAdaptador;
 import com.example.gfastandroid.modelo.SingletonGestorGfast;
 import com.example.gfastandroid.vistas.CarrinhoFragment;
 import com.example.gfastandroid.vistas.FavoritosFragment;
 import com.example.gfastandroid.vistas.ListaGuitarrasFragment;
-import com.example.gfastandroid.vistas.LocalizacaoFragment;
 import com.example.gfastandroid.vistas.NoticiasFragment;
 import com.example.gfastandroid.vistas.PerfilFragment;
 import com.example.gfastandroid.vistas.SobreFragment;

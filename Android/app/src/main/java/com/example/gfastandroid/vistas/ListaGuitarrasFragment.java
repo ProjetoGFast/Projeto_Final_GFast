@@ -83,7 +83,6 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
 
         return view;
 
-
     }
 
     @Override
