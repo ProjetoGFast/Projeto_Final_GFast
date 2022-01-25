@@ -19,7 +19,6 @@ public class SobreFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_sobre, container, false);
 
-
         return view;
     }
 

@@ -79,7 +79,7 @@ public class ListaFavoritosAdaptador extends BaseAdapter {
         public void update(Guitarra guitarra){
             tvModelo.setText(guitarra.getGui_nome());
             tvMarca.setText(guitarra.getGui_idmarca());
-            tvPreco.setText(""+guitarra.getGui_preco());
+            tvPreco.setText(""+guitarra.getGui_preco()+"€");
             Glide.with(context)
                     .load(context.getString(R.string.iplocal) + guitarra.getGui_fotopath())
                     .placeholder(R.drawable.logo_gfast)
