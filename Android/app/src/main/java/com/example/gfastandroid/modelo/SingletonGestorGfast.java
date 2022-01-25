@@ -54,7 +54,7 @@ public class SingletonGestorGfast {
     private static RequestQueue volleyQueue = null;
     private static String urlAPIGFast;
     private static String urlAPILogin;
-    private static String urlAPIGetLoggedUser;
+    private static String ip;
     private static String urlAPIPutUser;
     private static String urlAPIRegistar;
     private static String urlAPIPostAdicionarFav;
@@ -78,17 +78,21 @@ public class SingletonGestorGfast {
 
         guitarras = new ArrayList<>();
         gfastBDHelper = new GfastBDHelper(context);
-        urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
-        urlAPILogin = context.getString(R.string.iplocal) + "v1/user/login";
-        urlAPIGetLoggedUser = context.getString(R.string.iplocal) + "v1/user/checkuser";
-        urlAPIPutUser = context.getString(R.string.iplocal) + "v1/users";
-        urlAPIRegistar = context.getString(R.string.iplocal) + "v1/user/registo";
-        urlAPIGetFavByUser = context.getString(R.string.iplocal) + "v1/favoritos/favoritos";
-        urlAPIPostAdicionarFav = context.getString(R.string.iplocal) + "v1/favoritos/adicionar";
-        urlAPIDELETEFav = context.getString(R.string.iplocal) + "v1/favoritos";
-//#################################MOSQUITTO###################################################
-        try {
 
+        //API
+        ip = "http://192.168.1.76:8061/";
+        urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
+        urlAPILogin = ip + "v1/user/login";
+        urlAPIPutUser = ip + "v1/users";
+        urlAPIRegistar = ip + "v1/user/registo";
+        urlAPIGetFavByUser = ip + "v1/favoritos/favoritos";
+        urlAPIPostAdicionarFav = ip + "v1/favoritos/adicionar";
+        urlAPIDELETEFav = ip + "v1/favoritos";
+
+
+//################################################MOSQUITTO#########################################
+        try {
+            //Ver ser existe Conexão
             if (!GFastJsonParser.isConnectionInternet(context)) {
                 Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
@@ -151,12 +155,16 @@ public class SingletonGestorGfast {
     }
 
     //#################################LOCAL DB###################################################
+
+
+    //--------------------------------GUITARRAS DB -----------------------------------------------
+    //Ir buscar todas as guitarras à bd
     public ArrayList<Guitarra> getGuitarras() {
         guitarras = gfastBDHelper.getAllGuitarrasBD();
         return guitarras;
     }
 
-
+    //Buscar uma guitarra à DB
     public Guitarra getGuitarraBD(int id) {
 
 
@@ -173,8 +181,7 @@ public class SingletonGestorGfast {
         return null;
     }
 
-
-
+    //Adicionar apenas uma guitarra à bd
     public void adicionarGuitarraBD(Guitarra guitarra) {
 
 
@@ -182,6 +189,7 @@ public class SingletonGestorGfast {
 
     }
 
+    //Adicionar uma Lista de guitarras á bd
     public void adicionarGuitarrasBD(ArrayList<Guitarra> guitarras) {
 
         gfastBDHelper.removerAllGuitarrasBD();
@@ -191,6 +199,45 @@ public class SingletonGestorGfast {
 
     }
 
+
+    //----------------------------------------USER DB---------------------------------------------------
+    //Adicicionar um user à tabela dos users
+    public void adicionarLoggedUserBD(User user) {
+        gfastBDHelper.removelAllUser();
+        gfastBDHelper.adicionarUserBD(user);
+
+    }
+
+    //Editar User na BD Local
+    public void editarUserBD(User user) {
+
+        gfastBDHelper.editarUserBD(user);
+    }
+
+    //Eliminar todos os dados na Tabela dos users
+    public void cleanDBUser() {
+        gfastBDHelper.removelAllUser();
+    }
+
+    //Vai buscar o user logado á bd local
+    public User getUser() {
+
+        User users = gfastBDHelper.getUser();
+        return users;
+    }
+
+    //Vai Comparar o username e token das sharedpreferences com o user que está na BD Local
+    public boolean getLoggedUser(String username, String token) {
+
+        User users = gfastBDHelper.getUser();
+        String bdtoken = users.getVerification_token();
+        String bdusername = users.getUsername();
+
+        return username.equals(bdusername) && token.equals(bdtoken);
+    }
+
+
+    //------------------------------------FAVORITOS DB----------------------------------------------
     public void adicionarFavoritosBD(ArrayList<Favoritos> favoritos) {
 
         gfastBDHelper.removelAllFavoritos();
@@ -221,45 +268,13 @@ public class SingletonGestorGfast {
 
     }
 
-    public void adicionarLoggedUserBD(User user) {
-        gfastBDHelper.removelAllUser();
-        gfastBDHelper.adicionarUserBD(user);
-
-    }
-
-    public void editarUserBD(User user) {
-
-        gfastBDHelper.editarUserBD(user);
-    }
-
-    public void cleanDBUser() {
-        gfastBDHelper.removelAllUser();
-    }
-
-    public User getUser() {
-
-        User users = gfastBDHelper.getUser();
-        return users;
-    }
-
-    public boolean getLoggedUser(String username, String token) {
-
-        User users = gfastBDHelper.getUser();
-        String bdtoken = users.getVerification_token();
-        String bdusername = users.getUsername();
-
-        return username.equals(bdusername) && token.equals(bdtoken);
-    }
-
-
-    //FAVORITOS
     public ArrayList<Favoritos> getAllFavoritosBD() {
 
         ArrayList<Favoritos> favoritos = gfastBDHelper.getAllFavoritosBD();
 
-        if(favoritos != null){
+        if (favoritos != null) {
 
-                return favoritos;
+            return favoritos;
 
 
         }
@@ -289,15 +304,12 @@ public class SingletonGestorGfast {
     }
 
 
-
-
     public Favoritos getFavGuitarrafav(int idguitarra) {
 
         ArrayList<Favoritos> favoritos = gfastBDHelper.getAllFavoritosBD();
 
-        for(Favoritos fav : favoritos)
-        {
-            if(idguitarra ==  fav.getFav_idguitarras()){
+        for (Favoritos fav : favoritos) {
+            if (idguitarra == fav.getFav_idguitarras()) {
                 return fav;
             }
 
@@ -306,11 +318,12 @@ public class SingletonGestorGfast {
 
 
     }
+
     public Favoritos getFavoritosBD(int id) {
 
-        for (Favoritos f: favoritos) {
+        for (Favoritos f : favoritos) {
 
-            if(f.getFav_id() == id){
+            if (f.getFav_id() == id) {
 
                 return f;
 
@@ -320,20 +333,19 @@ public class SingletonGestorGfast {
 
         return null;
     }
-    public void removerFavoritoBD(int id){
+
+    public void removerFavoritoBD(int id) {
 
         Favoritos f = getFavoritosBD(id);
-        if(f != null){
-          gfastBDHelper.removerFavoritoByidBD(f.getFav_id());
+        if (f != null) {
+            gfastBDHelper.removerFavoritoByidBD(f.getFav_id());
         }
 
     }
 
+// ##################################### API PEDIDOS ###############################################
 
-
-// ############################## API PEDIDOS ###############################################
-
-    //GUITARRAS
+    //-----------------------------------GUITARRAS------------------------------------------
     public void getAllGuitarrasAPI(final Context context) {
 
         if (!GFastJsonParser.isConnectionInternet(context)) {
@@ -345,23 +357,30 @@ public class SingletonGestorGfast {
 
 
         } else {
+            //GET todas as guitarras da aplicação
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, urlAPIGFast, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
+                    try {
+                        //Converter JSON vindo da API para um objeto
+                        guitarras = GFastJsonParser.parserJsonGuitarras(response);
+                        adicionarGuitarrasBD(guitarras);
 
+                        if (guitarrasListener != null) {
+                            //Atualizar a lista de guitarras
+                            guitarrasListener.onRefreshListaGuitarras(guitarras);
 
-                    guitarras = GFastJsonParser.parserJsonGuitarras(response);
-                    adicionarGuitarrasBD(guitarras);
+                        }
 
-                    if (guitarrasListener != null) {
-                        guitarrasListener.onRefreshListaGuitarras(guitarras);
-
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    //Caso o pedido á API dê erro
                     // Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
                     System.out.println(error.getMessage());
                 }
@@ -372,28 +391,42 @@ public class SingletonGestorGfast {
 
     }
 
-    //USER
+    //-----------------------------------------------USER-------------------------------------------
     public void loginUserAPI(final String username, final String password, final Context context) {
+        //Ver ser existe Conexão
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
             if (guitarrasListener != null) {
+
+                //Atualizar a lista de guitarras
                 guitarrasListener.onRefreshListaGuitarras(gfastBDHelper.getAllGuitarrasBD());
             }
 
 
         } else {
+
+            //POST para fazer login na aplicação
             StringRequest req = new StringRequest(Request.Method.POST, urlAPILogin, new Response.Listener<String>() {
 
                 public void onResponse(String response) {
 
-                    user = GFastJsonParser.parserJsonUser(response);
-                    adicionarLoggedUserBD(user);
+                    try {
+                        //Converter JSON vindo da API para um objeto
+                        user = GFastJsonParser.parserJsonUser(response);
+                        //Adicionar User logado na base de dados Local
+                        adicionarLoggedUserBD(user);
 
-                    if (userListener != null) {
-                        userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
+                        if (userListener != null) {
+
+                            //Validar Login
+                            userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
 
 
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
                 }
@@ -401,10 +434,15 @@ public class SingletonGestorGfast {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    if (userListener != null) {
-                        userListener.onErroLogin();
+                    try {
+                        //Caso o pedido á API dê erro
+                        if (userListener != null) {
+                            userListener.onErroLogin();
 
 
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }) {
@@ -423,22 +461,32 @@ public class SingletonGestorGfast {
 
 
     public void editarUser(final User userlogged, final int iduser, final Context context) {
+
+        //Ver ser existe Conexão
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
         } else {
+
+
+            //PUT para alterar o utilizador Logado
             StringRequest request = new StringRequest(Request.Method.PUT, urlAPIPutUser + "/" + iduser, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+                    try {
+                        //Converter JSON vindo da API para um objeto
+                        user = GFastJsonParser.parserJsonUser(response);
+                        editarUserBD(user);
 
-                    user = GFastJsonParser.parserJsonUser(response);
-                    editarUserBD(user);
+                        if (userListener != null) {
 
-                    if (userListener != null) {
-                        userListener.loginSharedPreferences(user);
-                        Toast.makeText(context, "Editado com Sucesso", Toast.LENGTH_SHORT).show();
+                            //Atualizar Login nas sharedpreferences (Username)
+                            userListener.loginSharedPreferences(user);
+                            Toast.makeText(context, "Editado com Sucesso", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-
 
                 }
             }, new Response.ErrorListener() {
@@ -447,6 +495,7 @@ public class SingletonGestorGfast {
 
 
                     try {
+                        //Caso o pedido á API dê erro
                         String body = new String(error.networkResponse.data, "UTF-8");
                         JSONArray obj = new JSONArray(body);
                         JSONObject errorMessage = obj.getJSONObject(0);
@@ -479,21 +528,29 @@ public class SingletonGestorGfast {
 
 
     public void registarUser(final String username, final String password, final String email, final String nome, final String apelido, final String cidade, final String telemovel, final String contribuinte, final Context context) {
+        //Ver ser existe Conexão
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
         } else {
+            //POST para registar um User
             StringRequest request = new StringRequest(Request.Method.POST, urlAPIRegistar, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+                    try {
+                        //Converter JSON vindo da API para um objeto
+                        user = GFastJsonParser.parserJsonUser(response);
+                        adicionarLoggedUserBD(user);
 
-                    user = GFastJsonParser.parserJsonUser(response);
-                    adicionarLoggedUserBD(user);
-
-                    if (userListener != null) {
-                        userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
+                        if (userListener != null) {
+                            //ValidarLogin
+                            userListener.onValidateLogin(GFastJsonParser.parserJsonUser(response));
 
 
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }, new Response.ErrorListener() {
@@ -502,6 +559,8 @@ public class SingletonGestorGfast {
 
 
                     try {
+
+                        //Caso o pedido á API dê erro
                         String body = new String(error.networkResponse.data, "UTF-8");
                         JSONArray obj = new JSONArray(body);
                         JSONObject errorMessage = obj.getJSONObject(0);
@@ -531,9 +590,10 @@ public class SingletonGestorGfast {
             volleyQueue.add(request);
         }
     }
-//Favoritos
+//--------------------------------------------Favoritos---------------------------------------------
 
     public void getFavoritosByUser(final int iduser, final Context context) {
+        //Ver ser existe Conexão
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
@@ -543,27 +603,38 @@ public class SingletonGestorGfast {
 
 
         } else {
+            //GET todos os favoritos com o mesmo iduser que o utilizador logado
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, urlAPIGetFavByUser + "?id=" + iduser, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
+                    try {
+                        //Converter JSON vindo da API para um objeto
+                        favoritos = GFastJsonParser.parserJsonFavoritos(response);
 
+                        adicionarFavoritosBD(favoritos);
+                        ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(favoritos);
+                        if (favoritosListener != null) {
+                            //Refresh Lista de favoritos
+                            favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
 
-                    favoritos = GFastJsonParser.parserJsonFavoritos(response);
+                        }
 
-                    adicionarFavoritosBD(favoritos);
-                    ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(favoritos);
-                    if (favoritosListener != null) {
-
-                        favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
-
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    // Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
-                    System.out.println(error.getMessage());
+                    //Caso o pedido á API dê erro
+                    try {
+                        //Caso o pedido á API dê erro
+                        System.out.println(error.getMessage());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -575,25 +646,33 @@ public class SingletonGestorGfast {
 
 
     public void adicionarFavoritoApi(final int idguitarra, final int iduser, final Context context) {
+
+        //Ver ser existe Conexão
         if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
         } else {
-
-            StringRequest  request = new StringRequest(Request.Method.POST, urlAPIPostAdicionarFav, new Response.Listener<String>() {
+            //POST para inserir favoritos na BD
+            StringRequest request = new StringRequest(Request.Method.POST, urlAPIPostAdicionarFav, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+                    try {
+                        //Converter JSON vindo da API para um obejeto
+                        Favoritos favoritos = GFastJsonParser.parserJsonFavorito(response);
 
-                   Favoritos favoritos = GFastJsonParser.parserJsonFavorito(response);
-                    ArrayList<Favoritos> fav = new ArrayList<Favoritos>();
-                    fav.add(favoritos);
-                    adicionarFavoritosBD(fav);
 
-                    ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(fav);
-                    if (favoritosListener != null) {
+                        ArrayList<Favoritos> fav = new ArrayList<Favoritos>();
+                        fav.add(favoritos);
+                        adicionarFavoritosBD(fav);
 
-                       favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
+                        ArrayList<Guitarra> guitarrasfavoritas = getGuitarrasFavoritas(fav);
+                        if (favoritosListener != null) {
+                            //Refresh Lista de favoritos
+                            favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
 
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
                 }
@@ -603,6 +682,7 @@ public class SingletonGestorGfast {
 
 
                     try {
+                        //Caso o pedido á API dê erro
                         String body = new String(error.networkResponse.data, "UTF-8");
                         JSONArray obj = new JSONArray(body);
                         JSONObject errorMessage = obj.getJSONObject(0);
@@ -631,20 +711,19 @@ public class SingletonGestorGfast {
             volleyQueue.add(request);
         }
     }
-    public void removerFavoritoAPI(final Favoritos favoritos, final Context context){
-        if(!GFastJsonParser.isConnectionInternet(context))
-        {
+
+    public void removerFavoritoAPI(final Favoritos favoritos, final Context context) {
+        if (!GFastJsonParser.isConnectionInternet(context)) {
             Toast.makeText(context, "Não tem ligação à rede", Toast.LENGTH_SHORT).show();
 
-        }else
-        {
+        } else {
             StringRequest request = new StringRequest(Request.Method.DELETE, urlAPIDELETEFav + "/" + favoritos.getFav_id(), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     removerFavoritoBD(favoritos.getFav_id());
 
                     ArrayList<Guitarra> guitarrasfavoritas = getAllGuitarrasFavoritas();
-                    if(favoritosListener != null ){
+                    if (favoritosListener != null) {
                         favoritosListener.onRefreshListaGuitarras(guitarrasfavoritas);
                     }
                 }

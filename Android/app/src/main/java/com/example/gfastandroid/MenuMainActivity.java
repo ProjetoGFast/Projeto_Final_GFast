@@ -47,41 +47,46 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        try {
+            setContentView(R.layout.activity_menu_main);
+            Toolbar toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
-        drawer = findViewById(R.id.drawerLayout);
-        navigationView = findViewById(R.id.navView);
+            setSupportActionBar(toolbar);
+            drawer = findViewById(R.id.drawerLayout);
+            navigationView = findViewById(R.id.navView);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
-                toolbar, R.string.ndOpen, R.string.ndClose);
-        toggle.syncState();
-        drawer.addDrawerListener(toggle);
-        navigationView.setNavigationItemSelectedListener(this);
-        carregarCabecalho();
-        fragmentManager = getSupportFragmentManager();
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.ndOpen, R.string.ndClose);
+            toggle.syncState();
+            drawer.addDrawerListener(toggle);
+            navigationView.setNavigationItemSelectedListener(this);
 
-        String favtab = getIntent().getStringExtra(FAVORITOSTAB);
+            //Carrega o Cabecalho
+            carregarCabecalho();
+            fragmentManager = getSupportFragmentManager();
+            //Get string Extra
+            String favtab = getIntent().getStringExtra(FAVORITOSTAB);
 
-        if (favtab != null) {
+            if (favtab != null) {
 
-            if (favtab.equals("true")) {
+                if (favtab.equals("true")) {
+                    //Abre fragemento dos favoritos
+                    carregarFragmentoFavoritos();
+                }
 
-                carregarFragmentoFavoritos();
+            } else {
+                //Abre fragmento das guitarras
+                carregarFragmentoGuitarras();
+
             }
 
-        } else {
-            carregarFragmentoGuitarras();
-
+            //Obter id de utilizador das sharedpreferences
+            SharedPreferences sharedPreferencesUser = getApplication().getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
+            int iduser = sharedPreferencesUser.getInt("iduser", 0);
+            //Obter todas as guitarras nos favoritos do user
+            SingletonGestorGfast.getInstance(getApplicationContext()).getFavoritosByUser(iduser, getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-
-        SharedPreferences sharedPreferencesUser = getApplication().getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
-        int iduser = sharedPreferencesUser.getInt("iduser", 0);
-
-        SingletonGestorGfast.getInstance(getApplicationContext()).getFavoritosByUser(iduser, getApplicationContext());
-
 
     }
 
@@ -101,14 +106,15 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
     private void logout() {
 
+        //Eliminar user da bd
         SingletonGestorGfast.getInstance(getApplicationContext()).cleanDBUser();
         SharedPreferences sharedpreferences = this.getSharedPreferences("Login", 0);
-
+        //Limpar SharedPreferences
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.clear();
         editor.apply();
         finish();
-
+        //Abrir atividade de Login
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
@@ -116,6 +122,8 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
 
     private boolean carregarFragmentoGuitarras() {
+
+        //Obter fragmento das guitarras
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.getItem(1);
         item.setCheckable(true);
@@ -124,6 +132,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     }
 
     private boolean carregarFragmentoFavoritos() {
+        //Abrir fragmento dos favoritos
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.getItem(3);
         item.setCheckable(true);
@@ -133,6 +142,8 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
 
 
     public void onClickDetalhesEmail() {
+
+        //Abrir a aplicação de email do telemovel
         String subject = "AMSI 2021/2022";
         String message = "olá " + username + " isto é uma mensagem de texto enviada pela minha APP! :)";
 
@@ -151,7 +162,7 @@ public class MenuMainActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         Fragment fragment = null;
-
+        //Switch da Drawer
         switch (item.getItemId()) {
             case R.id.navPerfil:
                 fragment = new PerfilFragment();

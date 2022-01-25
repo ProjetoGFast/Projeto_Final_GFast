@@ -34,7 +34,6 @@ public class GfastBDHelper extends SQLiteOpenHelper {
     private static final String GUI_ID = "gui_id";
 
 
-
     //Tabela User
     private static final String TABLE_USER = "user";
     private static final String ID = "id";
@@ -58,7 +57,6 @@ public class GfastBDHelper extends SQLiteOpenHelper {
     private static final String FAV_IDGUITARRAS = "fav_idguitarras";
 
 
-
     public GfastBDHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.db = this.getWritableDatabase();
@@ -67,7 +65,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        //Criar Tabela Guitarras
         String createGuitarrasTable = "CREATE TABLE " + TABLE_GUITARRAS + "(" + GUI_ID + " INTEGER PRIMARY KEY , " +
                 GUI_NOME + " TEXT NOT NULL, " +
                 GUI_IDSUBCATEGORIA + " TEXT NOT NULL, " +
@@ -83,7 +81,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(createGuitarrasTable);
 
-
+        //Criar Tabela User
         String createUserTable = "CREATE TABLE " + TABLE_USER + "(" + ID + " INTEGER PRIMARY KEY , " +
                 USERNAME + " TEXT NOT NULL, " +
                 AUTH_KEY + " TEXT NOT NULL, " +
@@ -100,7 +98,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(createUserTable);
 
-
+        //Criar Tabela Favoritos
         String createFavoritosTable = "CREATE TABLE " + TABLE_FAVORITOS + "(" + FAV_ID + " INTEGER PRIMARY KEY , " +
                 FAV_IDGUITARRAS + " INTEGER NOT NULL, " +
                 FAV_IDUSER + " INTEGER NOT NULL)";
@@ -109,28 +107,26 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createFavoritosTable);
 
 
-
-
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        //Eliminar tabela guitarras
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_GUITARRAS);
 
         this.onCreate(db);
-
+        //Eliminar tabela user
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
 
         this.onCreate(db);
-
+        //Eliminar tabela favoritos
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FAVORITOS);
 
         this.onCreate(db);
     }
-//#########################################GUITARRAS############################################\\
 
+    //#########################################GUITARRAS############################################\\
+    //Adicionar uma guitarra
     public Guitarra adicionarGuitarraBD(Guitarra g) {
         ContentValues values = new ContentValues();
         values.put(GUI_ID, g.getGui_id());
@@ -150,6 +146,8 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return null;
 
     }
+
+    //Obter Todas as guitarras na tabela
     public ArrayList<Guitarra> getAllGuitarrasBD() {
         ArrayList<Guitarra> guitarras = new ArrayList<>();
 
@@ -164,12 +162,14 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return guitarras;
     }
 
+    //Remover todas as guitarras
     public void removerAllGuitarrasBD() {
         db.delete(TABLE_GUITARRAS, null, null);
     }
 
     //#########################################USER############################################\\
 
+    //Adicionar um User à BD
     public User adicionarUserBD(User u) {
         ContentValues values = new ContentValues();
         values.put(USERNAME, u.getUsername());
@@ -182,14 +182,14 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         values.put(US_CIDADE, u.getUs_cidade());
         values.put(US_TELEMOVEL, u.getUs_telemovel());
         values.put(US_PONTOS, u.getUs_pontos());
-        values.put(US_CONTRIBUINTE, u.getUs_contribuinte()+"");
+        values.put(US_CONTRIBUINTE, u.getUs_contribuinte() + "");
 
         this.db.insert(TABLE_USER, null, values);
 
         return null;
     }
 
-
+    //Editar o user na BD
     public boolean editarUserBD(User u) {
 
 
@@ -206,20 +206,22 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         values.put(US_PONTOS, u.getUs_pontos());
         values.put(US_CONTRIBUINTE, u.getUs_contribuinte());
 
-       return this.db.update(TABLE_USER, values, VERIFICATION_TOKEN + "=?", new String[]{u.getVerification_token()}) > 0;
+        return this.db.update(TABLE_USER, values, VERIFICATION_TOKEN + "=?", new String[]{u.getVerification_token()}) > 0;
 
     }
 
-
+    //Remover um users da bd
     public boolean removerUserBD(int id) {
         return (this.db.delete(TABLE_USER, ID + "= ?", new String[]{"" + id}) == 1);
     }
+
+    //Remover todos users da bd
     public void removelAllUser() {
 
         db.delete(TABLE_USER, null, null);
     }
 
-
+    //Obter o user da DB
     public User getUser() {
 
         User useraux;
@@ -228,7 +230,7 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
 
-               useraux = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), cursor.getInt(10), cursor.getInt(11));
+            useraux = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), cursor.getInt(10), cursor.getInt(11));
             return useraux;
         }
 
@@ -238,6 +240,8 @@ public class GfastBDHelper extends SQLiteOpenHelper {
 
 
     //#########################################FAVORITOS############################################\\
+
+    //Obter todos os Favoritos
     public ArrayList<Favoritos> getAllFavoritosBD() {
         ArrayList<Favoritos> favoritos = new ArrayList<>();
 
@@ -252,9 +256,10 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return favoritos;
     }
 
+    //Adicionar favoritos á BD
     public Favoritos adicionarFavoritoBD(Favoritos f) {
         ContentValues values = new ContentValues();
-        values.put(FAV_ID,f.getFav_id());
+        values.put(FAV_ID, f.getFav_id());
         values.put(FAV_IDGUITARRAS, f.getFav_idguitarras());
         values.put(FAV_IDUSER, f.getFav_iduser());
 
@@ -263,17 +268,16 @@ public class GfastBDHelper extends SQLiteOpenHelper {
         return null;
     }
 
-
-
-
+    //Remover Favorito da Bd
     public boolean removerFavoritoByidBD(int id) {
         return (this.db.delete(TABLE_FAVORITOS, FAV_ID + "= ?", new String[]{"" + id}) == 1);
     }
+
+    //Remover todos os favoritos da BD
     public void removelAllFavoritos() {
 
         db.delete(TABLE_FAVORITOS, null, null);
     }
-
 
 
 }

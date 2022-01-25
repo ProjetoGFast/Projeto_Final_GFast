@@ -55,43 +55,56 @@ public class FavoritosFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
-        lvGuitarras = view.findViewById(R.id.lvguitarrasfav);
-        lvGuitarras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+        try {
+            setHasOptionsMenu(true);
+            // Inflate the layout for this fragment
+            View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
+            lvGuitarras = view.findViewById(R.id.lvguitarrasfav);
+            lvGuitarras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
 
-                Intent intent = new Intent(getContext(), DetalhesGuitarraActivity.class);
-                intent.putExtra(DetalhesGuitarraActivity.ID_GUITARRA, (int) id);
-                startActivity(intent);
-
-
-            }
-        });
+                    //Ao clicar abre a ativiade de detalhes da guitarras
+                    Intent intent = new Intent(getContext(), DetalhesGuitarraActivity.class);
+                    intent.putExtra(DetalhesGuitarraActivity.ID_GUITARRA, (int) id);
+                    startActivity(intent);
 
 
+                }
+            });
 
-        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layoutfav);
-        swipeRefreshLayout.setOnRefreshListener(this);
 
-        SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
-        int iduser = sharedPreferencesUser.getInt("iduser", 0);
+            swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layoutfav);
+            swipeRefreshLayout.setOnRefreshListener(this);
 
-        SingletonGestorGfast.getInstance(getContext()).setFavoritosListener(this);
-        SingletonGestorGfast.getInstance(getContext()).getFavoritosByUser(iduser, getContext());
+            //Obter o iduser das SharedPreferences
+            SharedPreferences sharedPreferencesUser = getActivity().getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
+            int iduser = sharedPreferencesUser.getInt("iduser", 0);
 
-        return view;
+            //Meter o Listener dos favoritos à escuta
+            SingletonGestorGfast.getInstance(getContext()).setFavoritosListener(this);
+
+            //Obter todos os favoritos dos utilizador
+            SingletonGestorGfast.getInstance(getContext()).getFavoritosByUser(iduser, getContext());
+
+            return view;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
 
     }
 
     @Override
     public void onRefreshGuitarras() {
-        ArrayList<Guitarra> arrayListGuitarras = SingletonGestorGfast.getInstance(getContext()).gfastBDHelper.getAllGuitarrasBD();
-        lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), arrayListGuitarras));
+
+            //Obter Todas as guitarras favoritas
+            ArrayList<Guitarra> arrayListGuitarras = SingletonGestorGfast.getInstance(getContext()).gfastBDHelper.getAllGuitarrasBD();
+            lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), arrayListGuitarras));
+
+
     }
 
     @Override

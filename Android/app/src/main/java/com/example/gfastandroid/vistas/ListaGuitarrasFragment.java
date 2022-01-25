@@ -49,95 +49,108 @@ public class ListaGuitarrasFragment extends Fragment implements SwipeRefreshLayo
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_lista_guitarras, container, false);
 
-        lvGuitarras = view.findViewById(R.id.lvguitarras);
-        lvGuitarras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+        try {
+            // Inflate the layout for this fragment
+            View view = inflater.inflate(R.layout.fragment_lista_guitarras, container, false);
 
+            lvGuitarras = view.findViewById(R.id.lvguitarras);
+            lvGuitarras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
 
-                Intent intent = new Intent(getContext(), DetalhesGuitarraActivity.class);
-                intent.putExtra(DetalhesGuitarraActivity.ID_GUITARRA, (int) id);
-                startActivity(intent);
-
-
-            }
-        });
-
-        /*fabAdicionar = view.findViewById(R.id.fab_carrinho);
-        fabAdicionar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // Intent intent = new Intent(getContext(), DetalhesLivroActivity.class);
-               // activityResultLauncher.launch(intent);
-            }
-        });*/
-
-        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
-        swipeRefreshLayout.setOnRefreshListener(this);
-
-        SingletonGestorGfast.getInstance(getContext()).setGuitarrasListener(this);
-        SingletonGestorGfast.getInstance(getContext()).getAllGuitarrasAPI(getContext());
-
-        return view;
+                    //Abrir ativade de detalhes da guitarra
+                    Intent intent = new Intent(getContext(), DetalhesGuitarraActivity.class);
+                    intent.putExtra(DetalhesGuitarraActivity.ID_GUITARRA, (int) id);
+                    startActivity(intent);
 
 
+                }
+            });
+
+
+            swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
+            swipeRefreshLayout.setOnRefreshListener(this);
+
+            //Listener da guitara à escuta
+            SingletonGestorGfast.getInstance(getContext()).setGuitarrasListener(this);
+            //Obter Todas as guitarras
+            SingletonGestorGfast.getInstance(getContext()).getAllGuitarrasAPI(getContext());
+
+            return view;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_pesquisa, menu);
-        MenuItem itemPesquisa = menu.findItem(R.id.itemPesquisa);
-        searchView = (SearchView) itemPesquisa.getActionView();
+        try {
+            //Procurar Guitarras
+            inflater.inflate(R.menu.menu_pesquisa, menu);
+            MenuItem itemPesquisa = menu.findItem(R.id.itemPesquisa);
+            searchView = (SearchView) itemPesquisa.getActionView();
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-
-                ArrayList<Guitarra> guitarrasbd = new ArrayList<>();
-
-                for (Guitarra g : SingletonGestorGfast.getInstance(getContext()).getGuitarras()) {
-                    if (g.getGui_nome().toLowerCase().contains(s.toLowerCase())) {
-                        guitarrasbd.add(g);
-                    }
-
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
                 }
 
-                lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), guitarrasbd));
-                return true;
-            }
-        });
+                @Override
+                public boolean onQueryTextChange(String s) {
 
-        super.onCreateOptionsMenu(menu, inflater);
+                    ArrayList<Guitarra> guitarrasbd = new ArrayList<>();
+
+                    for (Guitarra g : SingletonGestorGfast.getInstance(getContext()).getGuitarras()) {
+                        if (g.getGui_nome().toLowerCase().contains(s.toLowerCase())) {
+                            guitarrasbd.add(g);
+                        }
+
+                    }
+
+                    lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), guitarrasbd));
+                    return true;
+                }
+            });
+
+            super.onCreateOptionsMenu(menu, inflater);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onRefresh() {
-        SingletonGestorGfast.getInstance(getContext()).getAllGuitarrasAPI(getContext());
+        try {
+            SingletonGestorGfast.getInstance(getContext()).getAllGuitarrasAPI(getContext());
 
-        swipeRefreshLayout.setRefreshing(false);
+            swipeRefreshLayout.setRefreshing(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onRefreshGuitarras() {
-
-        ArrayList<Guitarra>arrayListGuitarras=SingletonGestorGfast.getInstance(getContext()).gfastBDHelper.getAllGuitarrasBD();
-        lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), arrayListGuitarras));
-
+        try {
+            ArrayList<Guitarra> arrayListGuitarras = SingletonGestorGfast.getInstance(getContext()).gfastBDHelper.getAllGuitarrasBD();
+            lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), arrayListGuitarras));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onRefreshListaGuitarras(ArrayList<Guitarra> guitarras) {
-        if(guitarras != null)
-        {
-            lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), guitarras));
+        try {
+            if (guitarras != null) {
+                lvGuitarras.setAdapter(new ListaGuitarraAdaptador(getContext(), guitarras));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

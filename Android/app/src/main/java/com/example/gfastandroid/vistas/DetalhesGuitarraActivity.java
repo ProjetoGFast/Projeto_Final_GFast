@@ -39,59 +39,59 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_guitarra);
 
-        // calling the action bar
-        ActionBar actionBar = getSupportActionBar();
+        try {
+            setContentView(R.layout.activity_detalhes_guitarra);
 
-        // showing the back button in action bar
-        actionBar.setDisplayHomeAsUpEnabled(true);
+            // calling the action bar
+            ActionBar actionBar = getSupportActionBar();
 
-         id = getIntent().getIntExtra(ID_GUITARRA, 0);
+            // showing the back button in action bar
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
-        guitarra = SingletonGestorGfast.getInstance(getApplicationContext()).getGuitarraBD(id);
+            id = getIntent().getIntExtra(ID_GUITARRA, 0);
+            //Obter Guitarra através de ID
+            guitarra = SingletonGestorGfast.getInstance(getApplicationContext()).getGuitarraBD(id);
 
-        tv_modelo = findViewById(R.id.tv_modelo);
-        tv_subcategoria = findViewById(R.id.tv_subcategoria);
-        tv_descricao = findViewById(R.id.tv_descricao);
-        tv_preco = findViewById(R.id.tv_preco);
-        tv_marca = findViewById(R.id.tv_marca);
-        imageGuitarra = findViewById(R.id.imageGuitarra);
+            tv_modelo = findViewById(R.id.tv_modelo);
+            tv_subcategoria = findViewById(R.id.tv_subcategoria);
+            tv_descricao = findViewById(R.id.tv_descricao);
+            tv_preco = findViewById(R.id.tv_preco);
+            tv_marca = findViewById(R.id.tv_marca);
+            imageGuitarra = findViewById(R.id.imageGuitarra);
 
 
-        if (guitarra != null) {
+            if (guitarra != null) {
 
-            carregarGuitarra();
-        }
-
-        Button button = (Button) findViewById(R.id.bt_adicionar);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+                carregarGuitarra();
             }
-        });
 
-
-        SingletonGestorGfast.getInstance(getApplicationContext()).setGuitarraListener(this);
+            //Listener à escuta
+            SingletonGestorGfast.getInstance(getApplicationContext()).setGuitarraListener(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        try {
 
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_fav_guitarra, menu);
+            MenuInflater menuInflater = getMenuInflater();
+            menuInflater.inflate(R.menu.menu_fav_guitarra, menu);
+            //Vai buscar a guitarra caso seja favorita
+            favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(guitarra.getGui_id());
 
-        favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(guitarra.getGui_id());
-
-        if (favorito != null) {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_action_favorito_white));
+            if (favorito != null) {
+                //Caso seja favorita irá mudar o icone para um preenchido
+                menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_action_favorito_white));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-
-
         return super.onCreateOptionsMenu(menu);
+
 
     }
 
@@ -110,49 +110,59 @@ public class DetalhesGuitarraActivity extends AppCompatActivity implements Guita
 
     public void favoritoGuitarra() {
 
+        try {
+            //Vai buscar a guitarra caso seja favorita
+            favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(id);
 
+            if (favorito != null) {
+                //Caso seja favorita irá eliminar dos favoritos
+                SingletonGestorGfast.getInstance(getApplicationContext()).removerFavoritoAPI(favorito, getApplicationContext());
+                Toast.makeText(getApplicationContext(), "Removido dos Favoritos", Toast.LENGTH_SHORT).show();
 
-        favorito = SingletonGestorGfast.getInstance(getApplicationContext()).getFavGuitarrafav(id);
-
-        if (favorito != null) {
-            SingletonGestorGfast.getInstance(getApplicationContext()).removerFavoritoAPI(favorito,getApplicationContext());
-            Toast.makeText(getApplicationContext(), "Removido dos Favoritos", Toast.LENGTH_SHORT).show();
-
+            } else {
+                //Caso não seja favorita vai adicionar aos favoritos
+                SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
+                int iduser = sharedPreferencesUser.getInt("iduser", 0);
+                SingletonGestorGfast.getInstance(getApplicationContext()).adicionarFavoritoApi(guitarra.getGui_id(), iduser, getApplicationContext());
+                Toast.makeText(getApplicationContext(), "Adicionado aos Favoritos", Toast.LENGTH_SHORT).show();
+            }
+            //Abre a atividade MenuMainActivity(Favoritos)
+            Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+            intent.putExtra(MenuMainActivity.FAVORITOSTAB, "true");
+            startActivity(intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else
-        {
-            SharedPreferences sharedPreferencesUser = getSharedPreferences(MenuMainActivity.LOGIN, Context.MODE_PRIVATE);
-            int iduser = sharedPreferencesUser.getInt("iduser", 0);
-            SingletonGestorGfast.getInstance(getApplicationContext()).adicionarFavoritoApi(guitarra.getGui_id(), iduser, getApplicationContext());
-            Toast.makeText(getApplicationContext(), "Adicionado aos Favoritos", Toast.LENGTH_SHORT).show();
-        }
-
-        Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
-        intent.putExtra(MenuMainActivity.FAVORITOSTAB, "true");
-        startActivity(intent);
-        finish();
     }
 
 
     private void carregarGuitarra() {
+        try {
 
-        setTitle(guitarra.getGui_nome());
-        tv_modelo.setText(guitarra.getGui_nome());
-        tv_subcategoria.setText(guitarra.getGui_idsubcategoria());
+            //Preencher campos com dados
+            setTitle(guitarra.getGui_nome());
+            tv_modelo.setText(guitarra.getGui_nome());
+            tv_subcategoria.setText(guitarra.getGui_idsubcategoria());
+            tv_marca.setText(guitarra.getGui_idmarca());
+            tv_descricao.setText(guitarra.getGui_descricao());
+            tv_preco.setText(guitarra.getGui_preco() + "€");
 
-        tv_descricao.setText(guitarra.getGui_descricao());
-        tv_preco.setText(guitarra.getGui_preco() + "€");
-
-        Glide.with(getApplication())
-                .load(getApplication().getString(R.string.iplocal) + guitarra.getGui_fotopath())
-                .placeholder(R.drawable.logo_gfast)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageGuitarra);
+            Glide.with(getApplication())
+                    .load(getApplication().getString(R.string.iplocal) + guitarra.getGui_fotopath())
+                    .placeholder(R.drawable.logo_gfast)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageGuitarra);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void onRefreshDetalhes(int op) {
+
+        //Atualizar detalhes
         Intent intent = new Intent();
         intent.putExtra(MenuMainActivity.OP_CODE, op);
         setResult(RESULT_OK, intent);

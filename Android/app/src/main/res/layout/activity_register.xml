@@ -27,7 +27,7 @@
         android:ems="10"
         android:hint="@string/login_etEmail"
         android:inputType="textEmailAddress"
-        android:text="alexlevs"
+
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -39,7 +39,7 @@
         android:ems="10"
         android:hint="@string/login_etEmail"
         android:inputType="textEmailAddress"
-        android:text="alexandrelevchenko1@gmail.com"
+
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/etUserName" />
 
@@ -51,7 +51,7 @@
         android:ems="10"
         android:hint="@string/login_etName"
         android:inputType="textPersonName"
-        android:text="Alexandre"
+
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
@@ -63,7 +63,7 @@
         android:ems="10"
         android:hint="@string/login_etSurname"
         android:inputType="textPersonName"
-        android:text="Levchenko"
+
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/etName"
@@ -77,7 +77,7 @@
         android:ems="10"
         android:hint="@string/login_etCity"
         android:inputType="textPostalAddress"
-        android:text="Alcanena"
+
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/etSurname" />
 
@@ -89,7 +89,6 @@
         android:ems="10"
         android:hint="@string/login_etPhone"
         android:inputType="text|phone"
-        android:text="935473944"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCity" />
@@ -102,7 +101,6 @@
         android:ems="10"
         android:hint="@string/login_etContribuinte"
         android:inputType="text|phone"
-        android:text="275001946"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCity" />
@@ -116,7 +114,6 @@
         android:ems="10"
         android:hint="@string/login_etPassword"
         android:inputType="textPassword"
-        android:text="pass123"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/etPhone"
         tools:layout_editor_absoluteX="92dp" />
@@ -127,7 +124,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/purple_700"
-        android:onClick="onClickRegister"
         android:text="@string/login_btnRegister"
         app:cornerRadius="40dp"
         app:layout_constraintEnd_toEndOf="parent"
