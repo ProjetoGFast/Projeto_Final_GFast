@@ -33,7 +33,7 @@ $backend = BackendAsset::register($this);
                 <!-- Product Pricing -->
                 <div class="product-price">
                     <span><?= $model->gui_preco ?>€</span>
-                    <a href="#" class="cart-btn"><i class="fa fa-shopping-cart"></i>Adicionar ao Carrinho</a>
+                    <?= Html::a('<i class="fa fa-shopping-cart"></i>Adifcionar ao Carrinho', ['/site/index'], ['class' => 'cart-btn']) ?>
                 </div>
                 <div class="product-description">
                     <h3>Descrição</h3>

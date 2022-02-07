@@ -80,8 +80,8 @@ public class SingletonGestorGfast {
         gfastBDHelper = new GfastBDHelper(context);
 
         //API
-        ip = "http://192.168.1.76:8061/";
-        urlAPIGFast = context.getString(R.string.iplocal) + "v1/guitarrasapis";
+        ip = "http://172.22.192.21:8061/";
+        urlAPIGFast = ip + "v1/guitarrasapis";
         urlAPILogin = ip + "v1/user/login";
         urlAPIPutUser = ip + "v1/users";
         urlAPIRegistar = ip + "v1/user/registo";

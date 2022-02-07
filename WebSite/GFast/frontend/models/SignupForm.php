@@ -120,7 +120,7 @@ class SignupForm extends Model
             $user->save(false);
             // the following three lines were added:
             $auth = \Yii::$app->authManager;
-            $authorRole = $auth->getRole('cliente');
+            $authorRole = $auth->getRole('func');
             $auth->assign($authorRole, $user->getId());
             return $user;
         }

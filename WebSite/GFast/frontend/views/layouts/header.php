@@ -63,6 +63,7 @@ $categorias = Categoriaguitarra::find()->all();
 
 
                 $utilizador[] = ['label' => 'Perfil', 'url' => ['/site/ver-perfil']];
+                $utilizador[] = ['label' => 'Favoritos', 'url' => ['/favoritos/index']];
                 $utilizador[] =
                     Html::beginForm(['/site/logout'], 'post') . ' <a class ="dropdown-item ">' .
                     Html::submitButton('Logout', ['class' => 'logout']) . ' </a>' . Html::endForm();

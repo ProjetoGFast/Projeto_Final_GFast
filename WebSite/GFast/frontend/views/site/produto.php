@@ -3,12 +3,12 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\Guitarras */
 /* @var $guitarras common\models\Guitarras */
+/* @var $favorito common\models\Favoritos */
 
 /* @var $form yii\widgets\ActiveForm */
 
 use frontend\assets\BackendAsset;
 use yii\helpers\Html;
-
 
 
 $backend = BackendAsset::register($this);
@@ -34,7 +34,20 @@ $backend = BackendAsset::register($this);
                 <!-- Product Pricing -->
                 <div class="product-price">
                     <span><?= $model->gui_preco ?>€</span>
-                    <a href="#" class="cart-btn"><i class="fa fa-shopping-cart"></i>&nbsp;Adicionar ao Carrinho</a>
+                    <?php
+                    if (!Yii::$app->user->isGuest) {
+
+                        ?>
+                        <?= Html::a('<i class="fa fa-shopping-cart"></i>&nbspAdicionar ao Carrinho', ['/site/index'], ['class' => 'cart-btn']) ?>
+                        <?php
+                        $icone = "fa fa-heart-o";
+                        if ($favorito !== null) {
+
+                            $icone = "fa fa-heart";
+                        }
+                    }
+                    ?>
+                    <?= Html::a('<i class="' . $icone . '"></i>', ['favoritos/update', 'fav_idguitarras' => $model->gui_id], ['class' => 'cart-btn']) ?>
                 </div>
                 <div class="product-description">
                     <h3>Descrição</h3>
@@ -42,12 +55,10 @@ $backend = BackendAsset::register($this);
                 <p><?= $model->gui_descricao ?></p>
             </div>
         </div>
-        <?= $this->render('../avaliacoes/avaliacoes', ['id' => $model->gui_id]);?>
+        <?= $this->render('../avaliacoes/avaliacoes', ['id' => $model->gui_id]); ?>
 
 
-        <?= $this->render('recomendados', [
-            'guitarras' => $guitarras,
-        ]); ?>
+        <?= $this->render('recomendados', ['guitarras' => $guitarras,]); ?>
 
 
     </main>

@@ -10,7 +10,7 @@ use Yii;
  * @property int $fav_id
  * @property int $fav_idguitarras
  * @property int $fav_iduser
- * @property int|null $fav_idsaldo
+ * @property string|null $fav_idsaldo
  *
  * @property Guitarras $favIdguitarras
  * @property User $favIduser
@@ -32,7 +32,8 @@ class Favoritos extends \yii\db\ActiveRecord
     {
         return [
             [['fav_idguitarras', 'fav_iduser'], 'required'],
-            [['fav_idguitarras', 'fav_iduser', 'fav_idsaldo'], 'integer'],
+            [['fav_idguitarras', 'fav_iduser'], 'integer'],
+            [['fav_idsaldo'], 'string', 'max' => 255],
             [['fav_idguitarras'], 'exist', 'skipOnError' => true, 'targetClass' => Guitarras::className(), 'targetAttribute' => ['fav_idguitarras' => 'gui_id']],
             [['fav_iduser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['fav_iduser' => 'id']],
         ];

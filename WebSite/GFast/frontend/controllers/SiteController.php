@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Avaliacoes;
 use common\models\Categoriaguitarra;
+use common\models\Favoritos;
 use common\models\Guitarras;
 use common\models\Marcas;
 use frontend\models\ResendVerificationEmailForm;
@@ -236,10 +237,16 @@ class SiteController extends Controller
 
     public function actionProduto($id)
     {
+        $fav_iduser = Yii::$app->user->identity;
+
         $model = Guitarras::findOne($id);
         $guitarras = Guitarras::find()->limit(10)->all();
+        $favoritos = Favoritos::find()->where(['fav_iduser' => $fav_iduser->getId(), 'fav_idguitarras' => $id])->one();
+
+
+
         return $this->render('produto', [
-            'model' => $model, 'guitarras' => $guitarras
+            'model' => $model, 'guitarras' => $guitarras, 'favorito' => $favoritos
         ]);
     }
 

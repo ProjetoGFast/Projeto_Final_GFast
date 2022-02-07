@@ -329,6 +329,7 @@ img {vertical-align: middle;}
     text-decoration: none;
     padding: 12px 30px;
     transition: all .5s;
+    margin-left:10px;
 }
 .cart-btn:hover {
     background-color: #2d2aec;

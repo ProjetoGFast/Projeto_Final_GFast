@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gfastandroid.R;
 
-public class SobreFragment extends Fragment {
+public class LocalizacaoFragment extends Fragment {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_sobre, container, false);
+        View view = inflater.inflate(R.layout.fragment_localizacao, container, false);
 
 
         return view;
