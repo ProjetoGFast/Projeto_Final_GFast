@@ -50,7 +50,7 @@ $backend = BackendAsset::register($this);
                                     <?= Html::a('Eliminar dos Favoritos', ['delete', 'idguitarra' => $guitarra->gui_id], [
 
                                         'data' => [
-                                            'confirm' => 'Are you sure you want to delete this item?',
+                                            'confirm' => 'Tem a certeza que pretende eliminar este item dos favoritos?',
                                             'method' => 'post',
                                         ],
                                     ]) ?>
@@ -71,7 +71,7 @@ $backend = BackendAsset::register($this);
         <div class="col-sm-12">
             <h4>Sem Modelos a Apresentar </h4>
 
-            <?= Html::a('Voltar atrás', ['/subcategoria-guitarra/index' , 'id'=>$subcat->sub_idcat], ['class' => 'btn btn-primary']) ?>
+
 
         </div>
     <?php }

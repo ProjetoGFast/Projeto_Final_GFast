@@ -862,6 +862,8 @@ h2.title {
 	border:1px solid #F7F7F5;
 	overflow: hidden;
 	margin-bottom:30px;
+    padding:12px;
+
 }
 .marcas-box{
 
@@ -2548,4 +2550,17 @@ h2.title {
   position:relative;
   width: 40%;
   height: 40%;
+}
+
+.alignright{
+  text-align: right;
+  height:100%;
+}
+
+.botoescarrinho{
+  height: 150px;
+
+}
+.btncar{
+  margin-top: 70px;
 }

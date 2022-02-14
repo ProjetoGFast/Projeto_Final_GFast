@@ -36,7 +36,7 @@ $backend = BackendAsset::register($this);
                             <?= Html::a('Ver Mais', ['produto', 'id' => $guitarra->gui_id]) ?>
                         </div>
                         <div class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
-                            <?= Html::a('Adicionar', ['produto', 'id' => $guitarra->gui_id]) ?>
+                            <?= Html::a('Adicionar', ['encomendas/create', 'idguitarra' => $guitarra->gui_id]) ?>
                         </div>
                     </div>
                 </div>

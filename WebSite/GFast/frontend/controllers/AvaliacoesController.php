@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Avaliacoes;
+use common\models\Favoritos;
 use common\models\Guitarras;
 use frontend\models\AvaliacoesSearch;
 use Yii;
@@ -80,8 +81,10 @@ class AvaliacoesController extends Controller
             if ($model->load($this->request->post()) && $model->save()) {
                 $guitarra = Guitarras::find()->where(['gui_id' => $model->ava_idguitarra])->one();
                 $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
+                $model = Favoritos::find()->where(['fav_idguitarras' => $id, 'fav_iduser' => $user_id->getId()])->one();
+
                 return $this->render('../site/produto', [
-                    'model' => $guitarra, 'guitarras' => $guitarras
+                    'model' => $guitarra, 'guitarras' => $guitarras, 'favorito' => $model
                 ]);
             }
         } else {
@@ -102,16 +105,17 @@ class AvaliacoesController extends Controller
      */
     public function actionUpdate($id)
     {
+        $user_id = Yii::$app->user->identity;
         $model = $this->findModel($id);
         if (\Yii::$app->user->can('crudOwnAvaliacao', ['post' => $model])) {
 
             $guitarra = Guitarras::find()->where(['gui_id' => $model->ava_idguitarra])->one();
             $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
-
+            $fav = Favoritos::find()->where(['fav_idguitarras' => $id, 'fav_iduser' => $user_id->getId()])->one();
             if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
                 return $this->render('../site/produto', [
-                    'model' => $guitarra, 'guitarras' => $guitarras
+                    'model' => $guitarra, 'guitarras' => $guitarras, 'favorito' => $fav
                 ]);
             }
             return $this->render('update', [
@@ -135,16 +139,16 @@ class AvaliacoesController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-
+        $user_id = Yii::$app->user->identity;
         if (\Yii::$app->user->can('crudOwnAvaliacao', ['post' => $model])) {
 
             $guitarra = Guitarras::find()->where(['gui_id' => $model->ava_idguitarra])->one();
             $guitarras = Guitarras::find()->where(['gui_inativo' => 0])->all();
-
+            $model = Favoritos::find()->where(['fav_idguitarras' => $id, 'fav_iduser' => $user_id->getId()])->one();
             $this->findModel($id)->delete();
 
             return $this->render('../site/produto', [
-                'model' => $guitarra, 'guitarras' => $guitarras
+                'model' => $guitarra, 'guitarras' => $guitarras, 'favorito' => $model
             ]);
         } else {
 

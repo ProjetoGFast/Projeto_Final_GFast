@@ -3699,9 +3699,15 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .nav {
-    padding-left: 30px;
+
     margin-bottom: 0;
-    list-style: none
+    /* list-style: gujarati; */
+    display: inherit;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-end;
 }
 
 .nav:before, .nav:after {

@@ -38,7 +38,7 @@ $backend = BackendAsset::register($this);
                     if (!Yii::$app->user->isGuest) {
 
                         ?>
-                        <?= Html::a('<i class="fa fa-shopping-cart"></i>&nbspAdicionar ao Carrinho', ['/site/index'], ['class' => 'cart-btn']) ?>
+                        <?= Html::a('<i class="fa fa-shopping-cart"></i>&nbspAdicionar ao Carrinho',['encomendas/create', 'idguitarra' => $model->gui_id], ['class' => 'cart-btn']) ?>
                         <?php
                         $icone = "fa fa-heart-o";
                         if ($favorito !== null) {
