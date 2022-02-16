@@ -16,27 +16,34 @@ use yii\grid\GridView;
 
 
         <h2 class="title text-center">Encomendas</h2>
-
-        <table>
-            <tr>
-                <th>Número de Encomenda</th>
-                <th>Utilizador</th>
-                <th>Country</th>
-            </tr>
-        <?php
-        foreach ($model as $encomenda) {
-            $user = \common\models\User::find()->where(['id' => $encomenda->enc_iduser])->one();
-            ?>
+        <?php if ($model != null) { ?>
+            <table>
                 <tr>
-                    <td><?=$encomenda->enc_id?></td>
-                    <td><?=$user->us_nome ." ".$user->us_apelido?></td>
-                    <td>Germany</td>
+                    <th>Número de Encomenda</th>
+                    <th>Utilizador</th>
+                    <th>Estado de Encomenda</th>
                 </tr>
-            <?php
+                <?php
+                foreach ($model as $encomenda) {
+                    $user = \common\models\User::find()->where(['id' => $encomenda->enc_iduser])->one();
+                    $estado = \common\models\Estados::find()->where(['est_id' => $encomenda->enc_estado])->one();
+                    ?>
+                    <tr>
+                        <td><?= $encomenda->enc_id ?></td>
+                        <td><?= $user->us_nome . " " . $user->us_apelido ?></td>
+                        <td><?=$estado->Estado?></td>
+                    </tr>
+                    <?php
+                }
+
+                ?>
+            </table>
+        <?php } else
+        {
+            ?><h4>Sem Encomendas</h4><?php
         }
 
-        ?>
-        </table>
 
+        ?>
     </div>
 <?= $this->render('..\layouts\footer') ?>

@@ -12,6 +12,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $guitarras common\models\Guitarras */
 /* @var $model common\models\Encomendas */
+/* @var $carrinhos common\models\Carrinho */
 $total = 0;
 \yii\web\YiiAsset::register($this);
 $backend = BackendAsset::register($this);
@@ -23,25 +24,12 @@ $backend = BackendAsset::register($this);
     <h2 class="title text-center">Compra</h2>
 
     <div class="container">
-<?php
-
-$i = 0;
-if ($model != null) {
-foreach ($model
-
-    as $encomenda)
-{
-if ($i == 0){
-
-
-    $i++
-    ?>
     <div class="row">
         <div class="col-sm-6">
             <?php
-            foreach ($model as $encomenda) {
 
-                $guitarra = Guitarras::find()->where(['gui_id' => $encomenda->enc_idguitarra])->one();
+            foreach ($carrinhos as $carrinho) {
+                $guitarra = Guitarras::find()->where(['gui_id' => $carrinho->gui_id])->one();
 
                 $total = $total + $guitarra->gui_preco;
 
@@ -71,44 +59,27 @@ if ($i == 0){
 
                     </div>
                 </div>
+                <?php
+            } ?>
 
 
-            <?php } ?>
         </div>
         <div class="col-sm-6">
 
             <div class="encomendas-form">
-
+                <?php $encomendaform = new Encomendas(); ?>
                 <?= $this->render('_form', [
-                    'model' => $encomenda, 'total' => $total
+                    'model' => $encomendaform, 'total' => $total
                 ]) ?>
 
             </div>
 
 
-
-
         </div>
-        <?php
-        }
-        }
-        ?>
 
     </div>
     </div>
 
-    <?php
-} else {
-    ?>
-
-    <div class="col-sm-12">
-        <h4>Sem Modelos a Apresentar </h4>
-
-
-    </div>
-<?php }
-
-?>
 
 
 

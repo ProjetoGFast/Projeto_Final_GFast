@@ -2,11 +2,13 @@
 
 namespace frontend\controllers;
 
+use common\models\Carrinho;
+
 use common\models\Encomendas;
-use common\models\EncomendaUser;
-use common\models\Favoritos;
+
+
 use common\models\Guitarras;
-use frontend\models\EncomendasSearch;
+
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -43,7 +45,7 @@ class EncomendasController extends Controller
     public function actionIndex()
     {
         $user_id = Yii::$app->user->identity;
-        $model = Encomendas::find()->where(['enc_iduser' => $user_id, 'enc_estado' => 2])->all();
+        $model = Encomendas::find()->where(['enc_iduser' => $user_id, 'enc_estado' => 1])->all();
 
         return $this->render('index', [
             'model' => $model,
@@ -59,7 +61,7 @@ class EncomendasController extends Controller
     public function actionCarrinho()
     {
         $user_id = Yii::$app->user->identity;
-        $model = Encomendas::find()->where(['enc_iduser' => $user_id, 'enc_estado' => 1])->all();
+        $model = Carrinho::find()->where(['iduser' => $user_id, 'inativo' => 0])->all();
 
         return $this->render('carrinho', [
 
@@ -69,21 +71,20 @@ class EncomendasController extends Controller
     }
 
 
-
     public function actionView()
     {
         $user_id = Yii::$app->user->identity;
+
+        //$user_id = Yii::$app->user->identity;
         $model = Encomendas::find()->where(['enc_iduser' => $user_id->getId(), 'enc_estado' => 1])->all();
         $relacao = new EncomendaUser();
-        foreach ($model as $encomenda)
-        {
+        foreach ($model as $encomenda) {
 
             $encomenda->enc_estado = 2;
-            $relacao->iduser = $user_id->getId();
-            $relacao->enc_id = $encomenda->enc_id;
+
 
             if ($this->request->isPost && $encomenda->load($this->request->post()) && $encomenda->save() && $relacao->save()) {
-               // return $this->redirect(['view', 'gui_id' => $encomenda->gui_id]);
+                // return $this->redirect(['view', 'gui_id' => $encomenda->gui_id]);
 
             }
         }
@@ -93,6 +94,39 @@ class EncomendasController extends Controller
         ]);
     }
 
+    public function actionCarrinhoEncomenda()
+    {
+
+        $user_id = Yii::$app->user->identity;
+        $carts = Carrinho::find()->where(['iduser' => $user_id->getId(), 'inativo' => 0])->all();
+
+
+        $model = new Encomendas();
+        if ($this->request->isPost) {
+
+            $model->enc_estado = 1;
+            $model->enc_iduser = $user_id->getId();
+            if ($model->load($this->request->post()) && $model->save()) {
+
+                foreach ($carts as $cart) {
+                    $cart->enc_id =  $model->enc_id;
+                    $cart->inativo = 1;
+                    $cart->save();
+                }
+                 return $this->redirect(['index']);
+            }
+
+        } else {
+            $model->loadDefaultValues();
+        }
+
+
+        return $this->render('view', [
+            'carrinhos' => $carts
+        ]);
+    }
+
+
     /**
      * Creates a new Encomendas model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -100,23 +134,20 @@ class EncomendasController extends Controller
      */
     public function actionCreate($idguitarra)
     {
-        $model = new Encomendas();
+        $carrinho = new Carrinho();
+
         $user_id = Yii::$app->user->identity;
-        $model->enc_iduser = $user_id->getId();
-        $model->enc_estado = 1;
-        $model->enc_idguitarra = $idguitarra;
+        $carrinho->iduser = $user_id->getId();
+        $carrinho->gui_id = $idguitarra;
+        $carrinho->inativo = 0;
 
-            if ($model->save()) {
 
-                $model = Encomendas::find()->where(['enc_iduser' => $user_id, 'enc_estado' => 1])->all();
+        if ($carrinho->save()) {
 
-                return $this->render('carrinho', [
+            $model = Carrinho::find()->all();
+            return $this->redirect(['carrinho', 'model' => $model]);
 
-                    'model' => $model,
-
-                ]);
-
-            }
+        }
     }
 
     /**
@@ -139,6 +170,15 @@ class EncomendasController extends Controller
         ]);
     }
 
+    protected function findModel($id)
+    {
+        if (($model = Encomendas::findOne(['enc_id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
     /**
      * Deletes an existing Encomendas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -150,22 +190,17 @@ class EncomendasController extends Controller
     {
 
 
-        $this->findModel($id)->delete();
+        $this->findModelCarrinho($id)->delete();
 
         return $this->redirect(['carrinho']);
     }
 
-    /**
-     * Finds the Encomendas model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id Enc ID
-     * @return Encomendas the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
+    protected function findModelCarrinho($id)
     {
-        if (($model = Encomendas::findOne(['enc_id' => $id])) !== null) {
+        if (($model = Carrinho::findOne(['id' => $id])) !== null) {
             return $model;
+
+
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');

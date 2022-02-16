@@ -12,10 +12,10 @@ use Yii;
  * @property string|null $enc_morada
  * @property int $enc_estado
  * @property int $enc_iduser
- * @property int $enc_idguitarra
  *
- * @property Guitarras $encIdguitarra
+ * @property Estados $encEstado
  * @property User $encIduser
+ *
  */
 class Encomendas extends \yii\db\ActiveRecord
 {
@@ -33,11 +33,11 @@ class Encomendas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['enc_estado', 'enc_iduser', 'enc_idguitarra'], 'required'],
-            [['enc_estado', 'enc_iduser', 'enc_idguitarra'], 'integer'],
+            [['enc_estado', 'enc_iduser'], 'required'],
+            [['enc_estado', 'enc_iduser'], 'integer'],
             [['enc_nome'], 'string', 'max' => 20],
             [['enc_morada'], 'string', 'max' => 40],
-            [['enc_idguitarra'], 'exist', 'skipOnError' => true, 'targetClass' => Guitarras::className(), 'targetAttribute' => ['enc_idguitarra' => 'gui_id']],
+            [['enc_estado'], 'exist', 'skipOnError' => true, 'targetClass' => Estados::className(), 'targetAttribute' => ['enc_estado' => 'est_id']],
             [['enc_iduser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['enc_iduser' => 'id']],
         ];
     }
@@ -48,23 +48,22 @@ class Encomendas extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'enc_id' => 'Enc ID',
+            'enc_id' => 'ID',
             'enc_nome' => 'Notas',
             'enc_morada' => 'Morada',
-            'enc_estado' => 'Enc Estado',
-            'enc_iduser' => 'Enc Iduser',
-            'enc_idguitarra' => 'Enc Idguitarra',
+            'enc_estado' => 'Estado',
+            'enc_iduser' => 'Iduser',
         ];
     }
 
     /**
-     * Gets query for [[EncIdguitarra]].
+     * Gets query for [[EncEstado]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getEncIdguitarra()
+    public function getEncEstado()
     {
-        return $this->hasOne(Guitarras::className(), ['gui_id' => 'enc_idguitarra']);
+        return $this->hasOne(Estados::className(), ['est_id' => 'enc_estado']);
     }
 
     /**
@@ -75,5 +74,15 @@ class Encomendas extends \yii\db\ActiveRecord
     public function getEncIduser()
     {
         return $this->hasOne(User::className(), ['id' => 'enc_iduser']);
+    }
+
+    /**
+     * Gets query for [[EncomendaGuitarras]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEncomendaGuitarras()
+    {
+        //return $this->hasMany(EncomendaGuitarra::className(), ['enc_id' => 'enc_id']);
     }
 }

@@ -90,7 +90,7 @@ $categorias = Categoriaguitarra::find()->all();
                         ];
                         if (!Yii::$app->user->isGuest) {
                             $user_id = Yii::$app->user->identity;
-                            $nuser = \common\models\Encomendas::find()->where(['enc_iduser' => $user_id, 'enc_estado' => 1])->count();
+                            $nuser = \common\models\Carrinho::find()->where(['iduser' => $user_id, 'inativo' => 0])->count();
                             $menuItems[] = ['label' => Html::tag('span', '', ['class' => 'fa fa-shopping-cart']) . "(" . $nuser . ")", 'url' => '/encomendas/carrinho'];
                         }
                         $menuItems[] = [

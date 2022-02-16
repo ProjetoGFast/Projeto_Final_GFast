@@ -72,6 +72,12 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'Marcas',  'icon' => 'fa fa-tags', 'url' => ['marcas/index']];
             }
 
+
+
+                $menuItems[] = ['label' => 'Encomendas',  'icon' => 'fa fa-box', 'url' => ['encomendas/index']];
+
+
+
             if (\Yii::$app->user->can('crudCategorias')) {
 
 

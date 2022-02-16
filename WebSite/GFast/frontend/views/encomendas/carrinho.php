@@ -10,7 +10,7 @@ use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $guitarras common\models\Guitarras */
-/* @var $model common\models\Encomendas */
+/* @var $model common\models\Carrinho */
 $total = 0;
 \yii\web\YiiAsset::register($this);
 $backend = BackendAsset::register($this);
@@ -25,12 +25,12 @@ $backend = BackendAsset::register($this);
 <?php
 
 
-if ($model !="") {
+if ($model != "") {
 
 
-    foreach ($model as $encomenda) {
+    foreach ($model as $carrinho) {
 
-        $guitarra = Guitarras::find()->where(['gui_id' => $encomenda->enc_idguitarra])->one();
+        $guitarra = Guitarras::find()->where(['gui_id' => $carrinho->gui_id])->one();
 
         $total = $total + $guitarra->gui_preco;
 
@@ -56,7 +56,7 @@ if ($model !="") {
                                     <?= Html::a('<i class="fa fa-plus"></i>&nbsp Ver Mais', ['site/produto', 'id' => $guitarra->gui_id], ['class' => 'btn btn-primary btncar']) ?>
 
 
-                                    <?= Html::a('<i class="fa fa-trash-o"></i>&nbsp Remover do Carrinho', ['delete', 'id' => $encomenda->enc_id],
+                                    <?= Html::a('<i class="fa fa-trash-o"></i>&nbsp Remover do Carrinho', ['delete', 'id' => $carrinho->id],
                                         [
                                             'class' => 'btn btn-primary btncar',
                                             'data' => [
@@ -74,7 +74,7 @@ if ($model !="") {
                 </div>
             </div>
         </div>
-    <?php
+        <?php
 
     }
 
@@ -84,8 +84,11 @@ if ($model !="") {
             <label class="labelcarrinho">Total no Carrinho: <?= $total ?> € </label>
         </div>
         <div class="col-sm-2">
-                <?= Html::a('Comprar', ['view'], ['class' => 'btn btn-primary']) ?>
-
+            <?php if ($total > 0) { ?>
+                <?= Html::a('Comprar', ['carrinho-encomenda'], ['class' => 'btn btn-primary']) ?>
+                <?php
+            }
+            ?>
         </div>
     </div>
     </div>
@@ -93,8 +96,8 @@ if ($model !="") {
     <?php
 } else {
     ?>
-<?php var_dump($model);
-    die()?>
+    <?php var_dump($model);
+    die() ?>
     <div class="col-sm-12">
         <h4>Sem Modelos a Apresentar </h4>
 

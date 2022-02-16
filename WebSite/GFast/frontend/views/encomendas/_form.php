@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="col-sm-4">
             <div class="form-group">
-                <?= Html::submitButton('Continuar Compra', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Pagar', ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
     </div>
