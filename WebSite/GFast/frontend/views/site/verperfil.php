@@ -14,7 +14,7 @@ use yii\widgets\DetailView;
 
     <p>
         <?= Html::a('<i class="fa fa-pencil" aria-hidden="true"></i>', ['editar-perfil', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('<i class="fa fa-trash-o" aria-hidden="true"></i>', ['delete', 'id' => $model->id], [
+        <?= Html::a('<i class="fa fa-trash-o" aria-hidden="true"></i> Desativar Perfil', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-primary',
             'data' => [
                 'confirm' => 'Tem a certeza que pretende eliminar o seu perfil?',

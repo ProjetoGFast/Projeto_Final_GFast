@@ -45,7 +45,7 @@ class EncomendasController extends Controller
     public function actionIndex()
     {
         $user_id = Yii::$app->user->identity;
-        $model = Encomendas::find()->where(['enc_iduser' => $user_id, 'enc_estado' => 1])->all();
+        $model = Encomendas::find()->where(['enc_iduser' => $user_id])->all();
 
         return $this->render('index', [
             'model' => $model,
@@ -124,6 +124,18 @@ class EncomendasController extends Controller
         return $this->render('view', [
             'carrinhos' => $carts
         ]);
+    }
+
+    public function actionDetalhes($id)
+    {
+        $user_id = Yii::$app->user->identity;
+        $model = Encomendas::find()->where(['enc_id' => $id, 'enc_iduser' => $user_id->getId()])->one();
+
+        return $this->render('detalhes', [
+            'encomenda' => $model
+        ]);
+
+
     }
 
 

@@ -28,7 +28,7 @@ use yii\web\UploadedFile;
  * @property Fotos[] $fotos
  * @property Marcas $guiIdmarca
  * @property SubcategoriaGuitarra $guiIdsubcategoria
- * @property VendasGuitarras[] $vendasGuitarras
+
  */
 class Guitarras extends \yii\db\ActiveRecord
 {

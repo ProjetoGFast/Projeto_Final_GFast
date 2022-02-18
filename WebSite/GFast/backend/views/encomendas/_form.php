@@ -15,13 +15,10 @@ use common\models\Estados;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'enc_nome')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'enc_morada')->textInput(['maxlength' => true]) ?>
+
 
     <?= $form->field($model, 'enc_estado')->dropDownList(ArrayHelper::map(Estados::find()->all(), 'est_id','Estado'), ['prompt'=>'Seleciona um Estado']); ?>
-
-    <?= $form->field($model, 'enc_iduser')->dropDownList(ArrayHelper::map(User::find()->all(), 'id','username'), ['prompt'=>'Seleciona um Cliente']); ?>
 
 
     <div class="form-group">

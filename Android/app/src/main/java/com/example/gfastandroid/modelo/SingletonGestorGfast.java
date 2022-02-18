@@ -80,14 +80,14 @@ public class SingletonGestorGfast {
         gfastBDHelper = new GfastBDHelper(context);
 
         //API
-        ip = "http://172.22.192.21:8061/";
-        urlAPIGFast = ip + "v1/guitarrasapis";
-        urlAPILogin = ip + "v1/user/login";
-        urlAPIPutUser = ip + "v1/users";
-        urlAPIRegistar = ip + "v1/user/registo";
-        urlAPIGetFavByUser = ip + "v1/favoritos/favoritos";
-        urlAPIPostAdicionarFav = ip + "v1/favoritos/adicionar";
-        urlAPIDELETEFav = ip + "v1/favoritos";
+        ip = "http://192.168.1.105:8061/";
+        urlAPIGFast = context.getString(R.string.iplocal)  + "v1/guitarrasapis";
+        urlAPILogin = context.getString(R.string.iplocal)  + "v1/user/login";
+        urlAPIPutUser = context.getString(R.string.iplocal)  + "v1/users";
+        urlAPIRegistar = context.getString(R.string.iplocal)  + "v1/user/registo";
+        urlAPIGetFavByUser = context.getString(R.string.iplocal)  + "v1/favoritos/favoritos";
+        urlAPIPostAdicionarFav = context.getString(R.string.iplocal)  + "v1/favoritos/adicionar";
+        urlAPIDELETEFav = context.getString(R.string.iplocal)  + "v1/favoritos";
 
 
 //################################################MOSQUITTO#########################################
@@ -354,8 +354,6 @@ public class SingletonGestorGfast {
             if (guitarrasListener != null) {
                 guitarrasListener.onRefreshListaGuitarras(gfastBDHelper.getAllGuitarrasBD());
             }
-
-
         } else {
             //GET todas as guitarras da aplicação
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, urlAPIGFast, null, new Response.Listener<JSONArray>() {
@@ -369,13 +367,10 @@ public class SingletonGestorGfast {
                         if (guitarrasListener != null) {
                             //Atualizar a lista de guitarras
                             guitarrasListener.onRefreshListaGuitarras(guitarras);
-
                         }
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                 }
             }, new Response.ErrorListener() {
                 @Override

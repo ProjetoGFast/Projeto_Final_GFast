@@ -36,14 +36,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-      /*  'urlManagerBackend' => [
-            'class' => 'yii\web\UrlManager',
-            'baseUrl' => 'http://gfastbackend',
-            'hostInfo' => 'http://gfastbackend',
-            'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
-            'showScriptName' => false,
-        ],*/
+
 
 
     ],

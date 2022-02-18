@@ -2,16 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/textView3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".DetalhesEstaticoActivity">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView7"
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Sobre nós"
-        android:textAlignment="center"
-        android:textSize="48sp" />
+        android:src="@drawable/logo_gfast" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Sobre Nós"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Esta aplicação foi criada no ãmbito do curso de Programação de Sistemas de Informação pelos alunos Alexandre Levchenko e Duarte Pereira." />
 </LinearLayout>

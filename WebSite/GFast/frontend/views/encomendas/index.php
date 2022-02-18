@@ -19,7 +19,9 @@ use yii\grid\GridView;
         <?php if ($model != null) { ?>
             <table>
                 <tr>
+
                     <th>Número de Encomenda</th>
+                    <th>Morada</th>
                     <th>Utilizador</th>
                     <th>Estado de Encomenda</th>
                 </tr>
@@ -27,11 +29,16 @@ use yii\grid\GridView;
                 foreach ($model as $encomenda) {
                     $user = \common\models\User::find()->where(['id' => $encomenda->enc_iduser])->one();
                     $estado = \common\models\Estados::find()->where(['est_id' => $encomenda->enc_estado])->one();
+
                     ?>
+
                     <tr>
-                        <td><?= $encomenda->enc_id ?></td>
-                        <td><?= $user->us_nome . " " . $user->us_apelido ?></td>
-                        <td><?=$estado->Estado?></td>
+                        <td><?= Html::a($encomenda->enc_id, ['detalhes', 'id' => $encomenda->enc_id ], ['class' => 'row-link']) ?></td>
+                        <td><?= Html::a($encomenda->enc_morada, ['detalhes', 'id' => $encomenda->enc_id ], ['class' => 'row-link']) ?></td>
+                        <td><?= Html::a( $user->us_nome . " " . $user->us_apelido, ['detalhes', 'id' => $encomenda->enc_id ], ['class' => 'row-link']) ?></td>
+                        <td><?= Html::a( $estado->Estado, ['detalhes', 'id' => $encomenda->enc_id ], ['class' => 'row-link']) ?></td>
+
+
                     </tr>
                     <?php
                 }

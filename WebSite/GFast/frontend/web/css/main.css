@@ -2563,3 +2563,25 @@ h2.title {
 .btncar{
   margin-top: 70px;
 }
+table {
+  border-collapse: collapse;
+}
+td {
+
+  position: relative;
+}
+tr:hover, tr:focus-within {
+  background: #f2f3ff;
+  outline: none;
+
+}
+td > a:first-child {
+  display: flex;
+  padding: 18px;
+  text-decoration: none;
+  color: inherit;
+  z-index: 0;
+}
+td > a:first-child:focus {
+  outline: 0;
+}

@@ -30,11 +30,6 @@ class UserController extends Controller
                             'allow' => true,
                             'roles' => ['admin'],
                         ],
-                        [
-                            'actions' => ['logout', 'index'],
-                            'allow' => false,
-                            'roles' => ['funcionario', 'gestor'],
-                        ],
                     ],
                 ],
                 'verbs' => [

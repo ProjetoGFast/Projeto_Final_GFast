@@ -8,8 +8,8 @@
                 <div class="col-sm-2">
                     <div class="single-widget">
                         <h2>Serviços</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Sobre Gfast</a></li>
+                        <ul class=" nav-pills nav-stacked">
+                            <li><a href="#">Sobre Gfast</a><br></li>
                             <li><a href="#">Contactar a loja</a></li>
 
                         </ul>
@@ -17,20 +17,20 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>Politicas</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Termos de uso</a></li>
-                            <li><a href="#">Politica da privacidade</a></li>
-                            <li><a href="#">Sistema de bilhetes</a></li>
+                        <h2>Mapa do Website</h2>
+                        <ul class="nav-pills nav-stacked">
+                            <li><a href="../site/index">Inicío</a></li>
+                            <li><a href="../site/marcas">Marcas</a></li>
+                            <li><a href="../site/contact">Contatos</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="single-widget">
                         <h2>Sobre GFast</h2>
-                        <ul class="nav nav-pills nav-stacked">
+                        <ul class="nav-pills nav-stacked">
                             <li><a href="#">Informações</a></li>
-                            <li><a href="#">Localização de loja</a></li>
+                            <li><a href="../site/contact">Localização des lojas</a></li>
                             <li><a href="#">Copyright</a></li>
                         </ul>
                     </div>
